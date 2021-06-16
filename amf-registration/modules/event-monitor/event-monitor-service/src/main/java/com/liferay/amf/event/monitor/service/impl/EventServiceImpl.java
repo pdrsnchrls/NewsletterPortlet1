@@ -14,8 +14,12 @@
 
 package com.liferay.amf.event.monitor.service.impl;
 
+import com.liferay.amf.event.monitor.model.Event;
 import com.liferay.amf.event.monitor.service.base.EventServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.exception.PortalException;
+
+import java.util.Date;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -46,4 +50,11 @@ public class EventServiceImpl extends EventServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use <code>com.liferay.amf.event.monitor.service.EventServiceUtil</code> to access the event remote service.
 	 */
+	
+	public Event addEvent (long id, long userId, String screenName, String eventType, String ip, Date date) 
+			throws PortalException{
+		
+		return eventLocalService.addEvent(id, userId, screenName, eventType, ip, date);
+	}
+	
 }
