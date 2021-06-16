@@ -33,14 +33,20 @@ public class PostRegistrationEventListener extends BaseModelListener<User> {
 		try {
 			System.out.println("onAfterCreate()");
 
+			//get user id
+			long id = user.getUserId();
+			//get user screenname
 			String screenName = user.getScreenName();
-			String ip = "0.0.0.0";
+			//set event type
 			String eventType = "Registration";
+			//get client IP address
+			String ip = user.getLoginIP();
+			//get timestamp
 			Date date = user.getModifiedDate();
 			
 			MailMessage message = new MailMessage();
 			message.setSubject("Registration Notification");
-			message.setBody("User: " + screenName + " " + eventType + " at " + date + " with " + ip);
+			message.setBody("User: " + id + ":" + screenName + " " + eventType + " at " + date + " with " + ip);
 			InternetAddress toAddress = new InternetAddress(user.getEmailAddress());
 			InternetAddress fromAddress = new InternetAddress("do-not-reply@liferay.com");
 			message.setTo(toAddress);
