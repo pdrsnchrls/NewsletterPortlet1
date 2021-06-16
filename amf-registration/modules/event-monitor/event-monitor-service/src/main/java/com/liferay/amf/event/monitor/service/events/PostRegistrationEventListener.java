@@ -1,8 +1,10 @@
 package com.liferay.amf.event.monitor.service.events;
 
+import com.liferay.amf.event.monitor.service.impl.EventServiceImpl;
 import com.liferay.mail.kernel.model.MailMessage;
 import com.liferay.mail.kernel.service.MailService;
 import com.liferay.portal.kernel.exception.ModelListenerException;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.ModelListener;
 import com.liferay.portal.kernel.model.User;
@@ -30,37 +32,29 @@ public class PostRegistrationEventListener extends BaseModelListener<User> {
 
 	@Override
 	public void onAfterCreate(User user) throws ModelListenerException {
-		try {
-			System.out.println("onAfterCreate()");
+		
+		System.out.println("onAfterCreate()");
 
-			//get user id
-			long id = user.getUserId();
-			//get user screenname
-			String screenName = user.getScreenName();
-			//set event type
-			String eventType = "Registration";
-			//get client IP address
-			String ip = "0.0.0.0";
-			//get timestamp
-			Date date = user.getModifiedDate();
-			
-			MailMessage message = new MailMessage();
-			message.setSubject("Registration Notification");
-			message.setBody("User: " + id + ":" + screenName + " " + eventType + " at " + date + " with " + ip);
-			InternetAddress toAddress = new InternetAddress(user.getEmailAddress());
-			InternetAddress fromAddress = new InternetAddress("do-not-reply@liferay.com");
-			message.setTo(toAddress);
-			message.setFrom(fromAddress);
-			_mailService.sendEmail(message);
-		} catch (AddressException e) {
+		//get user id
+		long id = user.getUserId();
+		//get user screenname
+		String screenName = user.getScreenName();
+		//set event type
+		String eventType = "Registration";
+		//get client IP address
+		String ip = "0.0.0.0";
+		//get timestamp
+		Date date = user.getModifiedDate();
+		
+		try {
+			_eventService.addEvent(id, screenName, eventType, ip, date);
+		} catch (PortalException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	// TODO enter required service methods
 
 	@Reference
-	protected MailService _mailService;
-	
-	@Reference
-	protected UserService _userService;
+	protected EventServiceImpl _eventService;
 }

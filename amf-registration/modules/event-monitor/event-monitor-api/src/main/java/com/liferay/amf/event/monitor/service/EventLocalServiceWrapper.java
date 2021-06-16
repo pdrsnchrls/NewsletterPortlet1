@@ -48,11 +48,11 @@ public class EventLocalServiceWrapper
 
 	@Override
 	public com.liferay.amf.event.monitor.model.Event addEvent(
-		long id, long userId, String screenName, String eventType, String ip,
+		long userId, String screenName, String eventType, String ip,
 		java.util.Date date) {
 
 		return _eventLocalService.addEvent(
-			id, userId, screenName, eventType, ip, date);
+			userId, screenName, eventType, ip, date);
 	}
 
 	/**

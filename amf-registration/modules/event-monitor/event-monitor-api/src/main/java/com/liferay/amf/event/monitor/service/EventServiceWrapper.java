@@ -35,12 +35,11 @@ public class EventServiceWrapper
 
 	@Override
 	public com.liferay.amf.event.monitor.model.Event addEvent(
-			long id, long userId, String screenName, String eventType,
-			String ip, java.util.Date date)
+			long userId, String screenName, String eventType, String ip,
+			java.util.Date date)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _eventService.addEvent(
-			id, userId, screenName, eventType, ip, date);
+		return _eventService.addEvent(userId, screenName, eventType, ip, date);
 	}
 
 	/**

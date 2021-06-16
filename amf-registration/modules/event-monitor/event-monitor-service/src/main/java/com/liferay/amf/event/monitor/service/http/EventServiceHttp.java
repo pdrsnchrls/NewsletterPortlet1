@@ -55,8 +55,8 @@ import org.osgi.annotation.versioning.ProviderType;
 public class EventServiceHttp {
 
 	public static com.liferay.amf.event.monitor.model.Event addEvent(
-			HttpPrincipal httpPrincipal, long id, long userId,
-			String screenName, String eventType, String ip, java.util.Date date)
+			HttpPrincipal httpPrincipal, long userId, String screenName,
+			String eventType, String ip, java.util.Date date)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -64,7 +64,7 @@ public class EventServiceHttp {
 				EventServiceUtil.class, "addEvent", _addEventParameterTypes0);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, id, userId, screenName, eventType, ip, date);
+				methodKey, userId, screenName, eventType, ip, date);
 
 			Object returnObj = null;
 
@@ -95,7 +95,7 @@ public class EventServiceHttp {
 	private static Log _log = LogFactoryUtil.getLog(EventServiceHttp.class);
 
 	private static final Class<?>[] _addEventParameterTypes0 = new Class[] {
-		long.class, long.class, String.class, String.class, String.class,
+		long.class, String.class, String.class, String.class,
 		java.util.Date.class
 	};
 

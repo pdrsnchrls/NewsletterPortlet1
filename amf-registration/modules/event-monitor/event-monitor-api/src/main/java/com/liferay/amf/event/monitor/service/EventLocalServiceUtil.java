@@ -53,11 +53,10 @@ public class EventLocalServiceUtil {
 	}
 
 	public static com.liferay.amf.event.monitor.model.Event addEvent(
-		long id, long userId, String screenName, String eventType, String ip,
+		long userId, String screenName, String eventType, String ip,
 		java.util.Date date) {
 
-		return getService().addEvent(
-			id, userId, screenName, eventType, ip, date);
+		return getService().addEvent(userId, screenName, eventType, ip, date);
 	}
 
 	/**

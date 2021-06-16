@@ -65,14 +65,14 @@ import org.osgi.annotation.versioning.ProviderType;
 public class EventServiceSoap {
 
 	public static com.liferay.amf.event.monitor.model.EventSoap addEvent(
-			long id, long userId, String screenName, String eventType,
-			String ip, java.util.Date date)
+			long userId, String screenName, String eventType, String ip,
+			java.util.Date date)
 		throws RemoteException {
 
 		try {
 			com.liferay.amf.event.monitor.model.Event returnValue =
 				EventServiceUtil.addEvent(
-					id, userId, screenName, eventType, ip, date);
+					userId, screenName, eventType, ip, date);
 
 			return com.liferay.amf.event.monitor.model.EventSoap.toSoapModel(
 				returnValue);

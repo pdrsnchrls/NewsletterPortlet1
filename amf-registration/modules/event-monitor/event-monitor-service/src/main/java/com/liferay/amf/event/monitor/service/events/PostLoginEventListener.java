@@ -1,5 +1,6 @@
 package com.liferay.amf.event.monitor.service.events;
 
+import com.liferay.amf.event.monitor.service.impl.EventServiceImpl;
 import com.liferay.mail.kernel.model.MailMessage;
 import com.liferay.mail.kernel.service.MailService;
 import com.liferay.portal.kernel.events.ActionException;
@@ -32,38 +33,36 @@ public class PostLoginEventListener implements LifecycleAction {
 	@Override
 	public void processLifecycleEvent(LifecycleEvent lifecycleEvent)
 			throws ActionException {
-		try {
 			System.out.println("processLifecycleEvent()");
-			User user = _userService.getCurrentUser();
-			//get user id
-			long id = user.getUserId();
-			//get login date
-			Date date = user.getLoginDate();
-			//get user screenname
-			String screenName = user.getScreenName();
-			//set event type
-			String eventType = "login";
-			//get client IP address
-			String ip = user.getLoginIP();
-			
-			MailMessage message = new MailMessage();
-			message.setSubject("Login Notification");
-			message.setBody("User: " + id + ":" + screenName + " " + eventType + " at " + date + " with " + ip);
-			InternetAddress toAddress = new InternetAddress(user.getEmailAddress());
-			InternetAddress fromAddress = new InternetAddress("do-not-reply@liferay.com");
-			message.setTo(toAddress);
-			message.setFrom(fromAddress);
-			_mailService.sendEmail(message);
-		} catch (PortalException e) {
-			e.printStackTrace();
-		} catch (AddressException e) {
-			e.printStackTrace();
-		}
+			User user;
+			try {
+				user = _userService.getCurrentUser();
+				//get user id
+				long id = user.getUserId();
+				//get login date
+				Date date = user.getLoginDate();
+				//get user screenname
+				String screenName = user.getScreenName();
+				//set event type
+				String eventType = "login";
+				//get client IP address
+				String ip = user.getLoginIP();
+				
+				try {
+					_eventService.addEvent(id, screenName, eventType, ip, date);
+				} catch (PortalException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} catch (PortalException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 	}
 
 	@Reference
-	protected MailService _mailService;
-
-	@Reference
 	protected UserService _userService;
+	
+	@Reference
+	protected EventServiceImpl _eventService;
 }

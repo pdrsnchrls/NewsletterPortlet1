@@ -51,8 +51,8 @@ public interface EventService extends BaseService {
 	 * Never modify or reference this interface directly. Always use {@link EventServiceUtil} to access the event remote service. Add custom service methods to <code>com.liferay.amf.event.monitor.service.impl.EventServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public Event addEvent(
-			long id, long userId, String screenName, String eventType,
-			String ip, Date date)
+			long userId, String screenName, String eventType, String ip,
+			Date date)
 		throws PortalException;
 
 	/**
