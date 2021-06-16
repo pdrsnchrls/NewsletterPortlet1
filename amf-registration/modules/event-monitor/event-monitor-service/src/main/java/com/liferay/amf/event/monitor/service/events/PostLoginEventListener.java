@@ -35,6 +35,8 @@ public class PostLoginEventListener implements LifecycleAction {
 		try {
 			System.out.println("processLifecycleEvent()");
 			User user = _userService.getCurrentUser();
+			//get user id
+			long id = user.getUserId();
 			//get login date
 			Date date = user.getLoginDate();
 			//get user screenname

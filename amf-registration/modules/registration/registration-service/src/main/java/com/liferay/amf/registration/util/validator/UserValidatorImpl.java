@@ -109,6 +109,10 @@ public class UserValidatorImpl implements UserValidator {
 			errors.add("emailNotValid");
 			result = false;
 		}
+		if (!isUnique(email, "emailAddress")) {
+			errors.add("emailNotUnique");
+			result = false;
+		}
 		return result;
 	}
 	
@@ -134,7 +138,7 @@ public class UserValidatorImpl implements UserValidator {
 			result = false;
 		}
 		//select screenName from User_;
-		if (!isUnique(username)) {
+		if (!isUnique(username, "screenName")) {
 			errors.add("usernameNotUnique");
 			result=false;
 		}
@@ -327,14 +331,14 @@ public class UserValidatorImpl implements UserValidator {
 	}
 	
 	//run a dynamic query to 
-	private boolean isUnique(String username) {
+	private boolean isUnique(String name, String value) {
 		ClassLoader classLoader = getClass().getClassLoader();
 		DynamicQuery query = DynamicQueryFactoryUtil.forClass(User.class, classLoader)
-				.setProjection(ProjectionFactoryUtil.property("screenName"));
+				.setProjection(ProjectionFactoryUtil.property(value));
 		List<String> results = UserLocalServiceUtil.dynamicQuery(query);
 		
 		for (int i = 0; i<results.size(); i++) {
-			if (username.equals(results.get(i))) {
+			if (name.equals(results.get(i))) {
 				return false;
 			}
 		}

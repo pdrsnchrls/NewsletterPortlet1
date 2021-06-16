@@ -89,7 +89,6 @@ public class RegistrationPortlet extends MVCPortlet { // move this to a package 
 			response.setRenderParameter("", "registration/user/add");
 		}
 		catch(PortalException pe) {
-			pe.printStackTrace();
 			SessionErrors.add(request,  "serviceErrorDetails", pe);
 			response.setRenderParameter("", "registration/user/add");
 		}
