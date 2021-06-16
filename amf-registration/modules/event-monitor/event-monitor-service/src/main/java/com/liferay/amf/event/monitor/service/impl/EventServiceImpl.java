@@ -54,6 +54,7 @@ public class EventServiceImpl extends EventServiceBaseImpl {
 	public Event addEvent (long userId, String screenName, String eventType, String ip, Date date) 
 			throws PortalException{
 		
+		System.out.println("Made it to EventServiceImpl");
 		return eventLocalService.addEvent(userId, screenName, eventType, ip, date);
 	}
 	

@@ -8,4 +8,12 @@ Export-Package: \
 	com.liferay.amf.registration.service.base,\
 	com.liferay.amf.registration.service.http,\
 	com.liferay.amf.registration.service.impl,\
-	com.liferay.amf.registration.service.persistence.impl.constants
+	com.liferay.amf.registration.service.persistence.impl.constants,\
+	com.liferay.amf.registration.exception,\
+	com.liferay.amf.registration.service,\
+	com.liferay.amf.registration.service.base,\
+	com.liferay.amf.registration.service.http,\
+	com.liferay.amf.registration.service.impl,\
+	com.liferay.amf.registration.service.persistence.impl.constants,\
+	com.liferay.amf.registration.util.validator,\
+	com.liferay.amf.registration.validator

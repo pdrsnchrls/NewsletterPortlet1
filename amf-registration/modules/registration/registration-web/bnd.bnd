@@ -3,4 +3,9 @@ Bundle-SymbolicName: com.liferay.amf.registration.web
 Bundle-Version: 1.0.0
 Export-Package: \
 	com.liferay.amf.registration.web.constants,\
+	com.liferay.amf.registration.web.portlet,\
+	com.liferay.amf.registration.exception,\
+	com.liferay.amf.registration.service,\
+	com.liferay.amf.registration.validator,\
+	com.liferay.amf.registration.web.constants,\
 	com.liferay.amf.registration.web.portlet
