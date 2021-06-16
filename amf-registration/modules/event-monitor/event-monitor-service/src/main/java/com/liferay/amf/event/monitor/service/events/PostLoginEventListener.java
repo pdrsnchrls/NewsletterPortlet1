@@ -35,14 +35,17 @@ public class PostLoginEventListener implements LifecycleAction {
 		try {
 			System.out.println("processLifecycleEvent()");
 			User user = _userService.getCurrentUser();
+			//get login date
 			Date date = user.getLoginDate();
+			//get user screenname
 			String screenName = user.getScreenName();
+			//set event type
 			String eventType = "login";
+			//get client IP address
 			String ip = user.getLoginIP();
-			// get client IP Address
 			
 			MailMessage message = new MailMessage();
-			message.setSubject("Security Alert");
+			message.setSubject("Login Notification");
 			message.setBody("User: " + screenName + " " + eventType + " at " + date + " with " + ip);
 			InternetAddress toAddress = new InternetAddress(user.getEmailAddress());
 			InternetAddress fromAddress = new InternetAddress("do-not-reply@liferay.com");

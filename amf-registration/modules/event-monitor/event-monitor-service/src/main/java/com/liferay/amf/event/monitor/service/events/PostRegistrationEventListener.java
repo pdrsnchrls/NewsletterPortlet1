@@ -2,9 +2,7 @@ package com.liferay.amf.event.monitor.service.events;
 
 import com.liferay.mail.kernel.model.MailMessage;
 import com.liferay.mail.kernel.service.MailService;
-import com.liferay.portal.kernel.events.LifecycleAction;
 import com.liferay.portal.kernel.exception.ModelListenerException;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.ModelListener;
 import com.liferay.portal.kernel.model.User;
@@ -41,7 +39,7 @@ public class PostRegistrationEventListener extends BaseModelListener<User> {
 			Date date = user.getModifiedDate();
 			
 			MailMessage message = new MailMessage();
-			message.setSubject("Security Alert");
+			message.setSubject("Registration Notification");
 			message.setBody("User: " + screenName + " " + eventType + " at " + date + " with " + ip);
 			InternetAddress toAddress = new InternetAddress(user.getEmailAddress());
 			InternetAddress fromAddress = new InternetAddress("do-not-reply@liferay.com");
