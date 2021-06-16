@@ -1,0 +1,11 @@
+Bundle-Name: registration-service
+Bundle-SymbolicName: com.liferay.amf.registration.service
+Bundle-Version: 1.0.0
+Liferay-Require-SchemaVersion: 1.0.0
+Liferay-Service: true
+-dsannotations-options: inherit
+Export-Package: \
+	com.liferay.amf.registration.service.base,\
+	com.liferay.amf.registration.service.http,\
+	com.liferay.amf.registration.service.impl,\
+	com.liferay.amf.registration.service.persistence.impl.constants

@@ -1,0 +1,9 @@
+Bundle-Name: registration-api
+Bundle-SymbolicName: com.liferay.amf.registration.api
+Bundle-Version: 1.0.0
+Export-Package: \
+	com.liferay.amf.registration.service,\
+	com.liferay.amf.registration.validator,\
+	com.liferay.amf.registration.exception
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../registration-service/service.xml
