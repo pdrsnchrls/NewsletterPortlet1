@@ -7,5 +7,6 @@
 		<field name="date" type="Date" />
 		<field name="IPAddress" type="String" />
 		<field name="eventType" type="String" />
+		<field name="screenName" type="String" />
 	</model>
 </model-hints>

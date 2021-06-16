@@ -49,6 +49,7 @@ public class EventWrapper
 		attributes.put("date", getDate());
 		attributes.put("IPAddress", getIPAddress());
 		attributes.put("eventType", getEventType());
+		attributes.put("screenName", getScreenName());
 
 		return attributes;
 	}
@@ -83,6 +84,12 @@ public class EventWrapper
 
 		if (eventType != null) {
 			setEventType(eventType);
+		}
+
+		String screenName = (String)attributes.get("screenName");
+
+		if (screenName != null) {
+			setScreenName(screenName);
 		}
 	}
 
@@ -134,6 +141,16 @@ public class EventWrapper
 	@Override
 	public long getPrimaryKey() {
 		return model.getPrimaryKey();
+	}
+
+	/**
+	 * Returns the screen name of this event.
+	 *
+	 * @return the screen name of this event
+	 */
+	@Override
+	public String getScreenName() {
+		return model.getScreenName();
 	}
 
 	/**
@@ -209,6 +226,16 @@ public class EventWrapper
 	@Override
 	public void setPrimaryKey(long primaryKey) {
 		model.setPrimaryKey(primaryKey);
+	}
+
+	/**
+	 * Sets the screen name of this event.
+	 *
+	 * @param screenName the screen name of this event
+	 */
+	@Override
+	public void setScreenName(String screenName) {
+		model.setScreenName(screenName);
 	}
 
 	/**

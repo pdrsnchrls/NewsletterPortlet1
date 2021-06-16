@@ -141,4 +141,19 @@ public interface EventModel extends BaseModel<Event> {
 	 */
 	public void setEventType(String eventType);
 
+	/**
+	 * Returns the screen name of this event.
+	 *
+	 * @return the screen name of this event
+	 */
+	@AutoEscape
+	public String getScreenName();
+
+	/**
+	 * Sets the screen name of this event.
+	 *
+	 * @param screenName the screen name of this event
+	 */
+	public void setScreenName(String screenName);
+
 }

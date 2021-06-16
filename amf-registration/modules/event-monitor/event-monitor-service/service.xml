@@ -12,6 +12,7 @@
         <column name="eventType" type="String"></column>
     
 	    <!-- Order -->
+        <column name="screenName" type="String"></column>
 	    <order by="asc">
 	    	<order-column name="date" />
 	    </order>

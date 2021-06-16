@@ -39,6 +39,7 @@ public class EventSoap implements Serializable {
 		soapModel.setDate(model.getDate());
 		soapModel.setIPAddress(model.getIPAddress());
 		soapModel.setEventType(model.getEventType());
+		soapModel.setScreenName(model.getScreenName());
 
 		return soapModel;
 	}
@@ -131,10 +132,19 @@ public class EventSoap implements Serializable {
 		_eventType = eventType;
 	}
 
+	public String getScreenName() {
+		return _screenName;
+	}
+
+	public void setScreenName(String screenName) {
+		_screenName = screenName;
+	}
+
 	private long _eventId;
 	private long _userId;
 	private Date _date;
 	private String _IPAddress;
 	private String _eventType;
+	private String _screenName;
 
 }

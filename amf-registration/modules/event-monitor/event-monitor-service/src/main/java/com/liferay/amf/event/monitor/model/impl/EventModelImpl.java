@@ -76,7 +76,7 @@ public class EventModelImpl extends BaseModelImpl<Event> implements EventModel {
 	public static final Object[][] TABLE_COLUMNS = {
 		{"eventId", Types.BIGINT}, {"userId", Types.BIGINT},
 		{"date_", Types.TIMESTAMP}, {"IPAddress", Types.VARCHAR},
-		{"eventType", Types.VARCHAR}
+		{"eventType", Types.VARCHAR}, {"screenName", Types.VARCHAR}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -88,10 +88,11 @@ public class EventModelImpl extends BaseModelImpl<Event> implements EventModel {
 		TABLE_COLUMNS_MAP.put("date_", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("IPAddress", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("eventType", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("screenName", Types.VARCHAR);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table FOO_Event (eventId LONG not null primary key,userId LONG,date_ DATE null,IPAddress VARCHAR(75) null,eventType VARCHAR(75) null)";
+		"create table FOO_Event (eventId LONG not null primary key,userId LONG,date_ DATE null,IPAddress VARCHAR(75) null,eventType VARCHAR(75) null,screenName VARCHAR(75) null)";
 
 	public static final String TABLE_SQL_DROP = "drop table FOO_Event";
 
@@ -135,6 +136,7 @@ public class EventModelImpl extends BaseModelImpl<Event> implements EventModel {
 		model.setDate(soapModel.getDate());
 		model.setIPAddress(soapModel.getIPAddress());
 		model.setEventType(soapModel.getEventType());
+		model.setScreenName(soapModel.getScreenName());
 
 		return model;
 	}
@@ -293,6 +295,9 @@ public class EventModelImpl extends BaseModelImpl<Event> implements EventModel {
 		attributeGetterFunctions.put("eventType", Event::getEventType);
 		attributeSetterBiConsumers.put(
 			"eventType", (BiConsumer<Event, String>)Event::setEventType);
+		attributeGetterFunctions.put("screenName", Event::getScreenName);
+		attributeSetterBiConsumers.put(
+			"screenName", (BiConsumer<Event, String>)Event::setScreenName);
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
 			attributeGetterFunctions);
@@ -395,6 +400,22 @@ public class EventModelImpl extends BaseModelImpl<Event> implements EventModel {
 		_eventType = eventType;
 	}
 
+	@JSON
+	@Override
+	public String getScreenName() {
+		if (_screenName == null) {
+			return "";
+		}
+		else {
+			return _screenName;
+		}
+	}
+
+	@Override
+	public void setScreenName(String screenName) {
+		_screenName = screenName;
+	}
+
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -436,6 +457,7 @@ public class EventModelImpl extends BaseModelImpl<Event> implements EventModel {
 		eventImpl.setDate(getDate());
 		eventImpl.setIPAddress(getIPAddress());
 		eventImpl.setEventType(getEventType());
+		eventImpl.setScreenName(getScreenName());
 
 		eventImpl.resetOriginalValues();
 
@@ -536,6 +558,14 @@ public class EventModelImpl extends BaseModelImpl<Event> implements EventModel {
 			eventCacheModel.eventType = null;
 		}
 
+		eventCacheModel.screenName = getScreenName();
+
+		String screenName = eventCacheModel.screenName;
+
+		if ((screenName != null) && (screenName.length() == 0)) {
+			eventCacheModel.screenName = null;
+		}
+
 		return eventCacheModel;
 	}
 
@@ -617,6 +647,7 @@ public class EventModelImpl extends BaseModelImpl<Event> implements EventModel {
 	private Date _date;
 	private String _IPAddress;
 	private String _eventType;
+	private String _screenName;
 	private long _columnBitmask;
 	private Event _escapedModel;
 

@@ -63,7 +63,7 @@ public class EventCacheModel implements CacheModel<Event>, Externalizable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{eventId=");
 		sb.append(eventId);
@@ -75,6 +75,8 @@ public class EventCacheModel implements CacheModel<Event>, Externalizable {
 		sb.append(IPAddress);
 		sb.append(", eventType=");
 		sb.append(eventType);
+		sb.append(", screenName=");
+		sb.append(screenName);
 		sb.append("}");
 
 		return sb.toString();
@@ -108,6 +110,13 @@ public class EventCacheModel implements CacheModel<Event>, Externalizable {
 			eventImpl.setEventType(eventType);
 		}
 
+		if (screenName == null) {
+			eventImpl.setScreenName("");
+		}
+		else {
+			eventImpl.setScreenName(screenName);
+		}
+
 		eventImpl.resetOriginalValues();
 
 		return eventImpl;
@@ -121,6 +130,7 @@ public class EventCacheModel implements CacheModel<Event>, Externalizable {
 		date = objectInput.readLong();
 		IPAddress = objectInput.readUTF();
 		eventType = objectInput.readUTF();
+		screenName = objectInput.readUTF();
 	}
 
 	@Override
@@ -143,6 +153,13 @@ public class EventCacheModel implements CacheModel<Event>, Externalizable {
 		else {
 			objectOutput.writeUTF(eventType);
 		}
+
+		if (screenName == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(screenName);
+		}
 	}
 
 	public long eventId;
@@ -150,5 +167,6 @@ public class EventCacheModel implements CacheModel<Event>, Externalizable {
 	public long date;
 	public String IPAddress;
 	public String eventType;
+	public String screenName;
 
 }
