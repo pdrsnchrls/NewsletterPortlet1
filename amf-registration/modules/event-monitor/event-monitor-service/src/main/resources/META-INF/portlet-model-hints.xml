@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.amf.event.monitor.model.Event">
+		<field name="eventId" type="long" />
+		<field name="userId" type="long" />
+		<field name="date" type="Date" />
+		<field name="IPAddress" type="String" />
+		<field name="eventType" type="String" />
+	</model>
+</model-hints>
