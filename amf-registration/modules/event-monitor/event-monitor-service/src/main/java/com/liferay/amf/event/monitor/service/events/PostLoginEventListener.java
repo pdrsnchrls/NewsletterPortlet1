@@ -1,4 +1,4 @@
-package com.liferay.amf.login.events.post;
+package com.liferay.amf.event.monitor.service.events;
 
 import com.liferay.mail.kernel.model.MailMessage;
 import com.liferay.mail.kernel.service.MailService;

@@ -1,10 +1,10 @@
 Bundle-Name: event-monitor-api
 Bundle-SymbolicName: com.liferay.amf.monitor.api
 Bundle-Version: 1.0.0
-Export-Package:\
-	com.liferay.amf.monitor.exception,\
-	com.liferay.amf.monitor.model,\
-	com.liferay.amf.monitor.service,\
-	com.liferay.amf.monitor.service.persistence
+Export-Package: \
+	com.liferay.amf.event.monitor.exception,\
+	com.liferay.amf.event.monitor.model,\
+	com.liferay.amf.event.monitor.service,\
+	com.liferay.amf.event.monitor.service.persistence
 -check: EXPORTS
 -includeresource: META-INF/service.xml=../event-monitor-service/service.xml

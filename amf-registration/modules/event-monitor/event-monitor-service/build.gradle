@@ -7,6 +7,7 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.core"
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
 	compileOnly project(":modules:event-monitor:event-monitor-api")
+	compileOnly 'javax.mail:mail'
 }
 
 buildService {
