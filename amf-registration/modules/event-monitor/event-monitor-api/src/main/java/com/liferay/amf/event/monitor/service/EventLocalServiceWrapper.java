@@ -46,6 +46,15 @@ public class EventLocalServiceWrapper
 		return _eventLocalService.addEvent(event);
 	}
 
+	@Override
+	public com.liferay.amf.event.monitor.model.Event addEvent(
+		long id, long userId, String screenName, String eventType, String ip,
+		java.util.Date date) {
+
+		return _eventLocalService.addEvent(
+			id, userId, screenName, eventType, ip, date);
+	}
+
 	/**
 	 * Creates a new event with the primary key. Does not add the event to the database.
 	 *

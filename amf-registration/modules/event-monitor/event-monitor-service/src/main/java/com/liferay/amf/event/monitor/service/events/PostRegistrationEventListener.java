@@ -40,7 +40,7 @@ public class PostRegistrationEventListener extends BaseModelListener<User> {
 			//set event type
 			String eventType = "Registration";
 			//get client IP address
-			String ip = user.getLoginIP();
+			String ip = "0.0.0.0";
 			//get timestamp
 			Date date = user.getModifiedDate();
 			

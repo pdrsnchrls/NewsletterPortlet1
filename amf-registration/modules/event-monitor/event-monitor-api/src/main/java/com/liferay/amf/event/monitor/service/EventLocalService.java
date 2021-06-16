@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
+import java.util.Date;
 import java.util.List;
 
 import org.osgi.annotation.versioning.ProviderType;
@@ -69,6 +70,10 @@ public interface EventLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Event addEvent(Event event);
+
+	public Event addEvent(
+		long id, long userId, String screenName, String eventType, String ip,
+		Date date);
 
 	/**
 	 * Creates a new event with the primary key. Does not add the event to the database.
