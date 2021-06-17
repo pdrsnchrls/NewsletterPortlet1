@@ -26,7 +26,7 @@ public class PostRegistrationEventListener extends BaseModelListener<User>{
 		
 		long id = user.getUserId();
 		String screenName = user.getScreenName();
-		String eventType = "Registration";
+		String eventType = "registration";
 		String ipAddress = "0.0.0.0";
 		Date date = user.getModifiedDate();
 		

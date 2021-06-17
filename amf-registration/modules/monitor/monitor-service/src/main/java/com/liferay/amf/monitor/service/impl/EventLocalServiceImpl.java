@@ -51,12 +51,9 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 	 */
 	
 	public void addEvent(long userId, Date date, String screenName, String eventType, String ipAddress) {
-		System.out.println("Made it to the add event thingy: " + screenName + " " + userId + " " + date + " " + eventType + " " + ipAddress);
 		long eventId = counterLocalService.increment(Event.class.getName());
 		Event event = eventLocalService.createEvent(eventId);
-		
-		System.out.println(date + " HERE IS THE DATE HERE IS THE DATE");
-		
+				
 		event.setUserId(userId);
 		event.setDate(date);
 		event.setScreenName(screenName);
