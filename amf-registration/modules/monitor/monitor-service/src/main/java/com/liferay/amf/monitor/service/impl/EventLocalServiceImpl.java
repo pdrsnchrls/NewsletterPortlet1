@@ -16,6 +16,7 @@ package com.liferay.amf.monitor.service.impl;
 
 import com.liferay.amf.monitor.model.Event;
 import com.liferay.amf.monitor.service.EventLocalService;
+import com.liferay.amf.monitor.service.EventService;
 import com.liferay.amf.monitor.service.base.EventLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
 
@@ -62,8 +63,6 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 		
 		_eventLocalService.addEvent(event);
 	}
-	
 	@Reference
-	protected EventLocalService _eventLocalService;
-	
+	EventLocalService _eventLocalService;
 }
