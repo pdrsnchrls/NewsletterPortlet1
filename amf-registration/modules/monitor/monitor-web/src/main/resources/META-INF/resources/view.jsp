@@ -1,5 +1,22 @@
-<%@ include file="/init.jsp" %>
+<%@ include file="/init.jsp"%>
 
-<p>
-	<b><liferay-ui:message key="monitor.caption"/></b>
-</p>
+<liferay-ui:tabs names='<%= "all-tab,registration-tab,login-tab" %>'
+	param="tabs"
+	refresh="<%= false %>"	
+	type="tabs nav-tabs-default"
+>
+
+	<liferay-ui:section>
+		<%@ include file="/configuration/all_events.jspf" %>
+	</liferay-ui:section>
+
+	<liferay-ui:section>
+		<%@ include file="/configuration/registration_events.jspf" %>
+	</liferay-ui:section>
+
+	<liferay-ui:section>
+		<%@ include file="/configuration/login_events.jspf" %>
+	</liferay-ui:section>
+	
+
+</liferay-ui:tabs>
