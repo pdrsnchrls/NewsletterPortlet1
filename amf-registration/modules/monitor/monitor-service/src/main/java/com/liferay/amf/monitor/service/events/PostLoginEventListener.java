@@ -41,19 +41,10 @@ public class PostLoginEventListener implements LifecycleAction {
 			
 			_eventLocalService.addEvent(userId, date, screenName, eventType, ip);
 			
-//			MailMessage message = new MailMessage();
-//			message.setSubject("Security Alert");
-//			message.setBody("Liferay has detected that you logged in at " + user.getLastLoginDate());
-//			InternetAddress toAddress = new InternetAddress(user.getEmailAddress());
-//			InternetAddress fromAddress = new InternetAddress("do-not-reply@liferay.com");
-//			message.setTo(toAddress);
-//			message.setFrom(fromAddress);
-//			_mailService.sendEmail(message);
 		} catch (PortalException e) {
 			e.printStackTrace();
-//		} catch (AddressException e) {
-//			e.printStackTrace();
-//		}
+		}
+
 	}
 	@Reference
 	protected MailService _mailService;
