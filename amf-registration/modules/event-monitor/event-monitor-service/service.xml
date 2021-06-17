@@ -27,6 +27,7 @@
 	    <!-- Entity services needed for the integration of the Asset framework -->
 	    <reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
 	    <reference entity="AssetLink" package-path="com.liferay.portlet.asset" />
+	    <reference entity="User" package-path="com.liferay.portal" />
    	</entity>
     
 </service-builder>

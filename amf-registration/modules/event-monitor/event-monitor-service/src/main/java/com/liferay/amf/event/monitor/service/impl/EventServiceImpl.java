@@ -51,11 +51,11 @@ public class EventServiceImpl extends EventServiceBaseImpl {
 	 * Never reference this class directly. Always use <code>com.liferay.amf.event.monitor.service.EventServiceUtil</code> to access the event remote service.
 	 */
 	
-	public Event addEvent (long userId, String screenName, String eventType, String ip, Date date) 
+	public void addEvent (long userId, String screenName, String eventType, String ip, Date date) 
 			throws PortalException{
 		
 		System.out.println("Made it to EventServiceImpl");
-		return eventLocalService.addEvent(userId, screenName, eventType, ip, date);
+		eventLocalService.addEvent(userId, screenName, eventType, ip, date);
 	}
 	
 }

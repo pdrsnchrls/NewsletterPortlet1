@@ -14,7 +14,6 @@
 
 package com.liferay.amf.event.monitor.service;
 
-import com.liferay.amf.event.monitor.model.Event;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
@@ -50,7 +49,7 @@ public interface EventService extends BaseService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link EventServiceUtil} to access the event remote service. Add custom service methods to <code>com.liferay.amf.event.monitor.service.impl.EventServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public Event addEvent(
+	public void addEvent(
 			long userId, String screenName, String eventType, String ip,
 			Date date)
 		throws PortalException;

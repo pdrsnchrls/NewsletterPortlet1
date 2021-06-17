@@ -52,11 +52,11 @@ public class EventLocalServiceUtil {
 		return getService().addEvent(event);
 	}
 
-	public static com.liferay.amf.event.monitor.model.Event addEvent(
+	public static void addEvent(
 		long userId, String screenName, String eventType, String ip,
 		java.util.Date date) {
 
-		return getService().addEvent(userId, screenName, eventType, ip, date);
+		getService().addEvent(userId, screenName, eventType, ip, date);
 	}
 
 	/**

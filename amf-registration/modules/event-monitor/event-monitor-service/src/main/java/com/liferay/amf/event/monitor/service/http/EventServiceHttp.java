@@ -54,7 +54,7 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public class EventServiceHttp {
 
-	public static com.liferay.amf.event.monitor.model.Event addEvent(
+	public static void addEvent(
 			HttpPrincipal httpPrincipal, long userId, String screenName,
 			String eventType, String ip, java.util.Date date)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -66,10 +66,8 @@ public class EventServiceHttp {
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, userId, screenName, eventType, ip, date);
 
-			Object returnObj = null;
-
 			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
+				TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
 				if (e instanceof
@@ -82,8 +80,6 @@ public class EventServiceHttp {
 				throw new com.liferay.portal.kernel.exception.SystemException(
 					e);
 			}
-
-			return (com.liferay.amf.event.monitor.model.Event)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);

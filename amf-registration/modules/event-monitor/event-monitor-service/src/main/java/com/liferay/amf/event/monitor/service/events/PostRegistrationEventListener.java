@@ -1,5 +1,6 @@
 package com.liferay.amf.event.monitor.service.events;
 
+import com.liferay.amf.event.monitor.service.EventLocalService;
 import com.liferay.amf.event.monitor.service.impl.EventServiceImpl;
 import com.liferay.portal.kernel.exception.ModelListenerException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -28,7 +29,7 @@ public class PostRegistrationEventListener extends BaseModelListener<User> {
 	public void onAfterCreate(User user) throws ModelListenerException {
 		
 		System.out.println("onAfterCreate()");
-
+		
 		//get user id
 		long id = user.getUserId();
 		//get user screenname
@@ -40,15 +41,11 @@ public class PostRegistrationEventListener extends BaseModelListener<User> {
 		//get timestamp
 		Date date = user.getModifiedDate();
 		
-		try {
-			_eventService.addEvent(id, screenName, eventType, ip, date);
-		} catch (PortalException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		_eventService.addEvent(id, screenName, eventType, ip, date);
+
 	}
 	// TODO enter required service methods
 
 	@Reference
-	protected EventServiceImpl _eventService;
+	protected EventLocalService _eventService;
 }

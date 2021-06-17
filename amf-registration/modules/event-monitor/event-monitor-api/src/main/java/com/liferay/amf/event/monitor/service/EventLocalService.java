@@ -71,7 +71,7 @@ public interface EventLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public Event addEvent(Event event);
 
-	public Event addEvent(
+	public void addEvent(
 		long userId, String screenName, String eventType, String ip, Date date);
 
 	/**

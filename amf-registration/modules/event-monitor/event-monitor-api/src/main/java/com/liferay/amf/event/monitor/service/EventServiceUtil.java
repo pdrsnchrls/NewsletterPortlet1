@@ -39,12 +39,12 @@ public class EventServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.amf.event.monitor.service.impl.EventServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static com.liferay.amf.event.monitor.model.Event addEvent(
+	public static void addEvent(
 			long userId, String screenName, String eventType, String ip,
 			java.util.Date date)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().addEvent(userId, screenName, eventType, ip, date);
+		getService().addEvent(userId, screenName, eventType, ip, date);
 	}
 
 	/**
