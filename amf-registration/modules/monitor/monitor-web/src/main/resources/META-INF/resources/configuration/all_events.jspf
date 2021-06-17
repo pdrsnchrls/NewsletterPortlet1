@@ -2,7 +2,6 @@
 
 <%
  List<Event> events = EventLocalServiceUtil.getEvents(-1,-1);
- System.out.println(events.size());
 %>
 
 <liferay-ui:search-container total="<%=events.size()%>" var="searchContainer" delta="20" deltaConfigurable="true" 

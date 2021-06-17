@@ -21,9 +21,7 @@ import org.osgi.service.component.annotations.Reference;
 public class PostRegistrationEventListener extends BaseModelListener<User>{
 	
 	@Override
-	public void onAfterCreate(User user) throws ModelListenerException {
-		System.out.print("onAfterCreate()");
-		
+	public void onAfterCreate(User user) throws ModelListenerException {		
 		long id = user.getUserId();
 		String screenName = user.getScreenName();
 		String eventType = "registration";

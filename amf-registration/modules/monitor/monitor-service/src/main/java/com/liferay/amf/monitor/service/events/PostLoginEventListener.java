@@ -31,7 +31,6 @@ public class PostLoginEventListener implements LifecycleAction {
 	public void processLifecycleEvent(LifecycleEvent lifecycleEvent) 
 			throws ActionException {	
 		try {
-			System.out.println("processLifecycleEvent()");
 			User user = _userService.getCurrentUser();
 			long userId = user.getUserId();
 			Date date = user.getLoginDate();
