@@ -1,6 +1,0 @@
-Bundle-Name: event-monitor-web
-Bundle-SymbolicName: com.liferay.amf.event.monitor.web
-Bundle-Version: 1.0.0
-Export-Package: \
-	com.liferay.amf.event.monitor.web.portlet,\
-	com.liferay.amf.event.monitor.web.constants
