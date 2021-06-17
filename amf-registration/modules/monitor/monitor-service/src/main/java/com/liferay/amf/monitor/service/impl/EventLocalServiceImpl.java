@@ -14,12 +14,15 @@
 
 package com.liferay.amf.monitor.service.impl;
 
+import com.liferay.amf.monitor.model.Event;
+import com.liferay.amf.monitor.service.EventLocalService;
 import com.liferay.amf.monitor.service.base.EventLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
 
 import java.util.Date;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * The implementation of the event local service.
@@ -47,6 +50,20 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 	 */
 	
 	public void addEvent(long userId, Date date, String screenName, String eventType, String ipAddress) {
-		System.out.println("Made it to the add event thingy: " + screenName);
+		System.out.println("Made it to the add event thingy: " + screenName + " " + userId + " " + date + " " + eventType + " " + ipAddress);
+		long eventId = counterLocalService.increment(Event.class.getName());
+		Event event = createEvent(eventId);
+		
+		event.setUserId(userId);
+		event.setDate(date);
+		event.setScreenName(screenName);
+		event.setEventType(eventType);
+		event.setIpAddress(ipAddress);
+		
+		_eventLocalService.addEvent(event);
 	}
+	
+	@Reference
+	protected EventLocalService _eventLocalService;
+	
 }
