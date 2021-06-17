@@ -64,13 +64,11 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 		
 		eventLocalService.addEvent(event);
 		
-		User user = userLocalService.getUser(userId);
-		
 		try {
+			User user = userLocalService.getUser(userId);
 			resourceLocalService.addResources(user.getCompanyId(), user.getGroupId(), userId, Event.class.getName(),
 					event.getEventId(), false, true, true);
 		} catch (PortalException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 //		resourceLocalService.addResources(companyId, groupId, name, portletActions);
