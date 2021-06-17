@@ -19,6 +19,8 @@ import com.liferay.amf.monitor.service.EventLocalService;
 import com.liferay.amf.monitor.service.EventService;
 import com.liferay.amf.monitor.service.base.EventLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.User;
 
 import java.util.Date;
 
@@ -53,7 +55,7 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 	public void addEvent(long userId, Date date, String screenName, String eventType, String ipAddress) {
 		long eventId = counterLocalService.increment(Event.class.getName());
 		Event event = eventLocalService.createEvent(eventId);
-				
+		
 		event.setUserId(userId);
 		event.setDate(date);
 		event.setScreenName(screenName);
@@ -61,6 +63,19 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 		event.setIpAddress(ipAddress);
 		
 		eventLocalService.addEvent(event);
+		
+		User user = userLocalService.getUser(userId);
+		
+		try {
+			resourceLocalService.addResources(user.getCompanyId(), user.getGroupId(), userId, Event.class.getName(),
+					event.getEventId(), false, true, true);
+		} catch (PortalException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		resourceLocalService.addResources(companyId, groupId, name, portletActions);
+//		resourceLocalService.addResources(companyId, groupId, userId, name, primKey, portletActions, addGroupPermissions,
+//				addGuestPermissions);
 	}
 //	@Reference
 //	EventLocalService _eventLocalService;

@@ -13,7 +13,7 @@
         <column name="eventType" type="String"></column>
         
         <!-- Order -->
-	    <order by="asc">
+	    <order by="desc">
 	    	<order-column name="date" />
 	    </order>
 	    

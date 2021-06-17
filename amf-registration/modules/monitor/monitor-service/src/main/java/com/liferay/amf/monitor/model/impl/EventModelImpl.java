@@ -96,10 +96,10 @@ public class EventModelImpl extends BaseModelImpl<Event> implements EventModel {
 
 	public static final String TABLE_SQL_DROP = "drop table Monitor_Event";
 
-	public static final String ORDER_BY_JPQL = " ORDER BY event.date ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY event.date DESC";
 
 	public static final String ORDER_BY_SQL =
-		" ORDER BY Monitor_Event.date_ ASC";
+		" ORDER BY Monitor_Event.date_ DESC";
 
 	public static final String DATA_SOURCE = "liferayDataSource";
 
@@ -470,6 +470,8 @@ public class EventModelImpl extends BaseModelImpl<Event> implements EventModel {
 		int value = 0;
 
 		value = DateUtil.compareTo(getDate(), event.getDate());
+
+		value = value * -1;
 
 		if (value != 0) {
 			return value;
