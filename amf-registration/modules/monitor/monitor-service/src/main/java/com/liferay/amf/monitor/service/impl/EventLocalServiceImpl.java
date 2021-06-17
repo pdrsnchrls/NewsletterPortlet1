@@ -53,7 +53,7 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 	public void addEvent(long userId, Date date, String screenName, String eventType, String ipAddress) {
 		System.out.println("Made it to the add event thingy: " + screenName + " " + userId + " " + date + " " + eventType + " " + ipAddress);
 		long eventId = counterLocalService.increment(Event.class.getName());
-		Event event = createEvent(eventId);
+		Event event = eventLocalService.createEvent(eventId);
 		
 		event.setUserId(userId);
 		event.setDate(date);
@@ -61,8 +61,8 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 		event.setEventType(eventType);
 		event.setIpAddress(ipAddress);
 		
-		_eventLocalService.addEvent(event);
+		eventLocalService.addEvent(event);
 	}
-	@Reference
-	EventLocalService _eventLocalService;
+//	@Reference
+//	EventLocalService _eventLocalService;
 }
