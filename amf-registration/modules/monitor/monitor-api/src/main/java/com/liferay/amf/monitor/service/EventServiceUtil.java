@@ -39,6 +39,12 @@ public class EventServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.amf.monitor.service.impl.EventServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static java.util.List<com.liferay.amf.monitor.model.Event> getEvents(
+			com.liferay.amf.monitor.model.Event event)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().getEvents(event);
+	}
 
 	/**
 	 * Returns the OSGi service identifier.

@@ -192,6 +192,9 @@ public interface EventLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Event getEvent(long eventId) throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Event> getEventList();
+
 	/**
 	 * Returns a range of all the events.
 	 *

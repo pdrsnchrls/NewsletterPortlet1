@@ -215,6 +215,12 @@ public class EventLocalServiceUtil {
 		return getService().getEvent(eventId);
 	}
 
+	public static java.util.List<com.liferay.amf.monitor.model.Event>
+		getEventList() {
+
+		return getService().getEventList();
+	}
+
 	/**
 	 * Returns a range of all the events.
 	 *

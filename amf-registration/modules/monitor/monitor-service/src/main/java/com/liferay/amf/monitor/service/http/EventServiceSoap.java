@@ -14,11 +14,17 @@
 
 package com.liferay.amf.monitor.service.http;
 
+import com.liferay.amf.monitor.service.EventServiceUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import java.rmi.RemoteException;
+
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Provides the SOAP utility for the
- * <code>com.liferay.amf.monitor.service.EventServiceUtil</code> service
+ * <code>EventServiceUtil</code> service
  * utility. The static methods of this class call the same methods of the
  * service utility. However, the signatures are different because it is
  * difficult for SOAP to support certain types.
@@ -57,4 +63,27 @@ import org.osgi.annotation.versioning.ProviderType;
  */
 @ProviderType
 public class EventServiceSoap {
+
+	public static com.liferay.amf.monitor.model.EventSoap[] getEvents(
+			com.liferay.amf.monitor.model.EventSoap event)
+		throws RemoteException {
+
+		try {
+			java.util.List<com.liferay.amf.monitor.model.Event> returnValue =
+				EventServiceUtil.getEvents(
+					com.liferay.amf.monitor.model.impl.EventModelImpl.toModel(
+						event));
+
+			return com.liferay.amf.monitor.model.EventSoap.toSoapModels(
+				returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(EventServiceSoap.class);
+
 }

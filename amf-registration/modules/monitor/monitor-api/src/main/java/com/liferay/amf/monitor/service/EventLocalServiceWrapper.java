@@ -219,6 +219,11 @@ public class EventLocalServiceWrapper
 		return _eventLocalService.getEvent(eventId);
 	}
 
+	@Override
+	public java.util.List<com.liferay.amf.monitor.model.Event> getEventList() {
+		return _eventLocalService.getEventList();
+	}
+
 	/**
 	 * Returns a range of all the events.
 	 *

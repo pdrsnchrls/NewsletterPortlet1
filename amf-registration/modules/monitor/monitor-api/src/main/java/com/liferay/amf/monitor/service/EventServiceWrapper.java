@@ -33,6 +33,14 @@ public class EventServiceWrapper
 		_eventService = eventService;
 	}
 
+	@Override
+	public java.util.List<com.liferay.amf.monitor.model.Event> getEvents(
+			com.liferay.amf.monitor.model.Event event)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _eventService.getEvents(event);
+	}
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *
