@@ -14,10 +14,21 @@
 
 package com.liferay.amf.monitor.service.impl;
 
+import com.liferay.amf.monitor.constants.MonitorConstants;
+import com.liferay.amf.monitor.model.Event;
 import com.liferay.amf.monitor.service.base.EventServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.security.permission.ActionKeys;
+import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
+import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
+
+import java.util.Date;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
 
 /**
  * The implementation of the event remote service.
@@ -46,4 +57,42 @@ public class EventServiceImpl extends EventServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use <code>com.liferay.amf.monitor.service.EventServiceUtil</code> to access the event remote service.
 	 */
+	
+//	public void addEvent(long userId, Date date, String screenName, String eventType, String ipAddress) 
+//		throws PortalException {
+//		_portletResourcePermission.check(
+//				getPermissionChecker(), serviceContext.getScopeGroupId(),
+//					ActionKeys.ADD_ENTRY
+//				);
+//		
+//	}
+//	/*	public Assignment addAssignment(
+//		long groupId, Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
+//		Date dueDate, ServiceContext serviceContext)
+//		throws PortalException {
+//
+//		// Check permissions.
+//		
+//		_portletResourcePermission.check(
+//			getPermissionChecker(), serviceContext.getScopeGroupId(),
+//			ActionKeys.ADD_ENTRY);
+//		
+//		return assignmentLocalService.addAssignment(
+//			groupId, titleMap, descriptionMap, dueDate, serviceContext);
+//	}*/
+//	
+//	@Reference(
+//		policy = ReferencePolicy.DYNAMIC,
+//		policyOption = ReferencePolicyOption.GREEDY,
+//		target = "(model.class.name=com.liferay.amf.monitor.model.Event)"
+//	)
+//	private volatile ModelResourcePermission<Event>
+//		_assignmentModelResourcePermission;
+//
+//	@Reference(
+//		policy = ReferencePolicy.DYNAMIC,
+//		policyOption = ReferencePolicyOption.GREEDY,
+//		target = "(resource.name=" + MonitorConstants.RESOURCE_NAME + ")"
+//	)
+//	private volatile PortletResourcePermission _portletResourcePermission;
 }
