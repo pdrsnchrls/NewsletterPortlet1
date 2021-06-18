@@ -9,8 +9,7 @@ import org.osgi.service.component.annotations.Reference;
 
 public class EventPermission {
 	public static boolean contains(
-			PermissionChecker permissionChecker, Event event,
-			String actionId)
+			PermissionChecker permissionChecker, Event event, String actionId)
 		throws PortalException {
 
 		return _eventModelResourcePermission.contains(

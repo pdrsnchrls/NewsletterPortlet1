@@ -8,6 +8,7 @@
 	            <action-key>VIEW</action-key>
 	            <action-key>VIEW_OWN</action-key>
 	            <action-key>VIEW_ALL</action-key>
+	            <action-key>PERMISSIONS</action-key>
 	        </supports>
 	        <site-member-defaults>
 	            <action-key>VIEW_OWN</action-key>
