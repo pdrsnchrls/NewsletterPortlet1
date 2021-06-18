@@ -58,8 +58,12 @@ public class EventServiceImpl extends EventServiceBaseImpl {
 	public List<Event> getEvents(Event event) throws PortalException {
 		List<Event> results; // the list of event results that the user can view
 				
+		// user has permission to "VIEW_ALL" events
 		if (EventPermission.contains(getPermissionChecker(), event, "VIEW_ALL")) {
 			results = eventLocalService.getEventList();
+		}
+		else {
+			
 		}
 		
 		return results;

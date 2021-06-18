@@ -20,11 +20,15 @@ import com.liferay.amf.monitor.service.base.EventLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.UserService;
+import com.liferay.portal.kernel.util.PortalUtil;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * The implementation of the event local service.
@@ -76,9 +80,28 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 	
 	// a method to return a list of all events
 	public List<Event> getEventList() {
-		List<Event> events = EventLocalServiceUtil.getEvents(-1, 1);
-		return events;
+		List<Event> results = EventLocalServiceUtil.getEvents(-1, 1);
+		return results;
 	}
 	
+	public List<Event> getUserEventList() throws PortalException {
+		// get all events in db
+		List<Event> allEvents = EventLocalServiceUtil.getEvents(-1, 1);
+		// initialize a list to put in results from particular user.
+		List<Event> results = new ArrayList<Event>();
+		// get current user's ID
+		long userId = _userService.getCurrentUser().getUserId();
+
+		// for all the events in the db that have the userid, add to results.
+		for (int i = 0; i < allEvents.size(); i++) {
+			if (allEvents.get(i).getUserId() == userId) {
+				results.add(allEvents.get(i));
+			}
+		}
+		
+		return results;
+	}
 	
+	@Reference
+	protected UserService _userService;
 }
