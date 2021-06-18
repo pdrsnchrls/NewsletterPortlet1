@@ -14,21 +14,15 @@
 
 package com.liferay.amf.monitor.service.impl;
 
-import com.liferay.amf.monitor.constants.MonitorConstants;
 import com.liferay.amf.monitor.model.Event;
 import com.liferay.amf.monitor.service.base.EventServiceBaseImpl;
+import com.liferay.amf.monitor.web.internal.security.permission.resource.EventPermission;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
-import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
 
-import java.util.Date;
+import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferencePolicy;
-import org.osgi.service.component.annotations.ReferencePolicyOption;
 
 /**
  * The implementation of the event remote service.
@@ -58,10 +52,18 @@ public class EventServiceImpl extends EventServiceBaseImpl {
 	 * Never reference this class directly. Always use <code>com.liferay.amf.monitor.service.EventServiceUtil</code> to access the event remote service.
 	 */
 	
-	//verify permissions, call contains method from EventPermission, if user has permission than call localservice method
+	//call contains method from EventPermission, if user has permission than call localservice method
+	//contains(PermissionCheckeer, monitorevent, actionId)
 	
-	
-	
+	public List<Event> getEvents(Event event) throws PortalException {
+		List<Event> results; // the list of event results that the user can view
+				
+		if (EventPermission.contains(getPermissionChecker(), event, "VIEW_ALL")) {
+			results = eventLocalService.getEventList();
+		}
+		
+		return results;
+	}
 	
 	
 	

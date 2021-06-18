@@ -15,17 +15,16 @@
 package com.liferay.amf.monitor.service.impl;
 
 import com.liferay.amf.monitor.model.Event;
-import com.liferay.amf.monitor.service.EventLocalService;
-import com.liferay.amf.monitor.service.EventService;
+import com.liferay.amf.monitor.service.EventLocalServiceUtil;
 import com.liferay.amf.monitor.service.base.EventLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 
 import java.util.Date;
+import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 /**
  * The implementation of the event local service.
@@ -74,4 +73,12 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 			e.printStackTrace();
 		}
 	}
+	
+	// a method to return a list of all events
+	public List<Event> getEventList() {
+		List<Event> events = EventLocalServiceUtil.getEvents(-1, 1);
+		return events;
+	}
+	
+	
 }
