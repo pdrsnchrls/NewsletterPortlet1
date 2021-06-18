@@ -52,7 +52,7 @@ public interface EventService extends BaseService {
 	 * Never modify or reference this interface directly. Always use {@link EventServiceUtil} to access the event remote service. Add custom service methods to <code>com.liferay.amf.monitor.service.impl.EventServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Event> getEvents(Event event) throws PortalException;
+	public List<Event> getEvents() throws PortalException;
 
 	/**
 	 * Returns the OSGi service identifier.

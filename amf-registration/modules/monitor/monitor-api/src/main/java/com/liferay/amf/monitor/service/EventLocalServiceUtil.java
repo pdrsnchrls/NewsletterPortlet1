@@ -270,6 +270,13 @@ public class EventLocalServiceUtil {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
+	public static java.util.List<com.liferay.amf.monitor.model.Event>
+			getUserEventList()
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().getUserEventList();
+	}
+
 	/**
 	 * Updates the event in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *

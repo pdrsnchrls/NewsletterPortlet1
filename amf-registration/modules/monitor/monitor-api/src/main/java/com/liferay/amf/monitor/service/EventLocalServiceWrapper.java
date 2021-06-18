@@ -277,6 +277,14 @@ public class EventLocalServiceWrapper
 		return _eventLocalService.getPersistedModel(primaryKeyObj);
 	}
 
+	@Override
+	public java.util.List<com.liferay.amf.monitor.model.Event>
+			getUserEventList()
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _eventLocalService.getUserEventList();
+	}
+
 	/**
 	 * Updates the event in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *

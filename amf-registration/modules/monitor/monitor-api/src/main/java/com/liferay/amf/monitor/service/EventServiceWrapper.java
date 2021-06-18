@@ -34,11 +34,10 @@ public class EventServiceWrapper
 	}
 
 	@Override
-	public java.util.List<com.liferay.amf.monitor.model.Event> getEvents(
-			com.liferay.amf.monitor.model.Event event)
+	public java.util.List<com.liferay.amf.monitor.model.Event> getEvents()
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _eventService.getEvents(event);
+		return _eventService.getEvents();
 	}
 
 	/**
