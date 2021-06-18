@@ -6,5 +6,4 @@ dependencies {
 	compileOnly group: "jstl", name: "jstl"
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
 	compileOnly project(":modules:monitor:monitor-api")
-	compileOnly project(":modules:monitor:monitor-service")
 }
