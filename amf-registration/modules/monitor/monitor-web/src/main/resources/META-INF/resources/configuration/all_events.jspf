@@ -8,22 +8,8 @@
   emptyResultsMessage="Oops. There Are No Events To Display, Please add Events">
   
  <liferay-ui:search-container-results results="<%=ListUtil.subList(events, searchContainer.getStart(),searchContainer.getEnd())%>" />
+  
   <liferay-ui:search-container-row className="com.liferay.amf.monitor.model.Event" modelVar="event" keyProperty="eventId" >
-   
-   <liferay-security:permissionsURL
-		modelResource="<%= Event.class.getName() %>"
-		modelResourceDescription="Event Description"
-		resourcePrimKey="<%= String.valueOf(event.getEventId()) %>"
-		var="permissionsEntryURL"
-	/>
-	<lifray-ui:icon
-		label="<%= true %>"
-		message="permissions"
-		method="get"
-		url="<%= permissionsEntryURL %>"
-		useDialog="<%= true %>"
-	/>
-   
    <liferay-ui:search-container-column-text name="date" value="${event.date}" orderableProperty="date"/>
    <liferay-ui:search-container-column-text name="screenName" property="screenName"/>
    <liferay-ui:search-container-column-text name="User Id" value="(${event.userId})"/>

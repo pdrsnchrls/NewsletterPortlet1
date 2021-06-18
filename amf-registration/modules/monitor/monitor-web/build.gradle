@@ -6,4 +6,6 @@ dependencies {
 	compileOnly group: "jstl", name: "jstl"
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
 	compileOnly project(":modules:monitor:monitor-api")
+	compile group: 'com.liferay', name: 'com.liferay.petra.function', version: '2.0.0'
+	
 }

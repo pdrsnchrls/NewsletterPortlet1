@@ -5,8 +5,13 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 
+import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+@Component(
+		immediate=true,
+		service=EventPermission.class
+)
 public class EventPermission {
 	public static boolean contains(
 			PermissionChecker permissionChecker, Event event, String actionId)

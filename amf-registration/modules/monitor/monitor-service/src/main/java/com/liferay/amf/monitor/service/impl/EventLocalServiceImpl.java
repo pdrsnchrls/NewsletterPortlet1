@@ -62,19 +62,16 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 		event.setEventType(eventType);
 		event.setIpAddress(ipAddress);
 		
-		eventLocalService.addEvent(event);
 		
+		eventLocalService.addEvent(event);
 		try {
 			User user = userLocalService.getUser(userId);
-			resourceLocalService.addResources(user.getCompanyId(), user.getGroupId(), userId, Event.class.getName(),
-					event.getEventId(), false, true, true);
+			resourceLocalService.addResources(user.getCompanyId(), user.getGroupId(), userId, Event.class.getName(), event.getEventId(), false, 
+					true, true);
 		} catch (PortalException e) {
+			// TODO Auto-generated catch block
+			System.out.println("FAILED TO ADD RESOURCE");
 			e.printStackTrace();
 		}
-//		resourceLocalService.addResources(companyId, groupId, name, portletActions);
-//		resourceLocalService.addResources(companyId, groupId, userId, name, primKey, portletActions, addGroupPermissions,
-//				addGuestPermissions);
 	}
-//	@Reference
-//	EventLocalService _eventLocalService;
 }

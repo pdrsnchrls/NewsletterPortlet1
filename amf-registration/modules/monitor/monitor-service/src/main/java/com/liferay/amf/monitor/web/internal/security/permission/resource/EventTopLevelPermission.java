@@ -19,7 +19,7 @@ public class EventTopLevelPermission {
 	}
 	
 	@Reference(
-			target = "(resource.name=" + MonitorConstants.RESOURCE_NAME + ")",
+			target = "(resource.name=" + MonitorConstants.RESOURCE_NAME + ".Event)",
 			unbind = "-"
 	)
 	protected void setPortletResourcePermission(

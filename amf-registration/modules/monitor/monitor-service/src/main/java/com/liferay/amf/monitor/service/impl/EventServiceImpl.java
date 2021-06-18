@@ -58,41 +58,11 @@ public class EventServiceImpl extends EventServiceBaseImpl {
 	 * Never reference this class directly. Always use <code>com.liferay.amf.monitor.service.EventServiceUtil</code> to access the event remote service.
 	 */
 	
-//	public void addEvent(long userId, Date date, String screenName, String eventType, String ipAddress) 
-//		throws PortalException {
-//		_portletResourcePermission.check(
-//				getPermissionChecker(), serviceContext.getScopeGroupId(),
-//					ActionKeys.ADD_ENTRY
-//				);
-//		
-//	}
-//	/*	public Assignment addAssignment(
-//		long groupId, Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
-//		Date dueDate, ServiceContext serviceContext)
-//		throws PortalException {
-//
-//		// Check permissions.
-//		
-//		_portletResourcePermission.check(
-//			getPermissionChecker(), serviceContext.getScopeGroupId(),
-//			ActionKeys.ADD_ENTRY);
-//		
-//		return assignmentLocalService.addAssignment(
-//			groupId, titleMap, descriptionMap, dueDate, serviceContext);
-//	}*/
-//	
-//	@Reference(
-//		policy = ReferencePolicy.DYNAMIC,
-//		policyOption = ReferencePolicyOption.GREEDY,
-//		target = "(model.class.name=com.liferay.amf.monitor.model.Event)"
-//	)
-//	private volatile ModelResourcePermission<Event>
-//		_assignmentModelResourcePermission;
-//
-//	@Reference(
-//		policy = ReferencePolicy.DYNAMIC,
-//		policyOption = ReferencePolicyOption.GREEDY,
-//		target = "(resource.name=" + MonitorConstants.RESOURCE_NAME + ")"
-//	)
-//	private volatile PortletResourcePermission _portletResourcePermission;
+	//verify permissions, call contains method from EventPermission, if user has permission than call localservice method
+	
+	
+	
+	
+	
+	
 }

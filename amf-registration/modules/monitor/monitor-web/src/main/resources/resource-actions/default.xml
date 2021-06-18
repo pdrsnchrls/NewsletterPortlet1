@@ -6,19 +6,22 @@
 	    <permissions>
 	        <supports>
 	            <action-key>VIEW</action-key>
-	            <action-key>VIEW_OWN</action-key>
 	            <action-key>VIEW_ALL</action-key>
+	            <action-key>VIEW_OWN</action-key>
 	            <action-key>PERMISSIONS</action-key>
 	        </supports>
 	        <site-member-defaults>
-	            <action-key>VIEW_OWN</action-key>
+	        	<action-key>VIEW_OWN</action-key>
 	        </site-member-defaults>
-	        <guest-defaults />
+	        <guest-defaults>
+	        	<action-key>VIEW</action-key>
+	        </guest-defaults>
 	        <guest-unsupported>
 	            <action-key>VIEW</action-key>
-	            <action-key>VIEW_OWN</action-key>
-	            <action-key>VIEW_ALL</action-key>
+	            <action-key>PERMISSIONS</action-key>
 	        </guest-unsupported>
 	    </permissions>
 	</portlet-resource>
-</resource-action-mapping> 
+	<!-- Model Resource with actions -->
+	
+</resource-action-mapping>

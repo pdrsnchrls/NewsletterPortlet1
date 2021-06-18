@@ -9,7 +9,9 @@ dependencies {
 	compileOnly project(":modules:monitor:monitor-api")
 	compileOnly project(":modules:monitor:monitor-web")
 	compileOnly group: "javax.mail", name: "mail"
-	compile group: 'com.liferay', name: 'com.liferay.petra.function', version: '2.0.0'
+	compileOnly group: "com.liferay", name: "com.liferay.petra.function"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.model.adapter"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.reflect"
 	
 }
 
