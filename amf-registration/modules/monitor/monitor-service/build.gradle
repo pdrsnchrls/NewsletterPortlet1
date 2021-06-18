@@ -7,7 +7,10 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.core"
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
 	compileOnly project(":modules:monitor:monitor-api")
+	compileOnly project(":modules:monitor:monitor-web")
 	compileOnly group: "javax.mail", name: "mail"
+	compile group: 'com.liferay', name: 'com.liferay.petra.function', version: '2.0.0'
+	
 }
 
 buildService {

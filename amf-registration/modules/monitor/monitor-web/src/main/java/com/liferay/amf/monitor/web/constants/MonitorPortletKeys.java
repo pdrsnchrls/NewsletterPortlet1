@@ -6,6 +6,6 @@ package com.liferay.amf.monitor.web.constants;
 public class MonitorPortletKeys {
 
 	public static final String MONITOR =
-		"com_liferay_amf_monitor_web_MonitorPortlet";
+		"com_liferay_amf_monitor_web_portlet_MonitorPortlet";
 
 }

@@ -1,10 +1,11 @@
 Bundle-Name: monitor-api
 Bundle-SymbolicName: com.liferay.amf.monitor.api
 Bundle-Version: 1.0.0
-Export-Package:\
+Export-Package: \
 	com.liferay.amf.monitor.exception,\
 	com.liferay.amf.monitor.model,\
 	com.liferay.amf.monitor.service,\
-	com.liferay.amf.monitor.service.persistence
+	com.liferay.amf.monitor.service.persistence,\
+	com.liferay.amf.monitor.constants
 -check: EXPORTS
 -includeresource: META-INF/service.xml=../monitor-service/service.xml
