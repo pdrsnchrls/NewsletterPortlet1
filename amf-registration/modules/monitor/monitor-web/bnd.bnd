@@ -2,6 +2,5 @@ Bundle-Name: monitor-web
 Bundle-SymbolicName: com.liferay.amf.monitor.web
 Bundle-Version: 1.0.0
 Export-Package: \
-	com.liferay.amf.monitor.web.constants,\
-	com.liferay.amf.monitor.web.constants,\
-	com.liferay.amf.monitor.web.portlet
+	com.liferay.amf.monitor.web.portlet,\
+	com.liferay.amf.monitor.constants

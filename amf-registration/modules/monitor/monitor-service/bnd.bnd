@@ -4,3 +4,11 @@ Bundle-Version: 1.0.0
 Liferay-Require-SchemaVersion: 1.0.0
 Liferay-Service: true
 -dsannotations-options: inherit
+Export-Package: \
+	com.liferay.amf.monitor.service.base,\
+	com.liferay.amf.monitor.service.events,\
+	com.liferay.amf.monitor.service.http,\
+	com.liferay.amf.monitor.service.impl,\
+	com.liferay.amf.monitor.service.internal.security.permission.resource,\
+	com.liferay.amf.monitor.service.persistence.impl,\
+	com.liferay.amf.monitor.service.persistence.impl.constants

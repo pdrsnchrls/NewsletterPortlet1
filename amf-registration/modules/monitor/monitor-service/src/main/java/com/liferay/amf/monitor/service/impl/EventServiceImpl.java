@@ -16,7 +16,7 @@ package com.liferay.amf.monitor.service.impl;
 
 import com.liferay.amf.monitor.model.Event;
 import com.liferay.amf.monitor.service.base.EventServiceBaseImpl;
-import com.liferay.amf.monitor.web.internal.security.permission.resource.EventPermission;
+import com.liferay.amf.monitor.service.internal.security.permission.resource.EventPermission;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 

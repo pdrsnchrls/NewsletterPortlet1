@@ -1,4 +1,4 @@
-package com.liferay.amf.monitor.web.internal.security.permission.resource;
+package com.liferay.amf.monitor.service.internal.security.permission.resource;
 
 import com.liferay.amf.monitor.constants.MonitorConstants;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;

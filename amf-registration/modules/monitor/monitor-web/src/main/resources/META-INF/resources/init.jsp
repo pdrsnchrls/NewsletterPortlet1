@@ -23,9 +23,6 @@
 <%@ page import="com.liferay.amf.monitor.model.Event" %>
 <%@ page import="com.liferay.portal.kernel.util.ListUtil"%>
 <%@ page import="com.liferay.amf.monitor.service.EventLocalServiceUtil"%>
-
-<%@ page import="com.liferay.amf.monitor.web.internal.security.permission.resource.EventPermission" %>
-<%@ page import="com.liferay.amf.monitor.web.internal.security.permission.resource.EventTopLevelPermission" %>
 <%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
 <%@ page import="com.liferay.portal.kernel.security.permission.ActionKeys" %>
 

@@ -1,4 +1,4 @@
-package com.liferay.amf.monitor.web.internal.security.permission.resource;
+package com.liferay.amf.monitor.service.internal.security.permission.resource;
 
 import com.liferay.amf.monitor.model.Event;
 import com.liferay.portal.kernel.exception.PortalException;
