@@ -5,7 +5,7 @@
 %>
 
 <liferay-ui:search-container total="<%=events.size()%>" var="searchContainer" delta="20" deltaConfigurable="true" 
-  emptyResultsMessage="Oops. There Are No Events To Display">
+  emptyResultsMessage="oops-there-are-no-events-to-display">
   
  <liferay-ui:search-container-results results="<%=ListUtil.subList(events, searchContainer.getStart(),searchContainer.getEnd())%>" />
   
