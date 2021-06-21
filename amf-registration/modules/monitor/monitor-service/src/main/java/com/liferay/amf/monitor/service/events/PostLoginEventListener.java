@@ -46,9 +46,6 @@ public class PostLoginEventListener implements LifecycleAction {
 
 	}
 	@Reference
-	protected MailService _mailService;
-	
-	@Reference
 	protected UserService _userService;
 	
 	@Reference
