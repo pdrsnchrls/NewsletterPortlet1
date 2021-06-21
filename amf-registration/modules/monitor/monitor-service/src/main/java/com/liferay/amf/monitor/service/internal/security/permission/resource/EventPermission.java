@@ -25,7 +25,6 @@ public class EventPermission {
 			PermissionChecker permissionChecker, long eventId, String actionId)
 		throws PortalException {
 
-		System.out.println("Inside EventPermission.contains");
 		return permissionChecker.hasPermission(0,
 			"com.liferay.amf.monitor.model.Event", eventId, actionId);
 	}
