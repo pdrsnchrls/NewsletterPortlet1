@@ -25,6 +25,7 @@ public class EventPermission {
 			PermissionChecker permissionChecker, long eventId, String actionId)
 		throws PortalException {
 
+		System.out.println("Inside EventPermission.contains");
 		return _eventModelResourcePermission.contains(
 			permissionChecker, eventId, actionId);
 	}

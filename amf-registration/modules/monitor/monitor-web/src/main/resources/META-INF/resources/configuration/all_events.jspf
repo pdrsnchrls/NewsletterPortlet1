@@ -1,7 +1,7 @@
 <%@ include file="../init.jsp"%>
 
 <%
- List<Event> events = eventService.getEvents();
+ List<Event> events = EventServiceUtil.getEvents();
 %>
 
 <liferay-ui:search-container total="<%=events.size()%>" var="searchContainer" delta="20" deltaConfigurable="true" 

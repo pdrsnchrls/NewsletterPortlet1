@@ -59,6 +59,7 @@ public class EventServiceImpl extends EventServiceBaseImpl {
 		List<Event> results; // the list of event results that the user can view
 				
 		// user has permission to "VIEW_ALL" events
+		System.out.println("Made it to EventServiceImpl.getEvents()");
 		if (EventPermission.contains(getPermissionChecker(), 0, "VIEW_ALL")) {
 			results = eventLocalService.getEventList();
 		}
