@@ -43,7 +43,6 @@ public class EventServiceUtil {
 			getEvents()
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		System.out.println("In EventServiceUtil");
 		return getService().getEvents();
 	}
 
