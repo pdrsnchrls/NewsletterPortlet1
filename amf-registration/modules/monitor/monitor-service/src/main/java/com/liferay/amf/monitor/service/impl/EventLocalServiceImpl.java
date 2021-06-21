@@ -55,7 +55,7 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 	 * Never reference this class directly. Use <code>com.liferay.amf.monitor.service.EventLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.monitor.service.EventLocalServiceUtil</code>.
 	 */
 	
-	public void addEvent(long userId, Date date, String screenName, String eventType, String ipAddress) {
+	public void addEvent(long userId, Date date, String screenName, String eventType, String ipAddress, long companyId) {
 		long eventId = counterLocalService.increment(Event.class.getName());
 		Event event = eventLocalService.createEvent(eventId);
 		
@@ -69,7 +69,8 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 		eventLocalService.addEvent(event);
 		try {
 			User user = userLocalService.getUser(userId);
-			resourceLocalService.addResources(user.getCompanyId(), user.getGroupId(), userId, Event.class.getName(), event.getEventId(), false, 
+			long defCompId = 0;
+			resourceLocalService.addResources(user.getCompanyId(), defCompId, userId, Event.class.getName(), event.getEventId(), false, 
 					true, true);
 		} catch (PortalException e) {
 			// TODO Auto-generated catch block

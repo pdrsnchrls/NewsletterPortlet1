@@ -27,8 +27,9 @@ public class PostRegistrationEventListener extends BaseModelListener<User>{
 		String eventType = "registration";
 		String ipAddress = "0.0.0.0";
 		Date date = user.getModifiedDate();
+		long companyId = user.getCompanyId();
 		
-		_eventLocalService.addEvent(id, date, screenName, eventType, ipAddress );
+		_eventLocalService.addEvent(id, date, screenName, eventType, ipAddress, companyId);
 	}
 	@Reference
 	protected EventLocalService _eventLocalService;

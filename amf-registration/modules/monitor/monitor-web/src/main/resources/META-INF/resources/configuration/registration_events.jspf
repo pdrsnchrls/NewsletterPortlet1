@@ -15,7 +15,7 @@
        <c:if test ="${event.eventType==\"registration\"}" >
    <liferay-ui:search-container-column-text name="date" value="${event.date}"/>
    <liferay-ui:search-container-column-text name="screen-name" property="screenName"/>
-   <liferay-ui:search-container-column-text name="user-id" value="(${event.userId})"/>
+   <liferay-ui:search-container-column-text name="user-id" value="${event.userId}"/>
    <liferay-ui:search-container-column-text name="ip-address" property="ipAddress"/>
    <liferay-ui:search-container-column-text name="event-type" value="${event.eventType}"/>
     	</c:if>

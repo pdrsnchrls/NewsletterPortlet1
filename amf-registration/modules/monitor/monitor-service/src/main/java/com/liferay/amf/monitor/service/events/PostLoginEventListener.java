@@ -37,8 +37,9 @@ public class PostLoginEventListener implements LifecycleAction {
 			String screenName = user.getScreenName();
 			String eventType = "login";
 			String ip = user.getLoginIP();
+			long companyId = user.getCompanyId();
 			
-			_eventLocalService.addEvent(userId, date, screenName, eventType, ip);
+			_eventLocalService.addEvent(userId, date, screenName, eventType, ip, companyId);
 			
 		} catch (PortalException e) {
 			e.printStackTrace();
