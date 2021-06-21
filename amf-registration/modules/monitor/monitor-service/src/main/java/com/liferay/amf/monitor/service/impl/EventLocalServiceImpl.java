@@ -55,7 +55,7 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 	 * Never reference this class directly. Use <code>com.liferay.amf.monitor.service.EventLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.monitor.service.EventLocalServiceUtil</code>.
 	 */
 	
-	public void addEvent(long userId, Date date, String screenName, String eventType, String ipAddress, long companyId) {
+	public void addEvent(long userId, Date date, String screenName, String eventType, String ipAddress) {
 		long eventId = counterLocalService.increment(Event.class.getName());
 		Event event = eventLocalService.createEvent(eventId);
 		

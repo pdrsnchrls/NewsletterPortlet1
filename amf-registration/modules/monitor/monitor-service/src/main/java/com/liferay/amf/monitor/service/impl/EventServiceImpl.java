@@ -60,12 +60,9 @@ public class EventServiceImpl extends EventServiceBaseImpl {
 				
 		// user has permission to "VIEW_ALL" events
 		if (_eventPermission.contains(getPermissionChecker(), 0, "VIEW_ALL")) {
-			System.out.println("The user has permission.");
 			results = eventLocalService.getEventList();
 		}
 		else {
-			System.out.println("The user does not have permission.");
-
 			results = eventLocalService.getUserEventList();
 		}
 		
