@@ -13,13 +13,6 @@ import org.osgi.service.component.annotations.Reference;
 		service=EventPermission.class
 )
 public class EventPermission {
-//	public static boolean contains(
-//			PermissionChecker permissionChecker, Event event, String actionId)
-//		throws PortalException {
-//
-//		return _eventModelResourcePermission.contains(
-//			permissionChecker, event, actionId);
-//	}
 
 	public boolean contains(
 			PermissionChecker permissionChecker, long eventId, String actionId)
@@ -28,19 +21,6 @@ public class EventPermission {
 		return permissionChecker.hasPermission(0,
 			"com.liferay.amf.monitor.model.Event", eventId, actionId);
 	}
-
-//	@Reference(
-//		target = "(model.class.name=com.liferay.amf.monitor.model.Event)",
-//		unbind = "-"
-//	)
-//	protected void setEntryModelPermission(
-//		ModelResourcePermission<Event> modelResourcePermission) {
-//
-//		_eventModelResourcePermission = modelResourcePermission;
-//	}
-
-//	private static ModelResourcePermission<Event>
-//	_eventModelResourcePermission;
 	
 	
 }

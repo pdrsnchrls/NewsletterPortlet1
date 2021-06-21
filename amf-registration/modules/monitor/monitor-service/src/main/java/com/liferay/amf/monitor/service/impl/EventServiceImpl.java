@@ -54,7 +54,6 @@ public class EventServiceImpl extends EventServiceBaseImpl {
 	 */
 	
 	//call contains method from EventPermission, if user has permission than call localservice method
-	//contains(PermissionCheckeer, monitorevent, actionId)
 	
 	public List<Event> getEvents() throws PortalException {
 		List<Event> results; // the list of event results that the user can view
