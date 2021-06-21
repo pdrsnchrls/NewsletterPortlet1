@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * The implementation of the event remote service.
@@ -60,7 +61,7 @@ public class EventServiceImpl extends EventServiceBaseImpl {
 				
 		// user has permission to "VIEW_ALL" events
 		System.out.println("Made it to EventServiceImpl.getEvents()");
-		if (EventPermission.contains(getPermissionChecker(), 0, "VIEW_ALL")) {
+		if (_eventPermission.contains(getPermissionChecker(), 0, "VIEW_ALL")) {
 			results = eventLocalService.getEventList();
 		}
 		else {
@@ -69,7 +70,7 @@ public class EventServiceImpl extends EventServiceBaseImpl {
 		
 		return results;
 	}
-	
-	
+	@Reference
+	EventPermission _eventPermission;
 	
 }
