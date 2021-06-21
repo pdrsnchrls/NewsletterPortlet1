@@ -73,7 +73,7 @@ public interface EventLocalService
 
 	public void addEvent(
 		long userId, Date date, String screenName, String eventType,
-		String ipAddress);
+		String ipAddress, long companyId);
 
 	/**
 	 * Creates a new event with the primary key. Does not add the event to the database.

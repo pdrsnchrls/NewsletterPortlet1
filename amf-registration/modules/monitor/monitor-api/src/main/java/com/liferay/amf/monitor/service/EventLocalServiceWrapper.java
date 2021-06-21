@@ -49,10 +49,10 @@ public class EventLocalServiceWrapper
 	@Override
 	public void addEvent(
 		long userId, java.util.Date date, String screenName, String eventType,
-		String ipAddress) {
+		String ipAddress, long companyId) {
 
 		_eventLocalService.addEvent(
-			userId, date, screenName, eventType, ipAddress);
+			userId, date, screenName, eventType, ipAddress, companyId);
 	}
 
 	/**

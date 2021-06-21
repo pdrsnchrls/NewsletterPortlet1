@@ -54,9 +54,10 @@ public class EventLocalServiceUtil {
 
 	public static void addEvent(
 		long userId, java.util.Date date, String screenName, String eventType,
-		String ipAddress) {
+		String ipAddress, long companyId) {
 
-		getService().addEvent(userId, date, screenName, eventType, ipAddress);
+		getService().addEvent(
+			userId, date, screenName, eventType, ipAddress, companyId);
 	}
 
 	/**
