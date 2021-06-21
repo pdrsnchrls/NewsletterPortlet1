@@ -15,7 +15,9 @@
    <liferay-ui:search-container-column-text name="User Id" value="(${event.userId})"/>
    <liferay-ui:search-container-column-text name="ipAddress" property="ipAddress"/>
    <liferay-ui:search-container-column-text name="eventType" value="${event.eventType}"/>
+  
   </liferay-ui:search-container-row>
+ 
  <liferay-ui:search-iterator />
 
 </liferay-ui:search-container>

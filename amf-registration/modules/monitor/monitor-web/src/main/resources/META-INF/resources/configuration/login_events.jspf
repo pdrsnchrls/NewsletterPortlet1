@@ -4,10 +4,8 @@
  List<Event> events = EventLocalServiceUtil.getEvents(-1,-1);
 %>
 
-
 <liferay-ui:search-container total="<%=events.size()%>" var="searchContainer" delta="20" deltaConfigurable="true" 
   emptyResultsMessage="Oops. There Are No Events To Display, Please add Events">
-  
   
  <liferay-ui:search-container-results results="<%=ListUtil.subList(events, searchContainer.getStart(),searchContainer.getEnd())%>" />
   

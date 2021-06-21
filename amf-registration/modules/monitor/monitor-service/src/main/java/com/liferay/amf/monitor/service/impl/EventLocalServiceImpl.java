@@ -80,13 +80,16 @@ public class EventLocalServiceImpl extends EventLocalServiceBaseImpl {
 	
 	// a method to return a list of all events
 	public List<Event> getEventList() {
-		List<Event> results = EventLocalServiceUtil.getEvents(-1, 1);
+		
+		int range = com.liferay.portal.kernel.dao.orm.QueryUtil.ALL_POS;
+		
+		List<Event> results = EventLocalServiceUtil.getEvents(range, range);
 		return results;
 	}
 	
 	public List<Event> getUserEventList() throws PortalException {
 		// get all events in db
-		List<Event> allEvents = EventLocalServiceUtil.getEvents(-1, 1);
+		List<Event> allEvents = getEventList();
 		// initialize a list to put in results from particular user.
 		List<Event> results = new ArrayList<Event>();
 		// get current user's ID
