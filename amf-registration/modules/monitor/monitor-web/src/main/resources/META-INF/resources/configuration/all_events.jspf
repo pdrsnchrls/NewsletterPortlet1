@@ -11,10 +11,10 @@
   
   <liferay-ui:search-container-row className="com.liferay.amf.monitor.model.Event" modelVar="event" keyProperty="eventId" >
    <liferay-ui:search-container-column-text name="date" value="${event.date}" orderableProperty="date"/>
-   <liferay-ui:search-container-column-text name="screenName" property="screenName"/>
-   <liferay-ui:search-container-column-text name="User Id" value="(${event.userId})"/>
-   <liferay-ui:search-container-column-text name="ipAddress" property="ipAddress"/>
-   <liferay-ui:search-container-column-text name="eventType" value="${event.eventType}"/>
+   <liferay-ui:search-container-column-text name="screen-name" property="screenName"/>
+   <liferay-ui:search-container-column-text name="user-id" value="(${event.userId})"/>
+   <liferay-ui:search-container-column-text name="ip-address" property="ipAddress"/>
+   <liferay-ui:search-container-column-text name="event-type" value="${event.eventType}"/>
   
   </liferay-ui:search-container-row>
  
