@@ -1,4 +1,7 @@
 Bundle-Name: tec-search-web
 Bundle-SymbolicName: com.liferay.amf.search.web
 Bundle-Version: 1.0.0
-Export-Package: com.liferay.amf.search.web.constants
+
+Export-Package: \
+	com.liferay.amf.search.web.constants,\
+	com.liferay.amf.search.web.portlet

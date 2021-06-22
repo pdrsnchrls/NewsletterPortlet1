@@ -52,11 +52,11 @@ public class SearchPortlet extends MVCPortlet {
 			_searchLocalService.sendZip(zip);
 		} catch(SearchValidationException ave) {
 			ave.getErrors().forEach(key -> SessionErrors.add(actionRequest, key));
-			actionResponse.setRenderParameter("", "registration/user/add");
+			actionResponse.setRenderParameter("", "search");
 		}
 		catch(PortalException pe) {
 			SessionErrors.add(actionRequest,  "serviceErrorDetails", pe);
-			actionResponse.setRenderParameter("", "registration/user/add");
+			actionResponse.setRenderParameter("", "search");
 		}
 
 	}
