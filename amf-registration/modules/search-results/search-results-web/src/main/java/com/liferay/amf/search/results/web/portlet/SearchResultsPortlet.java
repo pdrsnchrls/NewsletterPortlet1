@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Component;
 		"javax.portlet.security-role-ref=power-user,user",
 		"com.liferay.portlet.display-category=category.amf",
 		"com.liferay.portlet.instanceable=false",
-		"javax.portlet.supported-public-render-parameter=zipMessage"
+		"javax.portlet.supported-public-render-parameter=zip"
 	},
 	service = Portlet.class
 )
@@ -40,8 +40,8 @@ public class SearchResultsPortlet extends MVCPortlet {
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 		
-		String zipMessage=ParamUtil.getString(renderRequest, "zipMessage");
-		System.out.println("The value is " + zipMessage);
+		String zip=ParamUtil.getString(renderRequest, "zip");
+		renderRequest.setAttribute("zip", zip);
 		
 		super.doView(renderRequest, renderResponse);
 	}

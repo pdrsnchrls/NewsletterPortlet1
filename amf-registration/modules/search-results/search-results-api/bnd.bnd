@@ -1,10 +1,6 @@
 Bundle-Name: search-results-api
 Bundle-SymbolicName: com.liferay.amf.search.results.api
 Bundle-Version: 1.0.0
-Export-Package:\
-	com.liferay.amf.search.results.exception,\
-	com.liferay.amf.search.results.model,\
-	com.liferay.amf.search.results.service,\
-	com.liferay.amf.search.results.service.persistence
+Export-Package: com.liferay.amf.search.results.service
 -check: EXPORTS
 -includeresource: META-INF/service.xml=../search-results-service/service.xml

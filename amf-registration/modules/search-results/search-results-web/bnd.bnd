@@ -1,4 +1,6 @@
 Bundle-Name: search-results-web
 Bundle-SymbolicName: com.liferay.amf.search.results.web
 Bundle-Version: 1.0.0
-Export-Package: com.liferay.amf.search.results.web.constants
+Export-Package: \
+	com.liferay.amf.search.results.web.constants,\
+	com.liferay.amf.search.results.web.portlet

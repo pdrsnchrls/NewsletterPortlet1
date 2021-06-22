@@ -51,7 +51,6 @@ public class SearchLocalServiceImpl extends SearchLocalServiceBaseImpl {
 	public void sendZip(String zip) throws SearchValidationException {
 		// validate zip
 		_searchValidator.validate(zip);
-		//send zip to other portlet!
 		
 	}
 	@Reference

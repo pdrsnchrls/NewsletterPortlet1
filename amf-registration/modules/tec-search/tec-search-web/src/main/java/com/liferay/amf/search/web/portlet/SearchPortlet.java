@@ -37,26 +37,25 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.security-role-ref=power-user,user",
 		"com.liferay.portlet.display-category=category.amf",
 		"com.liferay.portlet.instanceable=false",
-		"javax.portlet.supported-public-render-parameter=zipMessage"
+		"javax.portlet.supported-public-render-parameter=zip"
 	},
 	service = Portlet.class
 )
 public class SearchPortlet extends MVCPortlet {
 	
 	//put in MVCAction command?
-	@Override
-	public void processAction(
-			ActionRequest actionRequest, ActionResponse actionResponse) {
+	public void search(
+			ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
 		
 		String zip = ParamUtil.getString(actionRequest, "zip");
 		
 		try {
 			_searchLocalService.sendZip(zip);
-			actionResponse.getRenderParameters().setValue("zipMessage", zip);
+			actionResponse.getRenderParameters().setValue("zip", zip);
 		} catch (SearchValidationException e) {
 			// TODO Auto-generated catch block
 			e.getErrors().forEach(key -> SessionErrors.add(actionRequest, key));
-			actionResponse.setRenderParameter("", "search");
+			actionResponse.setRenderParameter("zip", "search");
 		}
 		
 	}

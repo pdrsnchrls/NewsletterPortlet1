@@ -7,9 +7,9 @@
 <liferay-ui:error key="zipLengthError" message="zip-must-be-5-digits" />
 <liferay-ui:error key="zipNonNumeric" message="zip-must-be-numeric" />
 
-<portlet:actionURL name="search" var="searchURL" />
+<portlet:actionURL name="search" var="search" />
 
-<aui:form action="<%= searchURL %>" name="<portlet:namespace />fm">
+<aui:form action="${ search }" name="<portlet:namespace />fm" method="post">
 	<aui:input type="text" name="zip"></aui:input>
 	<aui:button type="submit" value="search"></aui:button>
 	
