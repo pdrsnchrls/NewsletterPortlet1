@@ -1,6 +1,5 @@
 package com.liferay.amf.search.web.portlet;
 
-import com.liferay.amf.registration.exception.UserValidationException;
 import com.liferay.amf.search.service.SearchLocalService;
 import com.liferay.amf.search.validator.SearchValidator;
 import com.liferay.amf.search.web.constants.SearchPortletKeys;

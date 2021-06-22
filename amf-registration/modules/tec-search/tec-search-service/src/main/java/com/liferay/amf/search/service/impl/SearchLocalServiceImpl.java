@@ -14,7 +14,9 @@
 
 package com.liferay.amf.search.service.impl;
 
+import com.liferay.amf.search.exception.SearchValidationException;
 import com.liferay.amf.search.service.base.SearchLocalServiceBaseImpl;
+import com.liferay.amf.search.validator.SearchValidator;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.util.ParamUtil;
 
@@ -25,6 +27,7 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * The implementation of the search local service.
@@ -45,14 +48,13 @@ import org.osgi.service.component.annotations.Component;
 )
 public class SearchLocalServiceImpl extends SearchLocalServiceBaseImpl {
 
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Use <code>com.liferay.amf.search.service.SearchLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.search.service.SearchLocalServiceUtil</code>.
-	 */
-
-	public void sendZip(String zip) {
+	public void sendZip(String zip) throws SearchValidationException {
 		System.out.println("AH GOT EM - " + zip);
+		// validate zip
+		_searchValidator.validate(zip);
+		
 	}
+	@Reference
+	private SearchValidator _searchValidator;
 
 }
