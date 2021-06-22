@@ -1,10 +1,19 @@
 package com.liferay.amf.search.service.util.validator;
 
+import com.liferay.amf.search.validator.SearchValidator;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchValidator {
+import org.osgi.service.component.annotations.Component;
 
+@Component(
+		immediate = true,
+		service = SearchValidatorImpl.class
+)
+public class SearchValidatorImpl implements SearchValidator{
+
+	@Override
 	public void validate(String zip)
 	{
 		List<String> errors = new ArrayList<>();
