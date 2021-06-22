@@ -43,23 +43,23 @@ import org.osgi.service.component.annotations.Reference;
 public class SearchPortlet extends MVCPortlet {
 	
 	//put in MVCAction command?
-	public void processAction(ActionRequest actionRequest, ActionResponse actionResponse)
-	throws IOException, PortletException {
+	@Override
+	public void processAction(
+			ActionRequest actionRequest, ActionResponse actionResponse) {
+		
 		String zip = ParamUtil.getString(actionRequest, "zip");
 		System.out.println("Here is the ZIP: " + zip);
 		
 		try {
 			_searchLocalService.sendZip(zip);
-		} catch(SearchValidationException ave) {
-			ave.getErrors().forEach(key -> SessionErrors.add(actionRequest, key));
+		} catch (SearchValidationException e) {
+			// TODO Auto-generated catch block
+			e.getErrors().forEach(key -> SessionErrors.add(actionRequest, key));
 			actionResponse.setRenderParameter("", "search");
 		}
-		catch(PortalException pe) {
-			SessionErrors.add(actionRequest,  "serviceErrorDetails", pe);
-			actionResponse.setRenderParameter("", "search");
-		}
-
+		
 	}
 	@Reference
-	protected SearchLocalService _searchLocalService;
+	private SearchLocalService _searchLocalService;
+	
 }
