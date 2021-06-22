@@ -19,6 +19,10 @@ import com.liferay.portal.aop.AopService;
 
 import java.io.IOException;
 
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
+
 import org.osgi.service.component.annotations.Component;
 
 /**

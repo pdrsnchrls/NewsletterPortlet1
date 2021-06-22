@@ -44,6 +44,15 @@ public class SearchLocalServiceWrapper
 	}
 
 	@Override
+	public void processAction(
+			javax.portlet.ActionRequest actionRequest,
+			javax.portlet.ActionResponse actionresponse)
+		throws java.io.IOException, javax.portlet.PortletException {
+
+		_searchLocalService.processAction(actionRequest, actionresponse);
+	}
+
+	@Override
 	public SearchLocalService getWrappedService() {
 		return _searchLocalService;
 	}
