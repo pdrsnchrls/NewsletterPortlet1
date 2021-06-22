@@ -44,6 +44,11 @@ public class SearchLocalServiceWrapper
 	}
 
 	@Override
+	public void sendZip(String zip) {
+		_searchLocalService.sendZip(zip);
+	}
+
+	@Override
 	public SearchLocalService getWrappedService() {
 		return _searchLocalService;
 	}

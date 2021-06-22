@@ -49,6 +49,10 @@ public class SearchLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static void sendZip(String zip) {
+		getService().sendZip(zip);
+	}
+
 	public static SearchLocalService getService() {
 		return _serviceTracker.getService();
 	}

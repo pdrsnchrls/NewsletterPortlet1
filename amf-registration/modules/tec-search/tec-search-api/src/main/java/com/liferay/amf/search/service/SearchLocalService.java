@@ -52,4 +52,6 @@ public interface SearchLocalService extends BaseLocalService {
 	 */
 	public String getOSGiServiceIdentifier();
 
+	public void sendZip(String zip);
+
 }
