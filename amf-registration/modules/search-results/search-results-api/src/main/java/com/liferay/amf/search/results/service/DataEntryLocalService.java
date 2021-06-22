@@ -16,9 +16,13 @@ package com.liferay.amf.search.results.service;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+
+import java.util.List;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -51,5 +55,8 @@ public interface DataEntryLocalService extends BaseLocalService {
 	 * @return the OSGi service identifier
 	 */
 	public String getOSGiServiceIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<User> getUsers(String zip) throws PortalException;
 
 }
