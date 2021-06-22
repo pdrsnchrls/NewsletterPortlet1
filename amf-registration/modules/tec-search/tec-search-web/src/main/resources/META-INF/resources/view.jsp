@@ -10,7 +10,7 @@
 <portlet:actionURL name="search" var="searchURL" />
 
 <aui:form action="<%= searchURL %>" name="<portlet:namespace />fm">
-	<aui:input type="text" name="enter-us-zip"></aui:input>
+	<aui:input type="text" name="zip"></aui:input>
 	<aui:button type="submit" value="search"></aui:button>
 	
 </aui:form>
