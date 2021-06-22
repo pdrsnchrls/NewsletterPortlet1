@@ -49,14 +49,6 @@ public class SearchLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static void processAction(
-			javax.portlet.ActionRequest actionRequest,
-			javax.portlet.ActionResponse actionresponse)
-		throws java.io.IOException, javax.portlet.PortletException {
-
-		getService().processAction(actionRequest, actionresponse);
-	}
-
 	public static SearchLocalService getService() {
 		return _serviceTracker.getService();
 	}

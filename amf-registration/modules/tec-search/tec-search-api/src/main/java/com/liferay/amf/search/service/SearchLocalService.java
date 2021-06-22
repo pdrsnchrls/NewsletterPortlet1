@@ -20,12 +20,6 @@ import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
-import java.io.IOException;
-
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
-
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
@@ -57,9 +51,5 @@ public interface SearchLocalService extends BaseLocalService {
 	 * @return the OSGi service identifier
 	 */
 	public String getOSGiServiceIdentifier();
-
-	public void processAction(
-			ActionRequest actionRequest, ActionResponse actionresponse)
-		throws IOException, PortletException;
 
 }
