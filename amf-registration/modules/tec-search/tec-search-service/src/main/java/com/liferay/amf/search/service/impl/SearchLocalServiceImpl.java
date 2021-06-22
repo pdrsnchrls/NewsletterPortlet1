@@ -51,5 +51,8 @@ public class SearchLocalServiceImpl extends SearchLocalServiceBaseImpl {
 	 * Never reference this class directly. Use <code>com.liferay.amf.search.service.SearchLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.search.service.SearchLocalServiceUtil</code>.
 	 */
 
+	public void sendZip(String zip) {
+		System.out.println("AH GOT EM - " + zip);
+	}
 
 }

@@ -4,3 +4,12 @@ Bundle-Version: 1.0.0
 Liferay-Require-SchemaVersion: 1.0.0
 Liferay-Service: true
 -dsannotations-options: inherit
+Export-Package: \
+	com.liferay.amf.search.exception,\
+	com.liferay.amf.search.service,\
+	com.liferay.amf.search.service.base,\
+	com.liferay.amf.search.service.http,\
+	com.liferay.amf.search.service.impl,\
+	com.liferay.amf.search.service.persistence.impl.constants,\
+	com.liferay.amf.search.service.util.validator,\
+	com.liferay.amf.search.validator
