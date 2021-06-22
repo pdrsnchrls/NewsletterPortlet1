@@ -49,7 +49,9 @@ public class SearchLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static void sendZip(String zip) {
+	public static void sendZip(String zip)
+		throws com.liferay.amf.search.exception.SearchValidationException {
+
 		getService().sendZip(zip);
 	}
 

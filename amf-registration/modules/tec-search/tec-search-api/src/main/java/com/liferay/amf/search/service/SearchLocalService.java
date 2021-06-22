@@ -14,6 +14,7 @@
 
 package com.liferay.amf.search.service;
 
+import com.liferay.amf.search.exception.SearchValidationException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.service.BaseLocalService;
@@ -52,6 +53,6 @@ public interface SearchLocalService extends BaseLocalService {
 	 */
 	public String getOSGiServiceIdentifier();
 
-	public void sendZip(String zip);
+	public void sendZip(String zip) throws SearchValidationException;
 
 }

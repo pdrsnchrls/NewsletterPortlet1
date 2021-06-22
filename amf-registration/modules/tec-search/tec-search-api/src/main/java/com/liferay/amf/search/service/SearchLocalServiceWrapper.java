@@ -44,7 +44,9 @@ public class SearchLocalServiceWrapper
 	}
 
 	@Override
-	public void sendZip(String zip) {
+	public void sendZip(String zip)
+		throws com.liferay.amf.search.exception.SearchValidationException {
+
 		_searchLocalService.sendZip(zip);
 	}
 
