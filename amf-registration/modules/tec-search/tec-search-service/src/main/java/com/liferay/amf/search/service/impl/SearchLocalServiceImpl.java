@@ -49,12 +49,11 @@ import org.osgi.service.component.annotations.Reference;
 public class SearchLocalServiceImpl extends SearchLocalServiceBaseImpl {
 
 	public void sendZip(String zip) throws SearchValidationException {
-		System.out.println("AH GOT EM - " + zip);
 		// validate zip
-		//_searchValidator.validate(zip);
+		_searchValidator.validate(zip);
 		
 	}
-//	@Reference
-//	private SearchValidator _searchValidator;
+	@Reference
+	SearchValidator _searchValidator;
 
 }

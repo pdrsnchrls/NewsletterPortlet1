@@ -10,7 +10,7 @@ import org.osgi.service.component.annotations.Component;
 
 @Component(
 		immediate = true,
-		service = SearchValidatorImpl.class
+		service = SearchValidator.class
 )
 public class SearchValidatorImpl implements SearchValidator{
 

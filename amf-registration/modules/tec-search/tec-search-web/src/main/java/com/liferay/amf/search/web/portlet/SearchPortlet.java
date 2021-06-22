@@ -48,7 +48,6 @@ public class SearchPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse) {
 		
 		String zip = ParamUtil.getString(actionRequest, "zip");
-		System.out.println("Here is the ZIP: " + zip);
 		
 		try {
 			_searchLocalService.sendZip(zip);

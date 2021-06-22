@@ -3,9 +3,9 @@
 <liferay-ui:error key="serviceErrorDetails">
 	<liferay-ui:message arguments='<%= SessionErrors.get(liferayPortletRequest, "serviceErrorDetails") %>' key="error.assignment-service-error" />
 </liferay-ui:error>
-<liferay-ui:error key="zipEmpty" message="error.zip-empty" />
-<liferay-ui:error key="zipLengthError" message="error.zip-length" />
-<liferay-ui:error key="zipNonNumeric" message="error.zip-non-numeric" />
+<liferay-ui:error key="zipEmpty" message="zip-required" />
+<liferay-ui:error key="zipLengthError" message="zip-must-be-5-digits" />
+<liferay-ui:error key="zipNonNumeric" message="zip-must-be-numeric" />
 
 <portlet:actionURL name="search" var="searchURL" />
 
