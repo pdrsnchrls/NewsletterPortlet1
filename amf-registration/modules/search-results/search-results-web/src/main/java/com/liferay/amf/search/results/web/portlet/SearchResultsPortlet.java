@@ -1,10 +1,15 @@
 package com.liferay.amf.search.results.web.portlet;
 
 import com.liferay.amf.search.results.web.constants.SearchResultsPortletKeys;
-
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.util.ParamUtil;
+
+import java.io.IOException;
 
 import javax.portlet.Portlet;
+import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -24,9 +29,20 @@ import org.osgi.service.component.annotations.Component;
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user",
 		"com.liferay.portlet.display-category=category.amf",
-		"com.liferay.portlet.instanceable=false"
+		"com.liferay.portlet.instanceable=false",
+		"javax.portlet.supported-public-render-parameter=zipMessage"
 	},
 	service = Portlet.class
 )
 public class SearchResultsPortlet extends MVCPortlet {
+	
+	@Override
+	public void doView(RenderRequest renderRequest, RenderResponse renderResponse)
+		throws IOException, PortletException {
+		
+		String zipMessage=ParamUtil.getString(renderRequest, "zipMessage");
+		System.out.println("The value is " + zipMessage);
+		
+		super.doView(renderRequest, renderResponse);
+	}
 }

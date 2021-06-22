@@ -36,7 +36,8 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user",
 		"com.liferay.portlet.display-category=category.amf",
-		"com.liferay.portlet.instanceable=false"
+		"com.liferay.portlet.instanceable=false",
+		"javax.portlet.supported-public-render-parameter=zipMessage"
 	},
 	service = Portlet.class
 )
@@ -51,6 +52,7 @@ public class SearchPortlet extends MVCPortlet {
 		
 		try {
 			_searchLocalService.sendZip(zip);
+			actionResponse.getRenderParameters().setValue("zipMessage", zip);
 		} catch (SearchValidationException e) {
 			// TODO Auto-generated catch block
 			e.getErrors().forEach(key -> SessionErrors.add(actionRequest, key));
