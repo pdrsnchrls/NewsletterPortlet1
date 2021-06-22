@@ -1,5 +1,6 @@
 package com.liferay.amf.search.web.portlet;
 
+import com.liferay.amf.search.exception.SearchValidationException;
 import com.liferay.amf.search.service.SearchLocalService;
 import com.liferay.amf.search.validator.SearchValidator;
 import com.liferay.amf.search.web.constants.SearchPortletKeys;
@@ -41,31 +42,23 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class SearchPortlet extends MVCPortlet {
 	
-	public void processAction(ActionRequest actionRequest, ActionResponse actionresponse)
+	//put in MVCAction command?
+	public void processAction(ActionRequest actionRequest, ActionResponse actionResponse)
 	throws IOException, PortletException {
 		String zip = ParamUtil.getString(actionRequest, "zip");
 		System.out.println("Here is the ZIP: " + zip);
 		
-		_searchLocalService.sendZip(zip);
-		
-		/*
-		 * try {
-			_userLocalService.registerUser(firstName, lastName, email, username, male, birthday, password1, password2, homePhone,
-			mobilePhone, address1, address2, city, state, zip, secQuestion, secAnswer, tOU);
-			
-			SessionMessages.add(request, "userAdded");
-			
-			sendRedirect(request, response);
-		}
-		catch(UserValidationException ave) {
-			ave.getErrors().forEach(key -> SessionErrors.add(request, key));
-			response.setRenderParameter("", "registration/user/add");
+		try {
+			_searchLocalService.sendZip(zip);
+		} catch(SearchValidationException ave) {
+			ave.getErrors().forEach(key -> SessionErrors.add(actionRequest, key));
+			actionResponse.setRenderParameter("", "registration/user/add");
 		}
 		catch(PortalException pe) {
-			SessionErrors.add(request,  "serviceErrorDetails", pe);
-			response.setRenderParameter("", "registration/user/add");
+			SessionErrors.add(actionRequest,  "serviceErrorDetails", pe);
+			actionResponse.setRenderParameter("", "registration/user/add");
 		}
-		 * */
+
 	}
 	@Reference
 	protected SearchLocalService _searchLocalService;
