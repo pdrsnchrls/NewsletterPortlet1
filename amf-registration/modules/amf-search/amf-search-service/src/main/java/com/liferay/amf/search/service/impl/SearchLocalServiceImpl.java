@@ -16,6 +16,11 @@ package com.liferay.amf.search.service.impl;
 
 import com.liferay.amf.search.service.base.SearchLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.exception.PortalException;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import java.io.IOException;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -43,4 +48,12 @@ public class SearchLocalServiceImpl extends SearchLocalServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Use <code>com.liferay.amf.search.service.SearchLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.search.service.SearchLocalServiceUtil</code>.
 	 */
+	
+	@Override
+	public void processAction(ActionRequest actionRequest, ActionResponse actionResponse) 
+			throws IOException, PortletException {
+		
+	}
+	
+	
 }

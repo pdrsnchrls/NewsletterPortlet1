@@ -1,5 +1,6 @@
 package com.liferay.amf.search.service.util.validator;
 
+import com.liferay.amf.search.exception.SearchValidationException;
 import com.liferay.amf.search.validator.SearchValidator;
 
 import java.util.ArrayList;
@@ -14,12 +15,12 @@ import org.osgi.service.component.annotations.Component;
 public class SearchValidatorImpl implements SearchValidator{
 
 	@Override
-	public void validate(String zip)
+	public void validate(String zip) throws SearchValidationException
 	{
 		List<String> errors = new ArrayList<>();
 		
 		if (!isZipValid(zip, errors)) {
-			System.out.println("Invalid Zip!");
+			throw new SearchValidationException(errors);
 		}
 	}
 	
