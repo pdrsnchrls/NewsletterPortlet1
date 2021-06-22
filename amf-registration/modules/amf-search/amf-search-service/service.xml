@@ -4,4 +4,9 @@
 <service-builder dependency-injector="ds" package-path="com.liferay.amf.search">
 	<namespace>Search</namespace>
 	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
+    <entity name="Search" local-service="true"></entity>
+	<exceptions>
+		<exception>SearchValidation</exception>
+	</exceptions>
+
 </service-builder>

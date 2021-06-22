@@ -5,7 +5,6 @@ import java.util.List;
 
 public class SearchValidator {
 
-	@Override
 	public void validate(String zip)
 	{
 		List<String> errors = new ArrayList<>();
