@@ -29,4 +29,26 @@ import org.osgi.service.component.annotations.Component;
 	service = Portlet.class
 )
 public class SearchPortlet extends MVCPortlet {
+	
+	/* ZIP VALIDATION CODE
+	 * //ZIP Code
+		if (zip.isEmpty()) {
+			result = false;
+			errors.add("zipEmpty");
+		}
+		if (zip.length() != 5 & !zip.isEmpty()) {
+			result = false;
+			errors.add("zipLengthError");
+		}
+		if (!zip.isEmpty()) {
+			try {
+				int num = Integer.parseInt(zip);
+				
+			} catch (NumberFormatException e) {
+				result = false;
+				errors.add("zipNonNumeric");
+			}
+		}
+	 * 
+	 * */
 }
