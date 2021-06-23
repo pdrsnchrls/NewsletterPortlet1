@@ -50,7 +50,6 @@ public class SearchResultsPortlet extends MVCPortlet {
 		String zip=ParamUtil.getString(renderRequest, "zip");
 		try {
 			List<User> results = DataEntryLocalServiceUtil.getUsers( zip );
-			System.out.println("ZIP " + zip + " Users " + results.size());
 			renderRequest.setAttribute("usersSize", results.size());
 			renderRequest.setAttribute("users", results);
 		} catch (PortalException e) {

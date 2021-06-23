@@ -53,11 +53,13 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 	public List<User> getUsers(String zip) throws PortalException {
 		
 		List<User> results = new ArrayList();
-		List<Address> addresses = addressLocalService.getAddresses();
-		for (int i = 0; i < addresses.size(); i++) {
-			Address temp = addresses.get(i);
-			if (temp.getZip() == zip) {
-				results.add(userLocalService.getUser(temp.getUserId()));
+		if (!zip.isEmpty()) {
+			List<Address> addresses = addressLocalService.getAddresses();
+			for (int i = 0; i < addresses.size(); i++) {
+				Address temp = addresses.get(i);
+				if (temp.getZip().contentEquals(zip)) {
+					results.add(userLocalService.getUser(temp.getUserId()));
+				}
 			}
 		}
 		//userId in Address and Address.zip = zip;
