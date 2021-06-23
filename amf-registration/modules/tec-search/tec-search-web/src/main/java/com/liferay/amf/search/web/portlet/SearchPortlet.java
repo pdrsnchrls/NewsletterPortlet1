@@ -45,19 +45,19 @@ public class SearchPortlet extends MVCPortlet {
 	
 	//put in MVCAction command?
 	public void search(
-			ActionRequest actionRequest, ActionResponse actionResponse) throws IOException, PortletException {
+			ActionRequest actionRequest, ActionResponse actionResponse) throws SearchValidationException{
 		
 		String zip = ParamUtil.getString(actionRequest, "zip");
 		
 		try {
 			_searchLocalService.sendZip(zip);
 			actionResponse.getRenderParameters().setValue("zip", zip);
+
 		} catch (SearchValidationException e) {
 			// TODO Auto-generated catch block
 			e.getErrors().forEach(key -> SessionErrors.add(actionRequest, key));
-			actionResponse.setRenderParameter("zip", "search");
+			actionResponse.getRenderParameters().setValue("zip", "");
 		}
-		
 	}
 	@Reference
 	private SearchLocalService _searchLocalService;

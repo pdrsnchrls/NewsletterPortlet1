@@ -102,6 +102,7 @@ public class newUserLocalServiceImpl extends newUserLocalServiceBaseImpl {
 		address.setUserId(userId);
 		address.setUserName(userName);
 		address.setRegionId(regionId);
+		address.setPrimary(true);
 		
 		return address;
 	}
