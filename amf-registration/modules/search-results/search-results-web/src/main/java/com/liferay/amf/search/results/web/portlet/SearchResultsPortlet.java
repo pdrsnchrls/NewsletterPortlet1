@@ -1,11 +1,16 @@
 package com.liferay.amf.search.results.web.portlet;
 
 import com.liferay.amf.search.results.service.DataEntryLocalService;
+import com.liferay.amf.search.results.service.DataEntryLocalServiceUtil;
+import com.liferay.amf.search.results.service.DataEntryServiceUtil;
 import com.liferay.amf.search.results.web.constants.SearchResultsPortletKeys;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.ParamUtil;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.portlet.Portlet;
 import javax.portlet.PortletException;
@@ -43,11 +48,18 @@ public class SearchResultsPortlet extends MVCPortlet {
 		throws IOException, PortletException {
 		
 		String zip=ParamUtil.getString(renderRequest, "zip");
-		//_dataEntryLocalService.getUsers(zip);
+		try {
+			List<User> results = DataEntryLocalServiceUtil.getUsers( zip );
+			System.out.println("ZIP " + zip + " Users " + results.size());
+			renderRequest.setAttribute("usersSize", results.size());
+			renderRequest.setAttribute("users", results);
+		} catch (PortalException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		renderRequest.setAttribute("zip", zip);
 		
 		super.doView(renderRequest, renderResponse);
 	}
-	@Reference
-	private DataEntryLocalService _dataEntryLocalService;
+
 }
