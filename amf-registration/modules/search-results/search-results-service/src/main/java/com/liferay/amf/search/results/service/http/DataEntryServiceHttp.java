@@ -56,7 +56,8 @@ public class DataEntryServiceHttp {
 
 	public static void getResults(
 			HttpPrincipal httpPrincipal,
-			javax.portlet.RenderRequest renderRequest)
+			javax.portlet.RenderRequest renderRequest,
+			javax.portlet.RenderResponse renderResponse)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -65,7 +66,7 @@ public class DataEntryServiceHttp {
 				_getResultsParameterTypes0);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, renderRequest);
+				methodKey, renderRequest, renderResponse);
 
 			try {
 				TunnelUtil.invoke(httpPrincipal, methodHandler);
@@ -92,7 +93,7 @@ public class DataEntryServiceHttp {
 	private static Log _log = LogFactoryUtil.getLog(DataEntryServiceHttp.class);
 
 	private static final Class<?>[] _getResultsParameterTypes0 = new Class[] {
-		javax.portlet.RenderRequest.class
+		javax.portlet.RenderRequest.class, javax.portlet.RenderResponse.class
 	};
 
 }

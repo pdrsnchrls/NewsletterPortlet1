@@ -46,6 +46,14 @@ public class DataEntryLocalServiceWrapper
 	}
 
 	@Override
+	public void getResults(
+		javax.portlet.RenderRequest renderRequest,
+		javax.portlet.RenderResponse renderResponse) {
+
+		_dataEntryLocalService.getResults(renderRequest, renderResponse);
+	}
+
+	@Override
 	public java.util.List<com.liferay.portal.kernel.model.User> getUsers(
 			String zip)
 		throws com.liferay.portal.kernel.exception.PortalException {

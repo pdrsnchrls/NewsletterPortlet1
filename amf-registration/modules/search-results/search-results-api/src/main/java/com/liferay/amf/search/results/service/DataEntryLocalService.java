@@ -24,6 +24,9 @@ import com.liferay.portal.kernel.transaction.Transactional;
 
 import java.util.List;
 
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
@@ -55,6 +58,10 @@ public interface DataEntryLocalService extends BaseLocalService {
 	 * @return the OSGi service identifier
 	 */
 	public String getOSGiServiceIdentifier();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public void getResults(
+		RenderRequest renderRequest, RenderResponse renderResponse);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<User> getUsers(String zip) throws PortalException;

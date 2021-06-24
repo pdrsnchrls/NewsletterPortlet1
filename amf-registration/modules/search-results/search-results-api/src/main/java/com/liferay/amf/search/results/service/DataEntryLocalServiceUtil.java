@@ -49,6 +49,13 @@ public class DataEntryLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static void getResults(
+		javax.portlet.RenderRequest renderRequest,
+		javax.portlet.RenderResponse renderResponse) {
+
+		getService().getResults(renderRequest, renderResponse);
+	}
+
 	public static java.util.List<com.liferay.portal.kernel.model.User> getUsers(
 			String zip)
 		throws com.liferay.portal.kernel.exception.PortalException {
