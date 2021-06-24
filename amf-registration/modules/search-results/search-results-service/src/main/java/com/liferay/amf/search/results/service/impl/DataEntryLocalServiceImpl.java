@@ -65,9 +65,7 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		renderRequest.setAttribute("zip", zip);
-		
-		super.doView(renderRequest, renderResponse);
+		renderRequest.setAttribute("zip", zip);		
 	}
 	
 	public List<User> getUsers(String zip) throws PortalException {

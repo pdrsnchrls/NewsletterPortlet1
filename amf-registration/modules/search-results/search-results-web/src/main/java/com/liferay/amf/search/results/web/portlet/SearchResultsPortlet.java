@@ -43,15 +43,16 @@ import org.osgi.service.component.annotations.Reference;
 public class SearchResultsPortlet extends MVCPortlet {
 	
 	@Override
-	public void doView(RenderRequest renderRequest, RenderResponse renderResponse)
-		throws IOException, PortletException {
+	public void doView(RenderRequest renderRequest, RenderResponse renderResponse) {
 		
 		try {
 			_dataEntryService.getResults(renderRequest, renderResponse);
+			super.doView(renderRequest, renderResponse);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 	@Reference
