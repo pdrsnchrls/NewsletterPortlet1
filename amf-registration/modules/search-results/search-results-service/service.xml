@@ -6,6 +6,7 @@
 	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
 	<entity name="DataEntry" local-service="true">
 		<reference entity="User" package-path="com.liferay.portal" />
-		<reference entity="Address" package-path="com.liferay.portal" />	
+		<reference entity="Address" package-path="com.liferay.portal" />
+		
 	</entity>
 </service-builder>

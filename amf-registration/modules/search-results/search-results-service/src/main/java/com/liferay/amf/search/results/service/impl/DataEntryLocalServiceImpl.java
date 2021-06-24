@@ -17,15 +17,20 @@ package com.liferay.amf.search.results.service.impl;
 import com.liferay.amf.search.results.service.base.DataEntryLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.Address;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.search.Document;
+import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchContextFactory;
 import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.service.AddressLocalServiceUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 
@@ -67,20 +72,43 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 			throws SearchException {
 		String zip= ParamUtil.get(renderRequest, "zip", "");
 		
-		// create search context and set its attributes
-		HttpServletRequest httpRequest = PortalUtil.getHttpServletRequest(renderRequest);
-		SearchContext searchContext = SearchContextFactory.getInstance(httpRequest);
-		
-		searchContext.setKeywords(zip);
-		searchContext.setAttribute("paginationType", "more");
-		searchContext.setStart(0);
-		searchContext.setEnd(5);
-		
-		//get Indexer for user class?
-		Indexer indexer = IndexerRegistryUtil.getIndexer(Address.class);
-		
-		Hits hits = indexer.search(searchContext);
-		
+//		// create search context and set its attributes
+//		HttpServletRequest httpRequest = PortalUtil.getHttpServletRequest(renderRequest);
+//		SearchContext searchContext = SearchContextFactory.getInstance(httpRequest);
+//		
+//		searchContext.setKeywords(zip);
+//		searchContext.setAttribute("paginationType", "more");
+//		searchContext.setStart(0);
+//		searchContext.setEnd(5);
+//		
+//		//get Indexer for user class?
+//		Indexer indexer = IndexerRegistryUtil.getIndexer(Address.class);
+//		
+//		Hits hits = indexer.search(searchContext);
+//		
+//		//get list of addresses
+//		List<Address> addressTest = new ArrayList<Address>();
+//		
+//		for(int i = 0; i < hits.getDocs().length; i++) {
+//			Document doc = hits.doc(i);
+//			
+//			long addressId = GetterUtil.getLong(doc.get(Field.ENTRY_CLASS_PK));
+//			System.out.println("Address ID -->" + addressId);
+//			Address address = null;
+//			
+//			try {
+//				address = AddressLocalServiceUtil.getAddress(addressId);
+//				System.out.println(address.getStreet1() + "<-- Street 1");
+//			} catch (PortalException pe) {
+//				System.out.println("Portal Exception:");
+//				pe.printStackTrace();
+//			} catch (SystemException se) {
+//				System.out.println("System Exception:");
+//				se.printStackTrace();
+//			}
+//			
+//			addressTest.add(address);
+//		}
 		
 		try {
 			List<User> results =  getUsers( zip );
@@ -100,7 +128,8 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 			List<Address> addresses = addressLocalService.getAddresses();
 			for (int i = 0; i < addresses.size(); i++) {
 				Address temp = addresses.get(i);
-				if (temp.getZip().contentEquals(zip)) {
+				// get address if it is primary, and if it is in the same ZIP
+				if (temp.getZip().contentEquals(zip) && temp.getPrimary()) {
 					results.add(userLocalService.getUser(temp.getUserId()));
 				}
 			}

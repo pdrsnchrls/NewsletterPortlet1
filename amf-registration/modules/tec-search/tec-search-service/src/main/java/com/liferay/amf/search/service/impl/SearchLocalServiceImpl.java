@@ -52,10 +52,10 @@ public class SearchLocalServiceImpl extends SearchLocalServiceBaseImpl {
 
 	public void sendZip(String zip, ActionResponse actionResponse) throws SearchValidationException {
 		// validate zip
-		_searchValidator.validate(zip);
+		_searchValidator.validate(zip, actionResponse);
 		// set render property
 				
-		actionResponse.getRenderParameters().setValue("zip", zip);
+		actionResponse.setRenderParameter("zip", zip);
 
 	}
 	@Reference
