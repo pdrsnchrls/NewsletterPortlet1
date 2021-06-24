@@ -64,14 +64,12 @@ public class DataEntryServiceImpl extends DataEntryServiceBaseImpl {
 		if (_searchResultsPermission.contains(getPermissionChecker(), user.getGroupId(), ACTION_ID)) {
 			_dataEntryLocalService.getResults(renderRequest, renderResponse);
 		}
-		else {
-			System.out.println("User does not have permission ");
-		}
+
 	}
 	
 	@Reference
-	SearchResultsPermission _searchResultsPermission;
+	protected SearchResultsPermission _searchResultsPermission;
 	
 	@Reference
-	DataEntryLocalService _dataEntryLocalService;
+	protected DataEntryLocalService _dataEntryLocalService;
 }

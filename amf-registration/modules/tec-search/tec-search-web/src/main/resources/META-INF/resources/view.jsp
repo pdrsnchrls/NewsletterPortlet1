@@ -8,6 +8,8 @@
 <liferay-ui:error key="zipNonNumeric" message="zip-must-be-numeric" />
 <liferay-ui:error key="noPermissions" message="you-do-not-have-permission-to-search" />
 
+<liferay-ui:error key="systemFailure" message="system-failure" />
+
 <portlet:actionURL name="search" var="search" />
 
 <aui:form action="${ search }" name="<portlet:namespace />fm" method="post">

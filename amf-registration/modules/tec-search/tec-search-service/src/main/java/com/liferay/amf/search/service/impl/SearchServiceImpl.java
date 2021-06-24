@@ -64,7 +64,6 @@ public class SearchServiceImpl extends SearchServiceBaseImpl {
 		
 		User user = PortalUtil.getUser(actionRequest);
 		if (_searchPermission.contains(getPermissionChecker(), user.getGroupId(), ACTION_ID)) {
-			System.out.println("Yes");
 			try {
 				_searchLocalService.sendZip(zip, actionResponse);
 			}
@@ -76,7 +75,6 @@ public class SearchServiceImpl extends SearchServiceBaseImpl {
 			}
 		}
 		else {
-			System.out.println("User does not have permission");
 			SessionErrors.add(actionRequest, "noPermissions");
 			SessionMessages.add(actionRequest, PortalUtil.getPortletId(actionRequest) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
 			actionResponse.getRenderParameters().setValue("", "");

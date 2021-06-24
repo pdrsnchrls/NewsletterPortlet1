@@ -11,7 +11,7 @@ import org.osgi.service.component.annotations.Component;
 )
 public class SearchResultsPermission {
 
-	public static final String RESOURCE_NAME = "com_liferay_amf_search_results_web_portlet_SearchRessultsPortlet";
+	public static final String RESOURCE_NAME = "com_liferay_amf_search_results_web_portlet_SearchResultsPortlet";
 	
 	public boolean contains(
 			PermissionChecker permissionChecker, long groupId, String actionId)

@@ -19,6 +19,7 @@ import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Address;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 
 import java.util.ArrayList;
@@ -63,7 +64,7 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 			renderRequest.setAttribute("users", results);
 		} catch (PortalException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			SessionErrors.add(renderRequest, "systemFailure");
 		}
 		renderRequest.setAttribute("zip", zip);		
 	}
@@ -82,6 +83,16 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 		}
 		//userId in Address and Address.zip = zip;
 
+		return results;
+	}
+	
+	// get users with a range
+	public List<User> getUsers(String zip, int start, int end) throws PortalException {
+		
+		List<User> results = new ArrayList();
+		
+		
+		
 		return results;
 	}
 	
