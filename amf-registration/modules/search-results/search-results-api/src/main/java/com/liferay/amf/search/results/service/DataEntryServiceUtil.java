@@ -49,6 +49,12 @@ public class DataEntryServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static void getResults(javax.portlet.ActionRequest actionRequest)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		getService().getResults(actionRequest);
+	}
+
 	public static DataEntryService getService() {
 		return _serviceTracker.getService();
 	}
