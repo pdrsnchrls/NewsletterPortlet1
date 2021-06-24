@@ -14,12 +14,15 @@
 
 package com.liferay.amf.search.service.impl;
 
+import com.liferay.amf.search.exception.SearchValidationException;
 import com.liferay.amf.search.service.SearchLocalService;
 import com.liferay.amf.search.service.base.SearchServiceBaseImpl;
 import com.liferay.amf.search.service.internal.security.permission.resource.SearchPermission;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 
+import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 
 import org.osgi.service.component.annotations.Component;
@@ -54,14 +57,17 @@ public class SearchServiceImpl extends SearchServiceBaseImpl {
 	 */
 	public static final String ACTION_ID = "SEARCH";
 
-	public void sendRequest (String zip, ActionResponse actionResponse) throws PortalException{
+	public void sendRequest (String zip, ActionRequest actionRequest, ActionResponse actionResponse) throws PortalException, SearchValidationException {
 		if (_searchPermission.contains(getPermissionChecker(), 0, ACTION_ID)) {
 			System.out.println("Yes");
-			_searchLocalService.sendZip(zip, actionResponse);
-
-		}
-		else {
-			System.out.println("No");
+			try {
+				_searchLocalService.sendZip(zip, actionResponse);
+			}
+			catch (SearchValidationException e) {
+				// TODO Auto-generated catch block
+				e.getErrors().forEach(key -> SessionErrors.add(actionRequest, key));
+				actionResponse.getRenderParameters().setValue("zip", "");
+			}
 		}
 	}
 	

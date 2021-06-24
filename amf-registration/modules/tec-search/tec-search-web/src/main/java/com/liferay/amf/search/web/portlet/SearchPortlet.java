@@ -1,21 +1,14 @@
 package com.liferay.amf.search.web.portlet;
 
-import com.liferay.amf.search.exception.SearchValidationException;
-import com.liferay.amf.search.service.SearchLocalService;
-import com.liferay.amf.search.validator.SearchValidator;
+import com.liferay.amf.search.service.SearchService;
 import com.liferay.amf.search.web.constants.SearchPortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
-
-import java.io.IOException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.Portlet;
-import javax.portlet.PortletException;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -45,20 +38,14 @@ public class SearchPortlet extends MVCPortlet {
 	
 	//put in MVCAction command?
 	public void search(
-			ActionRequest actionRequest, ActionResponse actionResponse) throws SearchValidationException{
+			ActionRequest actionRequest, ActionResponse actionResponse) throws PortalException {
 		
 		String zip = ParamUtil.getString(actionRequest, "zip");
-		
-		try {
-			_searchLocalService.sendZip(zip);
 
-		} catch (SearchValidationException e) {
-			// TODO Auto-generated catch block
-			e.getErrors().forEach(key -> SessionErrors.add(actionRequest, key));
-			actionResponse.getRenderParameters().setValue("zip", "");
-		}
+		_searchService.sendRequest(zip, actionRequest, actionResponse);
+
 	}
 	@Reference
-	private SearchLocalService _searchLocalService;
+	private SearchService _searchService;
 	
 }
