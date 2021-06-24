@@ -14,10 +14,16 @@
 
 package com.liferay.amf.search.service.impl;
 
+import com.liferay.amf.search.service.SearchLocalService;
 import com.liferay.amf.search.service.base.SearchServiceBaseImpl;
+import com.liferay.amf.search.service.internal.security.permission.resource.SearchPermission;
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.exception.PortalException;
+
+import javax.portlet.ActionResponse;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * The implementation of the search remote service.
@@ -46,4 +52,22 @@ public class SearchServiceImpl extends SearchServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use <code>com.liferay.amf.search.service.SearchServiceUtil</code> to access the search remote service.
 	 */
+	public static final String ACTION_ID = "SEARCH";
+
+	public void sendRequest (String zip, ActionResponse actionResponse) throws PortalException{
+		if (_searchPermission.contains(getPermissionChecker(), 0, ACTION_ID)) {
+			System.out.println("Yes");
+			_searchLocalService.sendZip(zip, actionResponse);
+
+		}
+		else {
+			System.out.println("No");
+		}
+	}
+	
+	@Reference
+	SearchPermission _searchPermission;
+	
+	@Reference
+	SearchLocalService _searchLocalService;
 }
