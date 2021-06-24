@@ -14,6 +14,7 @@
 
 package com.liferay.amf.search.service;
 
+import com.liferay.amf.search.exception.SearchValidationException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
@@ -22,6 +23,7 @@ import com.liferay.portal.kernel.service.BaseService;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
+import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 
 import org.osgi.annotation.versioning.ProviderType;
@@ -57,7 +59,9 @@ public interface SearchService extends BaseService {
 	 */
 	public String getOSGiServiceIdentifier();
 
-	public void sendRequest(String zip, ActionResponse actionResponse)
-		throws PortalException;
+	public void sendRequest(
+			String zip, ActionRequest actionRequest,
+			ActionResponse actionResponse)
+		throws PortalException, SearchValidationException;
 
 }

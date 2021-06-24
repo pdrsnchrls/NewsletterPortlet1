@@ -56,8 +56,10 @@ public class SearchServiceHttp {
 
 	public static void sendRequest(
 			HttpPrincipal httpPrincipal, String zip,
+			javax.portlet.ActionRequest actionRequest,
 			javax.portlet.ActionResponse actionResponse)
-		throws com.liferay.portal.kernel.exception.PortalException {
+		throws com.liferay.amf.search.exception.SearchValidationException,
+			   com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
@@ -65,7 +67,7 @@ public class SearchServiceHttp {
 				_sendRequestParameterTypes0);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, zip, actionResponse);
+				methodKey, zip, actionRequest, actionResponse);
 
 			try {
 				TunnelUtil.invoke(httpPrincipal, methodHandler);
@@ -76,6 +78,14 @@ public class SearchServiceHttp {
 
 					throw (com.liferay.portal.kernel.exception.PortalException)
 						e;
+				}
+
+				if (e instanceof
+						com.liferay.amf.search.exception.
+							SearchValidationException) {
+
+					throw (com.liferay.amf.search.exception.
+						SearchValidationException)e;
 				}
 
 				throw new com.liferay.portal.kernel.exception.SystemException(
@@ -92,7 +102,8 @@ public class SearchServiceHttp {
 	private static Log _log = LogFactoryUtil.getLog(SearchServiceHttp.class);
 
 	private static final Class<?>[] _sendRequestParameterTypes0 = new Class[] {
-		String.class, javax.portlet.ActionResponse.class
+		String.class, javax.portlet.ActionRequest.class,
+		javax.portlet.ActionResponse.class
 	};
 
 }

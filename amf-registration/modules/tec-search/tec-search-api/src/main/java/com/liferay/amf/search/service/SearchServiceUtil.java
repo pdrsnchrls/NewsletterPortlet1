@@ -50,10 +50,12 @@ public class SearchServiceUtil {
 	}
 
 	public static void sendRequest(
-			String zip, javax.portlet.ActionResponse actionResponse)
-		throws com.liferay.portal.kernel.exception.PortalException {
+			String zip, javax.portlet.ActionRequest actionRequest,
+			javax.portlet.ActionResponse actionResponse)
+		throws com.liferay.amf.search.exception.SearchValidationException,
+			   com.liferay.portal.kernel.exception.PortalException {
 
-		getService().sendRequest(zip, actionResponse);
+		getService().sendRequest(zip, actionRequest, actionResponse);
 	}
 
 	public static SearchService getService() {
