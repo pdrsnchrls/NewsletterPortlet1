@@ -19,14 +19,22 @@ import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Address;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.search.Hits;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchContext;
+import com.liferay.portal.kernel.search.SearchContextFactory;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.PortalUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -55,8 +63,24 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 	 * Never reference this class directly. Use <code>com.liferay.amf.search.results.service.DataEntryLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.search.results.service.DataEntryLocalServiceUtil</code>.
 	 */
 	
-	public void getResults(RenderRequest renderRequest, RenderResponse renderResponse) {
+	public void getResults(RenderRequest renderRequest, RenderResponse renderResponse) 
+			throws SearchException {
 		String zip= ParamUtil.get(renderRequest, "zip", "");
+		
+		// create search context and set its attributes
+		HttpServletRequest httpRequest = PortalUtil.getHttpServletRequest(renderRequest);
+		SearchContext searchContext = SearchContextFactory.getInstance(httpRequest);
+		
+		searchContext.setKeywords(zip);
+		searchContext.setAttribute("paginationType", "more");
+		searchContext.setStart(0);
+		searchContext.setEnd(5);
+		
+		//get Indexer for user class?
+		Indexer indexer = IndexerRegistryUtil.getIndexer(Address.class);
+		
+		Hits hits = indexer.search(searchContext);
+		
 		
 		try {
 			List<User> results =  getUsers( zip );
@@ -95,7 +119,6 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 		
 		return results;
 	}
-	
 	
 	
 }

@@ -18,6 +18,8 @@ import com.liferay.amf.search.exception.SearchValidationException;
 import com.liferay.amf.search.service.base.SearchLocalServiceBaseImpl;
 import com.liferay.amf.search.validator.SearchValidator;
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.search.SearchContext;
+import com.liferay.portal.kernel.search.SearchContextFactory;
 import com.liferay.portal.kernel.util.ParamUtil;
 
 import java.io.IOException;
@@ -52,6 +54,7 @@ public class SearchLocalServiceImpl extends SearchLocalServiceBaseImpl {
 		// validate zip
 		_searchValidator.validate(zip);
 		// set render property
+				
 		actionResponse.getRenderParameters().setValue("zip", zip);
 
 	}
