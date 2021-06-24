@@ -1,8 +1,7 @@
 package com.liferay.amf.search.results.web.portlet;
 
 import com.liferay.amf.search.results.service.DataEntryLocalService;
-import com.liferay.amf.search.results.service.DataEntryLocalServiceUtil;
-import com.liferay.amf.search.results.service.DataEntryServiceUtil;
+import com.liferay.amf.search.results.service.DataEntryService;
 import com.liferay.amf.search.results.web.constants.SearchResultsPortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
@@ -47,18 +46,24 @@ public class SearchResultsPortlet extends MVCPortlet {
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 		
-		String zip=ParamUtil.getString(renderRequest, "zip");
-		try {
-			List<User> results = DataEntryLocalServiceUtil.getUsers( zip );
-			renderRequest.setAttribute("usersSize", results.size());
-			renderRequest.setAttribute("users", results);
-		} catch (PortalException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		renderRequest.setAttribute("zip", zip);
-		
-		super.doView(renderRequest, renderResponse);
+		_dataEntryService.getResults(renderRequest);
+			String zip= ParamUtil.get(renderRequest, "zip", "");
+			try {
+				List<User> results = _dataEntryLocalService.getUsers( zip );
+				renderRequest.setAttribute("usersSize", results.size());
+				renderRequest.setAttribute("users", results);
+			} catch (PortalException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			renderRequest.setAttribute("zip", zip);
+			
+			super.doView(renderRequest, renderResponse);
 	}
 
+	@Reference
+	DataEntryService _dataEntryService;
+	
+	@Reference
+	protected DataEntryLocalService _dataEntryLocalService;
 }

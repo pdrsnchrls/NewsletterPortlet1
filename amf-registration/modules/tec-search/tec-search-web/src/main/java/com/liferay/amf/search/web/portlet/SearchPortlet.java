@@ -30,7 +30,9 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.security-role-ref=power-user,user",
 		"com.liferay.portlet.display-category=category.amf",
 		"com.liferay.portlet.instanceable=false",
-		"javax.portlet.supported-public-render-parameter=zip"
+		"javax.portlet.supported-public-render-parameter=zip",
+		"javax.portlet.init-param.add-process-action-success-action=false",
+
 	},
 	service = Portlet.class
 )
@@ -41,9 +43,7 @@ public class SearchPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse) throws PortalException {
 		
 		String zip = ParamUtil.getString(actionRequest, "zip");
-
 		_searchService.sendRequest(zip, actionRequest, actionResponse);
-
 	}
 	@Reference
 	private SearchService _searchService;

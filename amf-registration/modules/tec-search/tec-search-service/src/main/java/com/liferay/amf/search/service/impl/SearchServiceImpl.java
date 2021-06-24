@@ -20,7 +20,10 @@ import com.liferay.amf.search.service.base.SearchServiceBaseImpl;
 import com.liferay.amf.search.service.internal.security.permission.resource.SearchPermission;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.util.PortalUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -58,7 +61,9 @@ public class SearchServiceImpl extends SearchServiceBaseImpl {
 	public static final String ACTION_ID = "SEARCH";
 
 	public void sendRequest (String zip, ActionRequest actionRequest, ActionResponse actionResponse) throws PortalException, SearchValidationException {
-		if (_searchPermission.contains(getPermissionChecker(), 0, ACTION_ID)) {
+		
+		User user = PortalUtil.getUser(actionRequest);
+		if (_searchPermission.contains(getPermissionChecker(), user.getGroupId(), ACTION_ID)) {
 			System.out.println("Yes");
 			try {
 				_searchLocalService.sendZip(zip, actionResponse);
@@ -66,8 +71,15 @@ public class SearchServiceImpl extends SearchServiceBaseImpl {
 			catch (SearchValidationException e) {
 				// TODO Auto-generated catch block
 				e.getErrors().forEach(key -> SessionErrors.add(actionRequest, key));
+				SessionMessages.add(actionRequest, PortalUtil.getPortletId(actionRequest) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
 				actionResponse.getRenderParameters().setValue("zip", "");
 			}
+		}
+		else {
+			System.out.println("User does not have permission");
+			SessionErrors.add(actionRequest, "noPermissions");
+			SessionMessages.add(actionRequest, PortalUtil.getPortletId(actionRequest) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
+			actionResponse.getRenderParameters().setValue("", "");
 		}
 	}
 	

@@ -6,6 +6,7 @@
 <liferay-ui:error key="zipEmpty" message="zip-required" />
 <liferay-ui:error key="zipLengthError" message="zip-must-be-5-digits" />
 <liferay-ui:error key="zipNonNumeric" message="zip-must-be-numeric" />
+<liferay-ui:error key="noPermissions" message="you-do-not-have-permission-to-search" />
 
 <portlet:actionURL name="search" var="search" />
 

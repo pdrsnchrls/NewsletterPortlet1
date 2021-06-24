@@ -15,9 +15,16 @@
 package com.liferay.amf.search.results.service.impl;
 
 import com.liferay.amf.search.results.service.base.DataEntryServiceBaseImpl;
+import com.liferay.amf.search.results.service.internal.security.permission.resource.SearchResultsPermission;
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.util.PortalUtil;
+
+import javax.portlet.ActionRequest;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * The implementation of the data entry remote service.
@@ -46,4 +53,20 @@ public class DataEntryServiceImpl extends DataEntryServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Always use <code>com.liferay.amf.search.results.service.DataEntryServiceUtil</code> to access the data entry remote service.
 	 */
+	
+	public static final String ACTION_ID = "VIEW_SEARCH";
+	
+	public void getResults(ActionRequest actionRequest) throws PortalException {
+		
+		User user = PortalUtil.getUser(actionRequest);
+		if (_searchResultsPermission.contains(getPermissionChecker(), user.getGroupId(), ACTION_ID)) {
+			System.out.println("HEY!");
+		}
+		else {
+			System.out.println("User does not have permission ");
+		}
+	}
+	
+	@Reference
+	SearchResultsPermission _searchResultsPermission;
 }
