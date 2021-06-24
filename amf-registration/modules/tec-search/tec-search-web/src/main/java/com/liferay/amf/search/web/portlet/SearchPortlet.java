@@ -51,7 +51,6 @@ public class SearchPortlet extends MVCPortlet {
 		
 		try {
 			_searchLocalService.sendZip(zip);
-			actionResponse.getRenderParameters().setValue("zip", zip);
 
 		} catch (SearchValidationException e) {
 			// TODO Auto-generated catch block

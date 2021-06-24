@@ -14,15 +14,23 @@
 
 package com.liferay.amf.search.service.http;
 
+import com.liferay.amf.search.service.SearchServiceUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.security.auth.HttpPrincipal;
+import com.liferay.portal.kernel.service.http.TunnelUtil;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
+
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Provides the HTTP utility for the
- * <code>com.liferay.amf.search.service.SearchServiceUtil</code> service
+ * <code>SearchServiceUtil</code> service
  * utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it requires an additional
- * <code>com.liferay.portal.kernel.security.auth.HttpPrincipal</code> parameter.
+ * <code>HttpPrincipal</code> parameter.
  *
  * <p>
  * The benefits of using the HTTP utility is that it is fast and allows for
@@ -45,4 +53,46 @@ import org.osgi.annotation.versioning.ProviderType;
  */
 @ProviderType
 public class SearchServiceHttp {
+
+	public static void sendRequest(
+			HttpPrincipal httpPrincipal, String zip,
+			javax.portlet.ActionResponse actionResponse)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				SearchServiceUtil.class, "sendRequest",
+				_sendRequestParameterTypes0);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, zip, actionResponse);
+
+			try {
+				TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				if (e instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						e;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
+			}
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(SearchServiceHttp.class);
+
+	private static final Class<?>[] _sendRequestParameterTypes0 = new Class[] {
+		String.class, javax.portlet.ActionResponse.class
+	};
+
 }

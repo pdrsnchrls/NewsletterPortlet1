@@ -44,6 +44,14 @@ public class SearchServiceWrapper
 	}
 
 	@Override
+	public void sendRequest(
+			String zip, javax.portlet.ActionResponse actionResponse)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		_searchService.sendRequest(zip, actionResponse);
+	}
+
+	@Override
 	public SearchService getWrappedService() {
 		return _searchService;
 	}

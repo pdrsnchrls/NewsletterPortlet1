@@ -49,10 +49,11 @@ public class SearchLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static void sendZip(String zip)
+	public static void sendZip(
+			String zip, javax.portlet.ActionResponse actionResponse)
 		throws com.liferay.amf.search.exception.SearchValidationException {
 
-		getService().sendZip(zip);
+		getService().sendZip(zip, actionResponse);
 	}
 
 	public static SearchLocalService getService() {

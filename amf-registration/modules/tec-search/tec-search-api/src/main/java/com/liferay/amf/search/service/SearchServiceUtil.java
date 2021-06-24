@@ -49,6 +49,13 @@ public class SearchServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static void sendRequest(
+			String zip, javax.portlet.ActionResponse actionResponse)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		getService().sendRequest(zip, actionResponse);
+	}
+
 	public static SearchService getService() {
 		return _serviceTracker.getService();
 	}

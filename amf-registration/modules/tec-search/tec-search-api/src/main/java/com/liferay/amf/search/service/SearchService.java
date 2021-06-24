@@ -22,6 +22,8 @@ import com.liferay.portal.kernel.service.BaseService;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
+import javax.portlet.ActionResponse;
+
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
@@ -54,5 +56,8 @@ public interface SearchService extends BaseService {
 	 * @return the OSGi service identifier
 	 */
 	public String getOSGiServiceIdentifier();
+
+	public void sendRequest(String zip, ActionResponse actionResponse)
+		throws PortalException;
 
 }

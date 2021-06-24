@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
+import javax.portlet.ActionResponse;
+
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
@@ -53,6 +55,7 @@ public interface SearchLocalService extends BaseLocalService {
 	 */
 	public String getOSGiServiceIdentifier();
 
-	public void sendZip(String zip) throws SearchValidationException;
+	public void sendZip(String zip, ActionResponse actionResponse)
+		throws SearchValidationException;
 
 }
