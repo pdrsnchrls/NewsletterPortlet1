@@ -49,10 +49,10 @@ public class DataEntryServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static void getResults(javax.portlet.ActionRequest actionRequest)
+	public static void getResults(javax.portlet.RenderRequest renderRequest)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		getService().getResults(actionRequest);
+		getService().getResults(renderRequest);
 	}
 
 	public static DataEntryService getService() {

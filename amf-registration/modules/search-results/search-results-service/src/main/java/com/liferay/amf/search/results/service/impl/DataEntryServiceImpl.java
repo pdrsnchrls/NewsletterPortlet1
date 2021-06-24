@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.PortalUtil;
 
-import javax.portlet.ActionRequest;
+import javax.portlet.RenderRequest;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -56,9 +56,9 @@ public class DataEntryServiceImpl extends DataEntryServiceBaseImpl {
 	
 	public static final String ACTION_ID = "VIEW_SEARCH";
 	
-	public void getResults(ActionRequest actionRequest) throws PortalException {
+	public void getResults(RenderRequest renderRequest) throws PortalException {
 		
-		User user = PortalUtil.getUser(actionRequest);
+		User user = PortalUtil.getUser(renderRequest);
 		if (_searchResultsPermission.contains(getPermissionChecker(), user.getGroupId(), ACTION_ID)) {
 			System.out.println("HEY!");
 		}
