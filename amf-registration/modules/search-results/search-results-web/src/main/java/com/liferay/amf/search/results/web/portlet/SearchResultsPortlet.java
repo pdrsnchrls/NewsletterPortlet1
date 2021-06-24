@@ -46,19 +46,12 @@ public class SearchResultsPortlet extends MVCPortlet {
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 		
-		_dataEntryService.getResults(renderRequest);
-			String zip= ParamUtil.get(renderRequest, "zip", "");
-			try {
-				List<User> results = _dataEntryLocalService.getUsers( zip );
-				renderRequest.setAttribute("usersSize", results.size());
-				renderRequest.setAttribute("users", results);
-			} catch (PortalException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			renderRequest.setAttribute("zip", zip);
-			
-			super.doView(renderRequest, renderResponse);
+		try {
+			_dataEntryService.getResults(renderRequest, renderResponse);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Reference

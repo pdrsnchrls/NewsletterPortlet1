@@ -19,9 +19,13 @@ import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Address;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.util.ParamUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -50,6 +54,22 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 	 * Never reference this class directly. Use <code>com.liferay.amf.search.results.service.DataEntryLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.search.results.service.DataEntryLocalServiceUtil</code>.
 	 */
 	
+	public void getResults(RenderRequest renderRequest, RenderResponse renderResponse) {
+		String zip= ParamUtil.get(renderRequest, "zip", "");
+		
+		try {
+			List<User> results =  getUsers( zip );
+			renderRequest.setAttribute("usersSize", results.size());
+			renderRequest.setAttribute("users", results);
+		} catch (PortalException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		renderRequest.setAttribute("zip", zip);
+		
+		super.doView(renderRequest, renderResponse);
+	}
+	
 	public List<User> getUsers(String zip) throws PortalException {
 		
 		List<User> results = new ArrayList();
@@ -66,5 +86,7 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 
 		return results;
 	}
+	
+	
 	
 }

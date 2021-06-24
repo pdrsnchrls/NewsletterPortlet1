@@ -14,6 +14,7 @@
 
 package com.liferay.amf.search.results.service.impl;
 
+import com.liferay.amf.search.results.service.DataEntryLocalService;
 import com.liferay.amf.search.results.service.base.DataEntryServiceBaseImpl;
 import com.liferay.amf.search.results.service.internal.security.permission.resource.SearchResultsPermission;
 import com.liferay.portal.aop.AopService;
@@ -22,6 +23,7 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.PortalUtil;
 
 import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -56,11 +58,11 @@ public class DataEntryServiceImpl extends DataEntryServiceBaseImpl {
 	
 	public static final String ACTION_ID = "VIEW_SEARCH";
 	
-	public void getResults(RenderRequest renderRequest) throws PortalException {
+	public void getResults(RenderRequest renderRequest, RenderResponse renderResponse) throws PortalException {
 		
 		User user = PortalUtil.getUser(renderRequest);
 		if (_searchResultsPermission.contains(getPermissionChecker(), user.getGroupId(), ACTION_ID)) {
-			System.out.println("HEY!");
+			_dataEntryLocalService.getResults(renderRequest, renderResponse);
 		}
 		else {
 			System.out.println("User does not have permission ");
@@ -69,4 +71,7 @@ public class DataEntryServiceImpl extends DataEntryServiceBaseImpl {
 	
 	@Reference
 	SearchResultsPermission _searchResultsPermission;
+	
+	@Reference
+	DataEntryLocalService _dataEntryLocalService;
 }
