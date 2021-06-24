@@ -17,6 +17,7 @@ package com.liferay.amf.search.results.service;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
@@ -61,9 +62,14 @@ public interface DataEntryLocalService extends BaseLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void getResults(
-		RenderRequest renderRequest, RenderResponse renderResponse);
+			RenderRequest renderRequest, RenderResponse renderResponse)
+		throws SearchException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<User> getUsers(String zip) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<User> getUsers(String zip, int start, int end)
+		throws PortalException;
 
 }

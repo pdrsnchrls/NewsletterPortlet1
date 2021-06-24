@@ -50,8 +50,9 @@ public class DataEntryLocalServiceUtil {
 	}
 
 	public static void getResults(
-		javax.portlet.RenderRequest renderRequest,
-		javax.portlet.RenderResponse renderResponse) {
+			javax.portlet.RenderRequest renderRequest,
+			javax.portlet.RenderResponse renderResponse)
+		throws com.liferay.portal.kernel.search.SearchException {
 
 		getService().getResults(renderRequest, renderResponse);
 	}
@@ -61,6 +62,13 @@ public class DataEntryLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getUsers(zip);
+	}
+
+	public static java.util.List<com.liferay.portal.kernel.model.User> getUsers(
+			String zip, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().getUsers(zip, start, end);
 	}
 
 	public static DataEntryLocalService getService() {
