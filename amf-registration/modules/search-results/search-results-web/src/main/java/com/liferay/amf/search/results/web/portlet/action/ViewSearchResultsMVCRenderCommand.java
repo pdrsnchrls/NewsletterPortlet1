@@ -44,15 +44,16 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 		List<User> results = new ArrayList<User>();
 		try {
 			User user = PortalUtil.getUser(request);
-			results = _dataEntryService.getPermission(user, zipCode, results);
+			long groupId = user.getGroupId();
+			results = _dataEntryService.getPermission(groupId, zipCode, results);
 			
 			searchContainer.setResults(results);
 		}
 		catch (PortalException e) {
 			e.printStackTrace();
 		}
-		//call local service to get users
-		//renderrequest.setAttribute("searchContainer", searchContainer)
+		//set searchContainer
+		request.setAttribute("searchContainer", searchContainer);
 		
 
 		

@@ -56,10 +56,10 @@ public class DataEntryServiceImpl extends DataEntryServiceBaseImpl {
 	
 	public static final String ACTION_ID = "VIEW_SEARCH";
 	
-	public List<User> getPermission(User user, String zip, List<User> results) throws PortalException {
+	public List<User> getPermission(long groupId, String zip, List<User> results) throws PortalException {
 		
 		System.out.println("Checking those permissions baby");
-		if (_searchResultsPermission.contains(getPermissionChecker(), user.getGroupId(), ACTION_ID)) {
+		if (_searchResultsPermission.contains(getPermissionChecker(), groupId, ACTION_ID)) {
 			results = _dataEntryLocalService.getUsers(zip);
 		}
 
