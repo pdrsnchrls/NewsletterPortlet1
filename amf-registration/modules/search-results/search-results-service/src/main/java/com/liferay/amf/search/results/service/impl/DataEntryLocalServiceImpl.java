@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.portlet.Event;
 import javax.portlet.EventRequest;
 import javax.portlet.EventResponse;
 
@@ -59,21 +60,23 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 	
 	public void getResults(EventRequest request, EventResponse response) 
 			throws SearchException {
-		String zip= ParamUtil.get(request, "zip", "");
+
+		// get zip from request
+		Event event = request.getEvent();
+		String zipCode = (String)event.getValue();
+		response.setRenderParameter("zip", zipCode);
 		
 //		SearchContainer<User> searchContainer = new SearchContainer<User>(request, response.createRenderURL(), null, "");
 //		searchContainer.setDelta(5);
 //		searchContainer.setResults(null);
 		
 		try {
-			List<User> results =  getUsers( zip );//, searchContainer.getStart(), searchContainer.getEnd());
+			List<User> results =  getUsers( zipCode );//, searchContainer.getStart(), searchContainer.getEnd());
 			request.setAttribute("usersSize", results.size());
 			request.setAttribute("users", results);
-			request.setAttribute("zip", zip);		
+			request.setAttribute("zip", zipCode);		
 			System.out.println("Got users");
 			
-			
-
 			//searchContainer.setResults(results);
 		} catch (PortalException e) {
 			// TODO Auto-generated catch block

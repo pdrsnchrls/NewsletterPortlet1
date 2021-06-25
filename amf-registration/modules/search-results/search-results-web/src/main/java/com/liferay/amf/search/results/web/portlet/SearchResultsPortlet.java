@@ -4,7 +4,9 @@ import com.liferay.amf.search.results.service.DataEntryService;
 import com.liferay.amf.search.results.web.constants.SearchResultsPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.util.ParamUtil;
 
+import javax.portlet.Event;
 import javax.portlet.EventRequest;
 import javax.portlet.EventResponse;
 import javax.portlet.Portlet;
@@ -41,39 +43,13 @@ public class SearchResultsPortlet extends MVCPortlet {
 	@ProcessEvent(qname="{http://event.search/zipcode}ipc.search")
 	public void processEvent(EventRequest request, EventResponse response) {
 
-		System.out.println("Hello Nelly!");
 		try {
 			_dataEntryService.getResults(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			SessionErrors.add(request, "systemFailure");
 		}
-		
-//		try {
-//			_dataEntryService.getResults(renderRequest, renderResponse);
-//			super.doView(renderRequest, renderResponse);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			SessionErrors.add(renderRequest, "systemFailure");
-//		}
-//		Event event = request.getEvent();
-//		String zipCode = (String)event.getValue();
-//		response.setRenderParameter("zipCode", zipCode);
-//		response.setRenderParameter("mvcRenderCommandName", "/search-results/view");
 	}
-	
-//	@Override
-//	public void doView(RenderRequest renderRequest, RenderResponse renderResponse) {
-//
-//		try {
-//			_dataEntryService.getResults(renderRequest, renderResponse);
-//			super.doView(renderRequest, renderResponse);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			SessionErrors.add(renderRequest, "systemFailure");
-//		}
-//
-//	}
 
 	@Reference
 	protected DataEntryService _dataEntryService;
