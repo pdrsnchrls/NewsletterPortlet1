@@ -43,6 +43,12 @@ public class SearchResultsPortlet extends MVCPortlet {
 	@ProcessEvent(qname="{http://event.search/zipcode}ipc.search")
 	public void processEvent(EventRequest request, EventResponse response) {
 
+		// get zip from request
+		Event event = request.getEvent();
+		String zipCode = (String)event.getValue();
+		response.setRenderParameter("zipCode", zipCode);
+		response.setRenderParameter("mvcRenderCommandName", "/search-results/view");
+		
 		try {
 			_dataEntryService.getResults(request, response);
 		} catch (Exception e) {

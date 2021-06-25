@@ -20,10 +20,8 @@ import com.liferay.amf.search.results.service.internal.security.permission.resou
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.util.PortalUtil;
 
-import javax.portlet.EventRequest;
-import javax.portlet.EventResponse;
+import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -58,13 +56,13 @@ public class DataEntryServiceImpl extends DataEntryServiceBaseImpl {
 	
 	public static final String ACTION_ID = "VIEW_SEARCH";
 	
-	public void getResults(EventRequest request, EventResponse response) throws PortalException {
+	public List<User> getPermission(User user, String zip, List<User> results) throws PortalException {
 		
-		User user = PortalUtil.getUser(request);
 		if (_searchResultsPermission.contains(getPermissionChecker(), user.getGroupId(), ACTION_ID)) {
-			_dataEntryLocalService.getResults(request, response);
+			results = _dataEntryLocalService.getUsers(zip);
 		}
 
+		return results;
 	}
 	
 	@Reference

@@ -2,9 +2,13 @@
 
 <liferay-ui:error key="systemFailure" message="system-failure" />
 
-<p> Search Results for ${ zip } </p>
+<p> Search Results 
+	<c:if test = "${not empty zip }" >
+		for ${ zip }
+	</c:if>
+</p>
 
-<liferay-ui:search-container var="searchContainer" total="${usersSize}" delta="5" deltaConfigurable="false" 
+<liferay-ui:search-container searchContainer="${searchContainer }" total="${usersSize}" delta="5" deltaConfigurable="false" 
   emptyResultsMessage="no-results-found-please-try-a-different-search-criteria">
   
 	<liferay-ui:search-container-results results="${ users }"/>

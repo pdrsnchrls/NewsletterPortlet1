@@ -44,7 +44,6 @@ public class SearchPortlet extends MVCPortlet {
 	public void processEvent(ActionRequest request, ActionResponse response) throws PortalException{
 
 		String zipCode = ParamUtil.getString(request, "zip");
-		System.out.println(zipCode);
 		
 		_searchService.sendRequest(zipCode, request, response);
 		

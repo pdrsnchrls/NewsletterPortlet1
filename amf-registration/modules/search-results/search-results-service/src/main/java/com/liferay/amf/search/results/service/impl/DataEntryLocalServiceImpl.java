@@ -58,33 +58,6 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 	 * Never reference this class directly. Use <code>com.liferay.amf.search.results.service.DataEntryLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.search.results.service.DataEntryLocalServiceUtil</code>.
 	 */
 	
-	public void getResults(EventRequest request, EventResponse response) 
-			throws SearchException {
-
-		// get zip from request
-		Event event = request.getEvent();
-		String zipCode = (String)event.getValue();
-		response.setRenderParameter("zip", zipCode);
-		
-//		SearchContainer<User> searchContainer = new SearchContainer<User>(request, response.createRenderURL(), null, "");
-//		searchContainer.setDelta(5);
-//		searchContainer.setResults(null);
-		
-		try {
-			List<User> results =  getUsers( zipCode );//, searchContainer.getStart(), searchContainer.getEnd());
-			request.setAttribute("usersSize", results.size());
-			request.setAttribute("users", results);
-			request.setAttribute("zip", zipCode);		
-			System.out.println("Got users");
-			
-			//searchContainer.setResults(results);
-		} catch (PortalException e) {
-			// TODO Auto-generated catch block
-			SessionErrors.add(request, "systemFailure");
-		}
-
-	}
-	
 	public List<User> getUsers(String zip) throws PortalException {
 		
 		List<User> results = new ArrayList();
