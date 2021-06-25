@@ -50,12 +50,10 @@ public class DataEntryServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.portal.kernel.model.User>
-			getPermission(
-				long groupId, String zip,
-				java.util.List<com.liferay.portal.kernel.model.User> results)
+			getPermission(long groupId, String zip)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().getPermission(groupId, zip, results);
+		return getService().getPermission(groupId, zip);
 	}
 
 	public static DataEntryService getService() {

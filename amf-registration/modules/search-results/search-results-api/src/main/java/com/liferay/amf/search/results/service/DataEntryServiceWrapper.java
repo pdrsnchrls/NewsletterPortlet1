@@ -45,11 +45,10 @@ public class DataEntryServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.portal.kernel.model.User> getPermission(
-			long groupId, String zip,
-			java.util.List<com.liferay.portal.kernel.model.User> results)
+			long groupId, String zip)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _dataEntryService.getPermission(groupId, zip, results);
+		return _dataEntryService.getPermission(groupId, zip);
 	}
 
 	@Override

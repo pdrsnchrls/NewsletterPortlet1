@@ -55,9 +55,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public class DataEntryServiceHttp {
 
 	public static java.util.List<com.liferay.portal.kernel.model.User>
-			getPermission(
-				HttpPrincipal httpPrincipal, long groupId, String zip,
-				java.util.List<com.liferay.portal.kernel.model.User> results)
+			getPermission(HttpPrincipal httpPrincipal, long groupId, String zip)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -66,7 +64,7 @@ public class DataEntryServiceHttp {
 				_getPermissionParameterTypes0);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, groupId, zip, results);
+				methodKey, groupId, zip);
 
 			Object returnObj = null;
 
@@ -98,6 +96,6 @@ public class DataEntryServiceHttp {
 	private static Log _log = LogFactoryUtil.getLog(DataEntryServiceHttp.class);
 
 	private static final Class<?>[] _getPermissionParameterTypes0 =
-		new Class[] {long.class, String.class, java.util.List.class};
+		new Class[] {long.class, String.class};
 
 }
