@@ -71,7 +71,6 @@ public class SearchServiceImpl extends SearchServiceBaseImpl {
 				// TODO Auto-generated catch block
 				e.getErrors().forEach(key -> SessionErrors.add(actionRequest, key));
 				SessionMessages.add(actionRequest, PortalUtil.getPortletId(actionRequest) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
-				actionResponse.getRenderParameters().setValue("zip", "");
 			}
 		}
 		else {

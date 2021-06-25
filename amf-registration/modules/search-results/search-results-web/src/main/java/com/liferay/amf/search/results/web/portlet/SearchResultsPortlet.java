@@ -37,7 +37,7 @@ public class SearchResultsPortlet extends MVCPortlet {
 	
 	@Override
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse) {
-		
+
 		try {
 			_dataEntryService.getResults(renderRequest, renderResponse);
 			super.doView(renderRequest, renderResponse);

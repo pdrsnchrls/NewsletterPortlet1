@@ -17,15 +17,12 @@ import org.osgi.service.component.annotations.Component;
 public class SearchValidatorImpl implements SearchValidator{
 
 	@Override
-	public void validate(String zip, ActionResponse actionResponse) throws SearchValidationException
+	public void validate(String zip) throws SearchValidationException
 	{
 		List<String> errors = new ArrayList<>();
 		
 		if (!isZipValid(zip, errors)) {
 			throw new SearchValidationException(errors);
-		}
-		else {
-			actionResponse.setRenderParameter("zip", zip);
 		}
 	}
 	
