@@ -62,18 +62,18 @@ public class SearchResultsPortlet extends MVCPortlet {
 //		response.setRenderParameter("mvcRenderCommandName", "/search-results/view");
 	}
 	
-	@Override
-	public void doView(RenderRequest renderRequest, RenderResponse renderResponse) {
-
-		try {
-			_dataEntryService.getResults(renderRequest, renderResponse);
-			super.doView(renderRequest, renderResponse);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			SessionErrors.add(renderRequest, "systemFailure");
-		}
-
-	}
+//	@Override
+//	public void doView(RenderRequest renderRequest, RenderResponse renderResponse) {
+//
+//		try {
+//			_dataEntryService.getResults(renderRequest, renderResponse);
+//			super.doView(renderRequest, renderResponse);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			SessionErrors.add(renderRequest, "systemFailure");
+//		}
+//
+//	}
 
 	@Reference
 	protected DataEntryService _dataEntryService;

@@ -61,24 +61,24 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 			throws SearchException {
 		String zip= ParamUtil.get(request, "zip", "");
 		
-		SearchContainer<User> searchContainer = new SearchContainer<User>(request, response.createRenderURL(), null, "");
-		searchContainer.setDelta(5);
-		searchContainer.setResults(null);
+//		SearchContainer<User> searchContainer = new SearchContainer<User>(request, response.createRenderURL(), null, "");
+//		searchContainer.setDelta(5);
+//		searchContainer.setResults(null);
 		
 		try {
-			List<User> results =  getUsers( zip , searchContainer.getStart(), searchContainer.getEnd());
+			List<User> results =  getUsers( zip );//, searchContainer.getStart(), searchContainer.getEnd());
 			request.setAttribute("usersSize", results.size());
 			request.setAttribute("users", results);
-			System.out.println("Trying to get users");
+			request.setAttribute("zip", zip);		
+			System.out.println("Got users");
 			
 			
 
-			searchContainer.setResults(results);
+			//searchContainer.setResults(results);
 		} catch (PortalException e) {
 			// TODO Auto-generated catch block
 			SessionErrors.add(request, "systemFailure");
 		}
-		request.setAttribute("zip", zip);		
 
 	}
 	

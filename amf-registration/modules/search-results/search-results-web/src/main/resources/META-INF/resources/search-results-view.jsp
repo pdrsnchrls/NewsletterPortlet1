@@ -4,10 +4,10 @@
 
 <p> Search Results for ${ zip } </p>
 
-<liferay-ui:search-container searchContainer="${model.searchContainer}" total="${usersSize}" delta="${model.searchContainer.delta}" deltaConfigurable="false" 
+<liferay-ui:search-container var="searchContainer" total="${usersSize}" delta="5" deltaConfigurable="false" 
   emptyResultsMessage="no-results-found-please-try-a-different-search-criteria">
   
-	<liferay-ui:search-container-results results="${model.searchContainer.results() }"/>
+	<liferay-ui:search-container-results results="${ users }"/>
 		
 		<liferay-ui:search-container-row className="com.liferay.portal.kernel.model.User" modelVar="user" keyProperty="userId" >
 			<liferay-ui:search-container-column-text name="name" value="${user.firstName} ${user.lastName.charAt(0)}." />
