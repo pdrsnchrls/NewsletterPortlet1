@@ -17,14 +17,14 @@ package com.liferay.amf.search.results.service;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.kernel.service.BaseService;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
-import javax.portlet.EventRequest;
-import javax.portlet.EventResponse;
+import java.util.List;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -60,7 +60,7 @@ public interface DataEntryService extends BaseService {
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public void getResults(EventRequest request, EventResponse response)
+	public List<User> getPermission(User user, String zip, List<User> results)
 		throws PortalException;
 
 }

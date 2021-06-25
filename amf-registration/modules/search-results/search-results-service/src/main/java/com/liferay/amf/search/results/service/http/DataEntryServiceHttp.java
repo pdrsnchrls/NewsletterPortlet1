@@ -54,21 +54,25 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public class DataEntryServiceHttp {
 
-	public static void getResults(
-			HttpPrincipal httpPrincipal, javax.portlet.EventRequest request,
-			javax.portlet.EventResponse response)
+	public static java.util.List<com.liferay.portal.kernel.model.User>
+			getPermission(
+				HttpPrincipal httpPrincipal,
+				com.liferay.portal.kernel.model.User user, String zip,
+				java.util.List<com.liferay.portal.kernel.model.User> results)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				DataEntryServiceUtil.class, "getResults",
-				_getResultsParameterTypes0);
+				DataEntryServiceUtil.class, "getPermission",
+				_getPermissionParameterTypes0);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, request, response);
+				methodKey, user, zip, results);
+
+			Object returnObj = null;
 
 			try {
-				TunnelUtil.invoke(httpPrincipal, methodHandler);
+				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
 				if (e instanceof
@@ -81,6 +85,9 @@ public class DataEntryServiceHttp {
 				throw new com.liferay.portal.kernel.exception.SystemException(
 					e);
 			}
+
+			return (java.util.List<com.liferay.portal.kernel.model.User>)
+				returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -91,8 +98,10 @@ public class DataEntryServiceHttp {
 
 	private static Log _log = LogFactoryUtil.getLog(DataEntryServiceHttp.class);
 
-	private static final Class<?>[] _getResultsParameterTypes0 = new Class[] {
-		javax.portlet.EventRequest.class, javax.portlet.EventResponse.class
-	};
+	private static final Class<?>[] _getPermissionParameterTypes0 =
+		new Class[] {
+			com.liferay.portal.kernel.model.User.class, String.class,
+			java.util.List.class
+		};
 
 }

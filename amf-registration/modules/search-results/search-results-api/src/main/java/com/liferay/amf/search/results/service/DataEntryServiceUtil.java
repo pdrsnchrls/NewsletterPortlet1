@@ -49,12 +49,13 @@ public class DataEntryServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static void getResults(
-			javax.portlet.EventRequest request,
-			javax.portlet.EventResponse response)
+	public static java.util.List<com.liferay.portal.kernel.model.User>
+			getPermission(
+				com.liferay.portal.kernel.model.User user, String zip,
+				java.util.List<com.liferay.portal.kernel.model.User> results)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		getService().getResults(request, response);
+		return getService().getPermission(user, zip, results);
 	}
 
 	public static DataEntryService getService() {

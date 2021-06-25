@@ -58,6 +58,7 @@ public class DataEntryServiceImpl extends DataEntryServiceBaseImpl {
 	
 	public List<User> getPermission(User user, String zip, List<User> results) throws PortalException {
 		
+		System.out.println("Checking those permissions baby");
 		if (_searchResultsPermission.contains(getPermissionChecker(), user.getGroupId(), ACTION_ID)) {
 			results = _dataEntryLocalService.getUsers(zip);
 		}

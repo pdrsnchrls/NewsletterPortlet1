@@ -14,11 +14,17 @@
 
 package com.liferay.amf.search.results.service.http;
 
+import com.liferay.amf.search.results.service.DataEntryServiceUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import java.rmi.RemoteException;
+
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
  * Provides the SOAP utility for the
- * <code>com.liferay.amf.search.results.service.DataEntryServiceUtil</code> service
+ * <code>DataEntryServiceUtil</code> service
  * utility. The static methods of this class call the same methods of the
  * service utility. However, the signatures are different because it is
  * difficult for SOAP to support certain types.
@@ -46,4 +52,30 @@ import org.osgi.annotation.versioning.ProviderType;
  */
 @ProviderType
 public class DataEntryServiceSoap {
+
+	public static com.liferay.portal.kernel.model.User[] getPermission(
+			com.liferay.portal.kernel.model.UserSoap user, String zip,
+			com.liferay.portal.kernel.model.UserSoap[] results)
+		throws RemoteException {
+
+		try {
+			java.util.List<com.liferay.portal.kernel.model.User> returnValue =
+				DataEntryServiceUtil.getPermission(
+					com.liferay.portal.model.impl.UserModelImpl.toModel(user),
+					zip,
+					com.liferay.portal.model.impl.UserModelImpl.toModels(
+						results));
+
+			return returnValue.toArray(
+				new com.liferay.portal.kernel.model.User[returnValue.size()]);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(DataEntryServiceSoap.class);
+
 }

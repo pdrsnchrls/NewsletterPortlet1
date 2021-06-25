@@ -4,6 +4,7 @@ import com.liferay.amf.search.results.service.DataEntryLocalService;
 import com.liferay.amf.search.results.service.DataEntryService;
 import com.liferay.amf.search.results.web.constants.SearchResultsPortletKeys;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -37,14 +38,19 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 		SearchContainer<User> searchContainer = new SearchContainer<User>();
 		searchContainer.setDelta(5);
 		
+		System.out.println("In render command. The ZIP Code is " + zipCode);
+
 		// cur, delta variables to calculate start and end
 		List<User> results = new ArrayList<User>();
-		User user = PortalUtil.getUser(request);
-		
-		_dataEntryService.getPermission(user, zipCode, results);
-		
-		searchContainer.setResults(results);
-
+		try {
+			User user = PortalUtil.getUser(request);
+			results = _dataEntryService.getPermission(user, zipCode, results);
+			
+			searchContainer.setResults(results);
+		}
+		catch (PortalException e) {
+			e.printStackTrace();
+		}
 		//call local service to get users
 		//renderrequest.setAttribute("searchContainer", searchContainer)
 		

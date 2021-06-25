@@ -44,12 +44,12 @@ public class DataEntryServiceWrapper
 	}
 
 	@Override
-	public void getResults(
-			javax.portlet.EventRequest request,
-			javax.portlet.EventResponse response)
+	public java.util.List<com.liferay.portal.kernel.model.User> getPermission(
+			com.liferay.portal.kernel.model.User user, String zip,
+			java.util.List<com.liferay.portal.kernel.model.User> results)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		_dataEntryService.getResults(request, response);
+		return _dataEntryService.getPermission(user, zip, results);
 	}
 
 	@Override
