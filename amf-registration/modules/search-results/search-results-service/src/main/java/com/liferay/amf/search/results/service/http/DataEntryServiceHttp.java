@@ -56,8 +56,7 @@ public class DataEntryServiceHttp {
 
 	public static java.util.List<com.liferay.portal.kernel.model.User>
 			getPermission(
-				HttpPrincipal httpPrincipal,
-				com.liferay.portal.kernel.model.User user, String zip,
+				HttpPrincipal httpPrincipal, long groupId, String zip,
 				java.util.List<com.liferay.portal.kernel.model.User> results)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
@@ -67,7 +66,7 @@ public class DataEntryServiceHttp {
 				_getPermissionParameterTypes0);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, user, zip, results);
+				methodKey, groupId, zip, results);
 
 			Object returnObj = null;
 
@@ -99,9 +98,6 @@ public class DataEntryServiceHttp {
 	private static Log _log = LogFactoryUtil.getLog(DataEntryServiceHttp.class);
 
 	private static final Class<?>[] _getPermissionParameterTypes0 =
-		new Class[] {
-			com.liferay.portal.kernel.model.User.class, String.class,
-			java.util.List.class
-		};
+		new Class[] {long.class, String.class, java.util.List.class};
 
 }

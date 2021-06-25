@@ -51,11 +51,11 @@ public class DataEntryServiceUtil {
 
 	public static java.util.List<com.liferay.portal.kernel.model.User>
 			getPermission(
-				com.liferay.portal.kernel.model.User user, String zip,
+				long groupId, String zip,
 				java.util.List<com.liferay.portal.kernel.model.User> results)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return getService().getPermission(user, zip, results);
+		return getService().getPermission(groupId, zip, results);
 	}
 
 	public static DataEntryService getService() {

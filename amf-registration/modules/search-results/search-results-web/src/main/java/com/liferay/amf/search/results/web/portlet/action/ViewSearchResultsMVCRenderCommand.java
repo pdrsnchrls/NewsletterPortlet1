@@ -45,7 +45,7 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 		try {
 			User user = PortalUtil.getUser(request);
 			long groupId = user.getGroupId();
-			results = _dataEntryService.getPermission(groupId, zipCode, results);
+			results = _dataEntryService.getPermission(groupId, zipCode);
 			
 			searchContainer.setResults(results);
 		}

@@ -21,6 +21,7 @@ import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -56,8 +57,9 @@ public class DataEntryServiceImpl extends DataEntryServiceBaseImpl {
 	
 	public static final String ACTION_ID = "VIEW_SEARCH";
 	
-	public List<User> getPermission(long groupId, String zip, List<User> results) throws PortalException {
+	public List<User> getPermission(long groupId, String zip) throws PortalException {
 		
+		List<User> results = new ArrayList<User>();
 		System.out.println("Checking those permissions baby");
 		if (_searchResultsPermission.contains(getPermissionChecker(), groupId, ACTION_ID)) {
 			results = _dataEntryLocalService.getUsers(zip);
