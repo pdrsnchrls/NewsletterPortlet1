@@ -81,6 +81,9 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 			List<User> results =  getUsers( zip , searchContainer.getStart(), searchContainer.getEnd());
 			renderRequest.setAttribute("usersSize", results.size());
 			renderRequest.setAttribute("users", results);
+			System.out.println("Trying to get users");
+			
+			
 
 			searchContainer.setResults(results);
 		} catch (PortalException e) {
@@ -88,6 +91,7 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 			SessionErrors.add(renderRequest, "systemFailure");
 		}
 		renderRequest.setAttribute("zip", zip);		
+
 	}
 	
 	public List<User> getUsers(String zip) throws PortalException {
@@ -130,7 +134,7 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 					i++;
 				}
 				else
-					break;
+					break; // breaks while loop when out of bounds
 			}
 		}
 		

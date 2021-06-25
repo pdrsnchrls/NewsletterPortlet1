@@ -9,6 +9,8 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.Portlet;
+import javax.portlet.ProcessAction;
+import javax.xml.namespace.QName;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -30,7 +32,7 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.security-role-ref=power-user,user",
 		"com.liferay.portlet.display-category=category.amf",
 		"com.liferay.portlet.instanceable=false",
-		"javax.portlet.supported-public-render-parameter=zip",
+		"javax.portlet.supported-publishing-event=ipc.search;http://event.search/zip",
 		"javax.portlet.init-param.add-process-action-success-action=false",
 
 	},
@@ -38,13 +40,16 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class SearchPortlet extends MVCPortlet {
 	
-	//put in MVCAction command?
-	public void search(
-			ActionRequest actionRequest, ActionResponse actionResponse) throws PortalException {
+	@ProcessAction(name="search")
+	public void processEvent(ActionRequest request, ActionResponse response) throws PortalException{
+
+		String zipCode = ParamUtil.getString(request, "zip");
+		System.out.println(zipCode);
 		
-		String zip = ParamUtil.getString(actionRequest, "zip");
-		_searchService.sendRequest(zip, actionRequest, actionResponse);
+		_searchService.sendRequest(zipCode, request, response);
+		
 	}
+	
 	@Reference
 	private SearchService _searchService;
 	

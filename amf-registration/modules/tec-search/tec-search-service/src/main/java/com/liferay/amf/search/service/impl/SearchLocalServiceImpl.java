@@ -54,21 +54,10 @@ import org.osgi.service.component.annotations.Reference;
 public class SearchLocalServiceImpl extends SearchLocalServiceBaseImpl {
 
 	public void sendZip(String zip, ActionResponse actionResponse) throws SearchValidationException {
-		// validate zip
-		//try {
-			_searchValidator.validate(zip);
-			// set render property
-			System.out.println("Hey Jacob!");
-			actionResponse.getRenderParameters().setValue("zip", zip);
-		//}
-		//catch (SearchValidationException e) {
-			// TODO Auto-generated catch block
-		//	System.out.println("Oop");
-//			e.getErrors().forEach(key -> SessionErrors.add(actionRequest, key));
-//			SessionMessages.add(actionRequest, PortalUtil.getPortletId(actionRequest) + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
-		//}
-
-
+			
+		_searchValidator.validate(zip);
+		// set render property
+		System.out.println("Hey Jacob!");
 
 	}
 	@Reference

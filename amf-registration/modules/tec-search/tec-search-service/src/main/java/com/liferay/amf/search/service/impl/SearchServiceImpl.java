@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.PortalUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.xml.namespace.QName;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -66,6 +67,8 @@ public class SearchServiceImpl extends SearchServiceBaseImpl {
 		if (_searchPermission.contains(getPermissionChecker(), user.getGroupId(), ACTION_ID)) {
 			try {
 				_searchLocalService.sendZip(zip, actionResponse);
+				QName qName = new QName("http://event.search/zipcode", "ipc.search");
+				actionResponse.setEvent(qName, zip);
 			}
 			catch (SearchValidationException e) {
 				// TODO Auto-generated catch block

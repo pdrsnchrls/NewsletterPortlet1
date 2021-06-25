@@ -5,7 +5,10 @@ import com.liferay.amf.search.results.web.constants.SearchResultsPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 
+import javax.portlet.EventRequest;
+import javax.portlet.EventResponse;
 import javax.portlet.Portlet;
+import javax.portlet.ProcessEvent;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -29,11 +32,36 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.security-role-ref=power-user,user",
 		"com.liferay.portlet.display-category=category.amf",
 		"com.liferay.portlet.instanceable=false",
-		"javax.portlet.supported-public-render-parameter=zip"
+		"javax.portlet.supported-processing-event=ipc.search;http://event.search/zipcode"
 	},
 	service = Portlet.class
 )
 public class SearchResultsPortlet extends MVCPortlet {
+	
+	@ProcessEvent(qname="{http://event.search/zipcode}ipc.search")
+	public void processEvent(EventRequest request, EventResponse response) {
+
+		System.out.println("Hello Nelly!");
+		try {
+			_dataEntryService.getResults(request, response);
+			super.doView(request, response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			SessionErrors.add(request, "systemFailure");
+		}
+		
+//		try {
+//			_dataEntryService.getResults(renderRequest, renderResponse);
+//			super.doView(renderRequest, renderResponse);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			SessionErrors.add(renderRequest, "systemFailure");
+//		}
+//		Event event = request.getEvent();
+//		String zipCode = (String)event.getValue();
+//		response.setRenderParameter("zipCode", zipCode);
+//		response.setRenderParameter("mvcRenderCommandName", "/search-results/view");
+	}
 	
 	@Override
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse) {
