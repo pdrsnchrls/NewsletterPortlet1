@@ -18,29 +18,17 @@ import com.liferay.amf.search.results.service.base.DataEntryLocalServiceBaseImpl
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.Address;
 import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.search.Document;
-import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.Hits;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchContext;
-import com.liferay.portal.kernel.search.SearchContextFactory;
 import com.liferay.portal.kernel.search.SearchException;
-import com.liferay.portal.kernel.service.AddressLocalServiceUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.PortalUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-import javax.servlet.http.HttpServletRequest;
+import javax.portlet.EventRequest;
+import javax.portlet.EventResponse;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -69,18 +57,18 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 	 * Never reference this class directly. Use <code>com.liferay.amf.search.results.service.DataEntryLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.search.results.service.DataEntryLocalServiceUtil</code>.
 	 */
 	
-	public void getResults(RenderRequest renderRequest, RenderResponse renderResponse) 
+	public void getResults(EventRequest request, EventResponse response) 
 			throws SearchException {
-		String zip= ParamUtil.get(renderRequest, "zip", "");
+		String zip= ParamUtil.get(request, "zip", "");
 		
-		SearchContainer<User> searchContainer = new SearchContainer<User>(renderRequest, renderResponse.createRenderURL(), null, "");
+		SearchContainer<User> searchContainer = new SearchContainer<User>(request, response.createRenderURL(), null, "");
 		searchContainer.setDelta(5);
 		searchContainer.setResults(null);
 		
 		try {
 			List<User> results =  getUsers( zip , searchContainer.getStart(), searchContainer.getEnd());
-			renderRequest.setAttribute("usersSize", results.size());
-			renderRequest.setAttribute("users", results);
+			request.setAttribute("usersSize", results.size());
+			request.setAttribute("users", results);
 			System.out.println("Trying to get users");
 			
 			
@@ -88,9 +76,9 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 			searchContainer.setResults(results);
 		} catch (PortalException e) {
 			// TODO Auto-generated catch block
-			SessionErrors.add(renderRequest, "systemFailure");
+			SessionErrors.add(request, "systemFailure");
 		}
-		renderRequest.setAttribute("zip", zip);		
+		request.setAttribute("zip", zip);		
 
 	}
 	

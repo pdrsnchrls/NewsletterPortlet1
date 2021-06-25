@@ -25,8 +25,8 @@ import com.liferay.portal.kernel.transaction.Transactional;
 
 import java.util.List;
 
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
+import javax.portlet.EventRequest;
+import javax.portlet.EventResponse;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -61,8 +61,7 @@ public interface DataEntryLocalService extends BaseLocalService {
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public void getResults(
-			RenderRequest renderRequest, RenderResponse renderResponse)
+	public void getResults(EventRequest request, EventResponse response)
 		throws SearchException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

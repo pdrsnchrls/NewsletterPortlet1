@@ -55,9 +55,8 @@ import org.osgi.annotation.versioning.ProviderType;
 public class DataEntryServiceHttp {
 
 	public static void getResults(
-			HttpPrincipal httpPrincipal,
-			javax.portlet.RenderRequest renderRequest,
-			javax.portlet.RenderResponse renderResponse)
+			HttpPrincipal httpPrincipal, javax.portlet.EventRequest request,
+			javax.portlet.EventRequest response)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -66,7 +65,7 @@ public class DataEntryServiceHttp {
 				_getResultsParameterTypes0);
 
 			MethodHandler methodHandler = new MethodHandler(
-				methodKey, renderRequest, renderResponse);
+				methodKey, request, response);
 
 			try {
 				TunnelUtil.invoke(httpPrincipal, methodHandler);
@@ -93,7 +92,7 @@ public class DataEntryServiceHttp {
 	private static Log _log = LogFactoryUtil.getLog(DataEntryServiceHttp.class);
 
 	private static final Class<?>[] _getResultsParameterTypes0 = new Class[] {
-		javax.portlet.RenderRequest.class, javax.portlet.RenderResponse.class
+		javax.portlet.EventRequest.class, javax.portlet.EventRequest.class
 	};
 
 }

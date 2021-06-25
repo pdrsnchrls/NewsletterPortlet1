@@ -45,11 +45,11 @@ public class DataEntryServiceWrapper
 
 	@Override
 	public void getResults(
-			javax.portlet.RenderRequest renderRequest,
-			javax.portlet.RenderResponse renderResponse)
+			javax.portlet.EventRequest request,
+			javax.portlet.EventRequest response)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		_dataEntryService.getResults(renderRequest, renderResponse);
+		_dataEntryService.getResults(request, response);
 	}
 
 	@Override

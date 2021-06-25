@@ -23,8 +23,7 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
+import javax.portlet.EventRequest;
 
 import org.osgi.annotation.versioning.ProviderType;
 
@@ -60,8 +59,7 @@ public interface DataEntryService extends BaseService {
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public void getResults(
-			RenderRequest renderRequest, RenderResponse renderResponse)
+	public void getResults(EventRequest request, EventRequest response)
 		throws PortalException;
 
 }

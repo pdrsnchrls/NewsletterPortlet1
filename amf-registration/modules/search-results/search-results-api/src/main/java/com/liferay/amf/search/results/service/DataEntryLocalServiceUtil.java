@@ -50,11 +50,11 @@ public class DataEntryLocalServiceUtil {
 	}
 
 	public static void getResults(
-			javax.portlet.RenderRequest renderRequest,
-			javax.portlet.RenderResponse renderResponse)
+			javax.portlet.EventRequest request,
+			javax.portlet.EventResponse response)
 		throws com.liferay.portal.kernel.search.SearchException {
 
-		getService().getResults(renderRequest, renderResponse);
+		getService().getResults(request, response);
 	}
 
 	public static java.util.List<com.liferay.portal.kernel.model.User> getUsers(
