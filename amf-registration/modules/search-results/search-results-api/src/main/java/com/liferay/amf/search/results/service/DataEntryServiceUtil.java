@@ -51,7 +51,7 @@ public class DataEntryServiceUtil {
 
 	public static void getResults(
 			javax.portlet.EventRequest request,
-			javax.portlet.EventRequest response)
+			javax.portlet.EventResponse response)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		getService().getResults(request, response);

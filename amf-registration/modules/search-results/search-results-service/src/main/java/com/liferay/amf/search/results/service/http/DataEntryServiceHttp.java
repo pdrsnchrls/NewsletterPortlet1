@@ -56,7 +56,7 @@ public class DataEntryServiceHttp {
 
 	public static void getResults(
 			HttpPrincipal httpPrincipal, javax.portlet.EventRequest request,
-			javax.portlet.EventRequest response)
+			javax.portlet.EventResponse response)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
@@ -92,7 +92,7 @@ public class DataEntryServiceHttp {
 	private static Log _log = LogFactoryUtil.getLog(DataEntryServiceHttp.class);
 
 	private static final Class<?>[] _getResultsParameterTypes0 = new Class[] {
-		javax.portlet.EventRequest.class, javax.portlet.EventRequest.class
+		javax.portlet.EventRequest.class, javax.portlet.EventResponse.class
 	};
 
 }

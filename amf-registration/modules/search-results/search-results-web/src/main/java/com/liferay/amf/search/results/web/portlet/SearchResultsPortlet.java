@@ -44,7 +44,6 @@ public class SearchResultsPortlet extends MVCPortlet {
 		System.out.println("Hello Nelly!");
 		try {
 			_dataEntryService.getResults(request, response);
-			super.doView(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			SessionErrors.add(request, "systemFailure");
