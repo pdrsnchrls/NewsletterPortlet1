@@ -47,7 +47,7 @@ public class SearchResultsPortlet extends MVCPortlet {
 		// get zip from request
 		Event event = request.getEvent();
 		String zipCode = (String)event.getValue();
-		response.setRenderParameter("zipCode", zipCode);
+		response.setRenderParameter("zip", zipCode);
 		response.setRenderParameter("mvcRenderCommandName", "/search-results/view");
 		
 	}

@@ -34,9 +34,16 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 		// TODO Auto-generated method stub
 		//code for render request/set attribute - calling local service here
 		
-		String zipCode = request.getParameter("zipCode");
+		String zipCode = request.getParameter("zip");
 		SearchContainer<User> searchContainer = new SearchContainer<User>();
 		searchContainer.setDelta(5);
+		
+		//calculate start and end
+		int page = searchContainer.getCur() + 1;
+		int delta = searchContainer.getDelta();
+		
+		int end = page*delta;
+		int start = end-delta;
 		
 		System.out.println("In render command. The ZIP Code is " + zipCode);
 
@@ -45,7 +52,7 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 		try {
 			User user = PortalUtil.getUser(request);
 			long groupId = user.getGroupId();
-			results = _dataEntryService.getPermission(groupId, zipCode);
+			results = _dataEntryService.getPermission(groupId, zipCode, start, end); // should send in start, end and page uwu
 			
 			searchContainer.setResults(results);
 		}
@@ -54,6 +61,7 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 		}
 		//set searchContainer
 		request.setAttribute("searchContainer", searchContainer);
+		request.setAttribute("zip", zipCode);
 		
 
 		
