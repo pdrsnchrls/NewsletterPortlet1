@@ -17,7 +17,7 @@
         
         <!-- Order -->
         <order by="desc">
-        	<order-column name="IssueDate" />
+        	<order-column name="issueDate" />
         </order>
         
     </entity>
@@ -33,7 +33,7 @@
         
         <!-- Order -->
         <order by="desc">
-        	<order-column name="Order" />
+        	<order-column name="order" />
         </order>
         
         <!-- Finders -->

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping auto-import="false" default-lazy="false">
+	<import class="com.liferay.amf.newsletter.model.Issue" />
+	<import class="com.liferay.amf.newsletter.model.Newsletter" />
+	<class name="com.liferay.amf.newsletter.model.impl.IssueImpl" table="Newsletter_Issue">
+		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="issueId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="issueNumber" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="issueDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.liferay.amf.newsletter.model.impl.NewsletterImpl" table="Newsletter_Newsletter">
+		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="newsletterId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="issueId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="author" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" column="order_" name="order" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>

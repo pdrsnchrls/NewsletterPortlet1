@@ -1,0 +1,1 @@
+create index IX_82BA9B9F on Newsletter_Newsletter (issueId);
