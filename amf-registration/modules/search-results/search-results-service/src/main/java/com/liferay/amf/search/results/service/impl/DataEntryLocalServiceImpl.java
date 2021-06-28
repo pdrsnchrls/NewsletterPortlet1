@@ -85,10 +85,10 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 		
 		if (!zip.isEmpty()) {
 			// get a list of all the addresses in db - might want to change?
-			List<Address> addresses = addressLocalService.getAddresses();
 			int count = start; // counter variable for page
 			int i = tracker.getTracker();
-			
+			List<Address> addresses = addressLocalService.getAddresses();
+
 			while (count < end) {
 				if (i < addresses.size()) { // to ensure there are no bounds errors
 					Address temp = addresses.get(i);

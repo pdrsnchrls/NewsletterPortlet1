@@ -32,6 +32,8 @@ import org.osgi.service.component.annotations.Reference;
 	)
 public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 
+	public Tracker tracker = new Tracker();
+
 	@Override
 	public String render(RenderRequest request, RenderResponse response) throws PortletException {
 		// TODO Auto-generated method stub
@@ -57,7 +59,6 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 
 		System.out.println("Start: " + start + " End: " + end + " Delta: " + delta + " Current: " + page);
 		// cur, delta variables to calculate start and end
-		Tracker tracker = new Tracker();
 		List<User> results = new ArrayList<User>();
 		int usersSize = 0;
 		try {
