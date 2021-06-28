@@ -7,16 +7,6 @@
 		for ${ zip }
 	</c:if>
 </p>
- 
-<!-- <liferay-portlet:renderURL varImpl="iteratorURL" >
-	<portlet:param name="mvcPath" value="search-results-view.jsp" />
-</liferay-portlet:renderURL>
- iteratorURL="${iteratorURL }"
-<!--
-iteratorURL="<=iteratorURL %>" scriplets
-
- -->
-
 
 <liferay-ui:search-container searchContainer="${searchContainer }" >
   

@@ -55,9 +55,6 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 		int end = page*delta;
 		int start = end-delta;
 		
-		System.out.println("In render command. The ZIP Code is " + zipCode);
-
-		System.out.println("Start: " + start + " End: " + end + " Delta: " + delta + " Current: " + page);
 		// cur, delta variables to calculate start and end
 		List<User> results = new ArrayList<User>();
 		int usersSize = 0;

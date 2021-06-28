@@ -105,7 +105,6 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 				}
 			}
 			if (count >= end) {
-				System.out.println("Hey");
 				tracker.setTracker(i);
 			}
 		}
