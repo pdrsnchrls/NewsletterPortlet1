@@ -2,6 +2,7 @@ package com.liferay.amf.search.results.web.portlet.action;
 
 import com.liferay.amf.search.results.service.DataEntryLocalService;
 import com.liferay.amf.search.results.service.DataEntryService;
+import com.liferay.amf.search.results.service.Tracker;
 import com.liferay.amf.search.results.web.constants.SearchResultsPortletKeys;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -56,12 +57,13 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 
 		System.out.println("Start: " + start + " End: " + end + " Delta: " + delta + " Current: " + page);
 		// cur, delta variables to calculate start and end
+		Tracker tracker = new Tracker();
 		List<User> results = new ArrayList<User>();
 		int usersSize = 0;
 		try {
 			User user = PortalUtil.getUser(request);
 			long groupId = user.getGroupId();
-			results = _dataEntryService.getPermission(groupId, zipCode, start, end); // should send in start, end and page uwu
+			results = _dataEntryService.getPermission(groupId, zipCode, start, end, tracker); // should send in start, end and page uwu
 			usersSize = _dataEntryLocalService.getUsersSize(zipCode);
 
 			searchContainer.setResults(results);

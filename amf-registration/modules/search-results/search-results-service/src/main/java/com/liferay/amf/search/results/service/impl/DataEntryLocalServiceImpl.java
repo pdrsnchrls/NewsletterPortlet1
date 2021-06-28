@@ -100,13 +100,13 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 					i++;
 				}
 				else {
-					tracker.setTracker(i);
+					tracker.setTracker(0);
 					break; // breaks while loop when out of bounds
 				}
 			}
-			if (count > end) {
+			if (count >= end) {
 				System.out.println("Hey");
-				tracker.setTracker(0);
+				tracker.setTracker(i);
 			}
 		}
 		
