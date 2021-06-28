@@ -77,7 +77,7 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 	}
 	
 	// get users with a range
-	public List<User> getUsers(String zip, int start, int end) throws PortalException {
+	public List<User> getUsers(String zip, int start, int end, Tracker tracker) throws PortalException {
 		
 		List<User> results = new ArrayList();
 		
@@ -85,7 +85,7 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 			// get a list of all the addresses in db - might want to change?
 			List<Address> addresses = addressLocalService.getAddresses();
 			int count = start; // counter variable for page
-			int i = start; // this won't work always - it will start at 0, 5, 10 and look through the addresses...
+			int i = tracker.getTracker();
 			
 			while (count < end) {
 				if (i < addresses.size()) { // to ensure there are no bounds errors
@@ -97,13 +97,18 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 					}
 					i++;
 				}
-				else
+				else {
+					tracker.setTracker(i);
 					break; // breaks while loop when out of bounds
+				}
+			}
+			if (count > end) {
+				System.out.println("Hey");
+				tracker.setTracker(0);
 			}
 		}
 		
 		return results;
 	}
-	
 	
 }
