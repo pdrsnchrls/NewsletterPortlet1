@@ -62,7 +62,7 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 		//set searchContainer
 		request.setAttribute("searchContainer", searchContainer);
 		request.setAttribute("zip", zipCode);
-		
+		request.setAttribute("usersSize", _dataEntryLocalService.getUsersSize(zipCode));
 
 		
 		return null;
@@ -70,5 +70,6 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 	@Reference
 	protected DataEntryService _dataEntryService;
 
-	
+	@Reference
+	protected DataEntryLocalService _dataEntryLocalService;
 }

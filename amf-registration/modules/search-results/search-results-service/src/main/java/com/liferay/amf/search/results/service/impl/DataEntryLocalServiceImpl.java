@@ -58,7 +58,7 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 	 * Never reference this class directly. Use <code>com.liferay.amf.search.results.service.DataEntryLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.search.results.service.DataEntryLocalServiceUtil</code>.
 	 */
 	
-	public List<User> getUsers(String zip) throws PortalException {
+	public int getUsersSize(String zip) throws PortalException {
 		
 		System.out.println("Get those users... no range tho");
 		List<User> results = new ArrayList();
@@ -74,7 +74,7 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 		}
 		//userId in Address and Address.zip = zip;
 
-		return results;
+		return results.size();
 	}
 	
 	// get users with a range
