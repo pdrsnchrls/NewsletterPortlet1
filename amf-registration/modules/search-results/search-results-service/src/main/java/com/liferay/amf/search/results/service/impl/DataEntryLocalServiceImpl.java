@@ -60,7 +60,6 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 	
 	public int getUsersSize(String zip) throws PortalException {
 		
-		System.out.println("Get those users... no range tho");
 		List<User> results = new ArrayList();
 		if (!zip.isEmpty()) {
 			List<Address> addresses = addressLocalService.getAddresses();

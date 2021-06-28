@@ -52,6 +52,4 @@ public class SearchResultsPortlet extends MVCPortlet {
 		
 	}
 
-	@Reference
-	protected DataEntryService _dataEntryService;
 }

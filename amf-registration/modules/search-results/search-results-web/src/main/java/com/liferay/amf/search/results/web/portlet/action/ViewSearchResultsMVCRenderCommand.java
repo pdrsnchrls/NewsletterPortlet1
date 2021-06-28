@@ -7,12 +7,14 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.portlet.PortletException;
+import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -35,11 +37,16 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 		//code for render request/set attribute - calling local service here
 		
 		String zipCode = request.getParameter("zip");
-		SearchContainer<User> searchContainer = new SearchContainer<User>();
-		searchContainer.setDelta(5);
+		PortletURL iteratorURL = response.createRenderURL();
+		iteratorURL.setParameter("mvcRenderCommandName", "/search-results/view");
+		iteratorURL.setParameter("zip", zipCode);
+		
+		SearchContainer<User> searchContainer = new SearchContainer<User>(	request, null, null, 
+				SearchContainer.DEFAULT_CUR_PARAM, 5, iteratorURL, null,
+				"no-results-found-please-try-a-different-search-criteria");
 		
 		//calculate start and end
-		int page = searchContainer.getCur() + 1;
+		int page = ParamUtil.getInteger(request, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_CUR);
 		int delta = searchContainer.getDelta();
 		
 		int end = page*delta;
@@ -47,6 +54,7 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 		
 		System.out.println("In render command. The ZIP Code is " + zipCode);
 
+		System.out.println("Start: " + start + " End: " + end + " Delta: " + delta + " Current: " + page);
 		// cur, delta variables to calculate start and end
 		List<User> results = new ArrayList<User>();
 		int usersSize = 0;
@@ -55,8 +63,9 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 			long groupId = user.getGroupId();
 			results = _dataEntryService.getPermission(groupId, zipCode, start, end); // should send in start, end and page uwu
 			usersSize = _dataEntryLocalService.getUsersSize(zipCode);
-			
+
 			searchContainer.setResults(results);
+			searchContainer.setTotal(usersSize);
 		}
 		catch (PortalException e) {
 			e.printStackTrace();
@@ -64,8 +73,6 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 		//set searchContainer
 		request.setAttribute("searchContainer", searchContainer);
 		request.setAttribute("zip", zipCode);
-		request.setAttribute("usersSize", usersSize);
-
 		
 		return null;
 	}
