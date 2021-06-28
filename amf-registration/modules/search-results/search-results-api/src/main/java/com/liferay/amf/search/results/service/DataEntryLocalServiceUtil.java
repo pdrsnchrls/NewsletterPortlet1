@@ -50,17 +50,16 @@ public class DataEntryLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.portal.kernel.model.User> getUsers(
-			String zip)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return getService().getUsers(zip);
-	}
-
-	public static java.util.List<com.liferay.portal.kernel.model.User> getUsers(
 			String zip, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getUsers(zip, start, end);
+	}
+
+	public static int getUsersSize(String zip)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().getUsersSize(zip);
 	}
 
 	public static DataEntryLocalService getService() {

@@ -57,10 +57,10 @@ public interface DataEntryLocalService extends BaseLocalService {
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<User> getUsers(String zip) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<User> getUsers(String zip, int start, int end)
 		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getUsersSize(String zip) throws PortalException;
 
 }

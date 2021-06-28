@@ -47,18 +47,17 @@ public class DataEntryLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.portal.kernel.model.User> getUsers(
-			String zip)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return _dataEntryLocalService.getUsers(zip);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.kernel.model.User> getUsers(
 			String zip, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _dataEntryLocalService.getUsers(zip, start, end);
+	}
+
+	@Override
+	public int getUsersSize(String zip)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _dataEntryLocalService.getUsersSize(zip);
 	}
 
 	@Override

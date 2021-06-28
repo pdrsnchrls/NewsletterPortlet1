@@ -49,10 +49,12 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 
 		// cur, delta variables to calculate start and end
 		List<User> results = new ArrayList<User>();
+		int usersSize = 0;
 		try {
 			User user = PortalUtil.getUser(request);
 			long groupId = user.getGroupId();
 			results = _dataEntryService.getPermission(groupId, zipCode, start, end); // should send in start, end and page uwu
+			usersSize = _dataEntryLocalService.getUsersSize(zipCode);
 			
 			searchContainer.setResults(results);
 		}
@@ -62,7 +64,7 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand{
 		//set searchContainer
 		request.setAttribute("searchContainer", searchContainer);
 		request.setAttribute("zip", zipCode);
-		request.setAttribute("usersSize", _dataEntryLocalService.getUsersSize(zipCode));
+		request.setAttribute("usersSize", usersSize);
 
 		
 		return null;
