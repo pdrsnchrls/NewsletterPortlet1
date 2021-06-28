@@ -60,7 +60,8 @@ public interface DataEntryService extends BaseService {
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<User> getPermission(long groupId, String zip)
+	public List<User> getPermission(
+			long groupId, String zip, int start, int end)
 		throws PortalException;
 
 }

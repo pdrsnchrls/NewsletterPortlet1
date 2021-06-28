@@ -54,12 +54,12 @@ import org.osgi.annotation.versioning.ProviderType;
 public class DataEntryServiceSoap {
 
 	public static com.liferay.portal.kernel.model.User[] getPermission(
-			long groupId, String zip)
+			long groupId, String zip, int start, int end)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.portal.kernel.model.User> returnValue =
-				DataEntryServiceUtil.getPermission(groupId, zip);
+				DataEntryServiceUtil.getPermission(groupId, zip, start, end);
 
 			return returnValue.toArray(
 				new com.liferay.portal.kernel.model.User[returnValue.size()]);
