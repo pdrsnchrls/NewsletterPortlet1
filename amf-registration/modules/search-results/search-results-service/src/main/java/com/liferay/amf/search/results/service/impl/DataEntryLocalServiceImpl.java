@@ -15,6 +15,7 @@
 package com.liferay.amf.search.results.service.impl;
 
 import com.liferay.amf.search.results.service.base.DataEntryLocalServiceBaseImpl;
+import com.liferay.amf.search.results.service.Tracker;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -23,6 +24,7 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,5 +112,5 @@ public class DataEntryLocalServiceImpl extends DataEntryLocalServiceBaseImpl {
 		
 		return results;
 	}
-	
+
 }

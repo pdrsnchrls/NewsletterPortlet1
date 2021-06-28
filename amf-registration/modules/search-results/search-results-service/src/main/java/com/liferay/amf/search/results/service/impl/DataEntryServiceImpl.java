@@ -15,6 +15,7 @@
 package com.liferay.amf.search.results.service.impl;
 
 import com.liferay.amf.search.results.service.DataEntryLocalService;
+import com.liferay.amf.search.results.service.Tracker;
 import com.liferay.amf.search.results.service.base.DataEntryServiceBaseImpl;
 import com.liferay.amf.search.results.service.internal.security.permission.resource.SearchResultsPermission;
 import com.liferay.portal.aop.AopService;

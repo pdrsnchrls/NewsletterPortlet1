@@ -1,4 +1,4 @@
-package com.liferay.amf.search.results.service.impl;
+package com.liferay.amf.search.results.service;
 
 public class Tracker {
 
