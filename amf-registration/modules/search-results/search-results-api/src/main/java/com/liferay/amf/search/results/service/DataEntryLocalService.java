@@ -57,7 +57,7 @@ public interface DataEntryLocalService extends BaseLocalService {
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<User> getUsers(String zip, int start, int end)
+	public List<User> getUsers(String zip, int start, int end, Tracker tracker)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
