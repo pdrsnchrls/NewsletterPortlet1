@@ -17,6 +17,8 @@ package com.liferay.amf.newsletter.service.impl;
 import com.liferay.amf.newsletter.service.base.NewsletterLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
 
+import java.util.HashMap;
+
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -49,10 +51,36 @@ public class NewsletterLocalServiceImpl extends NewsletterLocalServiceBaseImpl {
 		//parse newsletter content to get issue_number, order_number, newsletter_title, newsletter_author, newsletter_content
 		// search for name="title" then search for [CDATA[Everything here should be grabbed by
 		//        program for respective title]
-		
-		String[] content = articleContent.split("</dynamic-element>");
+		String[] content = articleContent.split("</dynamic-element>", 5);
 		for (String t: content)
-			System.out.println("Content: " + t);
+			System.out.println("Content: " + t + "\nLength:" + t.length());
+		System.out.println("Index: " + content[0].indexOf("name=\"") + " " + content[0].charAt(97));
+		
+		String[] key = new String[content.length];
+		String value = "", item, searchName = "name=\""; //String to search content for
+		Character stopChar = '\"';
+		int i = 0;
+		for (String c : content) {
+			key[i]=splitString(c, searchName, stopChar);
+			i++;
+		}
+		
+		HashMap<String, String> contentData = new HashMap<String, String>(); // a hashmap to store the data
+		
+	}
+	
+	public String splitString(String string, String searchName, Character stopChar) {
+
+		String result = "";
+		int location = string.indexOf(searchName) + searchName.length();
+		Character charValue = string.charAt(location);
+		while (!charValue.equals(stopChar)) {
+			result += charValue;
+			location++;
+			charValue = string.charAt(location);
+		}
+		
+		return result;
 	}
 
 
