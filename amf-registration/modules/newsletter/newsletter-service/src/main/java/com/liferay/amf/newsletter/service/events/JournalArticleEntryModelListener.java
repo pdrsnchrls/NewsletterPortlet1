@@ -2,9 +2,8 @@ package com.liferay.amf.newsletter.service.events;
 
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.ModelListener;
-import com.liferay.journal.model.JournalArticleModel;
 import org.osgi.service.component.annotations.Component;
-
+import com.liferay.portal.journal.JournalArticle;
 
 @Component(
 	immediate=true,

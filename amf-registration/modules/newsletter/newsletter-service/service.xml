@@ -44,5 +44,6 @@
     
     <reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
     <reference package-path="com.liferay.portlet.asset" entity="AssetLink" />
+   	<reference entity="JournalArticle" package-path="com.liferay.portlet.journal" />
     
 </service-builder>
