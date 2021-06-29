@@ -36,7 +36,7 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 			System.out.println("Newsletter Content: " + articleContent);
 
 			//parse newsletter content to get issue_number, order_number, newsletter_title, newsletter_author, newsletter_content
-			//_newsletterLocalService.parseContent(articleContent);
+			_newsletterLocalService.parseContent(articleContent);
 		}
 		else if(structureName.contains("Issue")) {
 			// web content is issue
