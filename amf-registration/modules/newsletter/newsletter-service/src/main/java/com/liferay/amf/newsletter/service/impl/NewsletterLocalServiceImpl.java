@@ -43,4 +43,17 @@ public class NewsletterLocalServiceImpl extends NewsletterLocalServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Use <code>com.liferay.amf.newsletter.service.NewsletterLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.newsletter.service.NewsletterLocalServiceUtil</code>.
 	 */
+
+	public void parseContent(String articleContent) {
+		
+		//parse newsletter content to get issue_number, order_number, newsletter_title, newsletter_author, newsletter_content
+		// search for name="title" then search for [CDATA[Everything here should be grabbed by
+		//        program for respective title]
+		
+		String[] content = articleContent.split("</dynamic-element>");
+		for (String t: content)
+			System.out.println("Content: " + t);
+	}
+
+
 }
