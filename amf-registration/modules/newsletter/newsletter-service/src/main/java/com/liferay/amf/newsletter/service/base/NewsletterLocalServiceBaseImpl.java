@@ -395,6 +395,10 @@ public abstract class NewsletterLocalServiceBaseImpl
 		counterLocalService;
 
 	@Reference
+	protected com.liferay.journal.service.JournalArticleLocalService
+		journalArticleLocalService;
+
+	@Reference
 	protected com.liferay.portal.kernel.service.ClassNameLocalService
 		classNameLocalService;
 

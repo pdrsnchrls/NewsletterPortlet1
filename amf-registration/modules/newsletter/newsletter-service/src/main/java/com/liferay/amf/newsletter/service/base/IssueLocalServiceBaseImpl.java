@@ -388,6 +388,10 @@ public abstract class IssueLocalServiceBaseImpl
 		counterLocalService;
 
 	@Reference
+	protected com.liferay.journal.service.JournalArticleLocalService
+		journalArticleLocalService;
+
+	@Reference
 	protected com.liferay.portal.kernel.service.ClassNameLocalService
 		classNameLocalService;
 

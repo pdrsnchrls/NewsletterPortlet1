@@ -18,7 +18,9 @@
         <!-- Order -->
         <order by="desc">
         	<order-column name="issueDate" />
-        </order>        
+        </order> 
+       	<reference entity="JournalArticle" package-path="com.liferay.journal" />
+               
     </entity>
     
     <entity name="Newsletter" local-service="true">
@@ -39,11 +41,8 @@
        	<finder name="IssueId" return-type="Collection">
 	    	<finder-column name="issueId"></finder-column>
 	    </finder>
+	    <reference entity="JournalArticle" package-path="com.liferay.journal" />
 	    
     </entity>
-    
-    <reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
-    <reference package-path="com.liferay.portlet.asset" entity="AssetLink" />
-   	<reference entity="JournalArticle" package-path="com.liferay.portlet.journal" />
     
 </service-builder>
