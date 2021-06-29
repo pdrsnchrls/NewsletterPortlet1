@@ -1,5 +1,9 @@
 <%@ include file="/init.jsp" %>
 
-<p>
-	<b><liferay-ui:message key="newsletter.caption"/></b>
-</p>
+<liferay-ui:tabs names="2018,2019,2020" param="tabs" type="tabs nav-tabs-default" refresh="false">
+	<c:forEach var="i" begin="0" end="3">
+		<liferay-ui:section>
+			<%@ include file="/years.jspf" %>
+		</liferay-ui:section>
+	</c:forEach>
+</liferay-ui:tabs>
