@@ -52,20 +52,23 @@ public class NewsletterLocalServiceImpl extends NewsletterLocalServiceBaseImpl {
 		// search for name="title" then search for [CDATA[Everything here should be grabbed by
 		//        program for respective title]
 		String[] content = articleContent.split("</dynamic-element>", 5);
-		for (String t: content)
-			System.out.println("Content: " + t + "\nLength:" + t.length());
-		System.out.println("Index: " + content[0].indexOf("name=\"") + " " + content[0].charAt(97));
 		
-		String[] key = new String[content.length];
-		String value = "", item, searchName = "name=\""; //String to search content for
-		Character stopChar = '\"';
+		HashMap<String, String> contentData = new HashMap<String, String>(); // a hashmap to store the data
+
+		String[] key = new String[content.length], value = new String[content.length];
+		String keySearchName = "name=\"", valueSearchName = "CDATA["; //String to search content for
+		Character keyStopChar = '\"', valueStopChar = ']';
+		
 		int i = 0;
 		for (String c : content) {
-			key[i]=splitString(c, searchName, stopChar);
+			key[i]=splitString(c, keySearchName, keyStopChar);
+			value[i]=splitString(c, valueSearchName, valueStopChar);
+			contentData.put(key[i], value[i]);
 			i++;
 		}
 		
-		HashMap<String, String> contentData = new HashMap<String, String>(); // a hashmap to store the data
+		for (HashMap.Entry<String, String> e : contentData.entrySet())
+            System.out.println("Key: " + e.getKey()+ " Value: " + e.getValue());
 		
 	}
 	
@@ -79,7 +82,6 @@ public class NewsletterLocalServiceImpl extends NewsletterLocalServiceBaseImpl {
 			location++;
 			charValue = string.charAt(location);
 		}
-		
 		return result;
 	}
 

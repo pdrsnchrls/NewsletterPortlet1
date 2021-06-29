@@ -42,10 +42,9 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 			// web content is issue
 			issueType = true;
 			System.out.println("Issue Content: " + articleContent);
-			// search for name="title" then search for [CDATA[Everything here should be grabbed by
-			//        program for respective title]
 			
 			//parse issue content to get issue_number, issue_title, issue_description, issue_date, byline
+			_newsletterLocalService.parseContent(articleContent);
 		}
 		else {
 			System.out.print("Irrelevant journal article creation");
