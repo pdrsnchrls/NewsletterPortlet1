@@ -272,11 +272,6 @@ public class NewsletterLocalServiceWrapper
 		return _newsletterLocalService.getPersistedModel(primaryKeyObj);
 	}
 
-	@Override
-	public void parseContent(String articleContent) {
-		_newsletterLocalService.parseContent(articleContent);
-	}
-
 	/**
 	 * Updates the newsletter in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
