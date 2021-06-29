@@ -18,8 +18,7 @@
         <!-- Order -->
         <order by="desc">
         	<order-column name="issueDate" />
-        </order>
-        
+        </order>        
     </entity>
     
     <entity name="Newsletter" local-service="true">
@@ -42,4 +41,8 @@
 	    </finder>
 	    
     </entity>
+    
+    <reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+    <reference package-path="com.liferay.portlet.asset" entity="AssetLink" />
+    
 </service-builder>
