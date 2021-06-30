@@ -61,7 +61,7 @@ public class IssueWrapper
 			setIssueId(issueId);
 		}
 
-		Integer issueNumber = (Integer)attributes.get("issueNumber");
+		Long issueNumber = (Long)attributes.get("issueNumber");
 
 		if (issueNumber != null) {
 			setIssueNumber(issueNumber);
@@ -122,7 +122,7 @@ public class IssueWrapper
 	 * @return the issue number of this issue
 	 */
 	@Override
-	public int getIssueNumber() {
+	public long getIssueNumber() {
 		return model.getIssueNumber();
 	}
 
@@ -187,7 +187,7 @@ public class IssueWrapper
 	 * @param issueNumber the issue number of this issue
 	 */
 	@Override
-	public void setIssueNumber(int issueNumber) {
+	public void setIssueNumber(long issueNumber) {
 		model.setIssueNumber(issueNumber);
 	}
 

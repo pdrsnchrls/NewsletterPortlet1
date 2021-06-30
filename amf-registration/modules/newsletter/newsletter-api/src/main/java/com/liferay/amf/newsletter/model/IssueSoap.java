@@ -99,11 +99,11 @@ public class IssueSoap implements Serializable {
 		_issueId = issueId;
 	}
 
-	public int getIssueNumber() {
+	public long getIssueNumber() {
 		return _issueNumber;
 	}
 
-	public void setIssueNumber(int issueNumber) {
+	public void setIssueNumber(long issueNumber) {
 		_issueNumber = issueNumber;
 	}
 
@@ -132,7 +132,7 @@ public class IssueSoap implements Serializable {
 	}
 
 	private long _issueId;
-	private int _issueNumber;
+	private long _issueNumber;
 	private String _title;
 	private String _description;
 	private Date _issueDate;

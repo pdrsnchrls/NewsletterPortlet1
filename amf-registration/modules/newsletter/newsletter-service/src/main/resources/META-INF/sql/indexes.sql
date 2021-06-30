@@ -1,1 +1,1 @@
-create index IX_82BA9B9F on Newsletter_Newsletter (issueId);
+create index IX_27C43D4D on Newsletter_Newsletter (issueNumber);

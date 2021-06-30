@@ -42,37 +42,37 @@ public interface NewsletterPersistence extends BasePersistence<Newsletter> {
 	 */
 
 	/**
-	 * Returns all the newsletters where issueId = &#63;.
+	 * Returns all the newsletters where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @return the matching newsletters
 	 */
-	public java.util.List<Newsletter> findByIssueId(long issueId);
+	public java.util.List<Newsletter> findByIssueNumber(long issueNumber);
 
 	/**
-	 * Returns a range of all the newsletters where issueId = &#63;.
+	 * Returns a range of all the newsletters where issueNumber = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>NewsletterModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param start the lower bound of the range of newsletters
 	 * @param end the upper bound of the range of newsletters (not inclusive)
 	 * @return the range of matching newsletters
 	 */
-	public java.util.List<Newsletter> findByIssueId(
-		long issueId, int start, int end);
+	public java.util.List<Newsletter> findByIssueNumber(
+		long issueNumber, int start, int end);
 
 	/**
-	 * Returns an ordered range of all the newsletters where issueId = &#63;.
+	 * Returns an ordered range of all the newsletters where issueNumber = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>NewsletterModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByIssueId(long, int, int, OrderByComparator)}
-	 * @param issueId the issue ID
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByIssueNumber(long, int, int, OrderByComparator)}
+	 * @param issueNumber the issue number
 	 * @param start the lower bound of the range of newsletters
 	 * @param end the upper bound of the range of newsletters (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
@@ -80,100 +80,100 @@ public interface NewsletterPersistence extends BasePersistence<Newsletter> {
 	 * @return the ordered range of matching newsletters
 	 */
 	@Deprecated
-	public java.util.List<Newsletter> findByIssueId(
-		long issueId, int start, int end,
+	public java.util.List<Newsletter> findByIssueNumber(
+		long issueNumber, int start, int end,
 		OrderByComparator<Newsletter> orderByComparator,
 		boolean useFinderCache);
 
 	/**
-	 * Returns an ordered range of all the newsletters where issueId = &#63;.
+	 * Returns an ordered range of all the newsletters where issueNumber = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>NewsletterModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param start the lower bound of the range of newsletters
 	 * @param end the upper bound of the range of newsletters (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching newsletters
 	 */
-	public java.util.List<Newsletter> findByIssueId(
-		long issueId, int start, int end,
+	public java.util.List<Newsletter> findByIssueNumber(
+		long issueNumber, int start, int end,
 		OrderByComparator<Newsletter> orderByComparator);
 
 	/**
-	 * Returns the first newsletter in the ordered set where issueId = &#63;.
+	 * Returns the first newsletter in the ordered set where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching newsletter
 	 * @throws NoSuchNewsletterException if a matching newsletter could not be found
 	 */
-	public Newsletter findByIssueId_First(
-			long issueId, OrderByComparator<Newsletter> orderByComparator)
+	public Newsletter findByIssueNumber_First(
+			long issueNumber, OrderByComparator<Newsletter> orderByComparator)
 		throws NoSuchNewsletterException;
 
 	/**
-	 * Returns the first newsletter in the ordered set where issueId = &#63;.
+	 * Returns the first newsletter in the ordered set where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching newsletter, or <code>null</code> if a matching newsletter could not be found
 	 */
-	public Newsletter fetchByIssueId_First(
-		long issueId, OrderByComparator<Newsletter> orderByComparator);
+	public Newsletter fetchByIssueNumber_First(
+		long issueNumber, OrderByComparator<Newsletter> orderByComparator);
 
 	/**
-	 * Returns the last newsletter in the ordered set where issueId = &#63;.
+	 * Returns the last newsletter in the ordered set where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching newsletter
 	 * @throws NoSuchNewsletterException if a matching newsletter could not be found
 	 */
-	public Newsletter findByIssueId_Last(
-			long issueId, OrderByComparator<Newsletter> orderByComparator)
+	public Newsletter findByIssueNumber_Last(
+			long issueNumber, OrderByComparator<Newsletter> orderByComparator)
 		throws NoSuchNewsletterException;
 
 	/**
-	 * Returns the last newsletter in the ordered set where issueId = &#63;.
+	 * Returns the last newsletter in the ordered set where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching newsletter, or <code>null</code> if a matching newsletter could not be found
 	 */
-	public Newsletter fetchByIssueId_Last(
-		long issueId, OrderByComparator<Newsletter> orderByComparator);
+	public Newsletter fetchByIssueNumber_Last(
+		long issueNumber, OrderByComparator<Newsletter> orderByComparator);
 
 	/**
-	 * Returns the newsletters before and after the current newsletter in the ordered set where issueId = &#63;.
+	 * Returns the newsletters before and after the current newsletter in the ordered set where issueNumber = &#63;.
 	 *
 	 * @param newsletterId the primary key of the current newsletter
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next newsletter
 	 * @throws NoSuchNewsletterException if a newsletter with the primary key could not be found
 	 */
-	public Newsletter[] findByIssueId_PrevAndNext(
-			long newsletterId, long issueId,
+	public Newsletter[] findByIssueNumber_PrevAndNext(
+			long newsletterId, long issueNumber,
 			OrderByComparator<Newsletter> orderByComparator)
 		throws NoSuchNewsletterException;
 
 	/**
-	 * Removes all the newsletters where issueId = &#63; from the database.
+	 * Removes all the newsletters where issueNumber = &#63; from the database.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 */
-	public void removeByIssueId(long issueId);
+	public void removeByIssueNumber(long issueNumber);
 
 	/**
-	 * Returns the number of newsletters where issueId = &#63;.
+	 * Returns the number of newsletters where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @return the number of matching newsletters
 	 */
-	public int countByIssueId(long issueId);
+	public int countByIssueNumber(long issueNumber);
 
 	/**
 	 * Caches the newsletter in the entity cache if it is enabled.

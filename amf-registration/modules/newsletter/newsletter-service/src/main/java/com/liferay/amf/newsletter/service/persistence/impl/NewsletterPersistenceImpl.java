@@ -88,48 +88,50 @@ public class NewsletterPersistenceImpl
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
-	private FinderPath _finderPathWithPaginationFindByIssueId;
-	private FinderPath _finderPathWithoutPaginationFindByIssueId;
-	private FinderPath _finderPathCountByIssueId;
+	private FinderPath _finderPathWithPaginationFindByIssueNumber;
+	private FinderPath _finderPathWithoutPaginationFindByIssueNumber;
+	private FinderPath _finderPathCountByIssueNumber;
 
 	/**
-	 * Returns all the newsletters where issueId = &#63;.
+	 * Returns all the newsletters where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @return the matching newsletters
 	 */
 	@Override
-	public List<Newsletter> findByIssueId(long issueId) {
-		return findByIssueId(
-			issueId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<Newsletter> findByIssueNumber(long issueNumber) {
+		return findByIssueNumber(
+			issueNumber, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns a range of all the newsletters where issueId = &#63;.
+	 * Returns a range of all the newsletters where issueNumber = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>NewsletterModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param start the lower bound of the range of newsletters
 	 * @param end the upper bound of the range of newsletters (not inclusive)
 	 * @return the range of matching newsletters
 	 */
 	@Override
-	public List<Newsletter> findByIssueId(long issueId, int start, int end) {
-		return findByIssueId(issueId, start, end, null);
+	public List<Newsletter> findByIssueNumber(
+		long issueNumber, int start, int end) {
+
+		return findByIssueNumber(issueNumber, start, end, null);
 	}
 
 	/**
-	 * Returns an ordered range of all the newsletters where issueId = &#63;.
+	 * Returns an ordered range of all the newsletters where issueNumber = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>NewsletterModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByIssueId(long, int, int, OrderByComparator)}
-	 * @param issueId the issue ID
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByIssueNumber(long, int, int, OrderByComparator)}
+	 * @param issueNumber the issue number
 	 * @param start the lower bound of the range of newsletters
 	 * @param end the upper bound of the range of newsletters (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
@@ -138,30 +140,30 @@ public class NewsletterPersistenceImpl
 	 */
 	@Deprecated
 	@Override
-	public List<Newsletter> findByIssueId(
-		long issueId, int start, int end,
+	public List<Newsletter> findByIssueNumber(
+		long issueNumber, int start, int end,
 		OrderByComparator<Newsletter> orderByComparator,
 		boolean useFinderCache) {
 
-		return findByIssueId(issueId, start, end, orderByComparator);
+		return findByIssueNumber(issueNumber, start, end, orderByComparator);
 	}
 
 	/**
-	 * Returns an ordered range of all the newsletters where issueId = &#63;.
+	 * Returns an ordered range of all the newsletters where issueNumber = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>NewsletterModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param start the lower bound of the range of newsletters
 	 * @param end the upper bound of the range of newsletters (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching newsletters
 	 */
 	@Override
-	public List<Newsletter> findByIssueId(
-		long issueId, int start, int end,
+	public List<Newsletter> findByIssueNumber(
+		long issueNumber, int start, int end,
 		OrderByComparator<Newsletter> orderByComparator) {
 
 		boolean pagination = true;
@@ -172,12 +174,14 @@ public class NewsletterPersistenceImpl
 			(orderByComparator == null)) {
 
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByIssueId;
-			finderArgs = new Object[] {issueId};
+			finderPath = _finderPathWithoutPaginationFindByIssueNumber;
+			finderArgs = new Object[] {issueNumber};
 		}
 		else {
-			finderPath = _finderPathWithPaginationFindByIssueId;
-			finderArgs = new Object[] {issueId, start, end, orderByComparator};
+			finderPath = _finderPathWithPaginationFindByIssueNumber;
+			finderArgs = new Object[] {
+				issueNumber, start, end, orderByComparator
+			};
 		}
 
 		List<Newsletter> list = (List<Newsletter>)finderCache.getResult(
@@ -185,7 +189,7 @@ public class NewsletterPersistenceImpl
 
 		if ((list != null) && !list.isEmpty()) {
 			for (Newsletter newsletter : list) {
-				if ((issueId != newsletter.getIssueId())) {
+				if ((issueNumber != newsletter.getIssueNumber())) {
 					list = null;
 
 					break;
@@ -206,7 +210,7 @@ public class NewsletterPersistenceImpl
 
 			query.append(_SQL_SELECT_NEWSLETTER_WHERE);
 
-			query.append(_FINDER_COLUMN_ISSUEID_ISSUEID_2);
+			query.append(_FINDER_COLUMN_ISSUENUMBER_ISSUENUMBER_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(
@@ -227,7 +231,7 @@ public class NewsletterPersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(issueId);
+				qPos.add(issueNumber);
 
 				if (!pagination) {
 					list = (List<Newsletter>)QueryUtil.list(
@@ -260,20 +264,20 @@ public class NewsletterPersistenceImpl
 	}
 
 	/**
-	 * Returns the first newsletter in the ordered set where issueId = &#63;.
+	 * Returns the first newsletter in the ordered set where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching newsletter
 	 * @throws NoSuchNewsletterException if a matching newsletter could not be found
 	 */
 	@Override
-	public Newsletter findByIssueId_First(
-			long issueId, OrderByComparator<Newsletter> orderByComparator)
+	public Newsletter findByIssueNumber_First(
+			long issueNumber, OrderByComparator<Newsletter> orderByComparator)
 		throws NoSuchNewsletterException {
 
-		Newsletter newsletter = fetchByIssueId_First(
-			issueId, orderByComparator);
+		Newsletter newsletter = fetchByIssueNumber_First(
+			issueNumber, orderByComparator);
 
 		if (newsletter != null) {
 			return newsletter;
@@ -283,8 +287,8 @@ public class NewsletterPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("issueId=");
-		msg.append(issueId);
+		msg.append("issueNumber=");
+		msg.append(issueNumber);
 
 		msg.append("}");
 
@@ -292,17 +296,18 @@ public class NewsletterPersistenceImpl
 	}
 
 	/**
-	 * Returns the first newsletter in the ordered set where issueId = &#63;.
+	 * Returns the first newsletter in the ordered set where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching newsletter, or <code>null</code> if a matching newsletter could not be found
 	 */
 	@Override
-	public Newsletter fetchByIssueId_First(
-		long issueId, OrderByComparator<Newsletter> orderByComparator) {
+	public Newsletter fetchByIssueNumber_First(
+		long issueNumber, OrderByComparator<Newsletter> orderByComparator) {
 
-		List<Newsletter> list = findByIssueId(issueId, 0, 1, orderByComparator);
+		List<Newsletter> list = findByIssueNumber(
+			issueNumber, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -312,19 +317,20 @@ public class NewsletterPersistenceImpl
 	}
 
 	/**
-	 * Returns the last newsletter in the ordered set where issueId = &#63;.
+	 * Returns the last newsletter in the ordered set where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching newsletter
 	 * @throws NoSuchNewsletterException if a matching newsletter could not be found
 	 */
 	@Override
-	public Newsletter findByIssueId_Last(
-			long issueId, OrderByComparator<Newsletter> orderByComparator)
+	public Newsletter findByIssueNumber_Last(
+			long issueNumber, OrderByComparator<Newsletter> orderByComparator)
 		throws NoSuchNewsletterException {
 
-		Newsletter newsletter = fetchByIssueId_Last(issueId, orderByComparator);
+		Newsletter newsletter = fetchByIssueNumber_Last(
+			issueNumber, orderByComparator);
 
 		if (newsletter != null) {
 			return newsletter;
@@ -334,8 +340,8 @@ public class NewsletterPersistenceImpl
 
 		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-		msg.append("issueId=");
-		msg.append(issueId);
+		msg.append("issueNumber=");
+		msg.append(issueNumber);
 
 		msg.append("}");
 
@@ -343,24 +349,24 @@ public class NewsletterPersistenceImpl
 	}
 
 	/**
-	 * Returns the last newsletter in the ordered set where issueId = &#63;.
+	 * Returns the last newsletter in the ordered set where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching newsletter, or <code>null</code> if a matching newsletter could not be found
 	 */
 	@Override
-	public Newsletter fetchByIssueId_Last(
-		long issueId, OrderByComparator<Newsletter> orderByComparator) {
+	public Newsletter fetchByIssueNumber_Last(
+		long issueNumber, OrderByComparator<Newsletter> orderByComparator) {
 
-		int count = countByIssueId(issueId);
+		int count = countByIssueNumber(issueNumber);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<Newsletter> list = findByIssueId(
-			issueId, count - 1, count, orderByComparator);
+		List<Newsletter> list = findByIssueNumber(
+			issueNumber, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -370,17 +376,17 @@ public class NewsletterPersistenceImpl
 	}
 
 	/**
-	 * Returns the newsletters before and after the current newsletter in the ordered set where issueId = &#63;.
+	 * Returns the newsletters before and after the current newsletter in the ordered set where issueNumber = &#63;.
 	 *
 	 * @param newsletterId the primary key of the current newsletter
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next newsletter
 	 * @throws NoSuchNewsletterException if a newsletter with the primary key could not be found
 	 */
 	@Override
-	public Newsletter[] findByIssueId_PrevAndNext(
-			long newsletterId, long issueId,
+	public Newsletter[] findByIssueNumber_PrevAndNext(
+			long newsletterId, long issueNumber,
 			OrderByComparator<Newsletter> orderByComparator)
 		throws NoSuchNewsletterException {
 
@@ -393,13 +399,13 @@ public class NewsletterPersistenceImpl
 
 			Newsletter[] array = new NewsletterImpl[3];
 
-			array[0] = getByIssueId_PrevAndNext(
-				session, newsletter, issueId, orderByComparator, true);
+			array[0] = getByIssueNumber_PrevAndNext(
+				session, newsletter, issueNumber, orderByComparator, true);
 
 			array[1] = newsletter;
 
-			array[2] = getByIssueId_PrevAndNext(
-				session, newsletter, issueId, orderByComparator, false);
+			array[2] = getByIssueNumber_PrevAndNext(
+				session, newsletter, issueNumber, orderByComparator, false);
 
 			return array;
 		}
@@ -411,8 +417,8 @@ public class NewsletterPersistenceImpl
 		}
 	}
 
-	protected Newsletter getByIssueId_PrevAndNext(
-		Session session, Newsletter newsletter, long issueId,
+	protected Newsletter getByIssueNumber_PrevAndNext(
+		Session session, Newsletter newsletter, long issueNumber,
 		OrderByComparator<Newsletter> orderByComparator, boolean previous) {
 
 		StringBundler query = null;
@@ -428,7 +434,7 @@ public class NewsletterPersistenceImpl
 
 		query.append(_SQL_SELECT_NEWSLETTER_WHERE);
 
-		query.append(_FINDER_COLUMN_ISSUEID_ISSUEID_2);
+		query.append(_FINDER_COLUMN_ISSUENUMBER_ISSUENUMBER_2);
 
 		if (orderByComparator != null) {
 			String[] orderByConditionFields =
@@ -499,7 +505,7 @@ public class NewsletterPersistenceImpl
 
 		QueryPos qPos = QueryPos.getInstance(q);
 
-		qPos.add(issueId);
+		qPos.add(issueNumber);
 
 		if (orderByComparator != null) {
 			for (Object orderByConditionValue :
@@ -520,31 +526,31 @@ public class NewsletterPersistenceImpl
 	}
 
 	/**
-	 * Removes all the newsletters where issueId = &#63; from the database.
+	 * Removes all the newsletters where issueNumber = &#63; from the database.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 */
 	@Override
-	public void removeByIssueId(long issueId) {
+	public void removeByIssueNumber(long issueNumber) {
 		for (Newsletter newsletter :
-				findByIssueId(
-					issueId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+				findByIssueNumber(
+					issueNumber, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 
 			remove(newsletter);
 		}
 	}
 
 	/**
-	 * Returns the number of newsletters where issueId = &#63;.
+	 * Returns the number of newsletters where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @return the number of matching newsletters
 	 */
 	@Override
-	public int countByIssueId(long issueId) {
-		FinderPath finderPath = _finderPathCountByIssueId;
+	public int countByIssueNumber(long issueNumber) {
+		FinderPath finderPath = _finderPathCountByIssueNumber;
 
-		Object[] finderArgs = new Object[] {issueId};
+		Object[] finderArgs = new Object[] {issueNumber};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -553,7 +559,7 @@ public class NewsletterPersistenceImpl
 
 			query.append(_SQL_COUNT_NEWSLETTER_WHERE);
 
-			query.append(_FINDER_COLUMN_ISSUEID_ISSUEID_2);
+			query.append(_FINDER_COLUMN_ISSUENUMBER_ISSUENUMBER_2);
 
 			String sql = query.toString();
 
@@ -566,7 +572,7 @@ public class NewsletterPersistenceImpl
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(issueId);
+				qPos.add(issueNumber);
 
 				count = (Long)q.uniqueResult();
 
@@ -585,8 +591,8 @@ public class NewsletterPersistenceImpl
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_ISSUEID_ISSUEID_2 =
-		"newsletter.issueId = ?";
+	private static final String _FINDER_COLUMN_ISSUENUMBER_ISSUENUMBER_2 =
+		"newsletter.issueNumber = ?";
 
 	public NewsletterPersistenceImpl() {
 		setModelClass(Newsletter.class);
@@ -831,11 +837,11 @@ public class NewsletterPersistenceImpl
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 		else if (isNew) {
-			Object[] args = new Object[] {newsletterModelImpl.getIssueId()};
+			Object[] args = new Object[] {newsletterModelImpl.getIssueNumber()};
 
-			finderCache.removeResult(_finderPathCountByIssueId, args);
+			finderCache.removeResult(_finderPathCountByIssueNumber, args);
 			finderCache.removeResult(
-				_finderPathWithoutPaginationFindByIssueId, args);
+				_finderPathWithoutPaginationFindByIssueNumber, args);
 
 			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
 			finderCache.removeResult(
@@ -843,22 +849,22 @@ public class NewsletterPersistenceImpl
 		}
 		else {
 			if ((newsletterModelImpl.getColumnBitmask() &
-				 _finderPathWithoutPaginationFindByIssueId.
+				 _finderPathWithoutPaginationFindByIssueNumber.
 					 getColumnBitmask()) != 0) {
 
 				Object[] args = new Object[] {
-					newsletterModelImpl.getOriginalIssueId()
+					newsletterModelImpl.getOriginalIssueNumber()
 				};
 
-				finderCache.removeResult(_finderPathCountByIssueId, args);
+				finderCache.removeResult(_finderPathCountByIssueNumber, args);
 				finderCache.removeResult(
-					_finderPathWithoutPaginationFindByIssueId, args);
+					_finderPathWithoutPaginationFindByIssueNumber, args);
 
-				args = new Object[] {newsletterModelImpl.getIssueId()};
+				args = new Object[] {newsletterModelImpl.getIssueNumber()};
 
-				finderCache.removeResult(_finderPathCountByIssueId, args);
+				finderCache.removeResult(_finderPathCountByIssueNumber, args);
 				finderCache.removeResult(
-					_finderPathWithoutPaginationFindByIssueId, args);
+					_finderPathWithoutPaginationFindByIssueNumber, args);
 			}
 		}
 
@@ -1160,24 +1166,24 @@ public class NewsletterPersistenceImpl
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
 			new String[0]);
 
-		_finderPathWithPaginationFindByIssueId = new FinderPath(
+		_finderPathWithPaginationFindByIssueNumber = new FinderPath(
 			entityCacheEnabled, finderCacheEnabled, NewsletterImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByIssueId",
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByIssueNumber",
 			new String[] {
 				Long.class.getName(), Integer.class.getName(),
 				Integer.class.getName(), OrderByComparator.class.getName()
 			});
 
-		_finderPathWithoutPaginationFindByIssueId = new FinderPath(
+		_finderPathWithoutPaginationFindByIssueNumber = new FinderPath(
 			entityCacheEnabled, finderCacheEnabled, NewsletterImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByIssueId",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByIssueNumber",
 			new String[] {Long.class.getName()},
-			NewsletterModelImpl.ISSUEID_COLUMN_BITMASK |
+			NewsletterModelImpl.ISSUENUMBER_COLUMN_BITMASK |
 			NewsletterModelImpl.ORDER_COLUMN_BITMASK);
 
-		_finderPathCountByIssueId = new FinderPath(
+		_finderPathCountByIssueNumber = new FinderPath(
 			entityCacheEnabled, finderCacheEnabled, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByIssueId",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByIssueNumber",
 			new String[] {Long.class.getName()});
 	}
 

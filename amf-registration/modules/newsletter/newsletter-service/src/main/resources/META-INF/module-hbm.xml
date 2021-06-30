@@ -8,7 +8,7 @@
 		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="issueId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="issueNumber" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="issueNumber" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="issueDate" type="org.hibernate.type.TimestampType" />
@@ -17,7 +17,7 @@
 		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="newsletterId" type="long">
 			<generator class="assigned" />
 		</id>
-		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="issueId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="issueNumber" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="author" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" column="order_" name="order" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />

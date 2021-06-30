@@ -34,7 +34,7 @@ public class NewsletterSoap implements Serializable {
 		NewsletterSoap soapModel = new NewsletterSoap();
 
 		soapModel.setNewsletterId(model.getNewsletterId());
-		soapModel.setIssueId(model.getIssueId());
+		soapModel.setIssueNumber(model.getIssueNumber());
 		soapModel.setTitle(model.getTitle());
 		soapModel.setAuthor(model.getAuthor());
 		soapModel.setOrder(model.getOrder());
@@ -100,12 +100,12 @@ public class NewsletterSoap implements Serializable {
 		_newsletterId = newsletterId;
 	}
 
-	public long getIssueId() {
-		return _issueId;
+	public long getIssueNumber() {
+		return _issueNumber;
 	}
 
-	public void setIssueId(long issueId) {
-		_issueId = issueId;
+	public void setIssueNumber(long issueNumber) {
+		_issueNumber = issueNumber;
 	}
 
 	public String getTitle() {
@@ -141,7 +141,7 @@ public class NewsletterSoap implements Serializable {
 	}
 
 	private long _newsletterId;
-	private long _issueId;
+	private long _issueNumber;
 	private String _title;
 	private String _author;
 	private int _order;

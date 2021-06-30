@@ -117,7 +117,7 @@ public class IssueCacheModel implements CacheModel<Issue>, Externalizable {
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		issueId = objectInput.readLong();
 
-		issueNumber = objectInput.readInt();
+		issueNumber = objectInput.readLong();
 		title = objectInput.readUTF();
 		description = objectInput.readUTF();
 		issueDate = objectInput.readLong();
@@ -127,7 +127,7 @@ public class IssueCacheModel implements CacheModel<Issue>, Externalizable {
 	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(issueId);
 
-		objectOutput.writeInt(issueNumber);
+		objectOutput.writeLong(issueNumber);
 
 		if (title == null) {
 			objectOutput.writeUTF("");
@@ -147,7 +147,7 @@ public class IssueCacheModel implements CacheModel<Issue>, Externalizable {
 	}
 
 	public long issueId;
-	public int issueNumber;
+	public long issueNumber;
 	public String title;
 	public String description;
 	public long issueDate;

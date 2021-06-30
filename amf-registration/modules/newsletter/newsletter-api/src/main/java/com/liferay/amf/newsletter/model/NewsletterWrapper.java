@@ -45,7 +45,7 @@ public class NewsletterWrapper
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("newsletterId", getNewsletterId());
-		attributes.put("issueId", getIssueId());
+		attributes.put("issueNumber", getIssueNumber());
 		attributes.put("title", getTitle());
 		attributes.put("author", getAuthor());
 		attributes.put("order", getOrder());
@@ -62,10 +62,10 @@ public class NewsletterWrapper
 			setNewsletterId(newsletterId);
 		}
 
-		Long issueId = (Long)attributes.get("issueId");
+		Long issueNumber = (Long)attributes.get("issueNumber");
 
-		if (issueId != null) {
-			setIssueId(issueId);
+		if (issueNumber != null) {
+			setIssueNumber(issueNumber);
 		}
 
 		String title = (String)attributes.get("title");
@@ -114,13 +114,13 @@ public class NewsletterWrapper
 	}
 
 	/**
-	 * Returns the issue ID of this newsletter.
+	 * Returns the issue number of this newsletter.
 	 *
-	 * @return the issue ID of this newsletter
+	 * @return the issue number of this newsletter
 	 */
 	@Override
-	public long getIssueId() {
-		return model.getIssueId();
+	public long getIssueNumber() {
+		return model.getIssueNumber();
 	}
 
 	/**
@@ -189,13 +189,13 @@ public class NewsletterWrapper
 	}
 
 	/**
-	 * Sets the issue ID of this newsletter.
+	 * Sets the issue number of this newsletter.
 	 *
-	 * @param issueId the issue ID of this newsletter
+	 * @param issueNumber the issue number of this newsletter
 	 */
 	@Override
-	public void setIssueId(long issueId) {
-		model.setIssueId(issueId);
+	public void setIssueNumber(long issueNumber) {
+		model.setIssueNumber(issueNumber);
 	}
 
 	/**

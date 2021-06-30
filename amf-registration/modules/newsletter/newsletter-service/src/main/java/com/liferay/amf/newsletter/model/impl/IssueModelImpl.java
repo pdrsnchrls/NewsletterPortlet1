@@ -71,7 +71,7 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 	public static final String TABLE_NAME = "Newsletter_Issue";
 
 	public static final Object[][] TABLE_COLUMNS = {
-		{"issueId", Types.BIGINT}, {"issueNumber", Types.INTEGER},
+		{"issueId", Types.BIGINT}, {"issueNumber", Types.BIGINT},
 		{"title", Types.VARCHAR}, {"description", Types.VARCHAR},
 		{"issueDate", Types.TIMESTAMP}
 	};
@@ -81,14 +81,14 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 
 	static {
 		TABLE_COLUMNS_MAP.put("issueId", Types.BIGINT);
-		TABLE_COLUMNS_MAP.put("issueNumber", Types.INTEGER);
+		TABLE_COLUMNS_MAP.put("issueNumber", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("title", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("issueDate", Types.TIMESTAMP);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table Newsletter_Issue (issueId LONG not null primary key,issueNumber INTEGER,title VARCHAR(75) null,description VARCHAR(75) null,issueDate DATE null)";
+		"create table Newsletter_Issue (issueId LONG not null primary key,issueNumber LONG,title VARCHAR(75) null,description VARCHAR(75) null,issueDate DATE null)";
 
 	public static final String TABLE_SQL_DROP = "drop table Newsletter_Issue";
 
@@ -277,7 +277,7 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 			"issueId", (BiConsumer<Issue, Long>)Issue::setIssueId);
 		attributeGetterFunctions.put("issueNumber", Issue::getIssueNumber);
 		attributeSetterBiConsumers.put(
-			"issueNumber", (BiConsumer<Issue, Integer>)Issue::setIssueNumber);
+			"issueNumber", (BiConsumer<Issue, Long>)Issue::setIssueNumber);
 		attributeGetterFunctions.put("title", Issue::getTitle);
 		attributeSetterBiConsumers.put(
 			"title", (BiConsumer<Issue, String>)Issue::setTitle);
@@ -307,12 +307,12 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 
 	@JSON
 	@Override
-	public int getIssueNumber() {
+	public long getIssueNumber() {
 		return _issueNumber;
 	}
 
 	@Override
-	public void setIssueNumber(int issueNumber) {
+	public void setIssueNumber(long issueNumber) {
 		_issueNumber = issueNumber;
 	}
 
@@ -566,7 +566,7 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 	private static boolean _finderCacheEnabled;
 
 	private long _issueId;
-	private int _issueNumber;
+	private long _issueNumber;
 	private String _title;
 	private String _description;
 	private Date _issueDate;

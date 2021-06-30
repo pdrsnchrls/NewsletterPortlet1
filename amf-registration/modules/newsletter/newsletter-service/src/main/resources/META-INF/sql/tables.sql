@@ -1,6 +1,6 @@
 create table Newsletter_Issue (
 	issueId LONG not null primary key,
-	issueNumber INTEGER,
+	issueNumber LONG,
 	title VARCHAR(75) null,
 	description VARCHAR(75) null,
 	issueDate DATE null
@@ -8,7 +8,7 @@ create table Newsletter_Issue (
 
 create table Newsletter_Newsletter (
 	newsletterId LONG not null primary key,
-	issueId LONG,
+	issueNumber LONG,
 	title VARCHAR(75) null,
 	author VARCHAR(75) null,
 	order_ INTEGER,

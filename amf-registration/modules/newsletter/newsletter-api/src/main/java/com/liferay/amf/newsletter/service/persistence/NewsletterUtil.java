@@ -126,42 +126,42 @@ public class NewsletterUtil {
 	}
 
 	/**
-	 * Returns all the newsletters where issueId = &#63;.
+	 * Returns all the newsletters where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @return the matching newsletters
 	 */
-	public static List<Newsletter> findByIssueId(long issueId) {
-		return getPersistence().findByIssueId(issueId);
+	public static List<Newsletter> findByIssueNumber(long issueNumber) {
+		return getPersistence().findByIssueNumber(issueNumber);
 	}
 
 	/**
-	 * Returns a range of all the newsletters where issueId = &#63;.
+	 * Returns a range of all the newsletters where issueNumber = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>NewsletterModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param start the lower bound of the range of newsletters
 	 * @param end the upper bound of the range of newsletters (not inclusive)
 	 * @return the range of matching newsletters
 	 */
-	public static List<Newsletter> findByIssueId(
-		long issueId, int start, int end) {
+	public static List<Newsletter> findByIssueNumber(
+		long issueNumber, int start, int end) {
 
-		return getPersistence().findByIssueId(issueId, start, end);
+		return getPersistence().findByIssueNumber(issueNumber, start, end);
 	}
 
 	/**
-	 * Returns an ordered range of all the newsletters where issueId = &#63;.
+	 * Returns an ordered range of all the newsletters where issueNumber = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>NewsletterModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByIssueId(long, int, int, OrderByComparator)}
-	 * @param issueId the issue ID
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #findByIssueNumber(long, int, int, OrderByComparator)}
+	 * @param issueNumber the issue number
 	 * @param start the lower bound of the range of newsletters
 	 * @param end the upper bound of the range of newsletters (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
@@ -169,128 +169,131 @@ public class NewsletterUtil {
 	 * @return the ordered range of matching newsletters
 	 */
 	@Deprecated
-	public static List<Newsletter> findByIssueId(
-		long issueId, int start, int end,
+	public static List<Newsletter> findByIssueNumber(
+		long issueNumber, int start, int end,
 		OrderByComparator<Newsletter> orderByComparator,
 		boolean useFinderCache) {
 
-		return getPersistence().findByIssueId(
-			issueId, start, end, orderByComparator, useFinderCache);
+		return getPersistence().findByIssueNumber(
+			issueNumber, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
-	 * Returns an ordered range of all the newsletters where issueId = &#63;.
+	 * Returns an ordered range of all the newsletters where issueNumber = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>NewsletterModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
 	 * </p>
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param start the lower bound of the range of newsletters
 	 * @param end the upper bound of the range of newsletters (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching newsletters
 	 */
-	public static List<Newsletter> findByIssueId(
-		long issueId, int start, int end,
+	public static List<Newsletter> findByIssueNumber(
+		long issueNumber, int start, int end,
 		OrderByComparator<Newsletter> orderByComparator) {
 
-		return getPersistence().findByIssueId(
-			issueId, start, end, orderByComparator);
+		return getPersistence().findByIssueNumber(
+			issueNumber, start, end, orderByComparator);
 	}
 
 	/**
-	 * Returns the first newsletter in the ordered set where issueId = &#63;.
+	 * Returns the first newsletter in the ordered set where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching newsletter
 	 * @throws NoSuchNewsletterException if a matching newsletter could not be found
 	 */
-	public static Newsletter findByIssueId_First(
-			long issueId, OrderByComparator<Newsletter> orderByComparator)
+	public static Newsletter findByIssueNumber_First(
+			long issueNumber, OrderByComparator<Newsletter> orderByComparator)
 		throws com.liferay.amf.newsletter.exception.NoSuchNewsletterException {
 
-		return getPersistence().findByIssueId_First(issueId, orderByComparator);
+		return getPersistence().findByIssueNumber_First(
+			issueNumber, orderByComparator);
 	}
 
 	/**
-	 * Returns the first newsletter in the ordered set where issueId = &#63;.
+	 * Returns the first newsletter in the ordered set where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching newsletter, or <code>null</code> if a matching newsletter could not be found
 	 */
-	public static Newsletter fetchByIssueId_First(
-		long issueId, OrderByComparator<Newsletter> orderByComparator) {
+	public static Newsletter fetchByIssueNumber_First(
+		long issueNumber, OrderByComparator<Newsletter> orderByComparator) {
 
-		return getPersistence().fetchByIssueId_First(
-			issueId, orderByComparator);
+		return getPersistence().fetchByIssueNumber_First(
+			issueNumber, orderByComparator);
 	}
 
 	/**
-	 * Returns the last newsletter in the ordered set where issueId = &#63;.
+	 * Returns the last newsletter in the ordered set where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching newsletter
 	 * @throws NoSuchNewsletterException if a matching newsletter could not be found
 	 */
-	public static Newsletter findByIssueId_Last(
-			long issueId, OrderByComparator<Newsletter> orderByComparator)
+	public static Newsletter findByIssueNumber_Last(
+			long issueNumber, OrderByComparator<Newsletter> orderByComparator)
 		throws com.liferay.amf.newsletter.exception.NoSuchNewsletterException {
 
-		return getPersistence().findByIssueId_Last(issueId, orderByComparator);
+		return getPersistence().findByIssueNumber_Last(
+			issueNumber, orderByComparator);
 	}
 
 	/**
-	 * Returns the last newsletter in the ordered set where issueId = &#63;.
+	 * Returns the last newsletter in the ordered set where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching newsletter, or <code>null</code> if a matching newsletter could not be found
 	 */
-	public static Newsletter fetchByIssueId_Last(
-		long issueId, OrderByComparator<Newsletter> orderByComparator) {
+	public static Newsletter fetchByIssueNumber_Last(
+		long issueNumber, OrderByComparator<Newsletter> orderByComparator) {
 
-		return getPersistence().fetchByIssueId_Last(issueId, orderByComparator);
+		return getPersistence().fetchByIssueNumber_Last(
+			issueNumber, orderByComparator);
 	}
 
 	/**
-	 * Returns the newsletters before and after the current newsletter in the ordered set where issueId = &#63;.
+	 * Returns the newsletters before and after the current newsletter in the ordered set where issueNumber = &#63;.
 	 *
 	 * @param newsletterId the primary key of the current newsletter
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next newsletter
 	 * @throws NoSuchNewsletterException if a newsletter with the primary key could not be found
 	 */
-	public static Newsletter[] findByIssueId_PrevAndNext(
-			long newsletterId, long issueId,
+	public static Newsletter[] findByIssueNumber_PrevAndNext(
+			long newsletterId, long issueNumber,
 			OrderByComparator<Newsletter> orderByComparator)
 		throws com.liferay.amf.newsletter.exception.NoSuchNewsletterException {
 
-		return getPersistence().findByIssueId_PrevAndNext(
-			newsletterId, issueId, orderByComparator);
+		return getPersistence().findByIssueNumber_PrevAndNext(
+			newsletterId, issueNumber, orderByComparator);
 	}
 
 	/**
-	 * Removes all the newsletters where issueId = &#63; from the database.
+	 * Removes all the newsletters where issueNumber = &#63; from the database.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 */
-	public static void removeByIssueId(long issueId) {
-		getPersistence().removeByIssueId(issueId);
+	public static void removeByIssueNumber(long issueNumber) {
+		getPersistence().removeByIssueNumber(issueNumber);
 	}
 
 	/**
-	 * Returns the number of newsletters where issueId = &#63;.
+	 * Returns the number of newsletters where issueNumber = &#63;.
 	 *
-	 * @param issueId the issue ID
+	 * @param issueNumber the issue number
 	 * @return the number of matching newsletters
 	 */
-	public static int countByIssueId(long issueId) {
-		return getPersistence().countByIssueId(issueId);
+	public static int countByIssueNumber(long issueNumber) {
+		return getPersistence().countByIssueNumber(issueNumber);
 	}
 
 	/**

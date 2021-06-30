@@ -11,8 +11,7 @@
         <column name="issueId" type="long" primary="true"></column>
         <column name="issueNumber" type="long"></column>
         <column name="title" type="String"></column>
-        <column name="description" type="String">
-        </column>
+        <column name="description" type="String"></column>
         <column name="issueDate" type="Date"></column>
         <column name="byline" type="Collection"></column>
         
@@ -27,12 +26,11 @@
     <entity name="Newsletter" local-service="true">
         <!-- Columns -->
         <column name="newsletterId" primary="true" type="long"></column>
-        <column name="issueId" type="long"></column>
+        <column name="issueNumber" type="long"></column>
         <column name="title" type="String"></column>
         <column name="author" type="String"></column>
         <column name="order" type="int"></column>
-        <column name="content" type="String">
-        </column>
+        <column name="content" type="String"></column>
         
         <!-- Order -->
         <order by="desc">
@@ -40,8 +38,8 @@
         </order>
         
         <!-- Finders -->
-       	<finder name="IssueId" return-type="Collection">
-	    	<finder-column name="issueId"></finder-column>
+       	<finder name="IssueNumber" return-type="Collection">
+	    	<finder-column name="issueNumber"></finder-column>
 	    </finder>
 	    <reference entity="JournalArticle" package-path="com.liferay.journal" />
 	    

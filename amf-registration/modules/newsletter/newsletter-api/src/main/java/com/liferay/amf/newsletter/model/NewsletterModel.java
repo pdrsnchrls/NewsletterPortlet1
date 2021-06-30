@@ -68,18 +68,18 @@ public interface NewsletterModel extends BaseModel<Newsletter> {
 	public void setNewsletterId(long newsletterId);
 
 	/**
-	 * Returns the issue ID of this newsletter.
+	 * Returns the issue number of this newsletter.
 	 *
-	 * @return the issue ID of this newsletter
+	 * @return the issue number of this newsletter
 	 */
-	public long getIssueId();
+	public long getIssueNumber();
 
 	/**
-	 * Sets the issue ID of this newsletter.
+	 * Sets the issue number of this newsletter.
 	 *
-	 * @param issueId the issue ID of this newsletter
+	 * @param issueNumber the issue number of this newsletter
 	 */
-	public void setIssueId(long issueId);
+	public void setIssueNumber(long issueNumber);
 
 	/**
 	 * Returns the title of this newsletter.

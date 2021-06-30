@@ -3,14 +3,14 @@
 <model-hints>
 	<model name="com.liferay.amf.newsletter.model.Issue">
 		<field name="issueId" type="long" />
-		<field name="issueNumber" type="int" />
+		<field name="issueNumber" type="long" />
 		<field name="title" type="String" />
 		<field name="description" type="String" />
 		<field name="issueDate" type="Date" />
 	</model>
 	<model name="com.liferay.amf.newsletter.model.Newsletter">
 		<field name="newsletterId" type="long" />
-		<field name="issueId" type="long" />
+		<field name="issueNumber" type="long" />
 		<field name="title" type="String" />
 		<field name="author" type="String" />
 		<field name="order" type="int" />

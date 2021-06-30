@@ -70,7 +70,7 @@ public class NewsletterModelImpl
 	public static final String TABLE_NAME = "Newsletter_Newsletter";
 
 	public static final Object[][] TABLE_COLUMNS = {
-		{"newsletterId", Types.BIGINT}, {"issueId", Types.BIGINT},
+		{"newsletterId", Types.BIGINT}, {"issueNumber", Types.BIGINT},
 		{"title", Types.VARCHAR}, {"author", Types.VARCHAR},
 		{"order_", Types.INTEGER}, {"content", Types.VARCHAR}
 	};
@@ -80,7 +80,7 @@ public class NewsletterModelImpl
 
 	static {
 		TABLE_COLUMNS_MAP.put("newsletterId", Types.BIGINT);
-		TABLE_COLUMNS_MAP.put("issueId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("issueNumber", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("title", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("author", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("order_", Types.INTEGER);
@@ -88,7 +88,7 @@ public class NewsletterModelImpl
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table Newsletter_Newsletter (newsletterId LONG not null primary key,issueId LONG,title VARCHAR(75) null,author VARCHAR(75) null,order_ INTEGER,content VARCHAR(75) null)";
+		"create table Newsletter_Newsletter (newsletterId LONG not null primary key,issueNumber LONG,title VARCHAR(75) null,author VARCHAR(75) null,order_ INTEGER,content VARCHAR(75) null)";
 
 	public static final String TABLE_SQL_DROP =
 		"drop table Newsletter_Newsletter";
@@ -105,7 +105,7 @@ public class NewsletterModelImpl
 
 	public static final String TX_MANAGER = "liferayTransactionManager";
 
-	public static final long ISSUEID_COLUMN_BITMASK = 1L;
+	public static final long ISSUENUMBER_COLUMN_BITMASK = 1L;
 
 	public static final long ORDER_COLUMN_BITMASK = 2L;
 
@@ -131,7 +131,7 @@ public class NewsletterModelImpl
 		Newsletter model = new NewsletterImpl();
 
 		model.setNewsletterId(soapModel.getNewsletterId());
-		model.setIssueId(soapModel.getIssueId());
+		model.setIssueNumber(soapModel.getIssueNumber());
 		model.setTitle(soapModel.getTitle());
 		model.setAuthor(soapModel.getAuthor());
 		model.setOrder(soapModel.getOrder());
@@ -289,9 +289,10 @@ public class NewsletterModelImpl
 		attributeSetterBiConsumers.put(
 			"newsletterId",
 			(BiConsumer<Newsletter, Long>)Newsletter::setNewsletterId);
-		attributeGetterFunctions.put("issueId", Newsletter::getIssueId);
+		attributeGetterFunctions.put("issueNumber", Newsletter::getIssueNumber);
 		attributeSetterBiConsumers.put(
-			"issueId", (BiConsumer<Newsletter, Long>)Newsletter::setIssueId);
+			"issueNumber",
+			(BiConsumer<Newsletter, Long>)Newsletter::setIssueNumber);
 		attributeGetterFunctions.put("title", Newsletter::getTitle);
 		attributeSetterBiConsumers.put(
 			"title", (BiConsumer<Newsletter, String>)Newsletter::setTitle);
@@ -324,25 +325,25 @@ public class NewsletterModelImpl
 
 	@JSON
 	@Override
-	public long getIssueId() {
-		return _issueId;
+	public long getIssueNumber() {
+		return _issueNumber;
 	}
 
 	@Override
-	public void setIssueId(long issueId) {
-		_columnBitmask |= ISSUEID_COLUMN_BITMASK;
+	public void setIssueNumber(long issueNumber) {
+		_columnBitmask |= ISSUENUMBER_COLUMN_BITMASK;
 
-		if (!_setOriginalIssueId) {
-			_setOriginalIssueId = true;
+		if (!_setOriginalIssueNumber) {
+			_setOriginalIssueNumber = true;
 
-			_originalIssueId = _issueId;
+			_originalIssueNumber = _issueNumber;
 		}
 
-		_issueId = issueId;
+		_issueNumber = issueNumber;
 	}
 
-	public long getOriginalIssueId() {
-		return _originalIssueId;
+	public long getOriginalIssueNumber() {
+		return _originalIssueNumber;
 	}
 
 	@JSON
@@ -443,7 +444,7 @@ public class NewsletterModelImpl
 		NewsletterImpl newsletterImpl = new NewsletterImpl();
 
 		newsletterImpl.setNewsletterId(getNewsletterId());
-		newsletterImpl.setIssueId(getIssueId());
+		newsletterImpl.setIssueNumber(getIssueNumber());
 		newsletterImpl.setTitle(getTitle());
 		newsletterImpl.setAuthor(getAuthor());
 		newsletterImpl.setOrder(getOrder());
@@ -518,9 +519,10 @@ public class NewsletterModelImpl
 	public void resetOriginalValues() {
 		NewsletterModelImpl newsletterModelImpl = this;
 
-		newsletterModelImpl._originalIssueId = newsletterModelImpl._issueId;
+		newsletterModelImpl._originalIssueNumber =
+			newsletterModelImpl._issueNumber;
 
-		newsletterModelImpl._setOriginalIssueId = false;
+		newsletterModelImpl._setOriginalIssueNumber = false;
 
 		newsletterModelImpl._columnBitmask = 0;
 	}
@@ -531,7 +533,7 @@ public class NewsletterModelImpl
 
 		newsletterCacheModel.newsletterId = getNewsletterId();
 
-		newsletterCacheModel.issueId = getIssueId();
+		newsletterCacheModel.issueNumber = getIssueNumber();
 
 		newsletterCacheModel.title = getTitle();
 
@@ -636,9 +638,9 @@ public class NewsletterModelImpl
 	private static boolean _finderCacheEnabled;
 
 	private long _newsletterId;
-	private long _issueId;
-	private long _originalIssueId;
-	private boolean _setOriginalIssueId;
+	private long _issueNumber;
+	private long _originalIssueNumber;
+	private boolean _setOriginalIssueNumber;
 	private String _title;
 	private String _author;
 	private int _order;

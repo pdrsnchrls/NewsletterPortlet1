@@ -66,8 +66,8 @@ public class NewsletterCacheModel
 
 		sb.append("{newsletterId=");
 		sb.append(newsletterId);
-		sb.append(", issueId=");
-		sb.append(issueId);
+		sb.append(", issueNumber=");
+		sb.append(issueNumber);
 		sb.append(", title=");
 		sb.append(title);
 		sb.append(", author=");
@@ -86,7 +86,7 @@ public class NewsletterCacheModel
 		NewsletterImpl newsletterImpl = new NewsletterImpl();
 
 		newsletterImpl.setNewsletterId(newsletterId);
-		newsletterImpl.setIssueId(issueId);
+		newsletterImpl.setIssueNumber(issueNumber);
 
 		if (title == null) {
 			newsletterImpl.setTitle("");
@@ -120,7 +120,7 @@ public class NewsletterCacheModel
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		newsletterId = objectInput.readLong();
 
-		issueId = objectInput.readLong();
+		issueNumber = objectInput.readLong();
 		title = objectInput.readUTF();
 		author = objectInput.readUTF();
 
@@ -132,7 +132,7 @@ public class NewsletterCacheModel
 	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(newsletterId);
 
-		objectOutput.writeLong(issueId);
+		objectOutput.writeLong(issueNumber);
 
 		if (title == null) {
 			objectOutput.writeUTF("");
@@ -159,7 +159,7 @@ public class NewsletterCacheModel
 	}
 
 	public long newsletterId;
-	public long issueId;
+	public long issueNumber;
 	public String title;
 	public String author;
 	public int order;
