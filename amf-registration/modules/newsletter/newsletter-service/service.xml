@@ -9,9 +9,10 @@
     <entity name="Issue" local-service="true">
     	<!-- Columns -->
         <column name="issueId" type="long" primary="true"></column>
-        <column name="issueNumber" type="int"></column>
+        <column name="issueNumber" type="long"></column>
         <column name="title" type="String"></column>
-        <column name="description" type="String"></column>
+        <column name="description" type="String">
+        </column>
         <column name="issueDate" type="Date"></column>
         <column name="byline" type="Collection"></column>
         
@@ -30,7 +31,8 @@
         <column name="title" type="String"></column>
         <column name="author" type="String"></column>
         <column name="order" type="int"></column>
-        <column name="content" type="String"></column>
+        <column name="content" type="String">
+        </column>
         
         <!-- Order -->
         <order by="desc">

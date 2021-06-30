@@ -14,12 +14,18 @@
 
 package com.liferay.amf.newsletter.service.impl;
 
+import com.liferay.amf.newsletter.model.Issue;
+import com.liferay.amf.newsletter.model.Newsletter;
+import com.liferay.amf.newsletter.service.IssueLocalService;
+import com.liferay.amf.newsletter.service.NewsletterLocalService;
 import com.liferay.amf.newsletter.service.base.ContentLocalServiceBaseImpl;
+import com.liferay.amf.newsletter.service.constants.NewsletterConstants;
 import com.liferay.portal.aop.AopService;
 
 import java.util.HashMap;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * The implementation of the content local service.
@@ -48,6 +54,12 @@ public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 	
 	public void parseContent(String articleContent, boolean newsletterType, boolean issueType) {
 		
+		// if it is neither newsletter/issue, it will return
+		if (!newsletterType && !issueType) {
+			System.out.println("Error - cannot determine web content type...");
+			return;
+		}
+		
 		// split string for each dynamic element
 		String[] content = articleContent.split("</dynamic-element>", 5);
 		
@@ -70,6 +82,45 @@ public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 		for (HashMap.Entry<String, String> e : contentData.entrySet())
             System.out.println("Key: " + e.getKey()+ "\t Value: " + e.getValue());
 		
+		// get data from contentData map
+		if (newsletterType) {
+			//call newsletter local service
+			String issueNumber = contentData.get(NewsletterConstants.ISSUE_NUMBER);
+			String orderNumber = contentData.get(NewsletterConstants.ORDER_NUMBER);
+			String title = contentData.get(NewsletterConstants.NEWSLETTER_TITLE);
+			String author = contentData.get(NewsletterConstants.NEWSLETTER_AUTHOR);
+			String newsletterContent = contentData.get(NewsletterConstants.NEWSLETTER_CONTENT);
+			
+			System.out.println("\nHere is the info:\nIssue Number - " + Long.valueOf(issueNumber)
+					+ "\nOrder Number - " + Integer.valueOf(orderNumber) + "\nTitle - " + title
+					+ "\nAuthor - " + author + "\nContent - " + newsletterContent);
+			
+			long newsletterId = counterLocalService.increment();
+			Newsletter newsletter = _newsletterLocalService.createNewsletter(newsletterId);
+			newsletter.setAuthor(author);
+			newsletter.setIssueId(Long.valueOf(issueNumber));
+			newsletter.setOrder(Integer.valueOf(orderNumber));
+			newsletter.setTitle(title);
+			newsletter.setContent(newsletterContent);
+			_newsletterLocalService.addNewsletter(newsletter);
+			
+		}
+		else if (issueType) {
+			//call issue local service
+			String issueNumber = contentData.get(NewsletterConstants.ISSUE_NUMBER);
+			String issueTitle = contentData.get(NewsletterConstants.ISSUE_TITLE);
+			String issueDescription = contentData.get(NewsletterConstants.ISSUE_DESCRIPTION);
+			String issueDate = contentData.get(NewsletterConstants.ISSUE_DATE);
+			String authorByline = contentData.get(NewsletterConstants.BYLINE);
+			
+			System.out.println("\nHere is the info:\nIssue Number - " + issueNumber
+					+ "\nTitle - " + issueTitle + "\nDescription - " + issueDescription
+					+ "\nIssue Date - " + issueDate + "\nAuthors - " + authorByline);
+			
+			long issueId = counterLocalService.increment();
+			Issue issue = _issueLocalService.createIssue(issueId);
+			
+		}
 	}
 	
 	public String splitString(String string, String searchName, Character stopChar) {
@@ -88,5 +139,12 @@ public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 		
 		return result;
 	}
+	
+	@Reference
+	protected NewsletterLocalService _newsletterLocalService;
+	
+	@Reference
+	protected IssueLocalService _issueLocalService;
+	
 
 }
