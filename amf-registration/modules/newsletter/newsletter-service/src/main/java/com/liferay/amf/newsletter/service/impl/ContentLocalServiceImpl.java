@@ -96,6 +96,7 @@ public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 					+ "\nOrder Number - " + Integer.valueOf(orderNumber) + "\nTitle - " + title
 					+ "\nAuthor - " + author + "\nContent - " + newsletterContent);
 			
+			System.out.println(newsletterContent.length());
 			//set newsletter data
 			long newsletterId = counterLocalService.increment();
 			Newsletter newsletter = _newsletterLocalService.createNewsletter(newsletterId);
@@ -125,6 +126,7 @@ public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 			Issue issue = _issueLocalService.createIssue(issueId);
 			issue.setIssueNumber(Long.valueOf(issueNumber));
 			issue.setTitle(issueTitle);
+			System.out.println(issueDescription.length());
 			issue.setDescription(issueDescription);
 			issue.setIssueDate(Date.valueOf(issueDate));
 			issue.setByline(authorByline);
