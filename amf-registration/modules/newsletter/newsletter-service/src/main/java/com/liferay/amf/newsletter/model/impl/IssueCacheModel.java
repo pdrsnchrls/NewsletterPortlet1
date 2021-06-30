@@ -63,7 +63,7 @@ public class IssueCacheModel implements CacheModel<Issue>, Externalizable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{issueId=");
 		sb.append(issueId);
@@ -75,6 +75,8 @@ public class IssueCacheModel implements CacheModel<Issue>, Externalizable {
 		sb.append(description);
 		sb.append(", issueDate=");
 		sb.append(issueDate);
+		sb.append(", byline=");
+		sb.append(byline);
 		sb.append("}");
 
 		return sb.toString();
@@ -108,6 +110,13 @@ public class IssueCacheModel implements CacheModel<Issue>, Externalizable {
 			issueImpl.setIssueDate(new Date(issueDate));
 		}
 
+		if (byline == null) {
+			issueImpl.setByline("");
+		}
+		else {
+			issueImpl.setByline(byline);
+		}
+
 		issueImpl.resetOriginalValues();
 
 		return issueImpl;
@@ -121,6 +130,7 @@ public class IssueCacheModel implements CacheModel<Issue>, Externalizable {
 		title = objectInput.readUTF();
 		description = objectInput.readUTF();
 		issueDate = objectInput.readLong();
+		byline = objectInput.readUTF();
 	}
 
 	@Override
@@ -144,6 +154,13 @@ public class IssueCacheModel implements CacheModel<Issue>, Externalizable {
 		}
 
 		objectOutput.writeLong(issueDate);
+
+		if (byline == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(byline);
+		}
 	}
 
 	public long issueId;
@@ -151,5 +168,6 @@ public class IssueCacheModel implements CacheModel<Issue>, Externalizable {
 	public String title;
 	public String description;
 	public long issueDate;
+	public String byline;
 
 }

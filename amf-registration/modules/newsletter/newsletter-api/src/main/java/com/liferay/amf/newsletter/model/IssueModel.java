@@ -127,4 +127,19 @@ public interface IssueModel extends BaseModel<Issue> {
 	 */
 	public void setIssueDate(Date issueDate);
 
+	/**
+	 * Returns the byline of this issue.
+	 *
+	 * @return the byline of this issue
+	 */
+	@AutoEscape
+	public String getByline();
+
+	/**
+	 * Sets the byline of this issue.
+	 *
+	 * @param byline the byline of this issue
+	 */
+	public void setByline(String byline);
+
 }

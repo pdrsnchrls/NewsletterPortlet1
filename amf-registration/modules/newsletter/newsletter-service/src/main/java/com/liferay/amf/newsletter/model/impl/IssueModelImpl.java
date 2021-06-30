@@ -73,7 +73,7 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 	public static final Object[][] TABLE_COLUMNS = {
 		{"issueId", Types.BIGINT}, {"issueNumber", Types.BIGINT},
 		{"title", Types.VARCHAR}, {"description", Types.VARCHAR},
-		{"issueDate", Types.TIMESTAMP}
+		{"issueDate", Types.TIMESTAMP}, {"byline", Types.VARCHAR}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -85,10 +85,11 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 		TABLE_COLUMNS_MAP.put("title", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("issueDate", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("byline", Types.VARCHAR);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table Newsletter_Issue (issueId LONG not null primary key,issueNumber LONG,title VARCHAR(75) null,description VARCHAR(75) null,issueDate DATE null)";
+		"create table Newsletter_Issue (issueId LONG not null primary key,issueNumber LONG,title VARCHAR(75) null,description VARCHAR(75) null,issueDate DATE null,byline VARCHAR(75) null)";
 
 	public static final String TABLE_SQL_DROP = "drop table Newsletter_Issue";
 
@@ -129,6 +130,7 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 		model.setTitle(soapModel.getTitle());
 		model.setDescription(soapModel.getDescription());
 		model.setIssueDate(soapModel.getIssueDate());
+		model.setByline(soapModel.getByline());
 
 		return model;
 	}
@@ -287,6 +289,9 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 		attributeGetterFunctions.put("issueDate", Issue::getIssueDate);
 		attributeSetterBiConsumers.put(
 			"issueDate", (BiConsumer<Issue, Date>)Issue::setIssueDate);
+		attributeGetterFunctions.put("byline", Issue::getByline);
+		attributeSetterBiConsumers.put(
+			"byline", (BiConsumer<Issue, String>)Issue::setByline);
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
 			attributeGetterFunctions);
@@ -359,6 +364,22 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 		_issueDate = issueDate;
 	}
 
+	@JSON
+	@Override
+	public String getByline() {
+		if (_byline == null) {
+			return "";
+		}
+		else {
+			return _byline;
+		}
+	}
+
+	@Override
+	public void setByline(String byline) {
+		_byline = byline;
+	}
+
 	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(
@@ -396,6 +417,7 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 		issueImpl.setTitle(getTitle());
 		issueImpl.setDescription(getDescription());
 		issueImpl.setIssueDate(getIssueDate());
+		issueImpl.setByline(getByline());
 
 		issueImpl.resetOriginalValues();
 
@@ -491,6 +513,14 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 			issueCacheModel.issueDate = Long.MIN_VALUE;
 		}
 
+		issueCacheModel.byline = getByline();
+
+		String byline = issueCacheModel.byline;
+
+		if ((byline != null) && (byline.length() == 0)) {
+			issueCacheModel.byline = null;
+		}
+
 		return issueCacheModel;
 	}
 
@@ -570,6 +600,7 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 	private String _title;
 	private String _description;
 	private Date _issueDate;
+	private String _byline;
 	private Issue _escapedModel;
 
 }

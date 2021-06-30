@@ -3,7 +3,8 @@ create table Newsletter_Issue (
 	issueNumber LONG,
 	title VARCHAR(75) null,
 	description VARCHAR(75) null,
-	issueDate DATE null
+	issueDate DATE null,
+	byline VARCHAR(75) null
 );
 
 create table Newsletter_Newsletter (

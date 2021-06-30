@@ -39,6 +39,7 @@ public class IssueSoap implements Serializable {
 		soapModel.setTitle(model.getTitle());
 		soapModel.setDescription(model.getDescription());
 		soapModel.setIssueDate(model.getIssueDate());
+		soapModel.setByline(model.getByline());
 
 		return soapModel;
 	}
@@ -131,10 +132,19 @@ public class IssueSoap implements Serializable {
 		_issueDate = issueDate;
 	}
 
+	public String getByline() {
+		return _byline;
+	}
+
+	public void setByline(String byline) {
+		_byline = byline;
+	}
+
 	private long _issueId;
 	private long _issueNumber;
 	private String _title;
 	private String _description;
 	private Date _issueDate;
+	private String _byline;
 
 }

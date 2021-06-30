@@ -49,6 +49,7 @@ public class IssueWrapper
 		attributes.put("title", getTitle());
 		attributes.put("description", getDescription());
 		attributes.put("issueDate", getIssueDate());
+		attributes.put("byline", getByline());
 
 		return attributes;
 	}
@@ -84,6 +85,22 @@ public class IssueWrapper
 		if (issueDate != null) {
 			setIssueDate(issueDate);
 		}
+
+		String byline = (String)attributes.get("byline");
+
+		if (byline != null) {
+			setByline(byline);
+		}
+	}
+
+	/**
+	 * Returns the byline of this issue.
+	 *
+	 * @return the byline of this issue
+	 */
+	@Override
+	public String getByline() {
+		return model.getByline();
 	}
 
 	/**
@@ -149,6 +166,16 @@ public class IssueWrapper
 	@Override
 	public void persist() {
 		model.persist();
+	}
+
+	/**
+	 * Sets the byline of this issue.
+	 *
+	 * @param byline the byline of this issue
+	 */
+	@Override
+	public void setByline(String byline) {
+		model.setByline(byline);
 	}
 
 	/**
