@@ -88,7 +88,7 @@ public class NewsletterModelImpl
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table Newsletter_Newsletter (newsletterId LONG not null primary key,issueNumber LONG,title VARCHAR(75) null,author VARCHAR(75) null,order_ INTEGER,content VARCHAR(75) null)";
+		"create table Newsletter_Newsletter (newsletterId LONG not null primary key,issueNumber LONG,title VARCHAR(75) null,author VARCHAR(75) null,order_ INTEGER,content TEXT null)";
 
 	public static final String TABLE_SQL_DROP =
 		"drop table Newsletter_Newsletter";
