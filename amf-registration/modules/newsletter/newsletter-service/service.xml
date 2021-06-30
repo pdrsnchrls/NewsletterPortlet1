@@ -45,4 +45,8 @@
 	    
     </entity>
     
+    <entity name="Content" local-service="true">
+		<reference entity="JournalArticle" package-path="com.liferay.journal" />
+    </entity>
+    
 </service-builder>
