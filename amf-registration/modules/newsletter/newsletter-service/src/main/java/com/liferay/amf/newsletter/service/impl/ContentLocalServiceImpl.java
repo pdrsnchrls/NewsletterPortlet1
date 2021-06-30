@@ -22,6 +22,7 @@ import com.liferay.amf.newsletter.service.base.ContentLocalServiceBaseImpl;
 import com.liferay.amf.newsletter.service.constants.NewsletterConstants;
 import com.liferay.portal.aop.AopService;
 
+import java.sql.Date;
 import java.util.HashMap;
 
 import org.osgi.service.component.annotations.Component;
@@ -98,7 +99,7 @@ public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 			long newsletterId = counterLocalService.increment();
 			Newsletter newsletter = _newsletterLocalService.createNewsletter(newsletterId);
 			newsletter.setAuthor(author);
-			newsletter.setIssueId(Long.valueOf(issueNumber));
+			newsletter.setIssueNumber(Long.valueOf(issueNumber));
 			newsletter.setOrder(Integer.valueOf(orderNumber));
 			newsletter.setTitle(title);
 			newsletter.setContent(newsletterContent);
@@ -115,10 +116,15 @@ public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 			
 			System.out.println("\nHere is the info:\nIssue Number - " + issueNumber
 					+ "\nTitle - " + issueTitle + "\nDescription - " + issueDescription
-					+ "\nIssue Date - " + issueDate + "\nAuthors - " + authorByline);
+					+ "\nIssue Date - " + Date.valueOf(issueDate) + "\nAuthors - " + authorByline);
 			
 			long issueId = counterLocalService.increment();
 			Issue issue = _issueLocalService.createIssue(issueId);
+			issue.setIssueNumber(Long.valueOf(issueNumber));
+			issue.setTitle(issueTitle);
+			issue.setDescription(issueDescription);
+			issue.setIssueDate(Date.valueOf(issueDate));
+			issue.setByline(authorByline);
 			
 		}
 	}

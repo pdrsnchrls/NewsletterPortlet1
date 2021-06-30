@@ -13,7 +13,7 @@
         <column name="title" type="String"></column>
         <column name="description" type="String"></column>
         <column name="issueDate" type="Date"></column>
-        <column name="byline" type="Collection"></column>
+        <column name="byline" type="String"></column>
         
         <!-- Order -->
         <order by="desc">
