@@ -1,6 +1,6 @@
 package com.liferay.amf.newsletter.service.events;
 
-import com.liferay.amf.newsletter.service.action.ProcessCreateWebContent;
+import com.liferay.amf.newsletter.service.ContentLocalService;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.portal.kernel.model.BaseModelListener;
@@ -39,7 +39,7 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 		}
 		
 		//parse content to get relevant information
-		_processCreateWebContent.parseContent(articleContent, newsletterType, issueType);
+		_contentLocalService.parseContent(articleContent, newsletterType, issueType);
 
 	}
 
@@ -57,6 +57,6 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 	}
 	
 	@Reference
-	ProcessCreateWebContent _processCreateWebContent;
+	ContentLocalService _contentLocalService;
 
 }
