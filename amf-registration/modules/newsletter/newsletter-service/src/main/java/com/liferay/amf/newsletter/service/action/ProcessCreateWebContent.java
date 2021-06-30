@@ -2,10 +2,14 @@ package com.liferay.amf.newsletter.service.action;
 
 import java.util.HashMap;
 
-import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.Component;
 
+
+@Component(
+		immediate=true
+)
 public class ProcessCreateWebContent {
-	public void parseContent(String articleContent) {
+	public void parseContent(String articleContent, boolean newsletterType, boolean issueType) {
 		
 		// split string for each dynamic element
 		String[] content = articleContent.split("</dynamic-element>", 5);

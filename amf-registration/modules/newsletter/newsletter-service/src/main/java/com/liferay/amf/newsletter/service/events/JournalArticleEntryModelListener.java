@@ -1,7 +1,5 @@
 package com.liferay.amf.newsletter.service.events;
 
-import com.liferay.amf.newsletter.service.IssueLocalService;
-import com.liferay.amf.newsletter.service.NewsletterLocalService;
 import com.liferay.amf.newsletter.service.action.ProcessCreateWebContent;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.journal.model.JournalArticle;
@@ -14,7 +12,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	immediate=true,
 	property= {
-			
+			//key?
 	},
 	service=ModelListener.class
 )
@@ -34,20 +32,15 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 		if(structureName.contains("Newsletter")) {
 			// web content is newsletter
 			newsletterType = true;
-			
-			//parse newsletter content to get issue_number, order_number, newsletter_title, newsletter_author, newsletter_content
-			_processCreateWebContent.parseContent(articleContent);
 		}
 		else if(structureName.contains("Issue")) {
 			// web content is issue
 			issueType = true;
-			
-			//parse issue content to get issue_number, issue_title, issue_description, issue_date, byline
-			_processCreateWebContent.parseContent(articleContent);
 		}
-		else {
-			System.out.print("Irrelevant journal article creation");
-		}
+		
+		//parse content to get relevant information
+		_processCreateWebContent.parseContent(articleContent, newsletterType, issueType);
+
 	}
 
 	public void onBeforeUpdate(JournalArticle journalArticle) {
@@ -64,8 +57,6 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 	}
 	
 	@Reference
-	private ProcessCreateWebContent _processCreateWebContent;
-	
-	@Reference
-	private IssueLocalService _issueLocalService;
+	ProcessCreateWebContent _processCreateWebContent;
+
 }
