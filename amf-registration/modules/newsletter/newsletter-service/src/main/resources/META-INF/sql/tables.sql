@@ -13,5 +13,5 @@ create table Newsletter_Newsletter (
 	title VARCHAR(75) null,
 	author VARCHAR(75) null,
 	order_ INTEGER,
-	content TEXT null
+	content VARCHAR(1000) null
 );

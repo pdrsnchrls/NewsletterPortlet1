@@ -6,6 +6,7 @@
 		<field name="issueNumber" type="long" />
 		<field name="title" type="String" />
 		<field name="description" type="String" />
+			<hint-collection name="CONTENTAREA" />		
 		<field name="issueDate" type="Date" />
 		<field name="byline" type="String" />
 	</model>
@@ -21,8 +22,5 @@
 	</model>
 	<hint-collection name="CONTENTAREA">
 		<hint name="max-length">8000</hint>
-	</hint-collection>
-	<hint-collection name="DESCRIPTIONAREA">
-		<hint name="max-length">1000</hint>
 	</hint-collection>
 </model-hints>
