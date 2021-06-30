@@ -52,4 +52,10 @@ public interface ContentLocalService extends BaseLocalService {
 	 */
 	public String getOSGiServiceIdentifier();
 
+	public void parseContent(
+		String articleContent, boolean newsletterType, boolean issueType);
+
+	public String splitString(
+		String string, String searchName, Character stopChar);
+
 }

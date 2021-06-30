@@ -49,6 +49,18 @@ public class ContentLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static void parseContent(
+		String articleContent, boolean newsletterType, boolean issueType) {
+
+		getService().parseContent(articleContent, newsletterType, issueType);
+	}
+
+	public static String splitString(
+		String string, String searchName, Character stopChar) {
+
+		return getService().splitString(string, searchName, stopChar);
+	}
+
 	public static ContentLocalService getService() {
 		return _serviceTracker.getService();
 	}

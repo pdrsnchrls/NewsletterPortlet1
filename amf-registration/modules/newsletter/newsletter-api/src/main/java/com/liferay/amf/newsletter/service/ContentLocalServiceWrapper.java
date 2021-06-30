@@ -44,6 +44,21 @@ public class ContentLocalServiceWrapper
 	}
 
 	@Override
+	public void parseContent(
+		String articleContent, boolean newsletterType, boolean issueType) {
+
+		_contentLocalService.parseContent(
+			articleContent, newsletterType, issueType);
+	}
+
+	@Override
+	public String splitString(
+		String string, String searchName, Character stopChar) {
+
+		return _contentLocalService.splitString(string, searchName, stopChar);
+	}
+
+	@Override
 	public ContentLocalService getWrappedService() {
 		return _contentLocalService;
 	}
