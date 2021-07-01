@@ -5,4 +5,7 @@ dependencies {
 	compileOnly group: "javax.servlet", name: "javax.servlet-api"
 	compileOnly group: "jstl", name: "jstl"
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.function"
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay"
+	compileOnly project(":modules:newsletter:newsletter-api")
 }

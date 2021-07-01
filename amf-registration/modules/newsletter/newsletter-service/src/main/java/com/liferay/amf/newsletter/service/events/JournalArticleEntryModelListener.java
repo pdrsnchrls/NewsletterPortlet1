@@ -45,7 +45,7 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 
 	}
 	
-	public void onAfterRemove(JournalArticle journalArticle) {
+	public void onAfterRemove(JournalArticle journalArticle) { // D in CRUD
 		
 		long resourcePrimKey = journalArticle.getResourcePrimKey();
 		System.out.println("I see you're trying to delete something hmm... " + resourcePrimKey);
