@@ -45,10 +45,11 @@ public class ContentLocalServiceWrapper
 
 	@Override
 	public void parseContent(
-		String articleContent, boolean newsletterType, boolean issueType) {
+		String articleContent, long resourcePrimKey, boolean newsletterType,
+		boolean issueType) {
 
 		_contentLocalService.parseContent(
-			articleContent, newsletterType, issueType);
+			articleContent, resourcePrimKey, newsletterType, issueType);
 	}
 
 	@Override

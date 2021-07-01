@@ -50,9 +50,11 @@ public class ContentLocalServiceUtil {
 	}
 
 	public static void parseContent(
-		String articleContent, boolean newsletterType, boolean issueType) {
+		String articleContent, long resourcePrimKey, boolean newsletterType,
+		boolean issueType) {
 
-		getService().parseContent(articleContent, newsletterType, issueType);
+		getService().parseContent(
+			articleContent, resourcePrimKey, newsletterType, issueType);
 	}
 
 	public static String splitString(
