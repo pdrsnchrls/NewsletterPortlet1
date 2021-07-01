@@ -65,9 +65,8 @@ public class NewsletterLocalServiceImpl extends NewsletterLocalServiceBaseImpl {
 		}
 		catch (PortalException e) { // otherwise  (C in CRUD)
 			System.out.println("New newsletter!");
-			long newsletterId = counterLocalService.increment();
-			Newsletter newsletter = newsletterLocalService.createNewsletter(newsletterId);
-			setNewsletterAttributes(contentData, newsletter, newsletterId);
+			Newsletter newsletter = newsletterLocalService.createNewsletter(resourcePrimKey);
+			setNewsletterAttributes(contentData, newsletter, resourcePrimKey);
 
 			// persist to database
 			newsletterLocalService.addNewsletter(newsletter);

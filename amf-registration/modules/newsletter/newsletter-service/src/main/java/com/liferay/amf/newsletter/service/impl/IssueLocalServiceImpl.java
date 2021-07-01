@@ -15,7 +15,6 @@
 package com.liferay.amf.newsletter.service.impl;
 
 import com.liferay.amf.newsletter.model.Issue;
-import com.liferay.amf.newsletter.model.Newsletter;
 import com.liferay.amf.newsletter.service.base.IssueLocalServiceBaseImpl;
 import com.liferay.amf.newsletter.service.constants.NewsletterConstants;
 import com.liferay.portal.aop.AopService;
@@ -64,9 +63,8 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		}
 		catch (PortalException e) { // otherwise  (C in CRUD)
 			System.out.println("New Issue!");
-			long issueId = counterLocalService.increment();
-			Issue issue = issueLocalService.createIssue(issueId);
-			setIssueAttributes(contentData, issue, issueId);
+			Issue issue = issueLocalService.createIssue(resourcePrimKey);
+			setIssueAttributes(contentData, issue, resourcePrimKey);
 
 			// persist to database
 			issueLocalService.addIssue(issue);

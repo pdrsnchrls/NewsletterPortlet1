@@ -1,8 +1,11 @@
 package com.liferay.amf.newsletter.service.events;
 
 import com.liferay.amf.newsletter.service.ContentLocalService;
+import com.liferay.amf.newsletter.service.IssueLocalService;
+import com.liferay.amf.newsletter.service.NewsletterLocalService;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.journal.model.JournalArticle;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.ModelListener;
 
@@ -21,10 +24,6 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 	public void onAfterCreate(JournalArticle journalArticle) {
 		
 		long resourcePrimKey = journalArticle.getResourcePrimKey(); // a constant, can be used to check if we are adding or updating the database
-		double versionNo = journalArticle.getVersion();
-		
-		System.out.println("Primary Key: " + resourcePrimKey + " Version No: " + versionNo);
-		//check if versionNo is 1 or not
 		String articleContent = journalArticle.getContent();
 		
 		// get the Structure information
@@ -45,6 +44,37 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 		_contentLocalService.parseContent(articleContent, resourcePrimKey, newsletterType, issueType);
 
 	}
+	
+	public void onAfterRemove(JournalArticle journalArticle) {
+		
+		long resourcePrimKey = journalArticle.getResourcePrimKey();
+		System.out.println("I see you're trying to delete something hmm... " + resourcePrimKey);
+		
+		// get the Structure information
+		DDMStructure structure = journalArticle.getDDMStructure();
+		String structureName = structure.getName();
+
+		if(structureName.contains("Newsletter")) {
+			// web content is newsletter
+			try {
+				_newsletterLocalService.deleteNewsletter(resourcePrimKey);
+				System.out.println("Successfully deleted newsletter");
+			} catch (PortalException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Unable to delete newsletter");
+			}
+		}
+		else if(structureName.contains("Issue")) {
+			// web content is issue
+			try {
+				_issueLocalService.deleteIssue(resourcePrimKey);
+				System.out.println("Successfully deleted issue");
+			} catch (PortalException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Unable to delete issue");
+			}
+		}
+	}
 
 //	//figure out how to differentiate between a creation and a before update mf
 //	public void onBeforeUpdate(JournalArticle journalArticle) {
@@ -63,4 +93,9 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 	@Reference
 	ContentLocalService _contentLocalService;
 
+	@Reference
+	NewsletterLocalService _newsletterLocalService;
+	
+	@Reference
+	IssueLocalService _issueLocalService;
 }
