@@ -9,17 +9,9 @@ Separate by Issue number in search container
 	<portlet:param name="mvcRenderCommandName" value="/newsletter-list/view" />
 </portlet:renderURL>
 		
-		<c:forEach items="${issuesList }" var="issue">
-			<br /><p>Issue #${issue.issueNumber} ${issue.issueDate }</p>
-			
-			<liferay-ui:search-container searchContainer="${newsletterSearchContainer }">
-  
-				<liferay-ui:search-container-results results="${ newsletterSearchContainer.getResults() }"/>	
-					<liferay-ui:search-container-row className="com.liferay.amf.newsletter.model.Newsletter" modelVar="newsletter" keyProperty="newsletterId">
-						<liferay-ui:search-container-column-text name="title" value="${newsletter.title}" />
-						<liferay-ui:search-container-column-text name="author" value="${newsletter.author}" />
-					</liferay-ui:search-container-row>
-				<liferay-ui:search-iterator searchContainer="${newsletterSearchContainer }" />
-
-			</liferay-ui:search-container>
-		</c:forEach>
+<!-- Make a jsp page to display the values of the iSsUe using the newsletter persistence -->
+<c:forEach items="${issuesList }" var="issue">
+	<br /><p>Issue #${issue.issueNumber} ${issue.issueDate }</p>
+	<%@ include file="/newsletter-list.jspf" %>
+	
+</c:forEach>
