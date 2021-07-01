@@ -20,9 +20,12 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 
 	public void onAfterCreate(JournalArticle journalArticle) {
 		
-		long articleId = journalArticle.getId();
+		long resourcePrimKey = journalArticle.getResourcePrimKey(); // a constant, can be used to check if we are adding or updating the database
+		double versionNo = journalArticle.getVersion();
+		
+		System.out.println("Primary Key: " + resourcePrimKey + " Version No: " + versionNo);
+		//check if versionNo is 1 or not
 		String articleContent = journalArticle.getContent();
-		System.out.println("ArticleID: " + articleId);
 		
 		// get the Structure information
 		DDMStructure structure = journalArticle.getDDMStructure();
@@ -39,10 +42,11 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 		}
 		
 		//parse content to get relevant information
-		_contentLocalService.parseContent(articleContent, newsletterType, issueType);
+		_contentLocalService.parseContent(articleContent, resourcePrimKey, newsletterType, issueType);
 
 	}
 
+	//figure out how to differentiate between a creation and a before update mf
 	public void onBeforeUpdate(JournalArticle journalArticle) {
 		System.out.print("\nI am here to update stuff.\n");
 		long articleId = journalArticle.getId();

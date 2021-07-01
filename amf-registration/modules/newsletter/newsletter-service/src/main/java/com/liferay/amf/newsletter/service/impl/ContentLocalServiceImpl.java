@@ -53,7 +53,7 @@ public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 	 * Never reference this class directly. Use <code>com.liferay.amf.newsletter.service.ContentLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.newsletter.service.ContentLocalServiceUtil</code>.
 	 */
 	
-	public void parseContent(String articleContent, boolean newsletterType, boolean issueType) {
+	public void parseContent(String articleContent, long resourcePrimKey, boolean newsletterType, boolean issueType) {
 		
 		// if it is neither newsletter/issue, it will return
 		if (!newsletterType && !issueType) {
@@ -80,9 +80,6 @@ public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 			i++;
 		}
 		
-		for (HashMap.Entry<String, String> e : contentData.entrySet())
-            System.out.println("Key: " + e.getKey()+ "\t Value: " + e.getValue());
-		
 		// get data from contentData map
 		if (newsletterType) {
 			//call newsletter local service
@@ -99,16 +96,16 @@ public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 			System.out.println(newsletterContent.length());
 			//set newsletter data
 			long newsletterId = counterLocalService.increment();
-			Newsletter newsletter = _newsletterLocalService.createNewsletter(newsletterId);
+			Newsletter newsletter = _newsletterLocalService.createNewsletter(resourcePrimKey);
 			newsletter.setAuthor(author);
 			newsletter.setIssueNumber(Long.valueOf(issueNumber));
 			newsletter.setOrder(Integer.valueOf(orderNumber));
 			newsletter.setTitle(title);
 			newsletter.setContent(newsletterContent);
+			newsletter.setNewsletterId(resourcePrimKey); //figure out a way to set the newsletter id from articleid
 			
 			// persist to database
-			_newsletterLocalService.addNewsletter(newsletter);
-			
+			_newsletterLocalService.updateNewsletter(newsletter);
 		}
 		else if (issueType) {
 			//call issue local service
