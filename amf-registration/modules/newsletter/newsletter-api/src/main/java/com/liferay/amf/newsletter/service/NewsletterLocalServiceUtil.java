@@ -52,6 +52,12 @@ public class NewsletterLocalServiceUtil {
 		return getService().addNewsletter(newsletter);
 	}
 
+	public static void checkNewsletterStatus(
+		java.util.HashMap<String, String> contentData, long resourcePrimKey) {
+
+		getService().checkNewsletterStatus(contentData, resourcePrimKey);
+	}
+
 	/**
 	 * Creates a new newsletter with the primary key. Does not add the newsletter to the database.
 	 *
@@ -259,6 +265,15 @@ public class NewsletterLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static void setNewsletterAttributes(
+		java.util.HashMap<String, String> contentData,
+		com.liferay.amf.newsletter.model.Newsletter newsletter,
+		long newsletterId) {
+
+		getService().setNewsletterAttributes(
+			contentData, newsletter, newsletterId);
 	}
 
 	/**

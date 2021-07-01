@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.osgi.annotation.versioning.ProviderType;
@@ -69,6 +70,9 @@ public interface NewsletterLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Newsletter addNewsletter(Newsletter newsletter);
+
+	public void checkNewsletterStatus(
+		HashMap<String, String> contentData, long resourcePrimKey);
 
 	/**
 	 * Creates a new newsletter with the primary key. Does not add the newsletter to the database.
@@ -224,6 +228,10 @@ public interface NewsletterLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
+
+	public void setNewsletterAttributes(
+		HashMap<String, String> contentData, Newsletter newsletter,
+		long newsletterId);
 
 	/**
 	 * Updates the newsletter in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
