@@ -1,6 +1,5 @@
 <%@ include file="/init.jsp" %>
 
-<p> Here is a list of the newsletters sorted by IssueNumber </p>
 <!-- 
 Grab issue details - number, date, title.
 Grab a list of newsletters with the same issueNumber 
@@ -9,19 +8,18 @@ Separate by Issue number in search container
 <portlet:renderURL var="viewListURL">
 	<portlet:param name="mvcRenderCommandName" value="/newsletter-list/view" />
 </portlet:renderURL>
-
-<p>Issue Test</p>
-
-<liferay-ui:search-container searchContainer="${searchContainer }" >
+		
+		<c:forEach items="${issuesList }" var="issue">
+			<br /><p>Issue #${issue.issueNumber} ${issue.issueDate }</p>
+			
+			<liferay-ui:search-container searchContainer="${newsletterSearchContainer }">
   
-	<liferay-ui:search-container-results results="${ searchContainer.getResults() }"/>
-		
-		<liferay-ui:search-container-row className="com.liferay.amf.newsletter.model.Issue" modelVar="issue" keyProperty="issueId" >
-			<liferay-ui:search-container-column-text name="title" value="${issue.issueTitle}" />
-			<liferay-ui:search-container-column-text name="description" value="${issue.description }" />
-			<liferay-ui:search-container-column-text name="date" value="${issue.issueDate }" />
-		</liferay-ui:search-container-row>
-		
-	<liferay-ui:search-iterator searchContainer="${searchContainer }" />
+				<liferay-ui:search-container-results results="${ newsletterSearchContainer.getResults() }"/>	
+					<liferay-ui:search-container-row className="com.liferay.amf.newsletter.model.Newsletter" modelVar="newsletter" keyProperty="newsletterId">
+						<liferay-ui:search-container-column-text name="title" value="${newsletter.title}" />
+						<liferay-ui:search-container-column-text name="author" value="${newsletter.author}" />
+					</liferay-ui:search-container-row>
+				<liferay-ui:search-iterator searchContainer="${newsletterSearchContainer }" />
 
-</liferay-ui:search-container>
+			</liferay-ui:search-container>
+		</c:forEach>
