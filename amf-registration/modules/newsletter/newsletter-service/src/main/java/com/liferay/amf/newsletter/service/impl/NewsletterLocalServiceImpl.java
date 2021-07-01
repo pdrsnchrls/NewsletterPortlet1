@@ -54,23 +54,23 @@ public class NewsletterLocalServiceImpl extends NewsletterLocalServiceBaseImpl {
 	
 	public void checkNewsletterStatus(HashMap <String, String> contentData, long resourcePrimKey) {
 		
-		// if the newsletter already exists, then grab it and update it.
+		// if the newsletter already exists, then grab it and update it. (U in CRUD)
 		try {
-			Newsletter newsletter = _newsletterLocalService.getNewsletter(resourcePrimKey);
+			Newsletter newsletter = newsletterLocalService.getNewsletter(resourcePrimKey);
 			System.out.println("Newsletter exists...");
 			setNewsletterAttributes(contentData, newsletter, resourcePrimKey);
 
 			// persist to database
-			_newsletterLocalService.updateNewsletter(newsletter);
+			newsletterLocalService.updateNewsletter(newsletter);
 		}
-		catch (PortalException e) { // otherwise 
+		catch (PortalException e) { // otherwise  (C in CRUD)
 			System.out.println("New newsletter!");
 			long newsletterId = counterLocalService.increment();
-			Newsletter newsletter = _newsletterLocalService.createNewsletter(newsletterId);
+			Newsletter newsletter = newsletterLocalService.createNewsletter(newsletterId);
 			setNewsletterAttributes(contentData, newsletter, newsletterId);
 
 			// persist to database
-			_newsletterLocalService.addNewsletter(newsletter);
+			newsletterLocalService.addNewsletter(newsletter);
 		}
 		
 	}
@@ -97,8 +97,5 @@ public class NewsletterLocalServiceImpl extends NewsletterLocalServiceBaseImpl {
 		newsletter.setContent(newsletterContent);
 		newsletter.setNewsletterId(newsletterId);
 	}
-	
-	@Reference
-	NewsletterLocalService _newsletterLocalService;
 
 }

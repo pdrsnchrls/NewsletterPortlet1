@@ -46,19 +46,19 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 
 	}
 
-	//figure out how to differentiate between a creation and a before update mf
-	public void onBeforeUpdate(JournalArticle journalArticle) {
-		System.out.print("\nI am here to update stuff.\n");
-		long articleId = journalArticle.getId();
-		System.out.println("ArticleID before update: " + articleId);
-
-	}
-	public void onAfterUpdate(JournalArticle journalArticle) {
-		System.out.print("\nI am here after update\n");
-		long articleId = journalArticle.getId();
-		System.out.println("ArticleID after update: " + articleId + "\n");
-
-	}
+//	//figure out how to differentiate between a creation and a before update mf
+//	public void onBeforeUpdate(JournalArticle journalArticle) {
+//		System.out.print("\nI am here to update stuff.\n");
+//		long articleId = journalArticle.getId();
+//		System.out.println("ArticleID before update: " + articleId);
+//
+//	}
+//	public void onAfterUpdate(JournalArticle journalArticle) {
+//		System.out.print("\nI am here after update\n");
+//		long articleId = journalArticle.getId();
+//		System.out.println("ArticleID after update: " + articleId + "\n");
+//
+//	}
 	
 	@Reference
 	ContentLocalService _contentLocalService;

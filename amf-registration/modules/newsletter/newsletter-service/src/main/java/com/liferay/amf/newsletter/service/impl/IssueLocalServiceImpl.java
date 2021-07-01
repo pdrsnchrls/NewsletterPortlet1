@@ -14,8 +14,15 @@
 
 package com.liferay.amf.newsletter.service.impl;
 
+import com.liferay.amf.newsletter.model.Issue;
+import com.liferay.amf.newsletter.model.Newsletter;
 import com.liferay.amf.newsletter.service.base.IssueLocalServiceBaseImpl;
+import com.liferay.amf.newsletter.service.constants.NewsletterConstants;
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.exception.PortalException;
+
+import java.sql.Date;
+import java.util.HashMap;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -43,4 +50,49 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Use <code>com.liferay.amf.newsletter.service.IssueLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.newsletter.service.IssueLocalServiceUtil</code>.
 	 */
+	
+	public void checkIssueStatus(HashMap <String, String> contentData, long resourcePrimKey) {
+		
+		// if the issue already exists, then grab it and update it. (U in CRUD)
+		try {
+			Issue issue = issueLocalService.getIssue(resourcePrimKey);
+			System.out.println("Isuse exists...");
+			setIssueAttributes(contentData, issue, resourcePrimKey);
+
+			// persist to database
+			issueLocalService.updateIssue(issue);
+		}
+		catch (PortalException e) { // otherwise  (C in CRUD)
+			System.out.println("New Issue!");
+			long issueId = counterLocalService.increment();
+			Issue issue = issueLocalService.createIssue(issueId);
+			setIssueAttributes(contentData, issue, issueId);
+
+			// persist to database
+			issueLocalService.addIssue(issue);
+		}
+	}
+	
+	public void setIssueAttributes(HashMap <String, String> contentData, Issue issue,
+			long issueId) {
+		//call issue local service and do the same thang
+		String issueNumber = contentData.get(NewsletterConstants.ISSUE_NUMBER);
+		String issueTitle = contentData.get(NewsletterConstants.ISSUE_TITLE);
+		String issueDescription = contentData.get(NewsletterConstants.ISSUE_DESCRIPTION);
+		String issueDate = contentData.get(NewsletterConstants.ISSUE_DATE);
+		String authorByline = contentData.get(NewsletterConstants.BYLINE);
+		
+		System.out.println("\nHere is the info:\nIssue Number - " + issueNumber
+				+ "\nTitle - " + issueTitle + "\nDescription - " + issueDescription
+				+ "\nIssue Date - " + Date.valueOf(issueDate) + "\nAuthors - " + authorByline);
+		
+		// set issue data
+		issue.setIssueNumber(Long.valueOf(issueNumber));
+		issue.setTitle(issueTitle);
+		issue.setDescription(issueDescription);
+		issue.setIssueDate(Date.valueOf(issueDate));
+		issue.setByline(authorByline);
+		issue.setIssueId(issueId);
+	}
+		
 }

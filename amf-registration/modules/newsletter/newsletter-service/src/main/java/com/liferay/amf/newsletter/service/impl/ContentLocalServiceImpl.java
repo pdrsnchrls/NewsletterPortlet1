@@ -87,28 +87,8 @@ public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 			_newsletterLocalService.checkNewsletterStatus(contentData, resourcePrimKey);
 		}
 		else if (issueType) {
-			//call issue local service
-			String issueNumber = contentData.get(NewsletterConstants.ISSUE_NUMBER);
-			String issueTitle = contentData.get(NewsletterConstants.ISSUE_TITLE);
-			String issueDescription = contentData.get(NewsletterConstants.ISSUE_DESCRIPTION);
-			String issueDate = contentData.get(NewsletterConstants.ISSUE_DATE);
-			String authorByline = contentData.get(NewsletterConstants.BYLINE);
-			
-			System.out.println("\nHere is the info:\nIssue Number - " + issueNumber
-					+ "\nTitle - " + issueTitle + "\nDescription - " + issueDescription
-					+ "\nIssue Date - " + Date.valueOf(issueDate) + "\nAuthors - " + authorByline);
-			// set issue data
-			long issueId = counterLocalService.increment();
-			Issue issue = _issueLocalService.createIssue(issueId);
-			issue.setIssueNumber(Long.valueOf(issueNumber));
-			issue.setTitle(issueTitle);
-			System.out.println(issueDescription.length());
-			issue.setDescription(issueDescription);
-			issue.setIssueDate(Date.valueOf(issueDate));
-			issue.setByline(authorByline);
-			
 			// persist to database
-			_issueLocalService.addIssue(issue);
+			_issueLocalService.checkIssueStatus(contentData, resourcePrimKey);
 		}
 	}
 	
