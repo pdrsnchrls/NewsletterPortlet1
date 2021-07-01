@@ -18,7 +18,9 @@ import com.liferay.amf.newsletter.model.Newsletter;
 import com.liferay.amf.newsletter.service.NewsletterLocalService;
 import com.liferay.amf.newsletter.service.NewsletterService;
 import com.liferay.amf.newsletter.service.base.NewsletterLocalServiceBaseImpl;
+import com.liferay.amf.newsletter.service.constants.NewsletterConstants;
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.exception.PortalException;
 
 import java.util.HashMap;
 
@@ -49,5 +51,54 @@ public class NewsletterLocalServiceImpl extends NewsletterLocalServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Use <code>com.liferay.amf.newsletter.service.NewsletterLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.newsletter.service.NewsletterLocalServiceUtil</code>.
 	 */
+	
+	public void checkNewsletterStatus(HashMap <String, String> contentData, long resourcePrimKey) {
+		
+		// if the newsletter already exists, then grab it and update it.
+		try {
+			Newsletter newsletter = _newsletterLocalService.getNewsletter(resourcePrimKey);
+			System.out.println("Newsletter exists...");
+			setNewsletterAttributes(contentData, newsletter, resourcePrimKey);
+
+			// persist to database
+			_newsletterLocalService.updateNewsletter(newsletter);
+		}
+		catch (PortalException e) { // otherwise 
+			System.out.println("New newsletter!");
+			long newsletterId = counterLocalService.increment();
+			Newsletter newsletter = _newsletterLocalService.createNewsletter(newsletterId);
+			setNewsletterAttributes(contentData, newsletter, newsletterId);
+
+			// persist to database
+			_newsletterLocalService.addNewsletter(newsletter);
+		}
+		
+	}
+	
+	public void setNewsletterAttributes(HashMap <String, String> contentData, Newsletter newsletter,
+			long newsletterId) {
+		
+		// get data from hashmap contentData
+		String issueNumber = contentData.get(NewsletterConstants.ISSUE_NUMBER);
+		String orderNumber = contentData.get(NewsletterConstants.ORDER_NUMBER);
+		String title = contentData.get(NewsletterConstants.NEWSLETTER_TITLE);
+		String author = contentData.get(NewsletterConstants.NEWSLETTER_AUTHOR);
+		String newsletterContent = contentData.get(NewsletterConstants.NEWSLETTER_CONTENT);
+		
+		System.out.println("\nHere is the info:\nIssue Number - " + Long.valueOf(issueNumber)
+				+ "\nOrder Number - " + Integer.valueOf(orderNumber) + "\nTitle - " + title
+				+ "\nAuthor - " + author + "\nContent - " + newsletterContent);
+		
+		// set data in newsletter
+		newsletter.setAuthor(author);
+		newsletter.setIssueNumber(Long.valueOf(issueNumber));
+		newsletter.setOrder(Integer.valueOf(orderNumber));
+		newsletter.setTitle(title);
+		newsletter.setContent(newsletterContent);
+		newsletter.setNewsletterId(newsletterId);
+	}
+	
+	@Reference
+	NewsletterLocalService _newsletterLocalService;
 
 }

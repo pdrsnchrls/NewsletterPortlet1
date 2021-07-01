@@ -21,6 +21,7 @@ import com.liferay.amf.newsletter.service.NewsletterLocalService;
 import com.liferay.amf.newsletter.service.base.ContentLocalServiceBaseImpl;
 import com.liferay.amf.newsletter.service.constants.NewsletterConstants;
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.exception.PortalException;
 
 import java.sql.Date;
 import java.util.HashMap;
@@ -83,29 +84,7 @@ public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 		// get data from contentData map
 		if (newsletterType) {
 			//call newsletter local service
-			String issueNumber = contentData.get(NewsletterConstants.ISSUE_NUMBER);
-			String orderNumber = contentData.get(NewsletterConstants.ORDER_NUMBER);
-			String title = contentData.get(NewsletterConstants.NEWSLETTER_TITLE);
-			String author = contentData.get(NewsletterConstants.NEWSLETTER_AUTHOR);
-			String newsletterContent = contentData.get(NewsletterConstants.NEWSLETTER_CONTENT);
-			
-			System.out.println("\nHere is the info:\nIssue Number - " + Long.valueOf(issueNumber)
-					+ "\nOrder Number - " + Integer.valueOf(orderNumber) + "\nTitle - " + title
-					+ "\nAuthor - " + author + "\nContent - " + newsletterContent);
-			
-			System.out.println(newsletterContent.length());
-			//set newsletter data
-			long newsletterId = counterLocalService.increment();
-			Newsletter newsletter = _newsletterLocalService.createNewsletter(resourcePrimKey);
-			newsletter.setAuthor(author);
-			newsletter.setIssueNumber(Long.valueOf(issueNumber));
-			newsletter.setOrder(Integer.valueOf(orderNumber));
-			newsletter.setTitle(title);
-			newsletter.setContent(newsletterContent);
-			newsletter.setNewsletterId(resourcePrimKey); //figure out a way to set the newsletter id from articleid
-			
-			// persist to database
-			_newsletterLocalService.updateNewsletter(newsletter);
+			_newsletterLocalService.checkNewsletterStatus(contentData, resourcePrimKey);
 		}
 		else if (issueType) {
 			//call issue local service
