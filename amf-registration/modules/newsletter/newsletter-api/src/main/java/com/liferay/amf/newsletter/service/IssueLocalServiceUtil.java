@@ -52,6 +52,12 @@ public class IssueLocalServiceUtil {
 		return getService().addIssue(issue);
 	}
 
+	public static void checkIssueStatus(
+		java.util.HashMap<String, String> contentData, long resourcePrimKey) {
+
+		getService().checkIssueStatus(contentData, resourcePrimKey);
+	}
+
 	/**
 	 * Creates a new issue with the primary key. Does not add the issue to the database.
 	 *
@@ -258,6 +264,13 @@ public class IssueLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static void setIssueAttributes(
+		java.util.HashMap<String, String> contentData,
+		com.liferay.amf.newsletter.model.Issue issue, long issueId) {
+
+		getService().setIssueAttributes(contentData, issue, issueId);
 	}
 
 	/**

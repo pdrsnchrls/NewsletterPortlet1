@@ -46,6 +46,13 @@ public class IssueLocalServiceWrapper
 		return _issueLocalService.addIssue(issue);
 	}
 
+	@Override
+	public void checkIssueStatus(
+		java.util.HashMap<String, String> contentData, long resourcePrimKey) {
+
+		_issueLocalService.checkIssueStatus(contentData, resourcePrimKey);
+	}
+
 	/**
 	 * Creates a new issue with the primary key. Does not add the issue to the database.
 	 *
@@ -261,6 +268,14 @@ public class IssueLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _issueLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public void setIssueAttributes(
+		java.util.HashMap<String, String> contentData,
+		com.liferay.amf.newsletter.model.Issue issue, long issueId) {
+
+		_issueLocalService.setIssueAttributes(contentData, issue, issueId);
 	}
 
 	/**

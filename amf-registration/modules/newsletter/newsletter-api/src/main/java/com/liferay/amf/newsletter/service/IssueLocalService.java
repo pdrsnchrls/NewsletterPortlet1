@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.osgi.annotation.versioning.ProviderType;
@@ -69,6 +70,9 @@ public interface IssueLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Issue addIssue(Issue issue);
+
+	public void checkIssueStatus(
+		HashMap<String, String> contentData, long resourcePrimKey);
 
 	/**
 	 * Creates a new issue with the primary key. Does not add the issue to the database.
@@ -223,6 +227,9 @@ public interface IssueLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
+
+	public void setIssueAttributes(
+		HashMap<String, String> contentData, Issue issue, long issueId);
 
 	/**
 	 * Updates the issue in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
