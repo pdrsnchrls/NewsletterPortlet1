@@ -198,6 +198,13 @@ public class NewsletterLocalServiceUtil {
 		return getService().fetchNewsletter(newsletterId);
 	}
 
+	public static java.util.List<com.liferay.amf.newsletter.model.Newsletter>
+			findByIssueNumber(long issueNumber)
+		throws com.liferay.portal.kernel.exception.SystemException {
+
+		return getService().findByIssueNumber(issueNumber);
+	}
+
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
 		getActionableDynamicQuery() {
 

@@ -206,6 +206,14 @@ public class NewsletterLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.liferay.amf.newsletter.model.Newsletter>
+			findByIssueNumber(long issueNumber)
+		throws com.liferay.portal.kernel.exception.SystemException {
+
+		return _newsletterLocalService.findByIssueNumber(issueNumber);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
 		getActionableDynamicQuery() {
 

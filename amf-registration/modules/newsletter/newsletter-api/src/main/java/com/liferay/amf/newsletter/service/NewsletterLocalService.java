@@ -179,6 +179,9 @@ public interface NewsletterLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Newsletter fetchNewsletter(long newsletterId);
 
+	public List<Newsletter> findByIssueNumber(long issueNumber)
+		throws SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 
