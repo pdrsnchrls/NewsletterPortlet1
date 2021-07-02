@@ -6,7 +6,7 @@
 	<portlet:param name="mvcRenderCommandName" value="/newsletter-list/view" />
 </portlet:renderURL>
 
-<p> Sup baby </p>
+<p>Sup dude</p>
 
 <!-- <liferay-ui:search-container searchContainer="${newsletterSearchContainer }">
   
