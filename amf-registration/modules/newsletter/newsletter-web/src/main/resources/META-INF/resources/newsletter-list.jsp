@@ -1,6 +1,14 @@
 <!-- Create a searchContainer variable for each issue.issueNumber... -->
+<%@ include file="/init.jsp" %>
 
-<liferay-ui:search-container searchContainer="${newsletterSearchContainer }">
+
+<portlet:renderURL var="viewNewslettersURL">
+	<portlet:param name="mvcRenderCommandName" value="/newsletter-list/view" />
+</portlet:renderURL>
+
+<p> Sup baby </p>
+
+<!-- <liferay-ui:search-container searchContainer="${newsletterSearchContainer }">
   
 	<liferay-ui:search-container-results results="${ newsletterSearchContainer.getResults() }"/>	
 		<liferay-ui:search-container-row className="com.liferay.amf.newsletter.model.Newsletter" modelVar="newsletter" keyProperty="newsletterId">
@@ -9,4 +17,4 @@
 		</liferay-ui:search-container-row>
 	<liferay-ui:search-iterator searchContainer="${newsletterSearchContainer }" />
 
-</liferay-ui:search-container>
+</liferay-ui:search-container> --> 

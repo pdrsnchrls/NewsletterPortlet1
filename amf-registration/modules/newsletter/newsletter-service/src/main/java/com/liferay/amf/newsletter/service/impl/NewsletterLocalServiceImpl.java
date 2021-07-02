@@ -17,6 +17,7 @@ package com.liferay.amf.newsletter.service.impl;
 import com.liferay.amf.newsletter.model.Newsletter;
 import com.liferay.amf.newsletter.service.base.NewsletterLocalServiceBaseImpl;
 import com.liferay.amf.newsletter.service.constants.NewsletterConstants;
+import com.liferay.amf.newsletter.service.persistence.NewsletterUtil;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -52,7 +53,7 @@ public class NewsletterLocalServiceImpl extends NewsletterLocalServiceBaseImpl {
 	 */
 	
 	public List<Newsletter> findByIssueNumber(long issueNumber) throws SystemException {
-		return newsletterPersistence.findByIssueNumber(issueNumber);
+		return NewsletterUtil.findByIssueNumber(issueNumber);
 	}
 	
 	public void checkNewsletterStatus(HashMap <String, String> contentData, long resourcePrimKey) {
