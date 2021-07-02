@@ -11,7 +11,7 @@ Separate by Issue number in search container
 		
 <!-- Make a jsp page to display the values of the iSsUe using the newsletter persistence -->
 <c:forEach items="${issuesList }" var="issue">
-	<br /><p>Issue #${issue.issueNumber} ${issue.issueDate }</p>
+	<p>Issue #${issue.issueNumber} ${issue.issueDate }</p>
 	<%@ include file="/newsletter-list.jspf" %>
-	
+	<br />
 </c:forEach>

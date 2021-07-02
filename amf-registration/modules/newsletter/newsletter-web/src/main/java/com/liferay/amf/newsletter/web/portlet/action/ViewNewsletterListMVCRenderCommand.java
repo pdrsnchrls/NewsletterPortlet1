@@ -37,30 +37,32 @@ public class ViewNewsletterListMVCRenderCommand implements MVCRenderCommand {
 		System.out.println("In render command");
 		PortletURL iteratorURL = response.createRenderURL();
 		iteratorURL.setParameter("mvcRenderCommandName", "/newsletter-list/view");
-
-		SearchContainer<Issue> searchContainer = new SearchContainer<Issue>(request, null, null, 
-				SearchContainer.DEFAULT_CUR_PARAM, 12, iteratorURL, null,
-				"no-issues-found");
-		
-		List<Issue> issuesList = _issueLocalService.getIssues(searchContainer.getStart(), searchContainer.getEnd());
-		
-		searchContainer.setIteratorURL(iteratorURL);
-		searchContainer.setResults(issuesList);
-		searchContainer.setTotal(issuesList.size());
-		
+				
 		SearchContainer<Newsletter> newsletterSearchContainer= new SearchContainer<Newsletter>(request, null, null, 
 				SearchContainer.DEFAULT_CUR_PARAM, 4, iteratorURL, null,
 				"no-newsletters-found");
 		
-		List<Newsletter> newslettersList = _newsletterLocalService.getNewsletters(searchContainer.getStart(), searchContainer.getEnd());
+		List<Newsletter> newslettersList = _newsletterLocalService.getNewsletters(newsletterSearchContainer.getStart(), newsletterSearchContainer.getEnd());
+		List<Issue> issuesList = _issueLocalService.getIssues(newsletterSearchContainer.getStart(), newsletterSearchContainer.getEnd());
 
 		newsletterSearchContainer.setIteratorURL(iteratorURL);
 		newsletterSearchContainer.setResults(newslettersList);
 		newsletterSearchContainer.setTotal(newslettersList.size());
+		
 		request.setAttribute("issuesList", issuesList);
-		request.setAttribute("searchContainer", searchContainer);
 		request.setAttribute("newsletterSearchContainer", newsletterSearchContainer);
-//		List<Newsletter> newsletterList = _newsletterPersistence.findByIssueNumber(issueNumber);
+
+		// query all issues
+		List<Issue> allIssues = _issueLocalService.getIssues(0, _issueLocalService.getIssuesCount());
+		for (Issue e: allIssues) {
+			System.out.println(e.getIssueNumber());
+			List<Newsletter> newsletterList = _newsletterLocalService.findByIssueNumber(e.getIssueNumber());
+			for (int index = 0; index < newsletterList.size(); index++)
+				System.out.print(newsletterList.get(index));
+		}
+		
+		
+		
 		return null;
 	}
 	

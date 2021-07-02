@@ -15,17 +15,16 @@
 package com.liferay.amf.newsletter.service.impl;
 
 import com.liferay.amf.newsletter.model.Newsletter;
-import com.liferay.amf.newsletter.service.NewsletterLocalService;
-import com.liferay.amf.newsletter.service.NewsletterService;
 import com.liferay.amf.newsletter.service.base.NewsletterLocalServiceBaseImpl;
 import com.liferay.amf.newsletter.service.constants.NewsletterConstants;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 /**
  * The implementation of the newsletter local service.
@@ -51,6 +50,10 @@ public class NewsletterLocalServiceImpl extends NewsletterLocalServiceBaseImpl {
 	 *
 	 * Never reference this class directly. Use <code>com.liferay.amf.newsletter.service.NewsletterLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.newsletter.service.NewsletterLocalServiceUtil</code>.
 	 */
+	
+	public List<Newsletter> findByIssueNumber(long issueNumber) throws SystemException {
+		return newsletterPersistence.findByIssueNumber(issueNumber);
+	}
 	
 	public void checkNewsletterStatus(HashMap <String, String> contentData, long resourcePrimKey) {
 		
