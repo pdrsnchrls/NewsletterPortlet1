@@ -22,7 +22,7 @@ import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.orm.*;
 import com.liferay.portal.kernel.exception.PortalException;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -88,13 +88,13 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		
 		System.out.println("\nHere is the info:\nIssue Number - " + issueNumber
 				+ "\nTitle - " + issueTitle + "\nDescription - " + issueDescription
-				+ "\nIssue Date - " + Date.valueOf(issueDate) + "\nAuthors - " + authorByline);
-		
+				+ "\nIssue Date - " + issueDate + "\nAuthors - " + authorByline);
+
 		// set issue data
 		issue.setIssueNumber(Long.valueOf(issueNumber));
 		issue.setTitle(issueTitle);
 		issue.setDescription(issueDescription);
-		issue.setIssueDate(Date.valueOf(issueDate));
+		issue.setIssueDate(java.sql.Date.valueOf(issueDate)); //hardcode to sql for inputting date...
 		issue.setByline(authorByline);
 		issue.setIssueId(issueId);
 	}
@@ -113,9 +113,10 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		calendarEnd.set(Calendar.MONTH, Calendar.DECEMBER);
 		calendarEnd.set(Calendar.YEAR, year);
 
-		Date startDate = (Date) calendarStart.getTime();
-		Date endDate = (Date) calendarEnd.getTime();
+		Date startDate = calendarStart.getTime();
+		Date endDate = calendarEnd.getTime();
 
+		System.out.println("Start Date: " + startDate + "\nEnd Date: " + endDate);
 		DynamicQuery issueQuery = DynamicQueryFactoryUtil.forClass(Issue.class, classLoader)
 				.add(RestrictionsFactoryUtil.between("issueDate", startDate, endDate))
 				.addOrder(OrderFactoryUtil.desc("issueDate"));

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/init.jsp" %>
 
 <!-- 
@@ -14,11 +15,12 @@ Separate by Issue number in search container
 <liferay-ui:tabs
 	names="${years }"
 	param="tab"
-	refresh="${false }"
+	url="${portletURL.toString() }"
 	type="tabs nav-tabs-default"
 >
 	<liferay-ui:section>
 		<p>The year is ${year }</p>
 		<%@ include file="newsletter-list.jsp" %>
 	</liferay-ui:section>
+
 </liferay-ui:tabs>
