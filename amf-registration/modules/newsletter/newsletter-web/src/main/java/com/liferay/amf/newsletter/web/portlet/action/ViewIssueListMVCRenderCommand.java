@@ -39,7 +39,6 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 
 		// create set of all the years in the newsletters
 		TreeSet<Integer> years = new TreeSet<>(); // use a set to guarantee uniqueness
-		years.add(0);
 		for (Issue i: allIssues) {
 			Date date = i.getIssueDate();
 			Calendar calendar = new GregorianCalendar();
@@ -47,9 +46,10 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 			int year = calendar.get(Calendar.YEAR);
 			years.add(year);
 		}
-		years.add(Integer.MAX_VALUE);
 		years=(TreeSet<Integer>) years.descendingSet(); // reverse order so tabs display from highest year to lowest year
 		request.setAttribute("years", years);
+		List<Integer> yearsslolXDRawr = _issueLocalService.getAllIssueYears();
+		System.out.println("yearsslolXDRawr: " + yearsslolXDRawr);
 //		Integer yearsSize = years.size()-1;
 //		Integer one = 1;
 //		request.setAttribute("one", one);
@@ -57,19 +57,22 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 
 		String test = ParamUtil.getString(request, "tab");
 		System.out.println(test + " <-- Test");
+//		test.replace("]", "");
+//		test.replace("[", "");
+//		int selectedYear = Integer.valueOf("test");
 
 		// get selected year from User tab selection - not working, default is 0
-		int selectedYearTemp = ParamUtil.getInteger(request, "tab"); // gets selectedYear from tab
-		System.out.println("selectedYearTemp: " + selectedYearTemp);
-
 		int selectedYear = ParamUtil.getInteger(request, "tab"); // gets selectedYear from tab
-
 		System.out.println("Selected Year: " + selectedYear);
 
 		//get issues based on year - dynamicQuery in service layer
-		List<Issue> issuesBySelectedYear = _issueLocalService.getIssuesByYear(selectedYear); // this will be the "key" with the "map" being the newsletter list
+		List<Issue> issuesBySelectedYear = _issueLocalService.getIssuesByYear(selectedYear);
+		Map<Issue, List<Newsletter>> issueListMap = new HashMap<Issue, List<Newsletter>>(); //idk if this is bad to do lol
+
 		for (Issue i: issuesBySelectedYear) {
 			System.out.println("Issue Title: " + i.getTitle());
+			List<Newsletter> newsletterList = _newsletterLocalService.findByIssueNumber(i.getIssueNumber());
+			issueListMap.put(i, newsletterList);
 		}
 
 		request.setAttribute("year", selectedYear);
@@ -105,7 +108,7 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 //			request.setAttribute("newsletterSearchContainer" + issueNumber, newsletterSearchContainer);
 //		}
 
-		return null;
+		return "/view.jsp";
 	}
 
 	@Reference

@@ -15,6 +15,7 @@
 package com.liferay.amf.newsletter.service.impl;
 
 import com.liferay.amf.newsletter.model.Issue;
+import com.liferay.amf.newsletter.service.IssueLocalService;
 import com.liferay.amf.newsletter.service.IssueLocalServiceUtil;
 import com.liferay.amf.newsletter.service.base.IssueLocalServiceBaseImpl;
 import com.liferay.amf.newsletter.service.constants.NewsletterConstants;
@@ -22,6 +23,7 @@ import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.orm.*;
 import com.liferay.portal.kernel.exception.PortalException;
 
+import java.time.Year;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -97,6 +99,16 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		issue.setIssueDate(java.sql.Date.valueOf(issueDate)); //hardcode to sql for inputting date...
 		issue.setByline(authorByline);
 		issue.setIssueId(issueId);
+	}
+
+	public List<Integer> getAllIssueYears() {
+		ClassLoader classLoader = getClass().getClassLoader();
+
+		DynamicQuery issueQuery = DynamicQueryFactoryUtil.forClass(Issue.class, classLoader)
+				.setProjection(ProjectionFactoryUtil.sqlGroupProjection("year(issueDate)","issueDate",
+						new String[] { "issueDate" }, new Type[] { Type.DATE }));
+		List<Integer> issueYears = issueLocalService.dynamicQuery(issueQuery);
+		return issueYears;
 	}
 
 	public List<Issue> getIssuesByYear(int year) {
