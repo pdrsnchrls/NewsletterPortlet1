@@ -204,6 +204,11 @@ public class IssueLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<Integer> getAllIssueYears() {
+		return _issueLocalService.getAllIssueYears();
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery
 		getIndexableActionableDynamicQuery() {
 

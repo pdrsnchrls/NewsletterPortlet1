@@ -204,6 +204,10 @@ public class IssueLocalServiceUtil {
 		return getService().getActionableDynamicQuery();
 	}
 
+	public static java.util.List<Integer> getAllIssueYears() {
+		return getService().getAllIssueYears();
+	}
+
 	public static
 		com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery
 			getIndexableActionableDynamicQuery() {
