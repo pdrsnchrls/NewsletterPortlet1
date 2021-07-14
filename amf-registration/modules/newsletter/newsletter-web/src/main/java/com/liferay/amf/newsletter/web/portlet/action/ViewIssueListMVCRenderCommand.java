@@ -52,8 +52,9 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 		request.setAttribute("years", years);
 
 		int selectedYear = ParamUtil.getInteger(request, "tab"); // gets selectedYear from tab
-		//get issues based on year
-		
+		//get issues based on year - dynamicQuery in service layer
+		_issueLocalService.getIssuesByYear(selectedYear);
+
 		// unused search container?
 		PortletURL iteratorURL = response.createRenderURL();
 		iteratorURL.setParameter("mvcRenderCommandName", "/issue-list/view");

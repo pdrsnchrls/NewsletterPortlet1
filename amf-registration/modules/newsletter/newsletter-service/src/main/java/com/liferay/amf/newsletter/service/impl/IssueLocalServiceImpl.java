@@ -15,14 +15,20 @@
 package com.liferay.amf.newsletter.service.impl;
 
 import com.liferay.amf.newsletter.model.Issue;
+import com.liferay.amf.newsletter.service.IssueLocalServiceUtil;
 import com.liferay.amf.newsletter.service.base.IssueLocalServiceBaseImpl;
 import com.liferay.amf.newsletter.service.constants.NewsletterConstants;
 import com.liferay.portal.aop.AopService;
+import com.liferay.portal.kernel.dao.orm.*;
 import com.liferay.portal.kernel.exception.PortalException;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -92,5 +98,34 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		issue.setByline(authorByline);
 		issue.setIssueId(issueId);
 	}
-		
+
+	public List<Issue> getIssuesByYear(int year) {
+		Session session = null;
+		ClassLoader classLoader = getClass().getClassLoader();
+		List<Issue> issueList = new ArrayList<Issue>();
+
+		// Dynamic query so that the date is between January 1st to December 31st of the year
+		Calendar calendarStart = Calendar.getInstance(), calendarEnd = Calendar.getInstance();
+		calendarStart.set(Calendar.DAY_OF_MONTH, 1);
+		calendarStart.set(Calendar.MONTH, Calendar.JANUARY);
+		calendarStart.set(Calendar.YEAR, year);
+		calendarEnd.set(Calendar.DAY_OF_MONTH, 31);
+		calendarEnd.set(Calendar.MONTH, Calendar.DECEMBER);
+		calendarEnd.set(Calendar.YEAR, year);
+
+		Date startDate = (Date) calendarStart.getTime();
+		Date endDate = (Date) calendarEnd.getTime();
+
+		DynamicQuery issueQuery = DynamicQueryFactoryUtil.forClass(Issue.class, classLoader)
+				.add(RestrictionsFactoryUtil.between("issueDate", startDate, endDate))
+				.addOrder(OrderFactoryUtil.desc("issueDate"));
+		try {
+			issueList = IssueLocalServiceUtil.dynamicQuery(issueQuery);
+			System.out.println("Query successful!");
+		} catch (SystemException e) {
+			System.out.println("Query Failed...\n");
+			e.printStackTrace();
+		}
+		return issueList;
+	}
 }
