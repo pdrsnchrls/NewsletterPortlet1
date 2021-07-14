@@ -53,6 +53,7 @@ public class NewsletterLocalServiceImpl extends NewsletterLocalServiceBaseImpl {
 	 */
 	
 	public List<Newsletter> findByIssueNumber(long issueNumber) throws SystemException {
+		System.out.println("Checking issue number newsletter");
 		return NewsletterUtil.findByIssueNumber(issueNumber);
 	}
 	

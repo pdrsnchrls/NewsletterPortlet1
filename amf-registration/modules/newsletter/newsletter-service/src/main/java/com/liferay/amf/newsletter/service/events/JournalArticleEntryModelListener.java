@@ -60,7 +60,6 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 				_newsletterLocalService.deleteNewsletter(resourcePrimKey);
 				System.out.println("Successfully deleted newsletter");
 			} catch (PortalException e) {
-				// TODO Auto-generated catch block
 				System.out.println("Unable to delete newsletter");
 			}
 		}
@@ -70,13 +69,11 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 				_issueLocalService.deleteIssue(resourcePrimKey);
 				System.out.println("Successfully deleted issue");
 			} catch (PortalException e) {
-				// TODO Auto-generated catch block
 				System.out.println("Unable to delete issue");
 			}
 		}
 	}
 
-//	//figure out how to differentiate between a creation and a before update mf
 //	public void onBeforeUpdate(JournalArticle journalArticle) {
 //		System.out.print("\nI am here to update stuff.\n");
 //		long articleId = journalArticle.getId();

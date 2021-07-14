@@ -55,7 +55,7 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		// if the issue already exists, then grab it and update it. (U in CRUD)
 		try {
 			Issue issue = issueLocalService.getIssue(resourcePrimKey);
-			System.out.println("Isuse exists...");
+			System.out.println("Issue exists...");
 			setIssueAttributes(contentData, issue, resourcePrimKey);
 
 			// persist to database
