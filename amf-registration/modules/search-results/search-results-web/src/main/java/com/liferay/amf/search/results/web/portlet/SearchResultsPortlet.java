@@ -38,7 +38,6 @@ public class SearchResultsPortlet extends MVCPortlet {
 	@ProcessEvent(qname="{http://event.search/zipcode}ipc.search")
 	public void processEvent(EventRequest request, EventResponse response) {
 
-		System.out.println("Processing event...");
 		// get zip from request
 		Event event = request.getEvent();
 		String zipCode = (String)event.getValue();
