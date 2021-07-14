@@ -8,4 +8,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function"
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay"
 	compileOnly project(":modules:newsletter:newsletter-api")
+	compileOnly project(":modules:newsletter:newsletter-service")
 }

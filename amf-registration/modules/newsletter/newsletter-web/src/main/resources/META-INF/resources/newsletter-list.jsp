@@ -2,19 +2,11 @@
 <%@ include file="/init.jsp" %>
 
 
-<portlet:renderURL var="viewNewslettersURL">
-	<portlet:param name="mvcRenderCommandName" value="/newsletter-list/view" />
-</portlet:renderURL>
+<!--onClick could be used to call a function to get issues by years 0.o-->
+<!-- a for each that displays tabs for the months present for each year, where there is a published newsletter -->
+<!-- this would likely have to call a method to get the months present for the issue year... (i.e. getMonths(year) -->
+<!-- also would likely have to have something similar like get issues by Month/Year-->
+<c:forEach items="${issuesList }" var="issue">
+ <p>Issue #${issue.issueNumber} ${issue.issueDate }</p>
 
-<p>Sup dude</p>
-
-<!-- <liferay-ui:search-container searchContainer="${newsletterSearchContainer }">
-  
-	<liferay-ui:search-container-results results="${ newsletterSearchContainer.getResults() }"/>	
-		<liferay-ui:search-container-row className="com.liferay.amf.newsletter.model.Newsletter" modelVar="newsletter" keyProperty="newsletterId">
-			<liferay-ui:search-container-column-text name="title" value="${newsletter.title}" />
-			<liferay-ui:search-container-column-text name="author" value="${newsletter.author}" />
-		</liferay-ui:search-container-row>
-	<liferay-ui:search-iterator searchContainer="${newsletterSearchContainer }" />
-
-</liferay-ui:search-container> --> 
+</c:forEach>
