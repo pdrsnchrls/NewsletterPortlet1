@@ -15,6 +15,7 @@
 package com.liferay.amf.newsletter.service;
 
 import com.liferay.amf.newsletter.model.Issue;
+import com.liferay.portal.kernel.dao.orm.*;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
@@ -207,6 +208,9 @@ public interface IssueLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Issue> getIssues(int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Issue> getIssuesByYear(int year);
 
 	/**
 	 * Returns the number of issues.

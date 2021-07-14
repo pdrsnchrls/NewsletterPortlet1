@@ -242,6 +242,13 @@ public class IssueLocalServiceWrapper
 		return _issueLocalService.getIssues(start, end);
 	}
 
+	@Override
+	public java.util.List<com.liferay.amf.newsletter.model.Issue>
+		getIssuesByYear(int year) {
+
+		return _issueLocalService.getIssuesByYear(year);
+	}
+
 	/**
 	 * Returns the number of issues.
 	 *

@@ -241,6 +241,12 @@ public class IssueLocalServiceUtil {
 		return getService().getIssues(start, end);
 	}
 
+	public static java.util.List<com.liferay.amf.newsletter.model.Issue>
+		getIssuesByYear(int year) {
+
+		return getService().getIssuesByYear(year);
+	}
+
 	/**
 	 * Returns the number of issues.
 	 *
