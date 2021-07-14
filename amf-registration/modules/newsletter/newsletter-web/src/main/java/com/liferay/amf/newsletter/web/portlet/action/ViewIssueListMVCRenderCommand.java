@@ -37,19 +37,10 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 		List<Issue> allIssues = _issueLocalService.getIssues(0, _issueLocalService.getIssuesCount());
 		request.setAttribute("allIssues", allIssues);
 
-		// create set of all the years in the newsletters
-		TreeSet<Integer> years = new TreeSet<>(); // use a set to guarantee uniqueness
-		for (Issue i: allIssues) {
-			Date date = i.getIssueDate();
-			Calendar calendar = new GregorianCalendar();
-			calendar.setTime(date);
-			int year = calendar.get(Calendar.YEAR);
-			years.add(year);
-		}
-		years=(TreeSet<Integer>) years.descendingSet(); // reverse order so tabs display from highest year to lowest year
+		// get all issue years
+		List<Integer> years = _issueLocalService.getAllIssueYears();
 		request.setAttribute("years", years);
-		List<Integer> yearsslolXDRawr = _issueLocalService.getAllIssueYears();
-		System.out.println("yearsslolXDRawr: " + yearsslolXDRawr);
+
 //		Integer yearsSize = years.size()-1;
 //		Integer one = 1;
 //		request.setAttribute("one", one);
