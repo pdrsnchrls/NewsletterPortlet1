@@ -22,8 +22,7 @@ import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -53,7 +52,20 @@ public class NewsletterLocalServiceImpl extends NewsletterLocalServiceBaseImpl {
 	 */
 	
 	public List<Newsletter> findByIssueNumber(long issueNumber) throws SystemException {
-		return NewsletterUtil.findByIssueNumber(issueNumber);
+
+		List<Newsletter> unorderedNewsletterList = NewsletterUtil.findByIssueNumber(issueNumber);
+
+		// Map for holding order and newsletter to order the thing
+		Map<Integer, Long> newsletterTracker = new TreeMap<Integer, Long>();
+		for (Newsletter n : unorderedNewsletterList)
+			newsletterTracker.put(n.getOrder(), n.getNewsletterId());
+
+		// Order list based on order number
+		List<Newsletter> orderedNewsletterList = new ArrayList<Newsletter>();
+		for (Map.Entry<Integer, Long> entry : newsletterTracker.entrySet())
+			orderedNewsletterList.add(NewsletterUtil.fetchByPrimaryKey(entry.getValue()));
+
+		return orderedNewsletterList;
 	}
 	
 	public void checkNewsletterStatus(HashMap <String, String> contentData, long resourcePrimKey) {
