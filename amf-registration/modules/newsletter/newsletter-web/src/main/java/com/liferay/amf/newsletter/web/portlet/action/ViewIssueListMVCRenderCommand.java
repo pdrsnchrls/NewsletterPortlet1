@@ -69,6 +69,8 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 		portletURL.setParameter("tab", String.valueOf(selectedYear));
 		request.setAttribute("portletURL", portletURL);
 
+		request.setAttribute("newsletterLocalService", _newsletterLocalService);
+
 		// unused search container?
 //		PortletURL iteratorURL = response.createRenderURL();
 //		iteratorURL.setParameter("mvcRenderCommandName", "/issue-list/view");
@@ -99,9 +101,6 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 
 	@Reference
 	protected IssueLocalService _issueLocalService;
-	
-	@Reference
-	protected NewsletterPersistence _newsletterPersistence;
 	
 	@Reference
 	protected NewsletterLocalService _newsletterLocalService;

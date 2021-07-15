@@ -16,7 +16,7 @@
 <%@ page import="com.liferay.amf.newsletter.model.Newsletter" %>
 <%@ page import="java.util.List"%>
 <%@ page import="com.liferay.amf.newsletter.service.NewsletterLocalServiceUtil"%>
-<%@ page import="com.liferay.amf.newsletter.service.impl.NewsletterLocalServiceImpl"%>
+<%@ page import="com.liferay.amf.newsletter.service.NewsletterLocalService"%>
 
 <%@ page import="com.liferay.portal.kernel.util.ListUtil"%>
 
