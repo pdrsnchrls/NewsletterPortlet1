@@ -56,7 +56,6 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 		Map<Issue, List<Newsletter>> issueListMap = new HashMap<Issue, List<Newsletter>>(); //idk if this is bad to do lol
 
 		for (Issue i: issuesBySelectedYear) {
-			System.out.println("Issue Title: " + i.getTitle());
 			List<Newsletter> newsletterList = _newsletterLocalService.findByIssueNumber(i.getIssueNumber());
 			issueListMap.put(i, newsletterList);
 		}
@@ -64,37 +63,11 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 		request.setAttribute("year", selectedYear);
 		request.setAttribute("issuesBySelectedYear", issuesBySelectedYear);
 
-		System.out.println("\n--------------------------------------------------------------------------------------------");
 		PortletURL portletURL = response.createRenderURL();
 		portletURL.setParameter("tab", String.valueOf(selectedYear));
 		request.setAttribute("portletURL", portletURL);
 
 		request.setAttribute("newsletterLocalService", _newsletterLocalService);
-
-		// unused search container?
-//		PortletURL iteratorURL = response.createRenderURL();
-//		iteratorURL.setParameter("mvcRenderCommandName", "/issue-list/view");
-//		SearchContainer<Newsletter> newsletterSearchContainer= new SearchContainer<Newsletter>(request, null, null,
-//				SearchContainer.DEFAULT_CUR_PARAM, 4, iteratorURL, null,
-//				"no-newsletters-found");
-//
-//		List<Newsletter> newslettersList = _newsletterLocalService.getNewsletters(newsletterSearchContainer.getStart(), newsletterSearchContainer.getEnd());
-//
-//		newsletterSearchContainer.setIteratorURL(iteratorURL);
-//		newsletterSearchContainer.setTotal(newslettersList.size());
-//
-//		// query all issues
-//		for (Issue e: allIssues) {
-//			long issueNumber = e.getIssueNumber();
-//			request.setAttribute("issueNumber", issueNumber);
-//			System.out.println("\n" + "Issue Number: " + issueNumber);
-//			List<Newsletter> newsletterList = _newsletterLocalService.findByIssueNumber(issueNumber);
-//
-//			for (int index = 0; index < newsletterList.size(); index++)
-//				System.out.print(newsletterList.get(index));
-//			newsletterSearchContainer.setResults(newsletterList);
-//			request.setAttribute("newsletterSearchContainer" + issueNumber, newsletterSearchContainer);
-//		}
 
 		return "/view.jsp";
 	}

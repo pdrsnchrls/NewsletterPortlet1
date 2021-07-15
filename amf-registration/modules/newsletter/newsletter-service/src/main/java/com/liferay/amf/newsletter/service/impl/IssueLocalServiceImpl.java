@@ -128,13 +128,11 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		Date startDate = calendarStart.getTime();
 		Date endDate = calendarEnd.getTime();
 
-		System.out.println("Start Date: " + startDate + "\nEnd Date: " + endDate);
 		DynamicQuery issueQuery = DynamicQueryFactoryUtil.forClass(Issue.class, classLoader)
 				.add(RestrictionsFactoryUtil.between("issueDate", startDate, endDate))
 				.addOrder(OrderFactoryUtil.desc("issueDate"));
 		try {
 			issueList = IssueLocalServiceUtil.dynamicQuery(issueQuery);
-			System.out.println("Query successful!");
 		} catch (SystemException e) {
 			System.out.println("Query Failed...\n");
 			e.printStackTrace();
