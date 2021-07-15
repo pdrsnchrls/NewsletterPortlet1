@@ -39,22 +39,17 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 
 		// get all issue years
 		List<Integer> years = _issueLocalService.getAllIssueYears();
-		request.setAttribute("years", years);
+		String yearString = "";
+		for (Integer i : years) {
+			yearString += i + ", ";
+		}
+		request.setAttribute("years", yearString);
 
-//		Integer yearsSize = years.size()-1;
-//		Integer one = 1;
-//		request.setAttribute("one", one);
-//		request.setAttribute("yearsSize", yearsSize);
-
-		String test = ParamUtil.getString(request, "tab");
-		System.out.println(test + " <-- Test");
-//		test.replace("]", "");
-//		test.replace("[", "");
-//		int selectedYear = Integer.valueOf("test");
-
-		// get selected year from User tab selection - not working, default is 0
-		int selectedYear = ParamUtil.getInteger(request, "tab"); // gets selectedYear from tab
-		System.out.println("Selected Year: " + selectedYear);
+		String temp = ParamUtil.getString(request, "tab");
+		if (temp.isEmpty()) { // on first load up, it will be wrong so set the default tab to first year...
+			temp = years.get(0).toString();
+		}
+		int selectedYear = Integer.valueOf(temp);
 
 		//get issues based on year - dynamicQuery in service layer
 		List<Issue> issuesBySelectedYear = _issueLocalService.getIssuesByYear(selectedYear);

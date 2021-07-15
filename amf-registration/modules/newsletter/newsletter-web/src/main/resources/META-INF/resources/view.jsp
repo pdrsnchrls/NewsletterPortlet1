@@ -14,12 +14,13 @@ Separate by Issue number in search container
 
 <liferay-ui:tabs
 	names="${years }"
+	tabsValues="${years }"
 	param="tab"
 	url="${portletURL.toString() }"
 	type="tabs nav-tabs-default"
+	value="${ }"
 >
 	<liferay-ui:section>
-		<p>The year is ${year }</p>
 		<%@ include file="newsletter-list.jsp" %>
 	</liferay-ui:section>
 

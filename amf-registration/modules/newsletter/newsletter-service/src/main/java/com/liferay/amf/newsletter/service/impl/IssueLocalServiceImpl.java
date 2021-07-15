@@ -106,7 +106,7 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 
 		DynamicQuery issueQuery = DynamicQueryFactoryUtil.forClass(Issue.class, classLoader)
 				.setProjection(ProjectionFactoryUtil.sqlGroupProjection("year(issueDate) as year","year",
-						new String[] { "year" }, new Type[] { Type.LONG }));
+						new String[] { "year" }, new Type[] { Type.INTEGER }));
 		List<Integer> issueYears = issueLocalService.dynamicQuery(issueQuery);
 		return issueYears;
 	}
