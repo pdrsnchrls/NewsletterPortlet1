@@ -5,18 +5,17 @@ import com.liferay.amf.newsletter.model.Newsletter;
 import com.liferay.amf.newsletter.service.IssueLocalService;
 import com.liferay.amf.newsletter.service.NewsletterLocalService;
 import com.liferay.amf.newsletter.service.persistence.NewsletterPersistence;
+import com.liferay.amf.newsletter.web.constants.MVCCommandNames;
 import com.liferay.amf.newsletter.web.constants.NewsletterPortletKeys;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 
 import java.util.*;
 
-import javax.portlet.PortletException;
-import javax.portlet.PortletURL;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
+import javax.portlet.*;
 
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.taglib.portlet.RenderURLTag;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -24,7 +23,7 @@ import org.osgi.service.component.annotations.Reference;
 		immediate=true,
 		property = {
 			"javax.portlet.name=" + NewsletterPortletKeys.NEWSLETTER,
-			"mvc.command.name=/issue-list/view", //set render command name for Iterator URL use this
+			"mvc.command.name=" + MVCCommandNames.VIEW_ISSUE_LIST,
 			"mvc.command.name=/"
 		},
 		service = MVCRenderCommand.class
@@ -33,9 +32,6 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(RenderRequest request, RenderResponse response) throws PortletException {
-
-		List<Issue> allIssues = _issueLocalService.getIssues(0, _issueLocalService.getIssuesCount());
-		request.setAttribute("allIssues", allIssues);
 
 		// get all issue years
 		List<Integer> years = _issueLocalService.getAllIssueYears();
@@ -68,7 +64,6 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 		request.setAttribute("portletURL", portletURL);
 
 		request.setAttribute("newsletterLocalService", _newsletterLocalService);
-
 		return "/view.jsp";
 	}
 

@@ -79,8 +79,7 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		}
 	}
 	
-	public void setIssueAttributes(HashMap <String, String> contentData, Issue issue,
-			long issueId) {
+	public void setIssueAttributes(HashMap <String, String> contentData, Issue issue, long issueId) {
 		//call issue local service and do the same thang
 		String issueNumber = contentData.get(NewsletterConstants.ISSUE_NUMBER);
 		String issueTitle = contentData.get(NewsletterConstants.ISSUE_TITLE);
