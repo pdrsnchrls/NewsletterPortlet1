@@ -63,6 +63,7 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 		portletURL.setParameter("tab", String.valueOf(selectedYear));
 		request.setAttribute("portletURL", portletURL);
 
+		request.setAttribute("issueLocalService", _issueLocalService);
 		request.setAttribute("newsletterLocalService", _newsletterLocalService);
 		return "/view.jsp";
 	}
