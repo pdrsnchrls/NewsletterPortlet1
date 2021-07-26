@@ -23,6 +23,7 @@ import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.orm.*;
 import com.liferay.portal.kernel.exception.PortalException;
 
+import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.Date;
 import java.util.ArrayList;
@@ -85,6 +86,7 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		String issueTitle = contentData.get(NewsletterConstants.ISSUE_TITLE);
 		String issueDescription = contentData.get(NewsletterConstants.ISSUE_DESCRIPTION);
 		String issueDate = contentData.get(NewsletterConstants.ISSUE_DATE);
+
 		String authorByline = contentData.get(NewsletterConstants.BYLINE);
 		
 		System.out.println("\nHere is the info:\nIssue Number - " + issueNumber
@@ -137,5 +139,12 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 			e.printStackTrace();
 		}
 		return issueList;
+	}
+
+	public String formatIssueDate(java.sql.Date date) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
+		String formattedDate = simpleDateFormat.format(date);
+		System.out.println(formattedDate + " Formatted");
+		return formattedDate;
 	}
 }

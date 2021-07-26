@@ -11,7 +11,19 @@
 	type="tabs nav-tabs-default"
 >
 	<liferay-ui:section>
-		<%@ include file="newsletter-list.jsp" %>
+		<c:forEach items="${issuesBySelectedYear}" var="issue">
+			<p><small>Issue #${issue.issueNumber}, ${IssueLocalService.formatIssueDate(issue.issueDate) }</small></p>
+			<!--renderURL for each individual issue-->
+			<portlet:renderURL var="viewFullIssueURL">
+				<portlet:param name="mvcRenderCommandName" value="/issue/view" />
+				<portlet:param name="issueId" value="${issue.issueId }" />
+				<portlet:param name="issueNumber" value="${issue.issueNumber }" />
+			</portlet:renderURL>
+
+			<a href="<%= viewFullIssueURL.toString() %>"><h2>${issue.title }</h2></a>
+				<%@ include file="newsletter-list.jsp" %>
+			<br />
+		</c:forEach>
 	</liferay-ui:section>
 
 </liferay-ui:tabs>
