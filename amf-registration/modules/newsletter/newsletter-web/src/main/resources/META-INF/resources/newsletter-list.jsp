@@ -11,6 +11,7 @@
     <portlet:renderURL var="viewFullIssueURL">
         <portlet:param name="mvcRenderCommandName" value="/issue/view" />
         <portlet:param name="issueId" value="${issue.issueId }" />
+        <portlet:param name="issueNumber" value="${issue.issueNumber }" />
     </portlet:renderURL>
  <a href="<%= viewFullIssueURL.toString() %>"><h2>${issue.title }</h2></a>
 

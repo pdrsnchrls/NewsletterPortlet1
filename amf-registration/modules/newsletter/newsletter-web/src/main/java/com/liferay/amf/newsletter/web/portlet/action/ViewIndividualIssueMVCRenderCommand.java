@@ -36,6 +36,7 @@ public class ViewIndividualIssueMVCRenderCommand implements MVCRenderCommand {
             request.setAttribute("issueNumber", issue.getIssueNumber());
             request.setAttribute("issueTitle", issue.getTitle());
             request.setAttribute("authorByline", issue.getByline());
+            request.setAttribute("issueDescription", issue.getDescription());
             List<Newsletter> newsletterList = _newsletterLocalService.findByIssueNumber(issue.getIssueNumber());
             request.setAttribute("newsletterList", newsletterList);
 
