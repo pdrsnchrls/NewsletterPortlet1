@@ -142,9 +142,8 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 	}
 
 	public String formatIssueDate(java.sql.Timestamp date) {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMMM-yyyy");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM dd, yyyy");
 		String formattedDate = simpleDateFormat.format(date);
-		System.out.println(formattedDate + " Formatted");
 		return formattedDate;
 	}
 }
