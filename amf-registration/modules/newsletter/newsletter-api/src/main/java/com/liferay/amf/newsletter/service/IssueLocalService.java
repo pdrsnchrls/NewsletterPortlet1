@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -178,6 +179,8 @@ public interface IssueLocalService
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Issue fetchIssue(long issueId);
+
+	public String formatIssueDate(java.sql.Date date);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();

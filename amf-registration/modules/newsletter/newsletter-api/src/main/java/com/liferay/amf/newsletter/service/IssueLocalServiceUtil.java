@@ -198,6 +198,10 @@ public class IssueLocalServiceUtil {
 		return getService().fetchIssue(issueId);
 	}
 
+	public static String formatIssueDate(java.sql.Date date) {
+		return getService().formatIssueDate(date);
+	}
+
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
 		getActionableDynamicQuery() {
 

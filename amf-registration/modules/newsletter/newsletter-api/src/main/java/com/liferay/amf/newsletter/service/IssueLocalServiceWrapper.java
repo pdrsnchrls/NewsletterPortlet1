@@ -197,6 +197,11 @@ public class IssueLocalServiceWrapper
 	}
 
 	@Override
+	public String formatIssueDate(java.sql.Date date) {
+		return _issueLocalService.formatIssueDate(date);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
 		getActionableDynamicQuery() {
 

@@ -12,7 +12,7 @@
 >
 	<liferay-ui:section>
 		<c:forEach items="${issuesBySelectedYear}" var="issue">
-			<p><small>Issue #${issue.issueNumber}, ${IssueLocalService.formatIssueDate(issue.issueDate) }</small></p>
+			<p><small>Issue #${issue.issueNumber}, ${issueLocalService.formatIssueDate(issue.issueDate) }</small></p>
 			<!--renderURL for each individual issue-->
 			<portlet:renderURL var="viewFullIssueURL">
 				<portlet:param name="mvcRenderCommandName" value="/issue/view" />
