@@ -197,7 +197,7 @@ public class IssueLocalServiceWrapper
 	}
 
 	@Override
-	public String formatIssueDate(java.sql.Date date) {
+	public String formatIssueDate(java.sql.Timestamp date) {
 		return _issueLocalService.formatIssueDate(date);
 	}
 

@@ -198,7 +198,7 @@ public class IssueLocalServiceUtil {
 		return getService().fetchIssue(issueId);
 	}
 
-	public static String formatIssueDate(java.sql.Date date) {
+	public static String formatIssueDate(java.sql.Timestamp date) {
 		return getService().formatIssueDate(date);
 	}
 
