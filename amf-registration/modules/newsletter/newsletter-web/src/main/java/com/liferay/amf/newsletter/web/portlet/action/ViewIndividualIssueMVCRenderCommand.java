@@ -15,6 +15,7 @@ import org.osgi.service.component.annotations.Reference;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Component(
@@ -32,7 +33,8 @@ public class ViewIndividualIssueMVCRenderCommand implements MVCRenderCommand {
         Long issueId = ParamUtil.get(request, "issueId", 0L);
         try {
             Issue issue = _issueLocalService.getIssue(issueId);
-            request.setAttribute("issueDate", issue.getIssueDate());
+            Timestamp timestamp = new Timestamp(issue.getIssueDate().getTime());
+            request.setAttribute("issueDate", _issueLocalService.formatIssueDate(timestamp));
             request.setAttribute("issueNumber", issue.getIssueNumber());
             request.setAttribute("issueTitle", issue.getTitle());
             request.setAttribute("authorByline", issue.getByline());

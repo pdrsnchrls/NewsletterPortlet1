@@ -14,6 +14,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import javax.portlet.*;
+import java.sql.Timestamp;
 import java.util.Enumeration;
 
 @Component(
@@ -28,20 +29,18 @@ public class ViewArticleMVCRenderCommand implements MVCRenderCommand {
 
     @Override
     public String render(RenderRequest request, RenderResponse response) throws PortletException {
-
-        System.out.println("What's up");
-
+        
         Long newsletterId = ParamUtil.get(request, "newsletterId", 0L);
         Long issueId = ParamUtil.get(request, "issueId", 0L);
         //request.getParameter("newsletterId"); //
-        System.out.println(newsletterId);
 
         try {
             Newsletter newsletter = _newsletterLocalService.getNewsletter(newsletterId);
             Issue issue = _issueLocalService.getIssue(issueId);
+            Timestamp timestamp = new Timestamp(issue.getIssueDate().getTime());
 
             request.setAttribute("issueNumber", newsletter.getIssueNumber());
-            request.setAttribute("issueDate", issue.getIssueDate());
+            request.setAttribute("issueDate", _issueLocalService.formatIssueDate(timestamp));
             request.setAttribute("newsletterTitle", newsletter.getTitle());
             request.setAttribute("newsletterAuthor", newsletter.getAuthor());
             request.setAttribute("newsletterContent", newsletter.getContent());
