@@ -232,6 +232,10 @@ public class IssueLocalServiceUtil {
 		return getService().getIssue(issueId);
 	}
 
+	public static java.util.List<Integer> getIssueMonths(Integer year) {
+		return getService().getIssueMonths(year);
+	}
+
 	/**
 	 * Returns a range of all the issues.
 	 *

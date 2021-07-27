@@ -234,6 +234,11 @@ public class IssueLocalServiceWrapper
 		return _issueLocalService.getIssue(issueId);
 	}
 
+	@Override
+	public java.util.List<Integer> getIssueMonths(Integer year) {
+		return _issueLocalService.getIssueMonths(year);
+	}
+
 	/**
 	 * Returns a range of all the issues.
 	 *

@@ -200,6 +200,9 @@ public interface IssueLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Issue getIssue(long issueId) throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Integer> getIssueMonths(Integer year);
+
 	/**
 	 * Returns a range of all the issues.
 	 *
