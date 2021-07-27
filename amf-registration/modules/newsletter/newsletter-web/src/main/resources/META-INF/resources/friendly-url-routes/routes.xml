@@ -14,8 +14,15 @@
         <implicit-parameter name="p_p_lifecycle">0</implicit-parameter>
     </route>
     <route>
-        <pattern>/</pattern>
+        <pattern>/{tab:\d+}</pattern>
         <implicit-parameter name="mvcRenderCommandName">/issue-list/view</implicit-parameter>
         <implicit-parameter name="p_p_lifecycle">0</implicit-parameter>
+    </route>
+    <route>
+        <pattern>/newsletters/{tab:\d+}</pattern>
+        <implicit-parameter name="p_p_lifecycle">0</implicit-parameter>
+        <implicit-parameter name="p_p_state">normal</implicit-parameter>
+        <implicit-parameter name="p_p_mode">view</implicit-parameter>
+        <implicit-parameter name="p_p_id">com.liferay.amf.newsletter.web.portlet.NewsletterPortlet</implicit-parameter>
     </route>
 </routes>

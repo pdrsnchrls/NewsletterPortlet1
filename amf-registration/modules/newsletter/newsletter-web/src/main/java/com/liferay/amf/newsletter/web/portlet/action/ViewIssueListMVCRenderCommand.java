@@ -36,31 +36,38 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 		// get all issue years
 		List<Integer> years = _issueLocalService.getAllIssueYears();
 		String yearString = "";
-		for (Integer i : years) {
-			yearString += i + ", ";
+		for (Integer i = years.size(); i > 0; i--) {
+			yearString += years.get(i-1) + ", ";
 		}
 		request.setAttribute("years", yearString);
-
+		request.setAttribute("defaultTab", years.get(years.size()-1));
 		String temp = ParamUtil.getString(request, "tab");
 		if (temp.isEmpty()) { // on first load up, it will be wrong so set the default tab to first year...
-			temp = years.get(0).toString();
+			temp = years.get(years.size()-1).toString();
 		}
 		int selectedYear = Integer.valueOf(temp);
 
 		//get issues based on year - dynamicQuery in service layer
 		List<Issue> issuesBySelectedYear = _issueLocalService.getIssuesByYear(selectedYear);
-		Map<Issue, List<Newsletter>> issueListMap = new HashMap<Issue, List<Newsletter>>(); //idk if this is bad to do lol
-
-		for (Issue i: issuesBySelectedYear) {
-			List<Newsletter> newsletterList = _newsletterLocalService.findByIssueNumber(i.getIssueNumber());
-			issueListMap.put(i, newsletterList);
+		Map<Integer, List<Integer>> monthsMap = new HashMap<Integer, List<Integer>>();
+		for (Integer year: years) {
+			List<Integer> months = _issueLocalService.getIssueMonths(year);
+			monthsMap.put(year, months);
 		}
+
+//		Map<Issue, List<Newsletter>> issueListMap = new HashMap<Issue, List<Newsletter>>(); //map of years and list of months
+//
+//		for (Issue i: issuesBySelectedYear) {
+//			List<Newsletter> newsletterList = _newsletterLocalService.findByIssueNumber(i.getIssueNumber());
+////			issueListMap.put(i, newsletterList);
+//		}
 
 		request.setAttribute("year", selectedYear);
 		request.setAttribute("issuesBySelectedYear", issuesBySelectedYear);
 
 		PortletURL portletURL = response.createRenderURL();
-		portletURL.setParameter("tab", String.valueOf(selectedYear));
+		portletURL.setProperty("tab", String.valueOf(selectedYear));
+//		portletURL.setParameter("tab", String.valueOf(selectedYear));
 		request.setAttribute("portletURL", portletURL);
 
 		request.setAttribute("issueLocalService", _issueLocalService);

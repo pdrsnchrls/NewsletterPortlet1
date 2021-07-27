@@ -112,6 +112,18 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		return issueYears;
 	}
 
+	public List<Integer> getIssueMonths(Integer year) {
+		ClassLoader classLoader = getClass().getClassLoader();
+
+		DynamicQuery monthQuery = DynamicQueryFactoryUtil.forClass(Issue.class, classLoader)
+				.setProjection(ProjectionFactoryUtil.sqlGroupProjection("month(issueDate) as month", "month",
+						new String[] { "month" }, new Type[] { Type.INTEGER }))
+				.add(PropertyFactoryUtil.forName("year(issueDate)").eq(year));
+
+		List<Integer> months = issueLocalService.dynamicQuery(monthQuery);
+		return months;
+	}
+
 	public List<Issue> getIssuesByYear(int year) {
 		Session session = null;
 		ClassLoader classLoader = getClass().getClassLoader();
