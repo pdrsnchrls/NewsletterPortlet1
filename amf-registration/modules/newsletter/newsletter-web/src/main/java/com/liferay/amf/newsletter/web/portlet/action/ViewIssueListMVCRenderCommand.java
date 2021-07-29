@@ -47,21 +47,15 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 		List<Issue> issuesBySelectedYear = _issueLocalService.getIssuesByYear(selectedYear);
 		List<Integer> monthsBySelectedYear = _issueLocalService.getIssueMonthsByYear(selectedYear); // loop through this to display list of months
 					// then within loop call method to display issues for month/year
-		Map<Integer, List<Integer>> monthsMap = new HashMap<Integer, List<Integer>>();
-		for (Integer year: years) {
-			List<Integer> months = _issueLocalService.getIssueMonthsByYear(year);
-			monthsMap.put(year, months);
-		}
-
-//		Map<Issue, List<Newsletter>> issueListMap = new HashMap<Issue, List<Newsletter>>(); //map of years and list of months
-//
-//		for (Issue i: issuesBySelectedYear) {
-//			List<Newsletter> newsletterList = _newsletterLocalService.findByIssueNumber(i.getIssueNumber());
-////			issueListMap.put(i, newsletterList);
+//		Map<Integer, List<Integer>> monthsMap = new HashMap<Integer, List<Integer>>();
+//		for (Integer year: years) {
+//			List<Integer> months = _issueLocalService.getIssueMonthsByYear(year);
+//			monthsMap.put(year, months);
 //		}
 
 		request.setAttribute("year", selectedYear);
 		request.setAttribute("issuesBySelectedYear", issuesBySelectedYear);
+		request.setAttribute("monthsBySelectedYear", monthsBySelectedYear);
 
 		PortletURL portletURL = response.createRenderURL();
 		portletURL.setProperty("tab", String.valueOf(selectedYear));

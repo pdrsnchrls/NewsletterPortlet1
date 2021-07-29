@@ -15,6 +15,7 @@
 package com.liferay.amf.newsletter.service.impl;
 
 import com.liferay.amf.newsletter.model.Issue;
+import com.liferay.amf.newsletter.service.IssueLocalService;
 import com.liferay.amf.newsletter.service.IssueLocalServiceUtil;
 import com.liferay.amf.newsletter.service.base.IssueLocalServiceBaseImpl;
 import com.liferay.amf.newsletter.service.constants.NewsletterConstants;
@@ -125,9 +126,54 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		return months;
 	}
 
+
+	public List<Issue> getIssuesByYearAndMonth(int year, int month) {
+		ClassLoader classLoader = getClass().getClassLoader();
+		List<Issue> issueList = new ArrayList<>();
+
+		Date startDate = getStartDateOfMonth(year, month);
+		Date endDate = getEndDateOfMonth(year, month);
+
+		DynamicQuery issueQuery = DynamicQueryFactoryUtil.forClass(Issue.class, classLoader)
+				.add(RestrictionsFactoryUtil.between("issueDate", startDate, endDate))
+				.addOrder(OrderFactoryUtil.desc("issueDate"));
+
+		try {
+			issueList = IssueLocalServiceUtil.dynamicQuery(issueQuery);
+		} catch (SystemException e) {
+			System.out.println("Query Failed...\n");
+			e.printStackTrace();
+		}
+		return issueList;
+	}
+
+	public Date getStartDateOfMonth(int year, int month) {
+		Calendar calendarStart = Calendar.getInstance();
+		calendarStart.set(Calendar.MONTH, month);
+		calendarStart.set(Calendar.DAY_OF_MONTH, 1);
+		calendarStart.set(Calendar.YEAR, year);
+		calendarStart.set(Calendar.HOUR, 0);
+		calendarStart.set(Calendar.MINUTE, 0);
+		calendarStart.set(Calendar.SECOND, 0);
+
+		return calendarStart.getTime();
+	}
+
+	public Date getEndDateOfMonth(int year, int month) {
+		Calendar calendarEnd = Calendar.getInstance();
+		calendarEnd.set(Calendar.MONTH, month);
+		calendarEnd.set(Calendar.DAY_OF_MONTH, calendarEnd.getActualMaximum(Calendar.DAY_OF_MONTH));
+		calendarEnd.set(Calendar.YEAR, year);
+		calendarEnd.set(Calendar.HOUR, 0);
+		calendarEnd.set(Calendar.MINUTE, 0);
+		calendarEnd.set(Calendar.SECOND, 0);
+
+		return calendarEnd.getTime();
+	}
+
 	public List<Issue> getIssuesByYear(int year) {
 		ClassLoader classLoader = getClass().getClassLoader();
-		List<Issue> issueList = new ArrayList<Issue>();
+		List<Issue> issueList = new ArrayList<>();
 
 		// Dynamic query so that the date is between January 1st to December 31st of the year
 		Date startDate = getStartDateOfYear(year);
