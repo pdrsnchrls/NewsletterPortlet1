@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -188,6 +189,12 @@ public interface IssueLocalService
 	public List<Integer> getAllIssueYears();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Date getEndDateOfMonth(int year, int month);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Date getEndDateOfYear(int year);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
@@ -220,6 +227,9 @@ public interface IssueLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Issue> getIssuesByYear(int year);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Issue> getIssuesByYearAndMonth(int year, int month);
+
 	/**
 	 * Returns the number of issues.
 	 *
@@ -239,6 +249,12 @@ public interface IssueLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Date getStartDateOfMonth(int year, int month);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Date getStartDateOfYear(int year);
 
 	public void setIssueAttributes(
 		HashMap<String, String> contentData, Issue issue, long issueId);

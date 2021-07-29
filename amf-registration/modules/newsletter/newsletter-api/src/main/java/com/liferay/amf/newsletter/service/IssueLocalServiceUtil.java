@@ -212,6 +212,14 @@ public class IssueLocalServiceUtil {
 		return getService().getAllIssueYears();
 	}
 
+	public static java.util.Date getEndDateOfMonth(int year, int month) {
+		return getService().getEndDateOfMonth(year, month);
+	}
+
+	public static java.util.Date getEndDateOfYear(int year) {
+		return getService().getEndDateOfYear(year);
+	}
+
 	public static
 		com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery
 			getIndexableActionableDynamicQuery() {
@@ -232,7 +240,7 @@ public class IssueLocalServiceUtil {
 		return getService().getIssue(issueId);
 	}
 
-	public static java.util.List<Integer> getIssueMonths(Integer year) {
+	public static java.util.List<Integer> getIssueMonthsByYear(Integer year) {
 		return getService().getIssueMonthsByYear(year);
 	}
 
@@ -259,6 +267,12 @@ public class IssueLocalServiceUtil {
 		return getService().getIssuesByYear(year);
 	}
 
+	public static java.util.List<com.liferay.amf.newsletter.model.Issue>
+		getIssuesByYearAndMonth(int year, int month) {
+
+		return getService().getIssuesByYearAndMonth(year, month);
+	}
+
 	/**
 	 * Returns the number of issues.
 	 *
@@ -282,6 +296,14 @@ public class IssueLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getPersistedModel(primaryKeyObj);
+	}
+
+	public static java.util.Date getStartDateOfMonth(int year, int month) {
+		return getService().getStartDateOfMonth(year, month);
+	}
+
+	public static java.util.Date getStartDateOfYear(int year) {
+		return getService().getStartDateOfYear(year);
 	}
 
 	public static void setIssueAttributes(
