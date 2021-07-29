@@ -9,9 +9,8 @@
 	value="${defaultTab }"
 >
 	<liferay-ui:section>
-
 		<c:forEach items="${monthsBySelectedYear}" var="month">
-			<p>Month: ${month} Year: ${year}</p>
+			<p>Month: ${issueLocalService.getMonthForInt(month-1) }</p>
 
 			<c:forEach items="${issueLocalService.getIssuesByYearAndMonth(year, month)}" var="issue">
 				<p><small>Issue #${issue.issueNumber} - ${issueLocalService.formatIssueDate(issue.issueDate) }</small></p>
@@ -27,10 +26,6 @@
 				<br />
 			</c:forEach>
 		</c:forEach>
-
-
-		<p> HEY THERE THIS IS A BREAK </p>
-
 	</liferay-ui:section>
 
 </liferay-ui:tabs>

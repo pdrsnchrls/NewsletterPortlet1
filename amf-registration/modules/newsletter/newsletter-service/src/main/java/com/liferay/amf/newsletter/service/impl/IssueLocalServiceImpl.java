@@ -23,12 +23,9 @@ import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.orm.*;
 import com.liferay.portal.kernel.exception.PortalException;
 
+import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import com.liferay.portal.kernel.exception.SystemException;
 import org.osgi.service.component.annotations.Component;
@@ -117,15 +114,13 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		Date startDate = getStartDateOfYear(year);
 		Date endDate = getEndDateOfYear(year);
 
-		DynamicQuery monthQuery = DynamicQueryFactoryUtil.forClass(Issue.class, classLoader)
+		DynamicQuery monthQuery = DynamicQueryFactoryUtil.forClass(Issue.class, "issue", classLoader)
 				.setProjection(ProjectionFactoryUtil.sqlGroupProjection("month(issueDate) as month", "month",
 						new String[] { "month" }, new Type[] { Type.INTEGER }))
-				.add(PropertyFactoryUtil.forName("issueDate").between(startDate, endDate)); // need to fix this so that we get only the year
-
+				.add(PropertyFactoryUtil.forName("issueDate").between(startDate, endDate));
 		List<Integer> months = issueLocalService.dynamicQuery(monthQuery);
 		return months;
 	}
-
 
 	public List<Issue> getIssuesByYearAndMonth(int year, int month) {
 		ClassLoader classLoader = getClass().getClassLoader();
@@ -149,27 +144,41 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 
 	public Date getStartDateOfMonth(int year, int month) {
 		Calendar calendarStart = Calendar.getInstance();
-		calendarStart.set(Calendar.MONTH, month);
+		calendarStart.set(Calendar.MONTH, month-1);
 		calendarStart.set(Calendar.DAY_OF_MONTH, 1);
 		calendarStart.set(Calendar.YEAR, year);
-		calendarStart.set(Calendar.HOUR, 0);
+		calendarStart.set(Calendar.HOUR_OF_DAY, 0);
 		calendarStart.set(Calendar.MINUTE, 0);
 		calendarStart.set(Calendar.SECOND, 0);
+		calendarStart.set(Calendar.MILLISECOND, 0);
 
 		return calendarStart.getTime();
 	}
 
 	public Date getEndDateOfMonth(int year, int month) {
 		Calendar calendarEnd = Calendar.getInstance();
-		calendarEnd.set(Calendar.MONTH, month);
+		calendarEnd.set(Calendar.MONTH, month-1);
 		calendarEnd.set(Calendar.DAY_OF_MONTH, calendarEnd.getActualMaximum(Calendar.DAY_OF_MONTH));
 		calendarEnd.set(Calendar.YEAR, year);
-		calendarEnd.set(Calendar.HOUR, 0);
+		calendarEnd.set(Calendar.HOUR_OF_DAY, 0);
 		calendarEnd.set(Calendar.MINUTE, 0);
 		calendarEnd.set(Calendar.SECOND, 0);
+		calendarEnd.set(Calendar.MILLISECOND, 0);
 
 		return calendarEnd.getTime();
 	}
+
+	public String getMonthForInt(int num) {
+		String month = "wrong";
+		DateFormatSymbols dfs = new DateFormatSymbols();
+		String[] months = dfs.getMonths();
+		if (num >= 0 && num <= 11 ) {
+			month = months[num];
+		}
+		return month;
+	}
+
+
 
 	public List<Issue> getIssuesByYear(int year) {
 		ClassLoader classLoader = getClass().getClassLoader();

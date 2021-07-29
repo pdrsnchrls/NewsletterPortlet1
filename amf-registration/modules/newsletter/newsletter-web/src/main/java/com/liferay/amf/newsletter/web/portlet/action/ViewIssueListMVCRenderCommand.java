@@ -43,19 +43,12 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 		}
 		int selectedYear = Integer.valueOf(temp);
 
-		//get issues based on year - dynamicQuery in service layer
-		List<Issue> issuesBySelectedYear = _issueLocalService.getIssuesByYear(selectedYear);
-		List<Integer> monthsBySelectedYear = _issueLocalService.getIssueMonthsByYear(selectedYear); // loop through this to display list of months
-					// then within loop call method to display issues for month/year
-//		Map<Integer, List<Integer>> monthsMap = new HashMap<Integer, List<Integer>>();
-//		for (Integer year: years) {
-//			List<Integer> months = _issueLocalService.getIssueMonthsByYear(year);
-//			monthsMap.put(year, months);
-//		}
+		List<Integer> monthsBySelectedYear = _issueLocalService.getIssueMonthsByYear(selectedYear);
+		List<Integer> monthsBySelectedYearReverse = new ArrayList<Integer>(monthsBySelectedYear);
+		Collections.reverse(monthsBySelectedYearReverse);
 
 		request.setAttribute("year", selectedYear);
-		request.setAttribute("issuesBySelectedYear", issuesBySelectedYear);
-		request.setAttribute("monthsBySelectedYear", monthsBySelectedYear);
+		request.setAttribute("monthsBySelectedYear", monthsBySelectedYearReverse);
 
 		PortletURL portletURL = response.createRenderURL();
 		portletURL.setProperty("tab", String.valueOf(selectedYear));
