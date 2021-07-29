@@ -15,7 +15,6 @@
 package com.liferay.amf.newsletter.service.impl;
 
 import com.liferay.amf.newsletter.model.Issue;
-import com.liferay.amf.newsletter.service.IssueLocalService;
 import com.liferay.amf.newsletter.service.IssueLocalServiceUtil;
 import com.liferay.amf.newsletter.service.base.IssueLocalServiceBaseImpl;
 import com.liferay.amf.newsletter.service.constants.NewsletterConstants;
@@ -24,7 +23,6 @@ import com.liferay.portal.kernel.dao.orm.*;
 import com.liferay.portal.kernel.exception.PortalException;
 
 import java.text.SimpleDateFormat;
-import java.time.Year;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -112,34 +110,28 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		return issueYears;
 	}
 
-	public List<Integer> getIssueMonths(Integer year) {
+	public List<Integer> getIssueMonthsByYear(Integer year) {
 		ClassLoader classLoader = getClass().getClassLoader();
+
+		Date startDate = getStartDateOfYear(year);
+		Date endDate = getEndDateOfYear(year);
 
 		DynamicQuery monthQuery = DynamicQueryFactoryUtil.forClass(Issue.class, classLoader)
 				.setProjection(ProjectionFactoryUtil.sqlGroupProjection("month(issueDate) as month", "month",
 						new String[] { "month" }, new Type[] { Type.INTEGER }))
-				.add(PropertyFactoryUtil.forName("year(issueDate)").eq(year));
+				.add(PropertyFactoryUtil.forName("issueDate").between(startDate, endDate)); // need to fix this so that we get only the year
 
 		List<Integer> months = issueLocalService.dynamicQuery(monthQuery);
 		return months;
 	}
 
 	public List<Issue> getIssuesByYear(int year) {
-		Session session = null;
 		ClassLoader classLoader = getClass().getClassLoader();
 		List<Issue> issueList = new ArrayList<Issue>();
 
 		// Dynamic query so that the date is between January 1st to December 31st of the year
-		Calendar calendarStart = Calendar.getInstance(), calendarEnd = Calendar.getInstance();
-		calendarStart.set(Calendar.DAY_OF_MONTH, 1);
-		calendarStart.set(Calendar.MONTH, Calendar.JANUARY);
-		calendarStart.set(Calendar.YEAR, year);
-		calendarEnd.set(Calendar.DAY_OF_MONTH, 31);
-		calendarEnd.set(Calendar.MONTH, Calendar.DECEMBER);
-		calendarEnd.set(Calendar.YEAR, year);
-
-		Date startDate = calendarStart.getTime();
-		Date endDate = calendarEnd.getTime();
+		Date startDate = getStartDateOfYear(year);
+		Date endDate = getEndDateOfYear(year);
 
 		DynamicQuery issueQuery = DynamicQueryFactoryUtil.forClass(Issue.class, classLoader)
 				.add(RestrictionsFactoryUtil.between("issueDate", startDate, endDate))
@@ -151,6 +143,30 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 			e.printStackTrace();
 		}
 		return issueList;
+	}
+
+	public Date getEndDateOfYear(int year) {
+		Calendar calendarEnd = Calendar.getInstance();
+		calendarEnd.set(Calendar.DAY_OF_MONTH, 31);
+		calendarEnd.set(Calendar.MONTH, Calendar.DECEMBER);
+		calendarEnd.set(Calendar.YEAR, year);
+		calendarEnd.set(Calendar.HOUR, 0);
+		calendarEnd.set(Calendar.MINUTE, 0);
+		calendarEnd.set(Calendar.SECOND, 0);
+
+		return calendarEnd.getTime();
+	}
+
+	public Date getStartDateOfYear(int year) {
+		Calendar calendarStart = Calendar.getInstance();
+		calendarStart.set(Calendar.DAY_OF_MONTH, 1);
+		calendarStart.set(Calendar.MONTH, Calendar.JANUARY);
+		calendarStart.set(Calendar.YEAR, year);
+		calendarStart.set(Calendar.HOUR, 0);
+		calendarStart.set(Calendar.MINUTE, 0);
+		calendarStart.set(Calendar.SECOND, 0);
+
+		return calendarStart.getTime();
 	}
 
 	public String formatIssueDate(java.sql.Timestamp date) {

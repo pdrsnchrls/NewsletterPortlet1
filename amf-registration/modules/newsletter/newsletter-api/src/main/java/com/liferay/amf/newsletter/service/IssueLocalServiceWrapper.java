@@ -235,8 +235,8 @@ public class IssueLocalServiceWrapper
 	}
 
 	@Override
-	public java.util.List<Integer> getIssueMonths(Integer year) {
-		return _issueLocalService.getIssueMonths(year);
+	public java.util.List<Integer> getIssueMonthsByYear(Integer year) {
+		return _issueLocalService.getIssueMonthsByYear(year);
 	}
 
 	/**

@@ -1,13 +1,10 @@
 package com.liferay.amf.newsletter.web.portlet.action;
 
 import com.liferay.amf.newsletter.model.Issue;
-import com.liferay.amf.newsletter.model.Newsletter;
 import com.liferay.amf.newsletter.service.IssueLocalService;
 import com.liferay.amf.newsletter.service.NewsletterLocalService;
-import com.liferay.amf.newsletter.service.persistence.NewsletterPersistence;
 import com.liferay.amf.newsletter.web.constants.MVCCommandNames;
 import com.liferay.amf.newsletter.web.constants.NewsletterPortletKeys;
-import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 
 import java.util.*;
@@ -15,7 +12,6 @@ import java.util.*;
 import javax.portlet.*;
 
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.taglib.portlet.RenderURLTag;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -49,9 +45,11 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 
 		//get issues based on year - dynamicQuery in service layer
 		List<Issue> issuesBySelectedYear = _issueLocalService.getIssuesByYear(selectedYear);
+		List<Integer> monthsBySelectedYear = _issueLocalService.getIssueMonthsByYear(selectedYear); // loop through this to display list of months
+					// then within loop call method to display issues for month/year
 		Map<Integer, List<Integer>> monthsMap = new HashMap<Integer, List<Integer>>();
 		for (Integer year: years) {
-			List<Integer> months = _issueLocalService.getIssueMonths(year);
+			List<Integer> months = _issueLocalService.getIssueMonthsByYear(year);
 			monthsMap.put(year, months);
 		}
 
@@ -67,7 +65,6 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 
 		PortletURL portletURL = response.createRenderURL();
 		portletURL.setProperty("tab", String.valueOf(selectedYear));
-//		portletURL.setParameter("tab", String.valueOf(selectedYear));
 		request.setAttribute("portletURL", portletURL);
 
 		request.setAttribute("issueLocalService", _issueLocalService);

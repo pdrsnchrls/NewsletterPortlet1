@@ -233,7 +233,7 @@ public class IssueLocalServiceUtil {
 	}
 
 	public static java.util.List<Integer> getIssueMonths(Integer year) {
-		return getService().getIssueMonths(year);
+		return getService().getIssueMonthsByYear(year);
 	}
 
 	/**
