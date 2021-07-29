@@ -34,8 +34,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
 
 import org.osgi.annotation.versioning.ProviderType;
@@ -74,7 +73,7 @@ public interface IssueLocalService
 	public Issue addIssue(Issue issue);
 
 	public void checkIssueStatus(
-		HashMap<String, String> contentData, long resourcePrimKey);
+		java.util.HashMap<String, String> contentData, long resourcePrimKey);
 
 	/**
 	 * Creates a new issue with the primary key. Does not add the issue to the database.
@@ -189,10 +188,10 @@ public interface IssueLocalService
 	public List<Integer> getAllIssueYears();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Date getEndDateOfMonth(int year, int month);
+	public java.util.Date getEndDateOfMonth(int year, int month);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Date getEndDateOfYear(int year);
+	public java.util.Date getEndDateOfYear(int year);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
@@ -238,6 +237,9 @@ public interface IssueLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getIssuesCount();
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public String getMonthForInt(int num);
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *
@@ -251,13 +253,14 @@ public interface IssueLocalService
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Date getStartDateOfMonth(int year, int month);
+	public java.util.Date getStartDateOfMonth(int year, int month);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Date getStartDateOfYear(int year);
+	public java.util.Date getStartDateOfYear(int year);
 
 	public void setIssueAttributes(
-		HashMap<String, String> contentData, Issue issue, long issueId);
+		java.util.HashMap<String, String> contentData, Issue issue,
+		long issueId);
 
 	/**
 	 * Updates the issue in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

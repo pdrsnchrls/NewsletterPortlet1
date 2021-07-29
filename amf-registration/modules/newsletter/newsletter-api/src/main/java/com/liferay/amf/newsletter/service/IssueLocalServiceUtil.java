@@ -282,6 +282,10 @@ public class IssueLocalServiceUtil {
 		return getService().getIssuesCount();
 	}
 
+	public static String getMonthForInt(int num) {
+		return getService().getMonthForInt(num);
+	}
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *

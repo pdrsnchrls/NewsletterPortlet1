@@ -291,6 +291,11 @@ public class IssueLocalServiceWrapper
 		return _issueLocalService.getIssuesCount();
 	}
 
+	@Override
+	public String getMonthForInt(int num) {
+		return _issueLocalService.getMonthForInt(num);
+	}
+
 	/**
 	 * Returns the OSGi service identifier.
 	 *
