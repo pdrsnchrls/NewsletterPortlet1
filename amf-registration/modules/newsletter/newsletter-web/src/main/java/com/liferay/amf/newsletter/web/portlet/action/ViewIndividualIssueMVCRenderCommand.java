@@ -46,7 +46,7 @@ public class ViewIndividualIssueMVCRenderCommand implements MVCRenderCommand {
             e.printStackTrace();
         }
 
-        return "/issue.jsp";
+        return "/issue-view.jsp";
     }
     @Reference
     IssueLocalService _issueLocalService;
