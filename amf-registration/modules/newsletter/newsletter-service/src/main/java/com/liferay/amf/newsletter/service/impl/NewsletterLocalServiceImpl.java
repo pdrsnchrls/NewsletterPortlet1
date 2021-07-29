@@ -73,14 +73,12 @@ public class NewsletterLocalServiceImpl extends NewsletterLocalServiceBaseImpl {
 		// if the newsletter already exists, then grab it and update it. (U in CRUD)
 		try {
 			Newsletter newsletter = newsletterLocalService.getNewsletter(resourcePrimKey);
-			System.out.println("Newsletter exists...");
 			setNewsletterAttributes(contentData, newsletter, resourcePrimKey);
 
 			// persist to database
 			newsletterLocalService.updateNewsletter(newsletter);
 		}
 		catch (PortalException e) { // otherwise  (C in CRUD)
-			System.out.println("New newsletter!");
 			Newsletter newsletter = newsletterLocalService.createNewsletter(resourcePrimKey);
 			setNewsletterAttributes(contentData, newsletter, resourcePrimKey);
 
@@ -99,10 +97,6 @@ public class NewsletterLocalServiceImpl extends NewsletterLocalServiceBaseImpl {
 		String title = contentData.get(NewsletterConstants.NEWSLETTER_TITLE);
 		String author = contentData.get(NewsletterConstants.NEWSLETTER_AUTHOR);
 		String newsletterContent = contentData.get(NewsletterConstants.NEWSLETTER_CONTENT);
-		
-		System.out.println("\nHere is the info:\nIssue Number - " + Long.valueOf(issueNumber)
-				+ "\nOrder Number - " + Integer.valueOf(orderNumber) + "\nTitle - " + title
-				+ "\nAuthor - " + author + "\nContent - " + newsletterContent);
 		
 		// set data in newsletter
 		newsletter.setAuthor(author);

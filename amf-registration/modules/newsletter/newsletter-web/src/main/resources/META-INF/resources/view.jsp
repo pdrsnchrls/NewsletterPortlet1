@@ -10,20 +10,21 @@
 >
 	<liferay-ui:section>
 		<c:forEach items="${monthsBySelectedYear}" var="month">
-			<p>Month: ${issueLocalService.getMonthForInt(month-1) }</p>
+			<h2>${issueLocalService.getMonthForInt(month-1) } Issues</h2>
+			<hr>
 
 			<c:forEach items="${issueLocalService.getIssuesByYearAndMonth(year, month)}" var="issue">
-				<p><small>Issue #${issue.issueNumber} - ${issueLocalService.formatIssueDate(issue.issueDate) }</small></p>
-				<!--renderURL for each individual issue-->
 				<portlet:renderURL var="viewFullIssueURL">
 					<portlet:param name="mvcRenderCommandName" value="/issue/view" />
 					<portlet:param name="issueId" value="${issue.issueId }" />
 					<portlet:param name="issueNumber" value="${issue.issueNumber }" />
 				</portlet:renderURL>
 
+				<p><small>Issue #${issue.issueNumber} - ${issueLocalService.formatIssueDate(issue.issueDate) }</small></p>
 				<a href="<%= viewFullIssueURL.toString() %>"><h2>${issue.title }</h2></a>
+
 				<%@ include file="newsletter-list.jsp" %>
-				<br />
+				<br /> <br />
 			</c:forEach>
 		</c:forEach>
 	</liferay-ui:section>

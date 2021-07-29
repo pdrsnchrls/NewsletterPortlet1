@@ -48,8 +48,7 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 	public void onAfterRemove(JournalArticle journalArticle) { // D in CRUD
 		
 		long resourcePrimKey = journalArticle.getResourcePrimKey();
-		System.out.println("I see you're trying to delete something hmm... " + resourcePrimKey);
-		
+
 		// get the Structure information
 		DDMStructure structure = journalArticle.getDDMStructure();
 		String structureName = structure.getName();
@@ -58,7 +57,6 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 			// web content is newsletter
 			try {
 				_newsletterLocalService.deleteNewsletter(resourcePrimKey);
-				System.out.println("Successfully deleted newsletter");
 			} catch (PortalException e) {
 				System.out.println("Unable to delete newsletter");
 			}
@@ -67,26 +65,12 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 			// web content is issue
 			try {
 				_issueLocalService.deleteIssue(resourcePrimKey);
-				System.out.println("Successfully deleted issue");
 			} catch (PortalException e) {
 				System.out.println("Unable to delete issue");
 			}
 		}
 	}
 
-//	public void onBeforeUpdate(JournalArticle journalArticle) {
-//		System.out.print("\nI am here to update stuff.\n");
-//		long articleId = journalArticle.getId();
-//		System.out.println("ArticleID before update: " + articleId);
-//
-//	}
-//	public void onAfterUpdate(JournalArticle journalArticle) {
-//		System.out.print("\nI am here after update\n");
-//		long articleId = journalArticle.getId();
-//		System.out.println("ArticleID after update: " + articleId + "\n");
-//
-//	}
-	
 	@Reference
 	ContentLocalService _contentLocalService;
 

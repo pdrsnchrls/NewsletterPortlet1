@@ -60,14 +60,12 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		// if the issue already exists, then grab it and update it. (U in CRUD)
 		try {
 			Issue issue = issueLocalService.getIssue(resourcePrimKey);
-			System.out.println("Issue exists...");
 			setIssueAttributes(contentData, issue, resourcePrimKey);
 
 			// persist to database
 			issueLocalService.updateIssue(issue);
 		}
 		catch (PortalException e) { // otherwise  (C in CRUD)
-			System.out.println("New Issue!");
 			Issue issue = issueLocalService.createIssue(resourcePrimKey);
 			setIssueAttributes(contentData, issue, resourcePrimKey);
 
@@ -84,10 +82,6 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		String issueDate = contentData.get(NewsletterConstants.ISSUE_DATE);
 
 		String authorByline = contentData.get(NewsletterConstants.BYLINE);
-		
-		System.out.println("\nHere is the info:\nIssue Number - " + issueNumber
-				+ "\nTitle - " + issueTitle + "\nDescription - " + issueDescription
-				+ "\nIssue Date - " + issueDate + "\nAuthors - " + authorByline);
 
 		// set issue data
 		issue.setIssueNumber(Long.valueOf(issueNumber));
