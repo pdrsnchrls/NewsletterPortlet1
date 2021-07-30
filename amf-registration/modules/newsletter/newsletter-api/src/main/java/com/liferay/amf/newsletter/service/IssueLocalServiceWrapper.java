@@ -214,11 +214,6 @@ public class IssueLocalServiceWrapper
 	}
 
 	@Override
-	public java.util.Date getEndDateOfMonth(int year, int month) {
-		return _issueLocalService.getEndDateOfMonth(year, month);
-	}
-
-	@Override
 	public java.util.Date getEndDateOfYear(int year) {
 		return _issueLocalService.getEndDateOfYear(year);
 	}
@@ -305,11 +300,6 @@ public class IssueLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _issueLocalService.getPersistedModel(primaryKeyObj);
-	}
-
-	@Override
-	public java.util.Date getStartDateOfMonth(int year, int month) {
-		return _issueLocalService.getStartDateOfMonth(year, month);
 	}
 
 	@Override

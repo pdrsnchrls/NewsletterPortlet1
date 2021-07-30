@@ -212,10 +212,6 @@ public class IssueLocalServiceUtil {
 		return getService().getAllIssueYears();
 	}
 
-	public static java.util.Date getEndDateOfMonth(int year, int month) {
-		return getService().getEndDateOfMonth(year, month);
-	}
-
 	public static java.util.Date getEndDateOfYear(int year) {
 		return getService().getEndDateOfYear(year);
 	}
@@ -294,10 +290,6 @@ public class IssueLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().getPersistedModel(primaryKeyObj);
-	}
-
-	public static java.util.Date getStartDateOfMonth(int year, int month) {
-		return getService().getStartDateOfMonth(year, month);
 	}
 
 	public static java.util.Date getStartDateOfYear(int year) {

@@ -188,9 +188,6 @@ public interface IssueLocalService
 	public List<Integer> getAllIssueYears();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.Date getEndDateOfMonth(int year, int month);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.Date getEndDateOfYear(int year);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -248,9 +245,6 @@ public interface IssueLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.Date getStartDateOfMonth(int year, int month);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.Date getStartDateOfYear(int year);
