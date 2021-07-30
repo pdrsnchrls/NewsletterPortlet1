@@ -120,8 +120,20 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		ClassLoader classLoader = getClass().getClassLoader();
 		List<Issue> issueList = new ArrayList<>();
 
-		Date startDate = getStartDateOfMonth(year, month);
-		Date endDate = getEndDateOfMonth(year, month);
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.MONTH, month-1);
+		calendar.set(Calendar.DAY_OF_MONTH, 1);
+		calendar.set(Calendar.YEAR, year);
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+
+		Date startDate = calendar.getTime();
+
+		calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+
+		Date endDate = calendar.getTime();
 
 		DynamicQuery issueQuery = DynamicQueryFactoryUtil.forClass(Issue.class, classLoader)
 				.add(RestrictionsFactoryUtil.between("issueDate", startDate, endDate))
@@ -134,32 +146,6 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 			e.printStackTrace();
 		}
 		return issueList;
-	}
-
-	public Date getStartDateOfMonth(int year, int month) {
-		Calendar calendarStart = Calendar.getInstance();
-		calendarStart.set(Calendar.MONTH, month-1);
-		calendarStart.set(Calendar.DAY_OF_MONTH, 1);
-		calendarStart.set(Calendar.YEAR, year);
-		calendarStart.set(Calendar.HOUR_OF_DAY, 0);
-		calendarStart.set(Calendar.MINUTE, 0);
-		calendarStart.set(Calendar.SECOND, 0);
-		calendarStart.set(Calendar.MILLISECOND, 0);
-
-		return calendarStart.getTime();
-	}
-
-	public Date getEndDateOfMonth(int year, int month) {
-		Calendar calendarEnd = Calendar.getInstance();
-		calendarEnd.set(Calendar.MONTH, month-1);
-		calendarEnd.set(Calendar.DAY_OF_MONTH, calendarEnd.getActualMaximum(Calendar.DAY_OF_MONTH));
-		calendarEnd.set(Calendar.YEAR, year);
-		calendarEnd.set(Calendar.HOUR_OF_DAY, 0);
-		calendarEnd.set(Calendar.MINUTE, 0);
-		calendarEnd.set(Calendar.SECOND, 0);
-		calendarEnd.set(Calendar.MILLISECOND, 0);
-
-		return calendarEnd.getTime();
 	}
 
 	public String getMonthForInt(int num) {
