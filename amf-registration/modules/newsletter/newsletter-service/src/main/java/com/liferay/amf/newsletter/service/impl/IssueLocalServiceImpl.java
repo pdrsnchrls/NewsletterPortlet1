@@ -172,28 +172,6 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		return month;
 	}
 
-
-
-	public List<Issue> getIssuesByYear(int year) {
-		ClassLoader classLoader = getClass().getClassLoader();
-		List<Issue> issueList = new ArrayList<>();
-
-		// Dynamic query so that the date is between January 1st to December 31st of the year
-		Date startDate = getStartDateOfYear(year);
-		Date endDate = getEndDateOfYear(year);
-
-		DynamicQuery issueQuery = DynamicQueryFactoryUtil.forClass(Issue.class, classLoader)
-				.add(RestrictionsFactoryUtil.between("issueDate", startDate, endDate))
-				.addOrder(OrderFactoryUtil.desc("issueDate"));
-		try {
-			issueList = IssueLocalServiceUtil.dynamicQuery(issueQuery);
-		} catch (SystemException e) {
-			System.out.println("Query Failed...\n");
-			e.printStackTrace();
-		}
-		return issueList;
-	}
-
 	public Date getEndDateOfYear(int year) {
 		Calendar calendarEnd = Calendar.getInstance();
 		calendarEnd.set(Calendar.DAY_OF_MONTH, 31);
