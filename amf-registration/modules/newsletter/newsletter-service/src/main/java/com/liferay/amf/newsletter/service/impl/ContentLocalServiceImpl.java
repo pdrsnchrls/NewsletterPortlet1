@@ -14,16 +14,11 @@
 
 package com.liferay.amf.newsletter.service.impl;
 
-import com.liferay.amf.newsletter.model.Issue;
-import com.liferay.amf.newsletter.model.Newsletter;
 import com.liferay.amf.newsletter.service.IssueLocalService;
 import com.liferay.amf.newsletter.service.NewsletterLocalService;
 import com.liferay.amf.newsletter.service.base.ContentLocalServiceBaseImpl;
-import com.liferay.amf.newsletter.service.constants.NewsletterConstants;
 import com.liferay.portal.aop.AopService;
-import com.liferay.portal.kernel.exception.PortalException;
 
-import java.sql.Date;
 import java.util.HashMap;
 
 import org.osgi.service.component.annotations.Component;
@@ -48,72 +43,85 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. Use <code>com.liferay.amf.newsletter.service.ContentLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.newsletter.service.ContentLocalServiceUtil</code>.
 	 */
-	
-	public void parseContent(String articleContent, long resourcePrimKey, boolean newsletterType, boolean issueType) {
-		
+	public void parseContent(
+		String articleContent, long resourcePrimKey, boolean newsletterType,
+		boolean issueType) {
+
 		// if it is neither newsletter/issue, it will return
+
 		if (!newsletterType && !issueType) {
 			System.out.println("Error - cannot determine web content type...");
+
 			return;
 		}
-		
+
 		// split string for each dynamic element
+
 		String[] content = articleContent.split("</dynamic-element>", 5);
-		
+
 		// a HashMap for storing the values of the newsletter/issue content
+
 		HashMap<String, String> contentData = new HashMap<String, String>(); // a hashmap to store the data
 
 		// data for storing and searching
+
 		String[] key = new String[content.length], value = new String[content.length];
 		String keySearchName = "name=\"", valueSearchName = "CDATA["; // string to search content for
 		Character keyStopChar = '\"', valueStopChar = ']'; // character to stop at
-		
+
 		int i = 0; // iterator to keep track of positioning
+
 		for (String c : content) {
-			key[i]=splitString(c, keySearchName, keyStopChar);
-			value[i]=splitString(c, valueSearchName, valueStopChar);
+			key[i] = splitString(c, keySearchName, keyStopChar);
+			value[i] = splitString(c, valueSearchName, valueStopChar);
 			contentData.put(key[i], value[i]);
 			i++;
 		}
-		
+
 		// get data from contentData map
+
 		if (newsletterType) {
 			//call newsletter local service
-			_newsletterLocalService.checkNewsletterStatus(contentData, resourcePrimKey);
+			_newsletterLocalService.checkNewsletterStatus(
+				contentData, resourcePrimKey);
 		}
 		else if (issueType) {
+
 			// persist to database
+
 			_issueLocalService.checkIssueStatus(contentData, resourcePrimKey);
 		}
 	}
-	
-	public String splitString(String string, String searchName, Character stopChar) {
+
+	public String splitString(
+		String string, String searchName, Character stopChar) {
 
 		String result = ""; // String to be returned
-		
+
 		// find location of searchName and add its length to start at right place
+
 		int location = string.indexOf(searchName) + searchName.length();
+
 		Character charValue = string.charAt(location); // get first character
-		
+
 		while (!charValue.equals(stopChar)) { // as long as the character is not the token to stop at...
 			result += charValue;
 			location++;
 			charValue = string.charAt(location); // new character
 		}
-		
+
 		return result;
 	}
-	
-	@Reference
-	protected NewsletterLocalService _newsletterLocalService;
-	
+
 	@Reference
 	protected IssueLocalService _issueLocalService;
-	
+
+	@Reference
+	protected NewsletterLocalService _newsletterLocalService;
 
 }

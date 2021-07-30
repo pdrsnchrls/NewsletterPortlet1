@@ -41,9 +41,10 @@ import org.osgi.service.component.annotations.Component;
 )
 public class NewsletterServiceImpl extends NewsletterServiceBaseImpl {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. Always use <code>com.liferay.amf.newsletter.service.NewsletterServiceUtil</code> to access the newsletter remote service.
 	 */
+
 }

@@ -20,7 +20,6 @@ import com.liferay.amf.newsletter.service.constants.NewsletterConstants;
 import com.liferay.amf.newsletter.service.persistence.NewsletterUtil;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import java.util.*;
 
@@ -45,60 +44,75 @@ import org.osgi.service.component.annotations.Component;
 )
 public class NewsletterLocalServiceImpl extends NewsletterLocalServiceBaseImpl {
 
-	/*
+	public void checkNewsletterStatus(
+		HashMap<String, String> contentData, long resourcePrimKey) {
+
+		// if the newsletter already exists, then grab it and update it. (U in CRUD)
+
+		try {
+			Newsletter newsletter = newsletterLocalService.getNewsletter(
+				resourcePrimKey);
+
+			setNewsletterAttributes(contentData, newsletter, resourcePrimKey);
+
+			// persist to database
+
+			newsletterLocalService.updateNewsletter(newsletter);
+		}
+		catch (PortalException e) { // otherwise  (C in CRUD)
+			Newsletter newsletter = newsletterLocalService.createNewsletter(
+				resourcePrimKey);
+
+			setNewsletterAttributes(contentData, newsletter, resourcePrimKey);
+
+			// persist to database
+
+			newsletterLocalService.addNewsletter(newsletter);
+		}
+	}
+
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. Use <code>com.liferay.amf.newsletter.service.NewsletterLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.newsletter.service.NewsletterLocalServiceUtil</code>.
 	 */
-	
-	public List<Newsletter> findByIssueNumber(long issueNumber) throws SystemException {
-
-		List<Newsletter> unorderedNewsletterList = NewsletterUtil.findByIssueNumber(issueNumber);
+	public List<Newsletter> findByIssueNumber(long issueNumber) {
+		List<Newsletter> unorderedNewsletterList =
+			NewsletterUtil.findByIssueNumber(issueNumber);
 
 		// Map for holding order and newsletter to order the thing
-		Map<Integer, Long> newsletterTracker = new TreeMap<Integer, Long>();
+
+		Map<Integer, Long> newsletterTracker = new TreeMap<>();
+
 		for (Newsletter n : unorderedNewsletterList)
 			newsletterTracker.put(n.getOrder(), n.getNewsletterId());
 
 		// Order list based on order number
-		List<Newsletter> orderedNewsletterList = new ArrayList<Newsletter>();
+
+		List<Newsletter> orderedNewsletterList = new ArrayList<>();
+
 		for (Map.Entry<Integer, Long> entry : newsletterTracker.entrySet())
-			orderedNewsletterList.add(NewsletterUtil.fetchByPrimaryKey(entry.getValue()));
+			orderedNewsletterList.add(
+				NewsletterUtil.fetchByPrimaryKey(entry.getValue()));
 
 		return orderedNewsletterList;
 	}
-	
-	public void checkNewsletterStatus(HashMap <String, String> contentData, long resourcePrimKey) {
-		
-		// if the newsletter already exists, then grab it and update it. (U in CRUD)
-		try {
-			Newsletter newsletter = newsletterLocalService.getNewsletter(resourcePrimKey);
-			setNewsletterAttributes(contentData, newsletter, resourcePrimKey);
 
-			// persist to database
-			newsletterLocalService.updateNewsletter(newsletter);
-		}
-		catch (PortalException e) { // otherwise  (C in CRUD)
-			Newsletter newsletter = newsletterLocalService.createNewsletter(resourcePrimKey);
-			setNewsletterAttributes(contentData, newsletter, resourcePrimKey);
+	public void setNewsletterAttributes(
+		HashMap<String, String> contentData, Newsletter newsletter,
+		long newsletterId) {
 
-			// persist to database
-			newsletterLocalService.addNewsletter(newsletter);
-		}
-		
-	}
-	
-	public void setNewsletterAttributes(HashMap <String, String> contentData, Newsletter newsletter,
-			long newsletterId) {
-		
 		// get data from hashmap contentData
+
 		String issueNumber = contentData.get(NewsletterConstants.ISSUE_NUMBER);
 		String orderNumber = contentData.get(NewsletterConstants.ORDER_NUMBER);
 		String title = contentData.get(NewsletterConstants.NEWSLETTER_TITLE);
 		String author = contentData.get(NewsletterConstants.NEWSLETTER_AUTHOR);
-		String newsletterContent = contentData.get(NewsletterConstants.NEWSLETTER_CONTENT);
-		
+		String newsletterContent = contentData.get(
+			NewsletterConstants.NEWSLETTER_CONTENT);
+
 		// set data in newsletter
+
 		newsletter.setAuthor(author);
 		newsletter.setIssueNumber(Long.valueOf(issueNumber));
 		newsletter.setOrder(Integer.valueOf(orderNumber));

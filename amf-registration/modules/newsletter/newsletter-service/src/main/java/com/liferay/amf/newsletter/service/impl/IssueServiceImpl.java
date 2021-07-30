@@ -41,9 +41,10 @@ import org.osgi.service.component.annotations.Component;
 )
 public class IssueServiceImpl extends IssueServiceBaseImpl {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. Always use <code>com.liferay.amf.newsletter.service.IssueServiceUtil</code> to access the issue remote service.
 	 */
+
 }

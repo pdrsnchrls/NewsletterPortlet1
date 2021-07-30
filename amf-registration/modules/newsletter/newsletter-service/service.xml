@@ -3,55 +3,55 @@
 
 <service-builder dependency-injector="ds" package-path="com.liferay.amf.newsletter">
 	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
-    <author>Charles Pederson</author>
-    <namespace>Newsletter</namespace>
-    
-    <entity name="Issue" local-service="true">
-    	<!-- Columns -->
-        <column name="issueId" type="long" primary="true"></column>
-        <column name="issueNumber" type="long"></column>
-        <column name="title" type="String"></column>
-        <column name="description" type="String"></column>
-        <column name="issueDate" type="Date"></column>
-        <column name="byline" type="String"></column>
-        
-        <!-- Order -->
-        <order by="desc">
-        	<order-column name="issueDate" />
-        </order> 
-        
+	<author>Charles Pederson</author>
+	<namespace>Newsletter</namespace>
+
+	<entity local-service="true" name="Issue">
+		<!-- Columns -->
+		<column name="issueId" type="long" primary="true"></column>
+		<column name="issueNumber" type="long"></column>
+		<column name="title" type="String"></column>
+		<column name="description" type="String"></column>
+		<column name="issueDate" type="Date"></column>
+		<column name="byline" type="String"></column>
+
+		<!-- Order -->
+		<order by="desc">
+			<order-column name="issueDate" />
+		</order>
+
 		<finder name="IssueDate" return-type="Collection">
-	    	<finder-column name="issueDate"></finder-column>
-	    </finder>
-        
-       	<reference entity="JournalArticle" package-path="com.liferay.journal" />
-               
-    </entity>
-    
-    <entity name="Newsletter" local-service="true">
-        <!-- Columns -->
-        <column name="newsletterId" primary="true" type="long"></column>
-        <column name="issueNumber" type="long"></column>
-        <column name="title" type="String"></column>
-        <column name="author" type="String"></column>
-        <column name="order" type="int"></column>
-        <column name="content" type="String"></column>
-        
-        <!-- Order -->
-        <order by="desc">
-        	<order-column name="order" />
-        </order>
-        
-        <!-- Finders -->
-       	<finder name="IssueNumber" return-type="Collection">
-	    	<finder-column name="issueNumber"></finder-column>
-	    </finder>
-	    <reference entity="JournalArticle" package-path="com.liferay.journal" />
-	    
-    </entity>
-    
-    <entity name="Content" local-service="true">
+			<finder-column name="issueDate"></finder-column>
+		</finder>
+
 		<reference entity="JournalArticle" package-path="com.liferay.journal" />
-    </entity>
-    
+
+	</entity>
+
+	<entity local-service="true" name="Newsletter">
+		<!-- Columns -->
+		<column name="newsletterId" primary="true" type="long"></column>
+		<column name="issueNumber" type="long"></column>
+		<column name="title" type="String"></column>
+		<column name="author" type="String"></column>
+		<column name="order" type="int"></column>
+		<column name="content" type="String"></column>
+
+		<!-- Order -->
+		<order by="desc">
+			<order-column name="order" />
+		</order>
+
+		<!-- Finders -->
+		<finder name="IssueNumber" return-type="Collection">
+			<finder-column name="issueNumber"></finder-column>
+		</finder>
+		<reference entity="JournalArticle" package-path="com.liferay.journal" />
+
+	</entity>
+
+	<entity local-service="true" name="Content">
+		<reference entity="JournalArticle" package-path="com.liferay.journal" />
+	</entity>
+
 </service-builder>

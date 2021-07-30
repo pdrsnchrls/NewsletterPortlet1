@@ -28,7 +28,7 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public class NewsletterImpl extends NewsletterBaseImpl {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. All methods that expect a newsletter model instance should use the {@link com.liferay.amf.newsletter.model.Newsletter} interface instead.

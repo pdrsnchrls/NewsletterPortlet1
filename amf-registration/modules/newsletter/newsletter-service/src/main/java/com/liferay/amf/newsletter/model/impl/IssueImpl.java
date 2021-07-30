@@ -28,7 +28,7 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public class IssueImpl extends IssueBaseImpl {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. All methods that expect a issue model instance should use the {@link com.liferay.amf.newsletter.model.Issue} interface instead.

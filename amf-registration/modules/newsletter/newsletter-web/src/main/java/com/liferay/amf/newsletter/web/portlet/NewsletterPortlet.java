@@ -1,7 +1,6 @@
 package com.liferay.amf.newsletter.web.portlet;
 
 import com.liferay.amf.newsletter.web.constants.NewsletterPortletKeys;
-
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
 import javax.portlet.Portlet;
@@ -28,6 +27,4 @@ import org.osgi.service.component.annotations.Component;
 	service = Portlet.class
 )
 public class NewsletterPortlet extends MVCPortlet {
-	
-	
 }

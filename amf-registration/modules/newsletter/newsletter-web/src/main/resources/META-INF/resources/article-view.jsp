@@ -2,7 +2,7 @@
 
 <!--To return to view.jsp-->
 <portlet:renderURL var="viewIssueListURL">
-    <portlet:param name="mvcRenderCommandName" value="/issue-list/view" />
+	<portlet:param name="mvcRenderCommandName" value="/issue-list/view" />
 </portlet:renderURL>
 
 <p><small>Issue: #${issueNumber } - ${issueDate }</small></p>
@@ -14,5 +14,5 @@
 <br /><br />
 
 <aui:button-row>
-    <aui:button onClick="<%= viewIssueListURL.toString() %>" value="Back" />
+	<aui:button onClick="<%= viewIssueListURL.toString() %>" value="Back" />
 </aui:button-row>

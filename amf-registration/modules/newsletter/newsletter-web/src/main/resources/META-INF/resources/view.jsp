@@ -1,17 +1,19 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/init.jsp" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <liferay-ui:tabs
 	names="${years }"
 	param="tab"
-	url="${portletURL.toString() }"
 	type="tabs"
+	url="${portletURL.toString() }"
 	value="${defaultTab }"
 >
 	<liferay-ui:section>
 		<c:forEach items="${monthsBySelectedYear}" var="month">
 			<h2>${issueLocalService.getMonthForInt(month-1) } Issues</h2>
-			<hr>
+
+			<hr />
 
 			<c:forEach items="${issueLocalService.getIssuesByYearAndMonth(year, month)}" var="issue">
 				<portlet:renderURL var="viewFullIssueURL">
@@ -21,6 +23,7 @@
 				</portlet:renderURL>
 
 				<p><small>Issue #${issue.issueNumber} - ${issueLocalService.formatIssueDate(issue.issueDate) }</small></p>
+
 				<a href="<%= viewFullIssueURL.toString() %>"><h2>${issue.title }</h2></a>
 
 				<%@ include file="newsletter-list.jsp" %>
@@ -28,5 +31,4 @@
 			</c:forEach>
 		</c:forEach>
 	</liferay-ui:section>
-
 </liferay-ui:tabs>

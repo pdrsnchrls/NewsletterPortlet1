@@ -41,9 +41,10 @@ import org.osgi.service.component.annotations.Component;
 )
 public class ContentServiceImpl extends ContentServiceBaseImpl {
 
-	/*
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. Always use <code>com.liferay.amf.newsletter.service.ContentServiceUtil</code> to access the content remote service.
 	 */
+
 }

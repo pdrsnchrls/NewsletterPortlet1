@@ -1,10 +1,7 @@
 Bundle-Name: newsletter-service
 Bundle-SymbolicName: com.liferay.amf.newsletter.service
 Bundle-Version: 1.0.0
-Liferay-Require-SchemaVersion: 1.0.0
-Liferay-Service: true
--dsannotations-options: inherit
-Export-Package: \
+Export-Package:\
 	com.liferay.amf.newsletter.service,\
 	com.liferay.amf.newsletter.service.action,\
 	com.liferay.amf.newsletter.service.base,\
@@ -15,3 +12,6 @@ Export-Package: \
 	com.liferay.amf.newsletter.service.persistence,\
 	com.liferay.amf.newsletter.service.persistence.impl,\
 	com.liferay.amf.newsletter.service.persistence.impl.constants
+Liferay-Require-SchemaVersion: 1.0.0
+Liferay-Service: true
+-dsannotations-options: inherit

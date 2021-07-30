@@ -1,27 +1,16 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %><%@
+taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
-<%@ taglib prefix="aui" uri="http://liferay.com/tld/aui" %>
-<%@ taglib prefix="clay" uri="http://liferay.com/tld/clay" %>
-<%@ taglib prefix="liferay-item-selector" uri="http://liferay.com/tld/item-selector" %>
-<%@ taglib prefix="liferay-frontend" uri="http://liferay.com/tld/frontend" %>
-<%@ taglib prefix="liferay-portlet" uri="http://liferay.com/tld/portlet" %>
-<%@ taglib prefix="liferay-theme" uri="http://liferay.com/tld/theme" %>
-<%@ taglib prefix="liferay-ui" uri="http://liferay.com/tld/ui" %>
-<%@ taglib prefix="liferay-security" uri="http://liferay.com/tld/security" %>
-
-<%@ page import="com.liferay.amf.newsletter.model.Newsletter" %>
-<%@ page import="java.util.List"%>
-<%@ page import="com.liferay.amf.newsletter.service.NewsletterLocalServiceUtil"%>
-<%@ page import="com.liferay.amf.newsletter.service.NewsletterLocalService"%>
-<%@ page import="com.liferay.amf.newsletter.service.IssueLocalService"%>
-<%@ page import="com.liferay.amf.newsletter.service.IssueLocalServiceUtil" %>
-
-<%@ page import="com.liferay.portal.kernel.util.ListUtil"%>
-
+<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %><%@
+taglib uri="http://liferay.com/tld/clay" prefix="clay" %><%@
+taglib uri="http://liferay.com/tld/frontend" prefix="liferay-frontend" %><%@
+taglib uri="http://liferay.com/tld/item-selector" prefix="liferay-item-selector" %><%@
+taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %><%@
+taglib uri="http://liferay.com/tld/security" prefix="liferay-security" %><%@
+taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
+taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <liferay-theme:defineObjects />
 
