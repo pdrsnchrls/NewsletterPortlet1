@@ -262,12 +262,6 @@ public class IssueLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.amf.newsletter.model.Issue>
-		getIssuesByYear(int year) {
-
-		return getService().getIssuesByYear(year);
-	}
-
-	public static java.util.List<com.liferay.amf.newsletter.model.Issue>
 		getIssuesByYearAndMonth(int year, int month) {
 
 		return getService().getIssuesByYearAndMonth(year, month);

@@ -224,9 +224,6 @@ public interface IssueLocalService
 	public List<Issue> getIssues(int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Issue> getIssuesByYear(int year);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Issue> getIssuesByYearAndMonth(int year, int month);
 
 	/**
