@@ -11,7 +11,8 @@ Export-Package:\
 	com.liferay.amf.newsletter.service.impl,\
 	com.liferay.amf.newsletter.service.persistence,\
 	com.liferay.amf.newsletter.service.persistence.impl,\
-	com.liferay.amf.newsletter.service.persistence.impl.constants
+	com.liferay.amf.newsletter.service.persistence.impl.constants,\
+	com.liferay.amf.newsletter.search
 Liferay-Require-SchemaVersion: 1.0.0
 Liferay-Service: true
 -dsannotations-options: inherit

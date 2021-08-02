@@ -7,7 +7,6 @@
 	param="tab"
 	type="tabs"
 	url="${portletURL.toString() }"
-	value="${defaultTab }"
 >
 	<liferay-ui:section>
 		<c:forEach items="${monthsBySelectedYear}" var="month">
