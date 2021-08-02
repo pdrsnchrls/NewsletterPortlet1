@@ -20,6 +20,6 @@ public class IssueFriendlyURLMapper extends DefaultFriendlyURLMapper {
 		return _MAPPING;
 	}
 
-	private static final String _MAPPING = "newsletter";
+	private static final String _MAPPING = "article-issue";
 
 }

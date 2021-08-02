@@ -3,26 +3,19 @@
 
 <routes>
 	<route>
-		<pattern>/{issueId:\d+}/article-issue/{issueNumber:\d+}</pattern>
+		<pattern>/{issueNumber:\d+}/{issueId:\d+}</pattern>
+		<implicit-parameter name="p_p_id">com_liferay_amf_newsletter_web_portlet_NewsletterPortlet</implicit-parameter>
 		<implicit-parameter name="mvcRenderCommandName">/issue/view</implicit-parameter>
 		<implicit-parameter name="p_p_lifecycle">0</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
+		<implicit-parameter name="p_p_mode">view</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/{issueId:\d+}/article-issue/newsletter/{newsletterId}</pattern>
+		<pattern>/{newsletterId:\d+}/issue/{issueId:\d+}</pattern>
 		<implicit-parameter name="mvcRenderCommandName">/article/view</implicit-parameter>
 		<implicit-parameter name="p_p_lifecycle">0</implicit-parameter>
-	</route>
-	<route>
-		<pattern>/{tab:\d+}</pattern>
-		<implicit-parameter name="mvcRenderCommandName">/issue-list/view</implicit-parameter>
-		<implicit-parameter name="p_p_lifecycle">0</implicit-parameter>
-	</route>
-	<route>
-		<pattern>/newsletters/{tab:\d+}</pattern>
-		<implicit-parameter name="p_p_lifecycle">0</implicit-parameter>
+		<implicit-parameter name="p_p_id">com_liferay_amf_newsletter_web_portlet_NewsletterPortlet</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 		<implicit-parameter name="p_p_mode">view</implicit-parameter>
-		<implicit-parameter name="p_p_id">com.liferay.amf.newsletter.web.portlet.NewsletterPortlet</implicit-parameter>
 	</route>
 </routes>

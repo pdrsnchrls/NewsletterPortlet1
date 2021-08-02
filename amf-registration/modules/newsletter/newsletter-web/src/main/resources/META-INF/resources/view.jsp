@@ -24,7 +24,7 @@
 
 				<p><small>Issue #${issue.issueNumber} - ${issueLocalService.formatIssueDate(issue.issueDate) }</small></p>
 
-				<a href="<%= viewFullIssueURL.toString() %>"><h2>${issue.title }</h2></a>
+				<a href="/newsletter/-/article-issue/${issue.issueNumber}/${issue.issueId}"><h2>${issue.title }</h2></a>
 
 				<%@ include file="newsletter-list.jsp" %>
 				<br /> <br />

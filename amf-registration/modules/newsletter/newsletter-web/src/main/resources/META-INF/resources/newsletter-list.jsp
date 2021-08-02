@@ -14,8 +14,10 @@
 			<portlet:param name="issueId" value="${issue.issueId}" />
 		</portlet:renderURL>
 
-		<liferay-ui:search-container-column-text href="<%= viewArticleURL.toString() %>" value="${newsletter.title } by ${newsletter.author }" /> <!--href=""-->
+		<liferay-ui:search-container-column-text href="/newsletter/-/article-issue/${newsletter.newsletterId}/issue/${issue.issueId}" value="${newsletter.title } by ${newsletter.author }" /> <!--href=""-->
 	</liferay-ui:search-container-row>
 
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
+
+<!---->
