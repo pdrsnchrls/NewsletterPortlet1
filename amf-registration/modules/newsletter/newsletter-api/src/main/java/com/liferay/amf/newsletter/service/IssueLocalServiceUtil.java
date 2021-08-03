@@ -241,6 +241,12 @@ public class IssueLocalServiceUtil {
 		return getService().getIssue(issueId);
 	}
 
+	public static com.liferay.amf.newsletter.model.Issue getIssueByIssueNumber(
+		long issueNumber) {
+
+		return getService().getIssueByIssueNumber(issueNumber);
+	}
+
 	public static java.util.List<Integer> getIssueMonthsByYear(Integer year) {
 		return getService().getIssueMonthsByYear(year);
 	}

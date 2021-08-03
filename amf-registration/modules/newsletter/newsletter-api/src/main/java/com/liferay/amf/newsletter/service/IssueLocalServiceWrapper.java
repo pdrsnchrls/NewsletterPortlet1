@@ -245,6 +245,13 @@ public class IssueLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.amf.newsletter.model.Issue getIssueByIssueNumber(
+		long issueNumber) {
+
+		return _issueLocalService.getIssueByIssueNumber(issueNumber);
+	}
+
+	@Override
 	public java.util.List<Integer> getIssueMonthsByYear(Integer year) {
 		return _issueLocalService.getIssueMonthsByYear(year);
 	}

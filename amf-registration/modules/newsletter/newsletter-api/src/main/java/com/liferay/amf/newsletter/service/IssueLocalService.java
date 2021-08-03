@@ -209,6 +209,9 @@ public interface IssueLocalService
 	public Issue getIssue(long issueId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Issue getIssueByIssueNumber(long issueNumber);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Integer> getIssueMonthsByYear(Integer year);
 
 	/**
