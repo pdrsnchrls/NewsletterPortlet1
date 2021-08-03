@@ -179,8 +179,12 @@ public interface NewsletterLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Newsletter fetchNewsletter(long newsletterId);
 
-	public List<Newsletter> findByIssueNumber(long issueNumber)
-		throws SystemException;
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this class directly. Use <code>NewsletterLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>NewsletterLocalServiceUtil</code>.
+	 */
+	public List<Newsletter> findByIssueNumber(long issueNumber);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();

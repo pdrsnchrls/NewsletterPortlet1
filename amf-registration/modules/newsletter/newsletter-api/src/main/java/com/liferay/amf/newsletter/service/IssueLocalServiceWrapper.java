@@ -46,6 +46,11 @@ public class IssueLocalServiceWrapper
 		return _issueLocalService.addIssue(issue);
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this class directly. Use <code>IssueLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>IssueLocalServiceUtil</code>.
+	 */
 	@Override
 	public void checkIssueStatus(
 		java.util.HashMap<String, String> contentData, long resourcePrimKey) {

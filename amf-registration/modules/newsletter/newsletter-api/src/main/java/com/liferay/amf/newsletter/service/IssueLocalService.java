@@ -72,6 +72,11 @@ public interface IssueLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public Issue addIssue(Issue issue);
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this class directly. Use <code>IssueLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>IssueLocalServiceUtil</code>.
+	 */
 	public void checkIssueStatus(
 		java.util.HashMap<String, String> contentData, long resourcePrimKey);
 

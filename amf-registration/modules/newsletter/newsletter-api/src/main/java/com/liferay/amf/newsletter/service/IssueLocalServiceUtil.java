@@ -52,6 +52,11 @@ public class IssueLocalServiceUtil {
 		return getService().addIssue(issue);
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this class directly. Use <code>IssueLocalService</code> via injection or a <code>ServiceTracker</code> or use <code>IssueLocalServiceUtil</code>.
+	 */
 	public static void checkIssueStatus(
 		java.util.HashMap<String, String> contentData, long resourcePrimKey) {
 

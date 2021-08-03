@@ -43,6 +43,11 @@ public class ContentLocalServiceWrapper
 		return _contentLocalService.getOSGiServiceIdentifier();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this class directly. Use <code>ContentLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>ContentLocalServiceUtil</code>.
+	 */
 	@Override
 	public void parseContent(
 		String articleContent, long resourcePrimKey, boolean newsletterType,

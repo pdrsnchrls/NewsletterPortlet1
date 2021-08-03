@@ -205,10 +205,14 @@ public class NewsletterLocalServiceWrapper
 		return _newsletterLocalService.fetchNewsletter(newsletterId);
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this class directly. Use <code>NewsletterLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>NewsletterLocalServiceUtil</code>.
+	 */
 	@Override
 	public java.util.List<com.liferay.amf.newsletter.model.Newsletter>
-			findByIssueNumber(long issueNumber)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		findByIssueNumber(long issueNumber) {
 
 		return _newsletterLocalService.findByIssueNumber(issueNumber);
 	}

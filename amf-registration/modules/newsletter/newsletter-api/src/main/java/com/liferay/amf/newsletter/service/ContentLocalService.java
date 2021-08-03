@@ -52,6 +52,11 @@ public interface ContentLocalService extends BaseLocalService {
 	 */
 	public String getOSGiServiceIdentifier();
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this class directly. Use <code>ContentLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>ContentLocalServiceUtil</code>.
+	 */
 	public void parseContent(
 		String articleContent, long resourcePrimKey, boolean newsletterType,
 		boolean issueType);

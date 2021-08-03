@@ -198,9 +198,13 @@ public class NewsletterLocalServiceUtil {
 		return getService().fetchNewsletter(newsletterId);
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this class directly. Use <code>NewsletterLocalService</code> via injection or a <code>ServiceTracker</code> or use <code>NewsletterLocalServiceUtil</code>.
+	 */
 	public static java.util.List<com.liferay.amf.newsletter.model.Newsletter>
-			findByIssueNumber(long issueNumber)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		findByIssueNumber(long issueNumber) {
 
 		return getService().findByIssueNumber(issueNumber);
 	}

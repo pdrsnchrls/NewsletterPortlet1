@@ -49,6 +49,11 @@ public class ContentLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	/**
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this class directly. Use <code>ContentLocalService</code> via injection or a <code>ServiceTracker</code> or use <code>ContentLocalServiceUtil</code>.
+	 */
 	public static void parseContent(
 		String articleContent, long resourcePrimKey, boolean newsletterType,
 		boolean issueType) {
