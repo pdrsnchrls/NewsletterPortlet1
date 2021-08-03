@@ -3,15 +3,12 @@ package com.liferay.amf.newsletter.search;
 import com.liferay.amf.newsletter.model.Issue;
 import com.liferay.amf.newsletter.model.Newsletter;
 import com.liferay.amf.newsletter.service.IssueLocalService;
-import com.liferay.amf.newsletter.service.NewsletterLocalService;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
-import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.search.spi.model.index.contributor.ModelDocumentContributor;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -51,10 +48,6 @@ public class NewsletterModelDocumentContributor implements ModelDocumentContribu
                     Field.NAME, defaultLocale.toString());
 
             document.addText(localizedGbName, issueTitle);
-        } catch (PortalException pe) {
-            if (_log.isWarnEnabled()) {
-                _log.warn("Unable to index newsletter " + newsletter.getNewsletterId(), pe);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,6 +59,4 @@ public class NewsletterModelDocumentContributor implements ModelDocumentContribu
     @Reference
     private IssueLocalService _issueLocalService;
 
-    @Reference
-    private NewsletterLocalService _newsletterLocalService;
 }
