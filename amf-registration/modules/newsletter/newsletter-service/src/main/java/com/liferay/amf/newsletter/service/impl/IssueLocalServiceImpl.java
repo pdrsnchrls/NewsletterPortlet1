@@ -231,4 +231,16 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		issue.setIssueId(issueId);
 	}
 
+	public Issue getIssueByIssueNumber(long issueNumber) {
+		ClassLoader classLoader = getClass().getClassLoader();
+
+		DynamicQuery issueQuery = DynamicQueryFactoryUtil.forClass(
+				Issue.class, "issue", classLoader
+		).add(RestrictionsFactoryUtil.eq("issueNumber", issueNumber));
+
+		List<Issue> issueYears = issueLocalService.dynamicQuery(issueQuery);
+
+		return issueYears.get(0);
+	}
+
 }
