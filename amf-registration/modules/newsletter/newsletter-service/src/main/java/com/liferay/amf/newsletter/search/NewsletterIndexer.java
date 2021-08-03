@@ -27,10 +27,9 @@ public class NewsletterIndexer extends BaseIndexer<Newsletter> {
 
     public NewsletterIndexer() {
         setDefaultSelectedFieldNames(
-                Field.ASSET_TAG_NAMES, Field.COMPANY_ID, Field.CONTENT,
-                Field.ENTRY_CLASS_NAME, Field.ENTRY_CLASS_PK, Field.GROUP_ID,
-                Field.MODIFIED_DATE, Field.SCOPE_GROUP_ID, Field.TITLE, Field.UID);
-        setPermissionAware(true);
+                Field.COMPANY_ID, Field.ENTRY_CLASS_NAME, Field.ENTRY_CLASS_PK,
+                Field.UID, Field.SCOPE_GROUP_ID, Field.GROUP_ID);
+        setDefaultSelectedLocalizedFieldNames(Field.TITLE, Field.CONTENT);
         setFilterSearch(true);
     }
 
@@ -132,8 +131,9 @@ public class NewsletterIndexer extends BaseIndexer<Newsletter> {
     }
 
     @Override
-    protected void doReindex(Newsletter object) throws Exception {
-        Document document = getDocument(object);
+    protected void doReindex(Newsletter newsletter) throws Exception {
+
+        Document document = getDocument(newsletter);
         indexWriterHelper.updateDocument(
                 getSearchEngineId(), getCompany().getCompanyId(), document,
                 isCommitImmediately());
@@ -151,8 +151,7 @@ public class NewsletterIndexer extends BaseIndexer<Newsletter> {
 
     public static final String CLASS_NAME = Newsletter.class.getName();
 
-    private static final Log _log =
-            LogFactoryUtil.getLog(NewsletterIndexer.class);
+    private static final Log _log = LogFactoryUtil.getLog(NewsletterIndexer.class);
 
     @Reference
     protected IndexWriterHelper indexWriterHelper;
