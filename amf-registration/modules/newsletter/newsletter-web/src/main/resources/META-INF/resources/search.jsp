@@ -1,13 +1,17 @@
 <!--Render URL for Search Bar-->
-<liferay-portlet:actionURL name="/search/view" var="searchResultsURL">
-    <portlet:param name="mvcActionCommand" value="/search/view" />
-</liferay-portlet:actionURL>
+<portlet:renderURL var="searchURL">
+    <portlet:param name="mvcRenderCommandName" value="/search/view" />
+</portlet:renderURL>
 
-<liferay-portlet:actionURL name="/search/view" var="searchResultsURL" />
+<aui:form action="${searchURL}" name="fm">
 
-<aui:form action="<%= searchResultsURL %>" method="post" name="fm">
-    <aui:input inlineField="${true }" label=""
-               name="keywords" size="30" title="search-entries" type="text"
-    />
-    <aui:button type="submit" value="search" />
+    <div class="row">
+        <div class="col-md-8">
+            <aui:input inlineLabel="left" label="" name="keywords" placeholder="search-newsletters" size="256" />
+        </div>
+
+        <div class="col-md-4">
+            <aui:button type="submit" value="search" />
+        </div>
+    </div>
 </aui:form>
