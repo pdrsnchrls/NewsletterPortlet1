@@ -52,7 +52,7 @@ public class SearchArticlesMVCRenderCommand implements MVCRenderCommand {
             long companyId = company.getCompanyId();
             User user = UserLocalServiceUtil.getDefaultUser(companyId);
 
-            System.out.println("Company: " + company.getName() + " User " + user.getUserId());
+            System.out.println("Company: " + company.getCompanyId() + " User " + user.getUserId());
 
             searchContext.setCompanyId(companyId);
             searchContext.setUserId(user.getUserId());

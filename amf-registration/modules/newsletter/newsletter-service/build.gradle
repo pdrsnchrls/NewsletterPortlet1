@@ -14,8 +14,8 @@ dependencies {
 	compileOnly group: "javax.portlet", name: "portlet-api"
 	compileOnly group: "javax.servlet", name: "javax.servlet-api"
 	compileOnly project(":modules:newsletter:newsletter-api")
-	compileOnly group: "com.liferay", name: "com.liferay.portal.search.spi", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.portal.search.api", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.search.spi"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.search.api"
 }
 
 buildService {

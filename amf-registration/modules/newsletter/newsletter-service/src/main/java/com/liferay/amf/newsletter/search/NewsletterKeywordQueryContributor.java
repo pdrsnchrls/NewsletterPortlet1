@@ -20,13 +20,12 @@ public class NewsletterKeywordQueryContributor implements KeywordQueryContributo
         SearchContext searchContext =
                 keywordQueryContributorHelper.getSearchContext();
 
-        //TODO add search localized terms...
         queryHelper.addSearchLocalizedTerm(
                 booleanQuery, searchContext, Field.TITLE, false);
         queryHelper.addSearchLocalizedTerm(
                 booleanQuery, searchContext, Field.CONTENT, false);
         queryHelper.addSearchLocalizedTerm(
-                booleanQuery, searchContext, "newsletterEmail", false);
+                booleanQuery, searchContext, "author", false);
     }
 
     @Reference
