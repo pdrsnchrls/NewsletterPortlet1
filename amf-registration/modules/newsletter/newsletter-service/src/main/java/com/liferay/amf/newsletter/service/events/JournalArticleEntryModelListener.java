@@ -13,6 +13,8 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import java.util.Locale;
+
 @Component(
 	immediate=true,
 	property= {
@@ -38,13 +40,13 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 		String structureName = structure.getName();
 		boolean newsletterType = false, issueType = false;
 
-		if (structureName.contains(NEWSLETTER)) {
+		if (structureName.toLowerCase().contains(NEWSLETTER)) {
 
 			// web content is newsletter
 
 			newsletterType = true;
 		}
-		else if (structureName.contains(ISSUE)) {
+		else if (structureName.toLowerCase().contains(ISSUE)) {
 
 			// web content is issue
 
