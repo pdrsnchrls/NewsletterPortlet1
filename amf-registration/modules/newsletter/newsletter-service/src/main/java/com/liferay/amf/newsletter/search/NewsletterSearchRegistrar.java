@@ -21,9 +21,9 @@ public class NewsletterSearchRegistrar {
         _serviceRegistration = modelSearchRegistrarHelper.register(
                 Newsletter.class, bundleContext, modelSearchDefinition -> {
                     modelSearchDefinition.setDefaultSelectedFieldNames(
-                            Field.COMPANY_ID, Field.ENTRY_CLASS_NAME,
-                            Field.ENTRY_CLASS_PK, Field.UID,
-                            Field.SCOPE_GROUP_ID, Field.GROUP_ID);
+                            Field.ENTRY_CLASS_NAME,
+                            Field.ENTRY_CLASS_PK,
+                            Field.SCOPE_GROUP_ID);
 
                     modelSearchDefinition.setDefaultSelectedLocalizedFieldNames(
                             Field.TITLE, Field.CONTENT);

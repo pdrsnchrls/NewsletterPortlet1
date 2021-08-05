@@ -6,8 +6,8 @@
 
 <portlet:renderURL var="viewURL">
     <portlet:param
-            name="mvcPath"
-            value="/view.jsp"
+            name="mvcRenderCommandName"
+            value="/issue-list/view"
     />
 </portlet:renderURL>
 
@@ -26,7 +26,7 @@
     </div>
 </aui:form>
 
-<liferay-ui:search-container delta="5" emptyResultsMessage="no-newsletters-were-found" total="${newslettersSize }">
+<liferay-ui:search-container delta="5" emptyResultsMessage="no-results-found-please-try-searching-with-other-keywords" total="${newslettersSize }">
     <liferay-ui:search-container-results
             results="${newsletters }" />
     <liferay-ui:search-container-row

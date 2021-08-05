@@ -29,7 +29,7 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 	public static final String NEWSLETTER = "newsletter";
 
 	public void onAfterCreate(JournalArticle journalArticle) {
-		long resourcePrimKey = journalArticle.getResourcePrimKey(); // a constant, can be used to check if we are adding or updating the database
+		long journalArticleId = journalArticle.getId(); // a constant, can be used to check if we are adding or updating the database
 		String articleContent = journalArticle.getContent();
 		Integer articleStatus = journalArticle.getStatus();
 
@@ -57,7 +57,7 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 
 		if (articleStatus == WorkflowConstants.STATUS_APPROVED) {
 			_contentLocalService.parseContent(
-				articleContent, resourcePrimKey, newsletterType, issueType);
+				articleContent, journalArticleId, newsletterType, issueType);
 		}
 	}
 

@@ -49,7 +49,7 @@ public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 	 * Never reference this class directly. Use <code>com.liferay.amf.newsletter.service.ContentLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.amf.newsletter.service.ContentLocalServiceUtil</code>.
 	 */
 	public void parseContent(
-		String articleContent, long resourcePrimKey, boolean newsletterType,
+		String articleContent, long journalArticleId, boolean newsletterType,
 		boolean issueType) {
 
 		// if it is neither newsletter/issue, it will return
@@ -88,13 +88,13 @@ public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 		if (newsletterType) {
 			//call newsletter local service
 			_newsletterLocalService.checkNewsletterStatus(
-				contentData, resourcePrimKey);
+				contentData, journalArticleId);
 		}
 		else if (issueType) {
 
 			// persist to database
 
-			_issueLocalService.checkIssueStatus(contentData, resourcePrimKey);
+			_issueLocalService.checkIssueStatus(contentData, journalArticleId);
 		}
 	}
 

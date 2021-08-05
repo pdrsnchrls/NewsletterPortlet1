@@ -4,6 +4,8 @@ import com.liferay.amf.newsletter.model.Newsletter;
 import com.liferay.amf.newsletter.service.NewsletterLocalServiceUtil;
 import com.liferay.amf.newsletter.web.constants.MVCCommandNames;
 import com.liferay.amf.newsletter.web.constants.NewsletterPortletKeys;
+import com.liferay.journal.model.JournalArticle;
+import com.liferay.journal.service.JournalArticleLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -14,13 +16,12 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.search.*;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.*;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import javax.portlet.*;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,26 +42,15 @@ public class SearchArticlesMVCRenderCommand implements MVCRenderCommand {
         String keywords = ParamUtil.getString(request, "keywords");
         System.out.println("KEYWORDS: " + keywords);
 
-        SearchContext searchContext = new SearchContext();
+        HttpServletRequest httpRequest = PortalUtil.getHttpServletRequest(request);
+        SearchContext searchContext = SearchContextFactory.getInstance(httpRequest);
+
         searchContext.setKeywords(keywords);
         searchContext.setAttribute("paginationType", "more");
         searchContext.setStart(0);
         searchContext.setEnd(5);
 
-        try {
-            Company company = CompanyLocalServiceUtil.getCompanyByMx(PropsUtil.get(PropsKeys.COMPANY_DEFAULT_WEB_ID));
-            long companyId = company.getCompanyId();
-            User user = UserLocalServiceUtil.getDefaultUser(companyId);
-
-            System.out.println("Company: " + company.getCompanyId() + " User " + user.getUserId());
-
-            searchContext.setCompanyId(companyId);
-            searchContext.setUserId(user.getUserId());
-        }
-        catch(PortalException e) {
-            e.printStackTrace();
-        }
-        Indexer indexer = IndexerRegistryUtil.getIndexer(Newsletter.class);
+        Indexer indexer = IndexerRegistryUtil.getIndexer(JournalArticle.class);
 
         Hits hits = null;
         try {
@@ -75,8 +65,10 @@ public class SearchArticlesMVCRenderCommand implements MVCRenderCommand {
         for (int i = 0; i < hits.getDocs().length; i++) {
             Document doc = hits.doc(i);
 
-            long newsletterId = GetterUtil
-                    .getLong(doc.get(Field.ENTRY_CLASS_PK));
+            String newsletterUID = GetterUtil.getString(doc.get(Field.UID));
+            String[] info = newsletterUID.split("_");
+            String id = info[info.length-1];
+            long newsletterId = Long.parseLong(id);
 
             Newsletter newsletter = null;
             try {
@@ -87,7 +79,9 @@ public class SearchArticlesMVCRenderCommand implements MVCRenderCommand {
                 _log.error(se.getLocalizedMessage());
             }
 
-            newsletters.add(newsletter);
+            if (!Validator.isNull(newsletter)) {
+                newsletters.add(newsletter);
+            }
         }
         for (Newsletter newsletter : newsletters) {
             System.out.println("Hey there " + newsletter.getTitle());
@@ -99,6 +93,8 @@ public class SearchArticlesMVCRenderCommand implements MVCRenderCommand {
         return "/search-view.jsp";
     }
 
+    @Reference
+    JournalArticleLocalService journalArticleLocalService;
     private static Log _log = LogFactoryUtil.getLog("html.issuewebportlet.search_view_jsp");
 
 }
