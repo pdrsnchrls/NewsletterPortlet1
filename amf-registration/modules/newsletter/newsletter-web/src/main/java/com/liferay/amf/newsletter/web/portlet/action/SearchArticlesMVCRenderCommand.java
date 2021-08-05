@@ -73,23 +73,23 @@ public class SearchArticlesMVCRenderCommand implements MVCRenderCommand {
 
 			String id = info[info.length - 1];
 
-			long newsletterId = GetterUtil.getLong(id);
+			long newsletterId = Long.parseLong(id);
 
 			Newsletter newsletter = null;
 
 			try {
 				newsletter = NewsletterLocalServiceUtil.getNewsletter(
 					newsletterId);
+				if (Validator.isNotNull(newsletter)) {
+					newsletters.add(newsletter);
+				}
 			}
 			catch (PortalException pe) {
 				_log.error(pe.getLocalizedMessage());
+				continue;
 			}
 			catch (SystemException se) {
 				_log.error(se.getLocalizedMessage());
-			}
-
-			if (Validator.isNotNull(newsletter)) {
-				newsletters.add(newsletter);
 			}
 		}
 
