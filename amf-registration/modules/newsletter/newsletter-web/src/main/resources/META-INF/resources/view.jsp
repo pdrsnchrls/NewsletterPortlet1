@@ -2,7 +2,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%@include file="search.jsp" %>
+<%@ include file="search.jsp" %>
 
 <liferay-ui:tabs
 	names="${years }"

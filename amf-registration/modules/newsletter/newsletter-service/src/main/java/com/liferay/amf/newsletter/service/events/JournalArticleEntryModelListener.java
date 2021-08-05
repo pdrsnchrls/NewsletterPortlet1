@@ -13,14 +13,12 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-import java.util.Locale;
-
 @Component(
-	immediate=true,
-	property= {
+	immediate = true,
+	property = {
 			//key?
 	},
-	service=ModelListener.class
+	service = ModelListener.class
 )
 public class JournalArticleEntryModelListener extends BaseModelListener<JournalArticle> {
 
@@ -38,15 +36,19 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 		DDMStructure structure = journalArticle.getDDMStructure();
 
 		String structureName = structure.getName();
-		boolean newsletterType = false, issueType = false;
 
-		if (structureName.toLowerCase().contains(NEWSLETTER)) {
+		structureName.toLowerCase();
+
+		boolean newsletterType = false;
+		boolean issueType = false;
+
+		if (structureName.contains(NEWSLETTER)) {
 
 			// web content is newsletter
 
 			newsletterType = true;
 		}
-		else if (structureName.toLowerCase().contains(ISSUE)) {
+		else if (structureName.contains(ISSUE)) {
 
 			// web content is issue
 
@@ -101,18 +103,15 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 		if (articleStatus == WorkflowConstants.STATUS_APPROVED) {
 			onAfterCreate(journalArticle);
 		}
-		else {
-			return;
-		}
 	}
 
 	@Reference
-	ContentLocalService _contentLocalService;
+	private ContentLocalService _contentLocalService;
 
 	@Reference
-	NewsletterLocalService _newsletterLocalService;
+	private IssueLocalService _issueLocalService;
 
 	@Reference
-	IssueLocalService _issueLocalService;
+	private NewsletterLocalService _newsletterLocalService;
 
 }

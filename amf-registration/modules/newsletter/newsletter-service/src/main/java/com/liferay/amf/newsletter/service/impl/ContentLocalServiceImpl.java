@@ -70,9 +70,12 @@ public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 
 		// data for storing and searching
 
-		String[] key = new String[content.length], value = new String[content.length];
-		String keySearchName = "name=\"", valueSearchName = "CDATA["; // string to search content for
-		Character keyStopChar = '\"', valueStopChar = ']'; // character to stop at
+		String[] key = new String[content.length];
+		String[] value = new String[content.length];
+		String keySearchName = "name=\"";
+		String valueSearchName = "CDATA["; // string to search content for
+		Character keyStopChar = '\"';
+		Character valueStopChar = ']'; // character to stop at
 
 		int i = 0; // iterator to keep track of positioning
 
@@ -87,14 +90,14 @@ public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 
 		if (newsletterType) {
 			//call newsletter local service
-			_newsletterLocalService.checkNewsletterStatus(
+			newsletterLocalService.checkNewsletterStatus(
 				contentData, journalArticleId);
 		}
 		else if (issueType) {
 
 			// persist to database
 
-			_issueLocalService.checkIssueStatus(contentData, journalArticleId);
+			issueLocalService.checkIssueStatus(contentData, journalArticleId);
 		}
 	}
 
@@ -119,9 +122,9 @@ public class ContentLocalServiceImpl extends ContentLocalServiceBaseImpl {
 	}
 
 	@Reference
-	protected IssueLocalService _issueLocalService;
+	protected IssueLocalService issueLocalService;
 
 	@Reference
-	protected NewsletterLocalService _newsletterLocalService;
+	protected NewsletterLocalService newsletterLocalService;
 
 }

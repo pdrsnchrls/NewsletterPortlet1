@@ -40,6 +40,7 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 
 		request.setAttribute("defaultTab", years.get(years.size() - 1));
 		request.setAttribute("years", yearString);
+
 		String temp = ParamUtil.getString(request, "tab");
 
 		if (temp.isEmpty()) { // on first load up, it will be wrong so set the default tab to first year...
@@ -52,8 +53,10 @@ public class ViewIssueListMVCRenderCommand implements MVCRenderCommand {
 
 		List<Integer> monthsBySelectedYear =
 			_issueLocalService.getIssueMonthsByYear(selectedYear);
+
 		List<Integer> monthsBySelectedYearReverse = new ArrayList<>(
 			monthsBySelectedYear);
+
 		Collections.reverse(monthsBySelectedYearReverse);
 
 		request.setAttribute(

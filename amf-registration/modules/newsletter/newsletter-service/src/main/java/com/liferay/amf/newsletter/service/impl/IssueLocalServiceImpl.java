@@ -83,9 +83,7 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
 			"MMMM dd, yyyy");
 
-		String formattedDate = simpleDateFormat.format(date);
-
-		return formattedDate;
+		return simpleDateFormat.format(date);
 	}
 
 	public List<Integer> getAllIssueYears() {
@@ -99,9 +97,7 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 				new Type[] {Type.INTEGER})
 		);
 
-		List<Integer> issueYears = issueLocalService.dynamicQuery(issueQuery);
-
-		return issueYears;
+		return issueLocalService.dynamicQuery(issueQuery);
 	}
 
 	public Date getEndDateOfYear(int year) {
@@ -115,6 +111,20 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		calendarEnd.set(Calendar.SECOND, 0);
 
 		return calendarEnd.getTime();
+	}
+
+	public Issue getIssueByIssueNumber(long issueNumber) {
+		ClassLoader classLoader = getClass().getClassLoader();
+
+		DynamicQuery issueQuery = DynamicQueryFactoryUtil.forClass(
+			Issue.class, "issue", classLoader
+		).add(
+			RestrictionsFactoryUtil.eq("issueNumber", issueNumber)
+		);
+
+		List<Issue> issueYears = issueLocalService.dynamicQuery(issueQuery);
+
+		return issueYears.get(0);
 	}
 
 	public List<Integer> getIssueMonthsByYear(Integer year) {
@@ -137,9 +147,7 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 			)
 		);
 
-		List<Integer> months = issueLocalService.dynamicQuery(monthQuery);
-
-		return months;
+		return issueLocalService.dynamicQuery(monthQuery);
 	}
 
 	public List<Issue> getIssuesByYearAndMonth(int year, int month) {
@@ -185,6 +193,7 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 
 	public String getMonthForInt(int num) {
 		String month = "wrong";
+
 		DateFormatSymbols dfs = new DateFormatSymbols();
 
 		String[] months = dfs.getMonths();
@@ -229,18 +238,6 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 		issue.setIssueDate(java.sql.Date.valueOf(issueDate)); //hardcode to sql for inputting date...
 		issue.setByline(authorByline);
 		issue.setIssueId(issueId);
-	}
-
-	public Issue getIssueByIssueNumber(long issueNumber) {
-		ClassLoader classLoader = getClass().getClassLoader();
-
-		DynamicQuery issueQuery = DynamicQueryFactoryUtil.forClass(
-				Issue.class, "issue", classLoader
-		).add(RestrictionsFactoryUtil.eq("issueNumber", issueNumber));
-
-		List<Issue> issueYears = issueLocalService.dynamicQuery(issueQuery);
-
-		return issueYears.get(0);
 	}
 
 }

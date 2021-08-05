@@ -38,6 +38,7 @@ public class ViewArticleMVCRenderCommand implements MVCRenderCommand {
 		try {
 			Newsletter newsletter = _newsletterLocalService.getNewsletter(
 				newsletterId);
+
 			Issue issue = _issueLocalService.getIssue(issueId);
 
 			Timestamp timestamp = new Timestamp(
@@ -59,9 +60,9 @@ public class ViewArticleMVCRenderCommand implements MVCRenderCommand {
 	}
 
 	@Reference
-	NewsletterLocalService _newsletterLocalService;
+	private NewsletterLocalService _newsletterLocalService;
 
 	@Reference
-	IssueLocalService _issueLocalService;
+	private IssueLocalService _issueLocalService;
 
 }

@@ -50,9 +50,11 @@ public class ViewIndividualIssueMVCRenderCommand implements MVCRenderCommand {
 			request.setAttribute("issueDescription", issue.getDescription());
 			request.setAttribute("issueNumber", issue.getIssueNumber());
 			request.setAttribute("issueTitle", issue.getTitle());
+
 			List<Newsletter> newsletterList =
 				_newsletterLocalService.findByIssueNumber(
 					issue.getIssueNumber());
+
 			request.setAttribute("newsletterList", newsletterList);
 		}
 		catch (PortalException pe) {
