@@ -1,6 +1,7 @@
 package com.liferay.amf.newsletter.web.portlet.action;
 
 import com.liferay.amf.newsletter.model.Newsletter;
+import com.liferay.amf.newsletter.service.IssueLocalService;
 import com.liferay.amf.newsletter.service.NewsletterLocalServiceUtil;
 import com.liferay.amf.newsletter.web.constants.MVCCommandNames;
 import com.liferay.amf.newsletter.web.constants.NewsletterPortletKeys;
@@ -87,14 +88,18 @@ public class SearchArticlesMVCRenderCommand implements MVCRenderCommand {
             System.out.println("Hey there " + newsletter.getTitle());
         }
 
+        request.setAttribute("issueLocalService", _issueLocalService);
         request.setAttribute("newslettersSize", newsletters.size());
         request.setAttribute("newsletters", newsletters);
+        request.setAttribute("keywords", keywords);
+
 
         return "/search-view.jsp";
     }
 
     @Reference
-    JournalArticleLocalService journalArticleLocalService;
+    IssueLocalService _issueLocalService;
+
     private static Log _log = LogFactoryUtil.getLog("html.issuewebportlet.search_view_jsp");
 
 }

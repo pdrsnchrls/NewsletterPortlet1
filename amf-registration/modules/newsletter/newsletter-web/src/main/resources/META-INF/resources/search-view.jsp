@@ -26,14 +26,15 @@
     </div>
 </aui:form>
 
+<h2>Search Results for ${keywords}</h2>
 <liferay-ui:search-container delta="5" emptyResultsMessage="no-results-found-please-try-searching-with-other-keywords" total="${newslettersSize }">
     <liferay-ui:search-container-results
             results="${newsletters }" />
     <liferay-ui:search-container-row
             className="com.liferay.amf.newsletter.model.Newsletter"
             keyProperty="newsletterId" modelVar="newsletter" escapedModel="${true }">
-        <liferay-ui:search-container-column-text href="/newsletter/-/article-issue/${newsletter.newsletterId}/issue/${issue.issueId}"
-                                                 value="${newsletter.title } by ${newsletter.author }" />
+        <liferay-ui:search-container-column-text href="/newsletter/-/article-issue/${newsletter.newsletterId}/issue/${issueLocalService.getIssueByIssueNumber(newsletter.issueNumber).issueId}"
+                                                 value="${newsletter.title } by ${newsletter.author }" /> <!--Get issueId based on newsletter information...-->
 
 
     </liferay-ui:search-container-row>
