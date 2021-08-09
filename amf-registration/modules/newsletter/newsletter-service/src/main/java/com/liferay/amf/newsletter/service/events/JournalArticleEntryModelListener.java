@@ -13,11 +13,10 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import java.util.Locale;
+
 @Component(
 	immediate = true,
-	property = {
-			//key?
-	},
 	service = ModelListener.class
 )
 public class JournalArticleEntryModelListener extends BaseModelListener<JournalArticle> {
@@ -37,7 +36,7 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 
 		String structureName = structure.getName();
 
-		structureName.toLowerCase();
+		structureName = structureName.toLowerCase();
 
 		boolean newsletterType = false;
 		boolean issueType = false;
@@ -65,20 +64,21 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 
 	public void onAfterRemove(JournalArticle journalArticle) { // D in CRUD
 
-		long resourcePrimKey = journalArticle.getResourcePrimKey();
+		long journalArticleId = journalArticle.getId();
 
 		// get the Structure information
 
 		DDMStructure structure = journalArticle.getDDMStructure();
 
 		String structureName = structure.getName();
+		structureName = structureName.toLowerCase();
 
 		if (structureName.contains(NEWSLETTER)) {
 
 			// web content is newsletter
 
 			try {
-				_newsletterLocalService.deleteNewsletter(resourcePrimKey);
+				_newsletterLocalService.deleteNewsletter(journalArticleId);
 			}
 			catch (PortalException pe) {
 				System.out.println("Unable to delete newsletter");
@@ -89,7 +89,7 @@ public class JournalArticleEntryModelListener extends BaseModelListener<JournalA
 			// web content is issue
 
 			try {
-				_issueLocalService.deleteIssue(resourcePrimKey);
+				_issueLocalService.deleteIssue(journalArticleId);
 			}
 			catch (PortalException pe) {
 				System.out.println("Unable to delete issue");

@@ -6,7 +6,7 @@
 	<author>Charles Pederson</author>
 	<namespace>Newsletter</namespace>
 
-	<entity local-service="true" name="Issue">
+	<entity local-service="true" remote-service="false" name="Issue">
 		<!-- Columns -->
 		<column name="issueId" type="long" primary="true"></column>
 		<column name="issueNumber" type="long"></column>
@@ -28,7 +28,7 @@
 
 	</entity>
 
-	<entity local-service="true" name="Newsletter">
+	<entity local-service="true" remote-service="false" name="Newsletter">
 		<!-- Columns -->
 		<column name="newsletterId" primary="true" type="long"></column>
 		<column name="issueNumber" type="long"></column>
