@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 
 import java.util.*;
 
+import com.liferay.portal.kernel.util.Validator;
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -49,25 +50,23 @@ public class NewsletterLocalServiceImpl extends NewsletterLocalServiceBaseImpl {
 
 		// if the newsletter already exists, then grab it and update it. (U in CRUD)
 
-		try {
-			Newsletter newsletter = newsletterLocalService.getNewsletter(
-				resourcePrimKey);
+		Newsletter newsletter = newsletterLocalService.fetchNewsletter(
+			resourcePrimKey);
 
-			setNewsletterAttributes(contentData, newsletter, resourcePrimKey);
-
-			// persist to database
-
-			newsletterLocalService.updateNewsletter(newsletter);
-		}
-		catch (PortalException e) { // otherwise  (C in CRUD)
-			Newsletter newsletter = newsletterLocalService.createNewsletter(
-				resourcePrimKey);
+		if(Validator.isNull(newsletter)) { // otherwise (C in CRUD)
+			newsletter = newsletterLocalService.createNewsletter(
+					resourcePrimKey);
 
 			setNewsletterAttributes(contentData, newsletter, resourcePrimKey);
 
 			// persist to database
 
 			newsletterLocalService.addNewsletter(newsletter);
+		}
+		else {
+			setNewsletterAttributes(contentData, newsletter, resourcePrimKey);
+
+			newsletterLocalService.updateNewsletter(newsletter);
 		}
 	}
 

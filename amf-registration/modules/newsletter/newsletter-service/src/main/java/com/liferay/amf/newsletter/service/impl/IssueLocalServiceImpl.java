@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 
 import java.util.*;
 
+import com.liferay.portal.kernel.util.Validator;
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -57,26 +58,26 @@ public class IssueLocalServiceImpl extends IssueLocalServiceBaseImpl {
 	public void checkIssueStatus(
 		HashMap<String, String> contentData, long resourcePrimKey) {
 
-		// if the issue already exists, then grab it and update it. (U in CRUD)
+			Issue issue = issueLocalService.fetchIssue(resourcePrimKey);
 
-		try {
-			Issue issue = issueLocalService.getIssue(resourcePrimKey);
+			if (Validator.isNull(issue)) { // otherwise  (C in CRUD)
 
-			setIssueAttributes(contentData, issue, resourcePrimKey);
+				issue = issueLocalService.createIssue(resourcePrimKey);
 
-			// persist to database
+				setIssueAttributes(contentData, issue, resourcePrimKey);
 
-			issueLocalService.updateIssue(issue);
-		}
-		catch (PortalException e) { // otherwise  (C in CRUD)
-			Issue issue = issueLocalService.createIssue(resourcePrimKey);
+				// persist to database
 
-			setIssueAttributes(contentData, issue, resourcePrimKey);
+				issueLocalService.addIssue(issue);
+			}
+			else { // if the issue already exists, then grab it and update it. (U in CRUD)
 
-			// persist to database
+				setIssueAttributes(contentData, issue, resourcePrimKey);
 
-			issueLocalService.addIssue(issue);
-		}
+				// persist to database
+
+				issueLocalService.updateIssue(issue);
+			}
 	}
 
 	public String formatIssueDate(java.sql.Timestamp date) {
