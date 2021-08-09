@@ -14,5 +14,5 @@
 <br /><br />
 
 <aui:button-row>
-	<aui:button onClick="<%= viewIssueListURL.toString() %>" value="Back" />
+	<aui:button onClick="/newsletters" value="Back" />
 </aui:button-row>

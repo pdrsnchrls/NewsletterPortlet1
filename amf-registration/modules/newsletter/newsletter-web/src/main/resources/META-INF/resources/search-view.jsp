@@ -11,7 +11,7 @@
 	/>
 </portlet:renderURL>
 
-<aui:form action="${searchURL}" name="fm">
+<aui:form action="/newsletter/-/article-issue/search" name="fm">
 	<liferay-ui:header backURL="${viewURL}" title="back" />
 
 	<div class="row">

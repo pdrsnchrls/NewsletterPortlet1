@@ -18,4 +18,12 @@
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 		<implicit-parameter name="p_p_mode">view</implicit-parameter>
 	</route>
+	<route>
+		<pattern>/search</pattern>
+		<implicit-parameter name="mvcRenderCommandName">/search/view</implicit-parameter>
+		<implicit-parameter name="p_p_lifecycle">0</implicit-parameter>
+		<implicit-parameter name="p_p_id">com_liferay_amf_newsletter_web_portlet_NewsletterPortlet</implicit-parameter>
+		<implicit-parameter name="p_p_state">normal</implicit-parameter>
+		<implicit-parameter name="p_p_mode">view</implicit-parameter>
+	</route>
 </routes>

@@ -3,7 +3,7 @@
 	<portlet:param name="mvcRenderCommandName" value="/search/view" />
 </portlet:renderURL>
 
-<aui:form action="${searchURL}" name="fm">
+<aui:form action="/newsletter/-/article-issue/search" name="fm">
 	<div class="row">
 		<div class="col-md-8">
 			<aui:input inlineLabel="left" label="" name="keywords" placeholder="search-newsletters" size="256" />
