@@ -16,12 +16,10 @@ package com.liferay.amf.newsletter.model.impl;
 
 import com.liferay.amf.newsletter.model.Issue;
 import com.liferay.amf.newsletter.model.IssueModel;
-import com.liferay.amf.newsletter.model.IssueSoap;
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
-import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
@@ -36,12 +34,10 @@ import java.lang.reflect.InvocationHandler;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -59,7 +55,6 @@ import org.osgi.annotation.versioning.ProviderType;
  * @see IssueImpl
  * @generated
  */
-@JSON(strict = true)
 @ProviderType
 public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 
@@ -112,49 +107,6 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 
 	public static void setFinderCacheEnabled(boolean finderCacheEnabled) {
 		_finderCacheEnabled = finderCacheEnabled;
-	}
-
-	/**
-	 * Converts the soap model instance into a normal model instance.
-	 *
-	 * @param soapModel the soap model instance to convert
-	 * @return the normal model instance
-	 */
-	public static Issue toModel(IssueSoap soapModel) {
-		if (soapModel == null) {
-			return null;
-		}
-
-		Issue model = new IssueImpl();
-
-		model.setIssueId(soapModel.getIssueId());
-		model.setIssueNumber(soapModel.getIssueNumber());
-		model.setTitle(soapModel.getTitle());
-		model.setDescription(soapModel.getDescription());
-		model.setIssueDate(soapModel.getIssueDate());
-		model.setByline(soapModel.getByline());
-
-		return model;
-	}
-
-	/**
-	 * Converts the soap model instances into normal model instances.
-	 *
-	 * @param soapModels the soap model instances to convert
-	 * @return the normal model instances
-	 */
-	public static List<Issue> toModels(IssueSoap[] soapModels) {
-		if (soapModels == null) {
-			return null;
-		}
-
-		List<Issue> models = new ArrayList<Issue>(soapModels.length);
-
-		for (IssueSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
 	}
 
 	public IssueModelImpl() {
@@ -301,7 +253,6 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 			(Map)attributeSetterBiConsumers);
 	}
 
-	@JSON
 	@Override
 	public long getIssueId() {
 		return _issueId;
@@ -312,7 +263,6 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 		_issueId = issueId;
 	}
 
-	@JSON
 	@Override
 	public long getIssueNumber() {
 		return _issueNumber;
@@ -323,7 +273,6 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 		_issueNumber = issueNumber;
 	}
 
-	@JSON
 	@Override
 	public String getTitle() {
 		if (_title == null) {
@@ -339,7 +288,6 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 		_title = title;
 	}
 
-	@JSON
 	@Override
 	public String getDescription() {
 		if (_description == null) {
@@ -355,7 +303,6 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 		_description = description;
 	}
 
-	@JSON
 	@Override
 	public Date getIssueDate() {
 		return _issueDate;
@@ -376,7 +323,6 @@ public class IssueModelImpl extends BaseModelImpl<Issue> implements IssueModel {
 		return _originalIssueDate;
 	}
 
-	@JSON
 	@Override
 	public String getByline() {
 		if (_byline == null) {

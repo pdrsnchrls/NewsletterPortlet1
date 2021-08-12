@@ -55,11 +55,11 @@ public class ContentLocalServiceUtil {
 	 * Never reference this class directly. Use <code>ContentLocalService</code> via injection or a <code>ServiceTracker</code> or use <code>ContentLocalServiceUtil</code>.
 	 */
 	public static void parseContent(
-		String articleContent, long resourcePrimKey, boolean newsletterType,
+		String articleContent, long journalArticleId, boolean newsletterType,
 		boolean issueType) {
 
 		getService().parseContent(
-			articleContent, resourcePrimKey, newsletterType, issueType);
+			articleContent, journalArticleId, newsletterType, issueType);
 	}
 
 	public static String splitString(

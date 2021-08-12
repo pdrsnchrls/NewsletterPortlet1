@@ -50,7 +50,7 @@
 
 	</entity>
 
-	<entity local-service="true" name="Content">
+	<entity local-service="true" remote-service="false" name="Content">
 		<reference entity="JournalArticle" package-path="com.liferay.journal" />
 	</entity>
 

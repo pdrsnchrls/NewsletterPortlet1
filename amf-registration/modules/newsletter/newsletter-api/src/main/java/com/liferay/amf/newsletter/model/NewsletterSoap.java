@@ -22,7 +22,7 @@ import java.util.List;
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
- * This class is used by SOAP remote services, specifically {@link com.liferay.amf.newsletter.service.http.NewsletterServiceSoap}.
+ * This class is used by SOAP remote services.
  *
  * @author Charles Pederson
  * @generated

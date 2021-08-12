@@ -16,12 +16,10 @@ package com.liferay.amf.newsletter.model.impl;
 
 import com.liferay.amf.newsletter.model.Newsletter;
 import com.liferay.amf.newsletter.model.NewsletterModel;
-import com.liferay.amf.newsletter.model.NewsletterSoap;
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
-import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
@@ -35,11 +33,9 @@ import java.lang.reflect.InvocationHandler;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -57,7 +53,6 @@ import org.osgi.annotation.versioning.ProviderType;
  * @see NewsletterImpl
  * @generated
  */
-@JSON(strict = true)
 @ProviderType
 public class NewsletterModelImpl
 	extends BaseModelImpl<Newsletter> implements NewsletterModel {
@@ -115,49 +110,6 @@ public class NewsletterModelImpl
 
 	public static void setFinderCacheEnabled(boolean finderCacheEnabled) {
 		_finderCacheEnabled = finderCacheEnabled;
-	}
-
-	/**
-	 * Converts the soap model instance into a normal model instance.
-	 *
-	 * @param soapModel the soap model instance to convert
-	 * @return the normal model instance
-	 */
-	public static Newsletter toModel(NewsletterSoap soapModel) {
-		if (soapModel == null) {
-			return null;
-		}
-
-		Newsletter model = new NewsletterImpl();
-
-		model.setNewsletterId(soapModel.getNewsletterId());
-		model.setIssueNumber(soapModel.getIssueNumber());
-		model.setTitle(soapModel.getTitle());
-		model.setAuthor(soapModel.getAuthor());
-		model.setOrder(soapModel.getOrder());
-		model.setContent(soapModel.getContent());
-
-		return model;
-	}
-
-	/**
-	 * Converts the soap model instances into normal model instances.
-	 *
-	 * @param soapModels the soap model instances to convert
-	 * @return the normal model instances
-	 */
-	public static List<Newsletter> toModels(NewsletterSoap[] soapModels) {
-		if (soapModels == null) {
-			return null;
-		}
-
-		List<Newsletter> models = new ArrayList<Newsletter>(soapModels.length);
-
-		for (NewsletterSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
 	}
 
 	public NewsletterModelImpl() {
@@ -312,7 +264,6 @@ public class NewsletterModelImpl
 			(Map)attributeSetterBiConsumers);
 	}
 
-	@JSON
 	@Override
 	public long getNewsletterId() {
 		return _newsletterId;
@@ -323,7 +274,6 @@ public class NewsletterModelImpl
 		_newsletterId = newsletterId;
 	}
 
-	@JSON
 	@Override
 	public long getIssueNumber() {
 		return _issueNumber;
@@ -346,7 +296,6 @@ public class NewsletterModelImpl
 		return _originalIssueNumber;
 	}
 
-	@JSON
 	@Override
 	public String getTitle() {
 		if (_title == null) {
@@ -362,7 +311,6 @@ public class NewsletterModelImpl
 		_title = title;
 	}
 
-	@JSON
 	@Override
 	public String getAuthor() {
 		if (_author == null) {
@@ -378,7 +326,6 @@ public class NewsletterModelImpl
 		_author = author;
 	}
 
-	@JSON
 	@Override
 	public int getOrder() {
 		return _order;
@@ -391,7 +338,6 @@ public class NewsletterModelImpl
 		_order = order;
 	}
 
-	@JSON
 	@Override
 	public String getContent() {
 		if (_content == null) {
