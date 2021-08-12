@@ -7,6 +7,8 @@ import com.liferay.amf.newsletter.service.NewsletterLocalService;
 import com.liferay.amf.newsletter.web.constants.MVCCommandNames;
 import com.liferay.amf.newsletter.web.constants.NewsletterPortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.util.ParamUtil;
 
@@ -18,6 +20,7 @@ import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
+import com.liferay.portal.kernel.util.Validator;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -37,8 +40,12 @@ public class ViewIndividualIssueMVCRenderCommand implements MVCRenderCommand {
 
 		Long issueId = ParamUtil.get(request, "issueId", 0L);
 
-		try {
-			Issue issue = _issueLocalService.getIssue(issueId);
+//		try {
+			Issue issue = _issueLocalService.fetchIssue(issueId);
+
+			if (Validator.isNull(issue)) {
+				_log.error("Issue with id " + issueId + " not found.");
+			}
 
 			Timestamp timestamp = new Timestamp(
 				issue.getIssueDate(
@@ -56,13 +63,16 @@ public class ViewIndividualIssueMVCRenderCommand implements MVCRenderCommand {
 					issue.getIssueNumber());
 
 			request.setAttribute("newsletterList", newsletterList);
-		}
-		catch (PortalException pe) {
-			pe.printStackTrace();
-		}
+//		}
+//		catch (PortalException pe) {
+//			pe.printStackTrace();
+//		}
 
 		return "/issue-view.jsp";
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+			"html.issuewebportlet.search_view_jsp");
 
 	@Reference
 	IssueLocalService _issueLocalService;

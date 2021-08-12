@@ -2,6 +2,7 @@ package com.liferay.amf.newsletter.web.portlet.action;
 
 import com.liferay.amf.newsletter.model.Newsletter;
 import com.liferay.amf.newsletter.service.IssueLocalService;
+import com.liferay.amf.newsletter.service.NewsletterLocalService;
 import com.liferay.amf.newsletter.service.NewsletterLocalServiceUtil;
 import com.liferay.amf.newsletter.web.constants.MVCCommandNames;
 import com.liferay.amf.newsletter.web.constants.NewsletterPortletKeys;
@@ -77,20 +78,12 @@ public class SearchArticlesMVCRenderCommand implements MVCRenderCommand {
 
 			Newsletter newsletter = null;
 
-			try {
-				newsletter = NewsletterLocalServiceUtil.getNewsletter(
-					newsletterId);
-				if (Validator.isNotNull(newsletter)) {
-					newsletters.add(newsletter);
-				}
+			newsletter = _newsletterLocalService.fetchNewsletter(
+				newsletterId);
+			if (Validator.isNotNull(newsletter)) {
+				newsletters.add(newsletter);
 			}
-			catch (PortalException pe) {
-				_log.error(pe.getLocalizedMessage());
-				continue;
-			}
-			catch (SystemException se) {
-				_log.error(se.getLocalizedMessage());
-			}
+
 		}
 
 		request.setAttribute("issueLocalService", _issueLocalService);
@@ -100,6 +93,9 @@ public class SearchArticlesMVCRenderCommand implements MVCRenderCommand {
 
 		return "/search-view.jsp";
 	}
+
+	@Reference
+	private NewsletterLocalService _newsletterLocalService;
 
 	@Reference
 	private IssueLocalService _issueLocalService;
